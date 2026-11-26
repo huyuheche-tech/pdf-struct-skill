@@ -1,0 +1,6 @@
+{
+ "case_id": "local-01",
+ "source_language": "en",
+ "target_language": "zh",
+ "output_contract": ["translated_segments", "glossary", "consistency_report", "status"]
+}

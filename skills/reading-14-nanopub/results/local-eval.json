@@ -1,0 +1,116 @@
+{
+ "checks": [
+  {
+   "name": "case01.exit",
+   "ok": true,
+   "detail": "case_id=nanopub-local-01 status=success assertions=4 errors=0"
+  },
+  {
+   "name": "case01.success",
+   "ok": true,
+   "detail": "success"
+  },
+  {
+   "name": "case01.no_errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case01.assertions_4",
+   "ok": true,
+   "detail": "{\"assertions\": 4, \"evidence_resolved\": 4, \"atomic\": 4, \"overbroad\": 0, \"duplicates\": 0}"
+  },
+  {
+   "name": "case01.evidence_all_resolved",
+   "ok": true,
+   "detail": "{\"assertions\": 4, \"evidence_resolved\": 4, \"atomic\": 4, \"overbroad\": 0, \"duplicates\": 0}"
+  },
+  {
+   "name": "case01.atomic_all",
+   "ok": true,
+   "detail": "{\"assertions\": 4, \"evidence_resolved\": 4, \"atomic\": 4, \"overbroad\": 0, \"duplicates\": 0}"
+  },
+  {
+   "name": "case01.contract_filled",
+   "ok": true,
+   "detail": "{\"assertions\": [{\"id\": \"a1\", \"text\": \"The calibration layer reduces expected calibration error from 8.4% to 6.3% on ImageNet.\", \"subject\": \"calibration layer\", "
+  },
+  {
+   "name": "case01.nanopub_three_parts",
+   "ok": true,
+   "detail": "{\"assertion\": {\"assertions\": [{\"id\": \"a1\", \"uri\": \"urn:nanopub:37d03ece45c8c6fc\", \"text\": \"The calibration layer reduces expected calibration error from 8.4% to"
+  },
+  {
+   "name": "case01.provenance_spans",
+   "ok": true,
+   "detail": "[{\"assertion_id\": \"a1\", \"source_id\": \"paper-imagenet-calibration\", \"doi\": \"10.0000/local.nanopub.01\", \"paragraph_id\": \"s02.p01\", \"quote\": \"On ImageNet, the cali"
+  },
+  {
+   "name": "case01.outputs_exist",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case02.partial",
+   "ok": true,
+   "detail": "partial"
+  },
+  {
+   "name": "case02.detects_not_atomic",
+   "ok": true,
+   "detail": "not_atomic,evidence_unresolved,overbroad"
+  },
+  {
+   "name": "case02.detects_evidence_unresolved",
+   "ok": true,
+   "detail": "not_atomic,evidence_unresolved,overbroad"
+  },
+  {
+   "name": "case02.detects_overbroad",
+   "ok": true,
+   "detail": "not_atomic,evidence_unresolved,overbroad"
+  },
+  {
+   "name": "case03.success",
+   "ok": true,
+   "detail": "success"
+  },
+  {
+   "name": "case03.no_errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case03.chinese_assertions",
+   "ok": true,
+   "detail": "[\"校准层\", \"校准层\", \"校准层\"]"
+  },
+  {
+   "name": "nodraft.partial",
+   "ok": true,
+   "detail": "partial"
+  },
+  {
+   "name": "nodraft.next_step",
+   "ok": true,
+   "detail": "write /app/work/draft.json as {\"assertions\":[{\"id\":\"a1\",\"text\":\"...\",\"subject\":\"...\",\"predicate\":\"supports|contradicts|u"
+  },
+  {
+   "name": "nomaterial.failed",
+   "ok": true,
+   "detail": "failed"
+  },
+  {
+   "name": "negative.condition_dropped",
+   "ok": true,
+   "detail": "condition_dropped"
+  },
+  {
+   "name": "negative.predicate_invalid",
+   "ok": true,
+   "detail": "predicate_invalid"
+  }
+ ],
+ "failed": 0,
+ "note": "local self-test only; not the official platform cases"
+}

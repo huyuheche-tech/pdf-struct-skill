@@ -1,0 +1,7 @@
+{
+ "segments": [
+  {"id": "p001", "target": "Effect of Residual Connections on Training Stability of Deep Networks"},
+  {"id": "p002", "target": "Abstract. This paper studies whether residual connections improve the training stability of deep networks. On 3 image classification datasets, adding residual connections reduced the validation error of a 20-layer network from 12.6% to 9.8% (p<0.01) [2]. The gain is not significant for a 5-layer network, indicating that residual connections mainly affect deep models [5]."},
+  {"id": "p003", "target": "We use a batch size of 128 and an initial learning rate of 0.1, halving the learning rate at epoch 30 and epoch 60. All experiments are repeated 3 times and we report the mean. Residual connections do not change the total number of parameters, so parameter count is not the source of the difference."}
+ ]
+}

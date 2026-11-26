@@ -1,0 +1,56 @@
+\documentclass[11pt]{article}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{natbib}
+\usepackage[margin=1in]{geometry}
+
+\title{A Small Study of Retrieval-Augmented Question Answering}
+\author{Example Author}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study a compact retrieval-augmented reader on a synthetic corpus and report
+accuracy under a fixed budget.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+Retrieval-augmented readers combine a sparse retriever with a sequence model
+\citep{lewis2020rag}. The design keeps the reader small and pushes knowledge into
+an external index. A recent survey claims much larger gains than we observe
+\citep{unknown2021}.
+
+\section{Method}
+\label{sec:method}
+The reader attends over the top-$k$ passages. We keep the retriever frozen and
+train only the fusion layer for three epochs.
+
+\section{Results}
+\label{sec:res}
+The accuracy is $72.4 on the synthetic development split, which we discuss
+below. See Section~\ref{sec:method} for the training budget.
+
+\begin{table}[t]
+\centering
+\begin{tabular}{lcc}
+\toprule
+Model & Dev & Test \\
+\midrule
+Sparse only & 61.2 & 60.4 \\
+Fusion (ours) & 72.4 & 71.8 & extra \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Discussion}
+\label{sec:res}
+We accidentally reuse the results label here. The number in
+Section~\ref{sec:res} should point at Results, not at this paragraph.
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\end{document}

@@ -1,0 +1,43 @@
+schema: skill-resources/v1
+name: methods-parameter-ledger
+version: 1.0.0
+description: >
+  Parameter-ledger-driven methods and experiments writing. Flattens
+  config.json / config.yaml / train.log into name/value/unit/source rows, then
+  checks number-to-source traceability, six-element coverage, an eight-item
+  reproducibility checklist, baseline specification and dataset specification.
+  Reads /input/case.json, writes /app/output/result.json plus params.json,
+  methods.md, gaps.json and checks.json.
+
+entry: scripts/run_case.py
+entry_args: ["--plan-only"]
+
+runtime:
+  python: "3.11"
+  pip: []
+  system: []
+  notes: >
+    Standard library only. JSON/YAML flattening and log parsing are local and
+    deterministic. No network, no training.
+
+resources:
+  - path: scripts/run_case.py
+    role: entry
+  - path: scripts/methods_ledger.py
+    role: engine
+  - path: scripts/skillkit.py
+    role: library
+  - path: references/check-rules.md
+    role: docs
+  - path: references/draft-schema.md
+    role: docs
+  - path: references/param-extraction.md
+    role: docs
+  - path: examples/README.md
+    role: docs
+
+limits:
+  text_files: 50
+  bytes_per_file: 512000
+  bytes_total: 2097152
+  symlinks: false

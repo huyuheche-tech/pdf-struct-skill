@@ -1,0 +1,7 @@
+{
+ "case_id": "intro-local-03",
+ "lang": "zh",
+ "title": "低资源文本分类中的轻量注意力编码器",
+ "materials": ["material.md", "refs.bib"],
+ "output_contract": ["sections", "evidence", "checks", "status"]
+}

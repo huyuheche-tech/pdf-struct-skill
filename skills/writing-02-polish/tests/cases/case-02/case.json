@@ -1,0 +1,7 @@
+{
+ "case_id": "local-polish-02-bad",
+ "task": "same abstract, but the submitted polish strengthens a hedge, changes a number and drops a citation",
+ "language": "en",
+ "glossary_file": "glossary.csv",
+ "output_contract": ["edited_text", "edits", "checks", "metrics", "status"]
+}

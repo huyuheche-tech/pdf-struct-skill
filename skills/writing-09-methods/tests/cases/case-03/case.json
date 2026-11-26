@@ -1,0 +1,7 @@
+{
+ "case_id": "methods-local-03",
+ "lang": "zh",
+ "title": "面向 GLUE 的紧凑 Transformer 方法",
+ "materials": ["config.json", "train.log", "notes.md"],
+ "output_contract": ["methods", "tables", "checks", "status"]
+}

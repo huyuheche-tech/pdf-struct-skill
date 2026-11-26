@@ -1,0 +1,186 @@
+{
+ "checks": [
+  {
+   "name": "case01.exit",
+   "ok": true,
+   "detail": "case_id=local-refs-01 status=partial entries=3 cited=2 missing=1 errors=1"
+  },
+  {
+   "name": "case01.partial",
+   "ok": true,
+   "detail": "partial"
+  },
+  {
+   "name": "case01.missing_entry",
+   "ok": true,
+   "detail": "missing_entry"
+  },
+  {
+   "name": "case01.uncited_entry",
+   "ok": true,
+   "detail": "uncited_entry,field_missing"
+  },
+  {
+   "name": "case01.contract_filled",
+   "ok": true,
+   "detail": "{\"references\": [{\"id\": \"r01\", \"key\": \"chen2019\", \"type\": \"J\", \"number_old\": 1, \"number_new\": 1, \"authors\": [\"Wei Chen\", \"Lin Zhao\"], \"title\": \"Attention improve"
+  },
+  {
+   "name": "case01.files_written",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case01.manuscript_kept",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case01.cjk_authors_et_al",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case02.success",
+   "ok": true,
+   "detail": "success"
+  },
+  {
+   "name": "case02.duplicates_1",
+   "ok": true,
+   "detail": "1"
+  },
+  {
+   "name": "case02.entries_after_merge",
+   "ok": true,
+   "detail": "4"
+  },
+  {
+   "name": "case02.nothing_uncited",
+   "ok": true,
+   "detail": "0"
+  },
+  {
+   "name": "case02.renumber_by_first_use",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case02.merge_recorded",
+   "ok": true,
+   "detail": "[{\"old\": 1, \"key\": \"chen2019conf\", \"new\": 2, \"merged_into\": \"chen2019j\", \"cited\": true}]"
+  },
+  {
+   "name": "case02.merge_basis_doi",
+   "ok": true,
+   "detail": "[{\"keys\": [\"chen2019conf\", \"chen2019j\"], \"kept\": \"chen2019j\", \"dropped\": \"chen2019conf\", \"basis\": \"doi\", \"detail\": \"identical DOI 10.1000/acl.2019.210"
+  },
+  {
+   "name": "case02.apa_style",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case02.contract_filled",
+   "ok": true,
+   "detail": "{\"references\": [{\"id\": \"r02\", \"key\": \"chen2019j\", \"type\": \"J\", \"number_old\": 2, \"number_new\": 2, \"authors\": [\"Wei Chen\", \"Lin Zhao\"], \"title\": \"Attention improv"
+  },
+  {
+   "name": "case03.exit",
+   "ok": true,
+   "detail": "case_id=local-refs-03 status=success entries=3 cited=3 missing=0 errors=0"
+  },
+  {
+   "name": "case03.success",
+   "ok": true,
+   "detail": "success"
+  },
+  {
+   "name": "case03.all_cited",
+   "ok": true,
+   "detail": "{\"entries\": 3, \"parsed_entries\": 3, \"cited\": 3, \"uncited\": 0, \"missing\": 0, \"duplicates\": 0, \"field_completeness\": 0.0}"
+  },
+  {
+   "name": "case03.todo_for_missing_doi",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case03.author_year_untouched",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case03.completeness_flags",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "negative.unsafe_merge",
+   "ok": true,
+   "detail": "unsafe_merge"
+  },
+  {
+   "name": "negative.unsafe_merge_refused",
+   "ok": true,
+   "detail": "0"
+  },
+  {
+   "name": "negative.field_missing_when_claimed",
+   "ok": true,
+   "detail": "unsafe_merge,field_missing"
+  },
+  {
+   "name": "negative.field_missing_partial",
+   "ok": true,
+   "detail": "partial"
+  },
+  {
+   "name": "negative.check_only_no_rewrite",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "negative.check_only_not_success",
+   "ok": true,
+   "detail": "partial"
+  },
+  {
+   "name": "negative.check_only_next_step",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "latex_cite_untouched",
+   "ok": true,
+   "detail": "First [1]. Then \\cite{k1,k2} and [2-4]."
+  },
+  {
+   "name": "range_renumbered_compressed",
+   "ok": true,
+   "detail": "First [1]. Then \\cite{k1,k2} and [2-4]."
+  },
+  {
+   "name": "no_false_merge_on_digits",
+   "ok": true,
+   "detail": "0"
+  },
+  {
+   "name": "negative.no_draft_partial",
+   "ok": true,
+   "detail": "partial"
+  },
+  {
+   "name": "negative.no_draft_next_step",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "negative.no_manuscript_failed",
+   "ok": true,
+   "detail": "failed"
+  }
+ ],
+ "failed": 0,
+ "note": "local self-test only; not the official platform cases"
+}

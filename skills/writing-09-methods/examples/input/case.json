@@ -1,0 +1,15 @@
+{
+ "case_id": "example-001",
+ "title": "EXAMPLE Compact Transformer for GLUE Text Classification",
+ "materials": [
+  "config.json",
+  "train.log",
+  "notes.md"
+ ],
+ "output_contract": [
+  "methods",
+  "tables",
+  "checks",
+  "status"
+ ]
+}

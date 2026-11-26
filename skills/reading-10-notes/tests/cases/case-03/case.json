@@ -1,0 +1,13 @@
+{
+ "case_id": "notes-local-03",
+ "title": "低资源机器翻译中的稀疏注意力",
+ "language": "zh",
+ "output_contract": [
+  "notes",
+  "sections",
+  "card",
+  "checks",
+  "metrics"
+ ],
+ "material": "material.md"
+}

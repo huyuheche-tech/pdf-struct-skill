@@ -1,0 +1,81 @@
+{
+ "card": {
+  "research_question": {
+   "text": "稀疏注意力编码器能否在低资源机器翻译中提升样本效率？",
+   "anchor": "s01.p01",
+   "quote": "We study whether a sparse attention encoder improves sample efficiency in low-resource machine translation."
+  },
+  "data": {
+   "text": "WMT-14 En-De、IWSLT-14 De-En 与 OPUS-100 三个数据集。",
+   "anchor": "s03.p01",
+   "quote": "WMT-14 En-De, IWSLT-14 De-En and OPUS-100"
+  },
+  "method": {
+   "text": "6 层 Transformer，稀疏注意力编码器；批大小 64、学习率 0.001、训练 40 轮；解码器冻结。",
+   "anchor": "s03.p01",
+   "quote": "All models use a batch size of 64 and a learning rate of 0.001 for 40 epochs."
+  },
+  "findings": [
+   {
+    "text": "三个数据集上验证误差平均相对降低 18.4%。",
+    "anchor": "s04.p01",
+    "quote": "the sparse encoder lowers validation error, with a mean relative reduction of 18.4%"
+   },
+   {
+    "text": "仅使用 5% 标注数据时改进仍然存在。",
+    "anchor": "s04.p01",
+    "quote": "The improvement remains when only 5% of labels are used."
+   }
+  ],
+  "limitations": [
+   {
+    "text": "只评估了翻译任务，结论未必能推广到摘要生成。",
+    "anchor": "s04.p01",
+    "quote": "we evaluate only translation tasks, so the result may not transfer to summarisation"
+   }
+  ]
+ },
+ "section_summaries": [
+  {
+   "section_id": "s01",
+   "text": "提出问题并给出主要数字：18.4% 的验证误差降幅，5% 标注时增益最大。",
+   "anchor": "s01.p01",
+   "quote": "the encoder reduced validation error by 18.4% relative to a dense baseline"
+  },
+  {
+   "section_id": "s02",
+   "text": "说明低资源场景下稠密注意力易过拟合，由此提出研究问题。",
+   "anchor": "s02.p01",
+   "quote": "Prior work reports that dense attention overfits when training sets are small."
+  },
+  {
+   "section_id": "s03",
+   "text": "给出数据集、模型配置与训练超参数，并冻结解码器以隔离变量。",
+   "anchor": "s03.p01",
+   "quote": "We train a 6-layer transformer with a sparse attention encoder"
+  },
+  {
+   "section_id": "s04",
+   "text": "报告三数据集上的误差下降与标签稀缺下的稳健性，并说明任务范围局限。",
+   "anchor": "s04.p01",
+   "quote": "On all three datasets, the sparse encoder lowers validation error"
+  }
+ ],
+ "knowledge_points": [
+  {
+   "text": "稀疏注意力编码器在低资源机器翻译上把验证误差平均降低 18.4%。",
+   "anchor": "s04.p01",
+   "quote": "mean relative reduction of 18.4%"
+  },
+  {
+   "text": "标签稀缺（仅 5%）时增益并未消失。",
+   "anchor": "s04.p01",
+   "quote": "The improvement remains when only 5% of labels are used."
+  },
+  {
+   "text": "结论仅覆盖翻译任务，不能直接外推到摘要生成。",
+   "anchor": "s04.p01",
+   "quote": "the result may not transfer to summarisation"
+  }
+ ]
+}

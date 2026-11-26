@@ -1,0 +1,45 @@
+schema: skill-resources/v1
+name: literature-knowledge-graph
+version: 1.0.0
+description: >
+  Evidence-bound knowledge graph over two independent papers: every node and
+  edge carries a JATS paragraph_id plus a verbatim quote, relations come from a
+  controlled vocabulary, merges require a stated basis, cross-paper numeric
+  claims cannot be fused without conditions, at least three queries are really
+  executed, and --base keeps existing node ids for incremental updates.
+  Reads /input/case.json and writes /app/output/result.json plus graph.json,
+  graph.csv, queries.md and checks.json.
+
+entry: scripts/run_case.py
+entry_args: []
+
+runtime:
+  python: "3.11"
+  pip: []
+  system: []
+  notes: >
+    Standard library only. No network. Queries are executed by the script
+    against the submitted graph; nothing is looked up online. Paragraph
+    anchors are JATS paragraph_id values, not PDF page numbers.
+
+resources:
+  - path: scripts/run_case.py
+    role: entry
+  - path: scripts/kg_builder.py
+    role: engine
+  - path: scripts/skillkit.py
+    role: library
+  - path: references/graph-schema.md
+    role: docs
+  - path: references/merge-policy.md
+    role: docs
+  - path: references/check-rules.md
+    role: docs
+  - path: examples/README.md
+    role: docs
+
+limits:
+  text_files: 50
+  bytes_per_file: 512000
+  bytes_total: 2097152
+  symlinks: false

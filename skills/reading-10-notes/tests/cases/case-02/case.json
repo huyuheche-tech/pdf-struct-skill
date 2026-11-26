@@ -1,0 +1,13 @@
+{
+ "case_id": "notes-local-02",
+ "title": "Retrieval-Augmented Reader",
+ "language": "en",
+ "output_contract": [
+  "notes",
+  "sections",
+  "card",
+  "checks",
+  "metrics"
+ ],
+ "material": "material.md"
+}

@@ -1,0 +1,3 @@
+[1] Chen W, Zhao L. Attention improves sample efficiency[J]. Journal of Machine Learning Research, 2019, 20(4): 1-25.
+[2] Liu M, Ruiz A, Sun B, Feng K. Sparse attention for long documents[J]. Transactions on Natural Language Processing, 2021, 9(2): 112-130.
+[3] Wang H. Deep learning for text[M]. Beijing: Science Press, 2020.

@@ -1,0 +1,9 @@
+{
+ "edited": "Attention Improves Sample Efficiency in Low-Resource Settings\n\nAbstract. We study whether an attention mechanism improves sample efficiency when labeled data are scarce. Across 12 runs on three datasets, the attention mechanism demonstrates that validation error falls by 18.0% (p<0.001) relative to a strong baseline. The gain persists when only 5% of the labels are available [7].\n\nThis pattern is an important signal for practitioners who deploy small models. We train all models for 40 epochs with a batch size of 64 and a learning rate of 0.001. The attention mechanism is applied to the encoder only. We do not tune the decoder, so the comparison isolates the encoder change. Results may not transfer to sequence-to-sequence tasks.\n",
+ "edits": [
+  {"id": "s01", "original": "whether attention mechanism improves", "edited": "whether an attention mechanism improves", "type": "grammar", "reason": "补不定冠词"},
+  {"id": "s02", "original": "the attention model may reduce validation error by 18.4% (p<0.001) relative to a strong baseline [3].", "edited": "the attention mechanism demonstrates that validation error falls by 18.0% (p<0.001) relative to a strong baseline.", "type": "tone", "reason": "把结论说得更肯定，并统一数字写法"},
+  {"id": "s03", "original": "is a important signal", "edited": "is an important signal", "type": "grammar", "reason": "元音音素前用 an"},
+  {"id": "s04", "original": "The attention model is applied", "edited": "The attention mechanism is applied", "type": "term", "reason": "术语统一"}
+ ]
+}

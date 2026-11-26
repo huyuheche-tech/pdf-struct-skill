@@ -1,0 +1,4 @@
+﻿source,target,note
+残差连接,residual connection,
+验证误差,validation error,
+深层网络,deep network,

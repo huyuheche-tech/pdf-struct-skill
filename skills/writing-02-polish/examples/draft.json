@@ -1,0 +1,7 @@
+{
+ "edited": "Sparse Attention for Long Documents\n\nDense attention is an expensive baseline for long inputs: a 4096-token sequence may need 16 GB of memory [5]. Sparse attention reduces this by 62.5% in our runs.\n",
+ "edits": [
+  {"id": "e01", "original": "is a expensive baseline", "edited": "is an expensive baseline",
+   "type": "grammar", "reason": "元音音素前用 an"}
+ ]
+}

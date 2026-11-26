@@ -1,0 +1,48 @@
+schema: skill-resources/v1
+name: citation-ledger
+version: 1.0.0
+description: >
+  Reference and citation management: parses BibTeX / RIS / numbered
+  bibliographies and four citation styles, reconciles both directions,
+  renumbers by first appearance and rewrites the manuscript, de-duplicates by
+  DOI or title similarity with the basis recorded, and renders GB/T 7714-2015
+  or APA with [TODO: field] for anything missing. Reads /input/case.json,
+  writes /app/output/result.json plus bibliography.md, references.json,
+  checks.json and manuscript_renumbered.md.
+
+entry: scripts/run_case.py
+entry_args: ["--check-only"]
+
+runtime:
+  python: "3.11"
+  pip: []
+  system: []
+  notes: >
+    Standard library only (difflib for title similarity). No network, no
+    bibliographic lookup: a real DOI check is explicitly out of scope.
+
+resources:
+  - path: scripts/run_case.py
+    role: entry
+  - path: scripts/cite_ledger.py
+    role: engine
+  - path: scripts/skillkit.py
+    role: library
+  - path: references/check-rules.md
+    role: docs
+  - path: references/format-gbt7714.md
+    role: docs
+  - path: references/ledger-schema.md
+    role: docs
+  - path: examples/README.md
+    role: docs
+  - path: examples/refs.bib
+    role: example-input
+  - path: examples/manuscript.md
+    role: example-input
+
+limits:
+  text_files: 50
+  bytes_per_file: 512000
+  bytes_total: 2097152
+  symlinks: false

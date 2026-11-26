@@ -1,0 +1,6 @@
+{
+  "model": {"name": "compact-transformer", "num_layers": 6, "hidden_size": 256},
+  "optimizer": {"name": "adamw", "lr": 0.001, "weight_decay": 0.01},
+  "training": {"batch_size": 64, "epochs": 40, "seed": 42, "warmup_steps": 500},
+  "data": {"dataset": "glue", "version": "2.0", "max_length": 128}
+}

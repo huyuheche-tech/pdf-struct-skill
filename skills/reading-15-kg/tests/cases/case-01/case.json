@@ -1,0 +1,6 @@
+{
+ "case_id": "local-kg-01-two-papers",
+ "corpus": "corpus-manifest.json",
+ "material": "material.json",
+ "output_contract": ["graph", "queries", "checks", "metrics", "status", "files"]
+}

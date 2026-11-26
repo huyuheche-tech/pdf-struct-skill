@@ -1,0 +1,29 @@
+{
+ "nodes": [
+  {"id": "n3", "name": "ViT-B/16", "type": "method", "aliases": ["ViT"],
+   "source_ids": ["p2"], "merge_basis": "",
+   "evidence": [{"source_id": "p2", "paragraph_id": "p2-2",
+                 "quote": "We fine-tune ViT-B/16 on CIFAR-100"}]},
+  {"id": "n4", "name": "Top-1 accuracy", "type": "metric", "aliases": [],
+   "source_ids": ["p1", "p2"],
+   "merge_basis": "same metric definition (top-1 accuracy) reported by both papers",
+   "evidence": [{"source_id": "p2", "paragraph_id": "p2-4",
+                 "quote": "91.2% top-1 accuracy on CIFAR-100"}]},
+  {"id": "n9", "name": "CIFAR-100", "type": "dataset", "aliases": [],
+   "source_ids": ["p2"], "merge_basis": "",
+   "evidence": [{"source_id": "p2", "paragraph_id": "p2-3",
+                 "quote": "All experiments use CIFAR-100"}]}
+ ],
+ "edges": [
+  {"id": "e6", "source": "n3", "relation": "uses", "target": "n9", "source_id": "p2",
+   "paragraph_id": "p2-2", "quote": "We fine-tune ViT-B/16 on CIFAR-100", "conditions": ""},
+  {"id": "e7", "source": "n3", "relation": "measured_by", "target": "n4", "source_id": "p2",
+   "paragraph_id": "p2-4", "quote": "91.2% top-1 accuracy on CIFAR-100",
+   "conditions": "CIFAR-100 test split, 30 epochs"}
+ ],
+ "queries": [
+  {"q": "Which backbone does the second paper fine-tune?", "answer_ids": ["n3"]},
+  {"q": "Which dataset does the second paper use?", "answer_ids": ["n9"]},
+  {"q": "What top-1 accuracy is reported on CIFAR-100?", "answer_ids": ["n4"]}
+ ]
+}

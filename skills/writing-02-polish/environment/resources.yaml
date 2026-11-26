@@ -1,0 +1,45 @@
+schema: skill-resources/v1
+name: academic-polish-ledger
+version: 1.0.0
+description: >
+  Academic language polishing with a per-edit ledger: sentence-level alignment
+  between manuscript and rewrite, hard guards on numbers/units, citation
+  markers, hedge strength and negation polarity, a locked terminology table and
+  a high-confidence residual grammar lint. Reads /input/case.json, writes
+  /app/output/result.json plus plan.json, polished.md, edits.json, checks.json.
+
+entry: scripts/run_case.py
+entry_args: ["--plan-only"]
+
+runtime:
+  python: "3.11"
+  pip: []
+  system: []
+  notes: >
+    Standard library only (difflib for sentence alignment). PDF text is read
+    with pymupdf when present, then pdftotext, then a minimal stream extractor
+    (marked partial). No network, no model call.
+
+resources:
+  - path: scripts/run_case.py
+    role: entry
+  - path: scripts/polish_ledger.py
+    role: engine
+  - path: scripts/skillkit.py
+    role: library
+  - path: references/check-rules.md
+    role: docs
+  - path: references/ledger-schema.md
+    role: docs
+  - path: examples/README.md
+    role: docs
+  - path: examples/material.md
+    role: example-input
+  - path: examples/draft.json
+    role: example-input
+
+limits:
+  text_files: 50
+  bytes_per_file: 512000
+  bytes_total: 2097152
+  symlinks: false

@@ -1,0 +1,43 @@
+schema: skill-resources/v1
+name: intro-evidence-binder
+version: 1.0.0
+description: >
+  Evidence-first introduction and related-work writing. Builds a sentence-level
+  evidence table with stable anchors, then checks four-part completeness,
+  number-to-evidence traceability, contribution-to-quote binding, gap citation
+  strength, related-work grouping and citation-key existence. Reads
+  /input/case.json, writes /app/output/result.json plus evidence.json,
+  intro.md and checks.json.
+
+entry: scripts/run_case.py
+entry_args: ["--plan-only"]
+
+runtime:
+  python: "3.11"
+  pip: []
+  system: []
+  notes: >
+    Standard library only. PDF text is read with pymupdf when present, then
+    pdftotext, then a minimal stream extractor (marked partial). No network.
+
+resources:
+  - path: scripts/run_case.py
+    role: entry
+  - path: scripts/intro_builder.py
+    role: engine
+  - path: scripts/skillkit.py
+    role: library
+  - path: references/check-rules.md
+    role: docs
+  - path: references/draft-schema.md
+    role: docs
+  - path: references/writing-guide.md
+    role: docs
+  - path: examples/README.md
+    role: docs
+
+limits:
+  text_files: 50
+  bytes_per_file: 512000
+  bytes_total: 2097152
+  symlinks: false

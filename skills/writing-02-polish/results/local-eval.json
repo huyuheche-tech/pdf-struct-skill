@@ -1,0 +1,156 @@
+{
+ "checks": [
+  {
+   "name": "case01.exit",
+   "ok": true,
+   "detail": "case_id=local-polish-01 status=success edits=4 errors=0"
+  },
+  {
+   "name": "case01.success",
+   "ok": true,
+   "detail": "success"
+  },
+  {
+   "name": "case01.no_errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case01.four_edits",
+   "ok": true,
+   "detail": "4"
+  },
+  {
+   "name": "case01.zero_drift",
+   "ok": true,
+   "detail": "{\"edit_count\": 4, \"unexplained\": 0, \"number_drift\": 0, \"hedge_drift\": 0, \"residual_grammar\": 0}"
+  },
+  {
+   "name": "case01.contract_filled",
+   "ok": true,
+   "detail": "{\"edited_text\": \"Attention Improves Sample Efficiency in Low-Resource Settings\\n\\nAbstract. We study whether an attention mechanism improves sample efficiency w"
+  },
+  {
+   "name": "case01.numbers_kept",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case01.polished_md_written",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case01.edits_json_written",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case01.plan_only_writes_plan",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case01.plan_only_not_success",
+   "ok": true,
+   "detail": "partial"
+  },
+  {
+   "name": "case01.plan_only_next_step",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case02.partial",
+   "ok": true,
+   "detail": "partial"
+  },
+  {
+   "name": "case02.detects_hedge_strengthened",
+   "ok": true,
+   "detail": "number_missing,number_added,number_changed,citation_changed,hedge_strengthened"
+  },
+  {
+   "name": "case02.detects_number_missing",
+   "ok": true,
+   "detail": "number_missing,number_added,number_changed,citation_changed,hedge_strengthened"
+  },
+  {
+   "name": "case02.detects_citation_changed",
+   "ok": true,
+   "detail": "number_missing,number_added,number_changed,citation_changed,hedge_strengthened"
+  },
+  {
+   "name": "case02.number_drift_counted",
+   "ok": true,
+   "detail": "{\"edit_count\": 4, \"unexplained\": 0, \"number_drift\": 3, \"hedge_drift\": 1, \"residual_grammar\": 0}"
+  },
+  {
+   "name": "case03.exit",
+   "ok": true,
+   "detail": "case_id=local-polish-03-zh status=success edits=3 errors=0"
+  },
+  {
+   "name": "case03.success",
+   "ok": true,
+   "detail": "success"
+  },
+  {
+   "name": "case03.no_errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case03.term_lock_kept",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case03.negation_kept",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "negative.edit_unexplained",
+   "ok": true,
+   "detail": "edit_unexplained"
+  },
+  {
+   "name": "negative.edit_unexplained_is_partial",
+   "ok": true,
+   "detail": "partial"
+  },
+  {
+   "name": "negative.negation_changed",
+   "ok": true,
+   "detail": "negation_changed"
+  },
+  {
+   "name": "negative.edit_unanchored",
+   "ok": true,
+   "detail": "edit_unanchored,edit_unexplained"
+  },
+  {
+   "name": "negative.auto_ledger_unexplained",
+   "ok": true,
+   "detail": "edit_unexplained,edit_unexplained,edit_unexplained,edit_unexplained"
+  },
+  {
+   "name": "negative.residual_grammar",
+   "ok": true,
+   "detail": "residual_grammar"
+  },
+  {
+   "name": "negative.residual_grammar_rule",
+   "ok": true,
+   "detail": "[{\"code\": \"residual_grammar\", \"rule\": \"a_an\", \"detail\": \"write 'an important', not 'a important'\", \"span\": [391, 402]}]"
+  },
+  {
+   "name": "negative.no_material_failed",
+   "ok": true,
+   "detail": "failed"
+  }
+ ],
+ "failed": 0,
+ "note": "local self-test only; not the official platform cases"
+}

@@ -1,0 +1,11 @@
+{
+ "paper_id": "p1",
+ "title": "A Tiny ResNet Study",
+ "doi": "10.0000/example.tiny.p1",
+ "paragraphs": [
+  {"paragraph_id": "p1-1", "section": "Method",
+   "text": "We use ResNet-50 and train it on ImageNet-1k for 90 epochs."},
+  {"paragraph_id": "p1-2", "section": "Results",
+   "text": "ResNet-50 reaches 76.8% top-1 accuracy on ImageNet-1k."}
+ ]
+}

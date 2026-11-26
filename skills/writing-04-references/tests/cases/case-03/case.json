@@ -1,0 +1,8 @@
+{
+ "case_id": "local-refs-03",
+ "task": "numbered text bibliography + author-year manuscript, rendered as GB/T 7714",
+ "style": "gbt7714",
+ "library": "refs.txt",
+ "manuscript": "manuscript.md",
+ "output_contract": ["references", "renumber_map", "checks", "metrics", "status"]
+}

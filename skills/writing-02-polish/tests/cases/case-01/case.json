@@ -1,0 +1,7 @@
+{
+ "case_id": "local-polish-01",
+ "task": "polish an English abstract without changing any number, citation or claim strength",
+ "language": "en",
+ "glossary_file": "glossary.csv",
+ "output_contract": ["edited_text", "edits", "checks", "metrics", "status"]
+}

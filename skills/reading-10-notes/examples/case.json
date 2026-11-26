@@ -1,0 +1,13 @@
+{
+ "case_id": "example-notes-001",
+ "title": "Linear Probe on Frozen Embeddings",
+ "language": "en",
+ "output_contract": [
+  "notes",
+  "sections",
+  "card",
+  "checks",
+  "metrics"
+ ],
+ "material": "material.md"
+}

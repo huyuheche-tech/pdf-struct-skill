@@ -1,0 +1,6 @@
+{
+ "case_id": "intro-local-01",
+ "title": "Attention Encoder for Low-Resource Text Classification",
+ "materials": ["material.md", "refs.bib"],
+ "output_contract": ["sections", "evidence", "checks", "status"]
+}

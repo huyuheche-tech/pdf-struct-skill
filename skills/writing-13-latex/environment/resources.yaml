@@ -1,0 +1,45 @@
+schema: skill-resources/v1
+name: latex-build-doctor
+version: 1.0.0
+description: >
+  Deterministic LaTeX build doctor: delimiter/environment/math balance,
+  \cite against .bib, \ref against \label, tabular column counts, booktabs
+  rules, captions, duplicate packages, and a two-pass pdflatex/latexmk build
+  when a TeX installation exists. Reads /input/case.json and writes
+  /app/output/result.json plus report.md, diagnostics.json, checks.json and
+  (with --fix) fixed.tex.
+
+entry: scripts/run_case.py
+entry_args: ["--fix"]
+
+runtime:
+  python: "3.11"
+  pip: []
+  system: []
+  notes: >
+    Standard library only. No network. Compilation is attempted only when
+    pdflatex or latexmk is on PATH and the case does not disable it; otherwise
+    compiled stays false and compiler_missing is reported. Nothing is ever
+    claimed to have compiled without a real build.
+
+resources:
+  - path: scripts/run_case.py
+    role: entry
+  - path: scripts/tex_doctor.py
+    role: engine
+  - path: scripts/skillkit.py
+    role: library
+  - path: references/check-rules.md
+    role: docs
+  - path: references/fix-policy.md
+    role: docs
+  - path: references/inputs-and-contract.md
+    role: docs
+  - path: examples/README.md
+    role: docs
+
+limits:
+  text_files: 50
+  bytes_per_file: 512000
+  bytes_total: 2097152
+  symlinks: false

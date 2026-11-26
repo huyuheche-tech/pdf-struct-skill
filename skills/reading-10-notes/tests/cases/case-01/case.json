@@ -1,0 +1,13 @@
+{
+ "case_id": "notes-local-01",
+ "title": "Sparse Attention for Low-Resource Translation",
+ "language": "en",
+ "output_contract": [
+  "notes",
+  "sections",
+  "card",
+  "checks",
+  "metrics"
+ ],
+ "material": "material.md"
+}

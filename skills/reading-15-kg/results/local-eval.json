@@ -1,0 +1,101 @@
+{
+ "checks": [
+  {
+   "name": "case01.exit",
+   "ok": true,
+   "detail": "case_id=local-kg-01-two-papers status=success nodes=8 edges=10 queries=3 errors=0 warnings=0"
+  },
+  {
+   "name": "case01.success",
+   "ok": true,
+   "detail": "success"
+  },
+  {
+   "name": "case01.eight_nodes",
+   "ok": true,
+   "detail": "8"
+  },
+  {
+   "name": "case01.ten_edges",
+   "ok": true,
+   "detail": "10"
+  },
+  {
+   "name": "case01.evidence_all_resolved",
+   "ok": true,
+   "detail": "10"
+  },
+  {
+   "name": "case01.no_errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case01.three_queries_evidenced",
+   "ok": true,
+   "detail": "q1:2,q2:4,q3:2"
+  },
+  {
+   "name": "case01.contract_filled",
+   "ok": true,
+   "detail": "{\"graph\": {\"meta\": {\"case_id\": \"local-kg-01-two-papers\", \"mode\": \"draft\", \"papers\": [{\"paper_id\": \"p1\", \"title\": \"Residual Fusion for Low-Resource Image Classification\", \"doi\": \"10.0000/example.kg.p1\""
+  },
+  {
+   "name": "case01.csv_has_both_sections",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case02.partial",
+   "ok": true,
+   "detail": "partial"
+  },
+  {
+   "name": "case02.detects_evidence_unresolved",
+   "ok": true,
+   "detail": "evidence_unresolved,name_conflict,query_unevidenced"
+  },
+  {
+   "name": "case02.detects_name_conflict",
+   "ok": true,
+   "detail": "evidence_unresolved,name_conflict,query_unevidenced"
+  },
+  {
+   "name": "case02.detects_query_unevidenced",
+   "ok": true,
+   "detail": "evidence_unresolved,name_conflict,query_unevidenced"
+  },
+  {
+   "name": "case03.success",
+   "ok": true,
+   "detail": "success"
+  },
+  {
+   "name": "case03.keeps_base_ids",
+   "ok": true,
+   "detail": "n1,n2,n3,n4,n5,n3-b,n9"
+  },
+  {
+   "name": "case03.one_added_merged_conflict",
+   "ok": true,
+   "detail": "{\"added\": {\"nodes\": [\"n9\"], \"edges\": [\"e6\", \"e7\"]}, \"merged\": 1, \"conflicting\": 1}"
+  },
+  {
+   "name": "negative.cross_paper_overreach",
+   "ok": true,
+   "detail": "cross_paper_overreach"
+  },
+  {
+   "name": "negative.missing_paragraph_id",
+   "ok": true,
+   "detail": "evidence_unresolved"
+  },
+  {
+   "name": "negative.no_draft_is_partial",
+   "ok": true,
+   "detail": "partial nodes=22"
+  }
+ ],
+ "failed": 0,
+ "note": "local self-test only; not the official platform cases"
+}

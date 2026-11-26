@@ -1,0 +1,6 @@
+{
+ "case_id": "local-latex-03-ctex",
+ "main_tex": "main.tex",
+ "compile": false,
+ "output_contract": ["latex", "checks", "metrics", "status"]
+}

@@ -1,0 +1,64 @@
+{
+ "card": {
+  "research_question": {
+   "text": "冻结句向量上的线性探针能否恢复情感标签？",
+   "anchor": "s01.p01",
+   "quote": "We test whether a linear probe can recover sentiment from frozen sentence embeddings."
+  },
+  "data": {
+   "text": "三个评论数据集。",
+   "anchor": "s01.p01",
+   "quote": "three review datasets"
+  },
+  "method": {
+   "text": "线性探针，训练 20 轮、批大小 128。",
+   "anchor": "s01.p01",
+   "quote": "The probe is trained for 20 epochs with a batch size of 128."
+  },
+  "findings": [
+   {
+    "text": "准确率 91.2%，比逻辑回归基线高 3.1 点。",
+    "anchor": "s01.p01",
+    "quote": "the probe reaches 91.2% accuracy, 3.1 points above a logistic baseline"
+   },
+   {
+    "text": "仅 10% 训练标注时增益仍然存在。",
+    "anchor": "s02.p01",
+    "quote": "the gain persists when only 10% of training labels are used"
+   }
+  ],
+  "limitations": [
+   {
+    "text": "只评估英语评论。",
+    "anchor": "s02.p01",
+    "quote": "we evaluate English reviews only"
+   }
+  ]
+ },
+ "section_summaries": [
+  {
+   "section_id": "s01",
+   "text": "给出探针设置与主结果：91.2% 准确率、3.1 点提升。",
+   "anchor": "s01.p01",
+   "quote": "the probe reaches 91.2% accuracy"
+  },
+  {
+   "section_id": "s02",
+   "text": "报告三数据集稳定性、低标注下的增益，并说明语言范围局限。",
+   "anchor": "s02.p01",
+   "quote": "Accuracy is stable across all three datasets"
+  }
+ ],
+ "knowledge_points": [
+  {
+   "text": "冻结句向量加线性探针即可达到 91.2% 情感分类准确率。",
+   "anchor": "s01.p01",
+   "quote": "91.2% accuracy"
+  },
+  {
+   "text": "结论仅覆盖英语评论，多语言场景尚未验证。",
+   "anchor": "s02.p01",
+   "quote": "we evaluate English reviews only"
+  }
+ ]
+}

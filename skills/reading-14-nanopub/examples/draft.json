@@ -1,0 +1,40 @@
+{
+ "assertions": [
+  {
+   "id": "a1",
+   "text": "Temperature scaling lowers expected calibration error from 11.2% to 4.8% on CIFAR-100.",
+   "subject": "temperature scaling",
+   "predicate": "has_property",
+   "object": "expected calibration error 4.8%",
+   "conditions": "",
+   "evidence": "On CIFAR-100, temperature scaling lowers expected calibration error from 11.2% to 4.8%.",
+   "source_id": "example-cifar100-temperature",
+   "paragraph_id": "s02.p01",
+   "confidence": "high"
+  },
+  {
+   "id": "a2",
+   "text": "Under 20% label noise, the method keeps expected calibration error at 6.1%.",
+   "subject": "temperature scaling",
+   "predicate": "has_property",
+   "object": "expected calibration error 6.1%",
+   "conditions": "20% label noise",
+   "evidence": "Under label noise (20%), the method still lowers the error to 6.1%.",
+   "source_id": "example-cifar100-temperature",
+   "paragraph_id": "s02.p01",
+   "confidence": "medium"
+  },
+  {
+   "id": "a3",
+   "text": "Temperature scaling adds no inference cost.",
+   "subject": "temperature scaling",
+   "predicate": "measured_by",
+   "object": "zero added inference cost",
+   "conditions": "",
+   "evidence": "The method adds no inference cost.",
+   "source_id": "example-cifar100-temperature",
+   "paragraph_id": "s02.p01",
+   "confidence": "high"
+  }
+ ]
+}

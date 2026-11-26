@@ -1,0 +1,19 @@
+{
+ "paper_id": "p1",
+ "title": "Residual Fusion for Low-Resource Image Classification",
+ "doi": "10.0000/example.kg.p1",
+ "paragraphs": [
+  {"paragraph_id": "p1-1", "section": "Abstract",
+   "text": "We study residual fusion for image classification when labelled data are scarce. The method adds a residual fusion block to a standard convolutional backbone and keeps the training budget fixed."},
+  {"paragraph_id": "p1-2", "section": "Method",
+   "text": "We use ResNet-50 as the backbone and train on ImageNet-1k for 90 epochs with a batch size of 256. The residual fusion block is inserted after the third stage."},
+  {"paragraph_id": "p1-3", "section": "Dataset",
+   "text": "All main experiments use ImageNet-1k. We report top-1 accuracy on the official validation split."},
+  {"paragraph_id": "p1-4", "section": "Results",
+   "text": "Residual fusion reaches 76.8% top-1 accuracy on ImageNet-1k, which is 2.1 points above the ResNet-50 baseline."},
+  {"paragraph_id": "p1-5", "section": "Ablation",
+   "text": "Removing the fusion block drops top-1 accuracy by 3.4 points, so the gain is not a training artefact."},
+  {"paragraph_id": "p1-6", "section": "Conclusion",
+   "text": "Residual fusion gives a small but consistent gain at the same training cost. We do not claim gains at larger scale."}
+ ]
+}

@@ -1,0 +1,6 @@
+{
+ "case_id": "example-polish-001",
+ "task": "polish one paragraph; keep the number, the memory figure and the citation",
+ "language": "en",
+ "output_contract": ["edited_text", "edits", "checks", "metrics", "status"]
+}

@@ -1,0 +1,12 @@
+{
+ "corpus": "example-kg",
+ "note": "two synthetic papers; illustrative example only",
+ "papers": [
+  {"paper_id": "p1", "file": "primary-material.json", "doi": "10.0000/example.tiny.p1",
+   "title": "A Tiny ResNet Study", "authors": ["Example A"], "year": 2024,
+   "role": "primary", "source_hash": "sha256:example", "license": "CC0-1.0"},
+  {"paper_id": "p2", "file": "secondary-material.json", "doi": "10.0000/example.tiny.p2",
+   "title": "A Tiny ViT Study", "authors": ["Example B"], "year": 2025,
+   "role": "secondary", "source_hash": "sha256:example", "license": "CC0-1.0"}
+ ]
+}

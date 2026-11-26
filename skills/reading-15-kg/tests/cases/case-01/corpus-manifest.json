@@ -1,0 +1,33 @@
+{
+ "corpus": "local-kg-01",
+ "note": "synthetic two-paper corpus for local pipeline tests; not real publications",
+ "papers": [
+  {
+   "paper_id": "p1",
+   "file": "primary-material.json",
+   "doi": "10.0000/example.kg.p1",
+   "title": "Residual Fusion for Low-Resource Image Classification",
+   "authors": [
+    "Example Author A",
+    "Example Author B"
+   ],
+   "year": 2024,
+   "role": "primary",
+   "source_hash": "sha256:3920e85e15fcc18b8c97dec2989a7fc921d3344f6bd01dbc3c30f9052509c195",
+   "license": "CC-BY-4.0"
+  },
+  {
+   "paper_id": "p2",
+   "file": "secondary-material.json",
+   "doi": "10.0000/example.kg.p2",
+   "title": "Vision Transformer Fine-Tuning at Small Scale",
+   "authors": [
+    "Example Author C"
+   ],
+   "year": 2025,
+   "role": "secondary",
+   "source_hash": "sha256:b7520ad1443fa261d8c7afea6dda07b5fa5b7a357f097092f5dd438a5f2ee683",
+   "license": "CC-BY-4.0"
+  }
+ ]
+}

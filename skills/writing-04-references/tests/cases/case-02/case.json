@@ -1,0 +1,8 @@
+{
+ "case_id": "local-refs-02",
+ "task": "five entries, one duplicate pair with an identical DOI (conference + journal version)",
+ "style": "gbt7714",
+ "library": "refs.bib",
+ "manuscript": "manuscript.md",
+ "output_contract": ["references", "renumber_map", "checks", "metrics", "status"]
+}

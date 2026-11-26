@@ -1,0 +1,91 @@
+{
+ "checks": [
+  {
+   "name": "case01.exit",
+   "ok": true,
+   "detail": "case_id=local-pdf-cjk-2col status=success pdfs=1 docs=1\nwrote C:\\Users\\mzn\\AppData\\Local\\Temp\\pdf-707481mq\\out\\result.json"
+  },
+  {
+   "name": "case01.status",
+   "ok": true,
+   "detail": "success"
+  },
+  {
+   "name": "case01.pages",
+   "ok": true,
+   "detail": "1"
+  },
+  {
+   "name": "case01.sections",
+   "ok": true,
+   "detail": "7"
+  },
+  {
+   "name": "case01.tables",
+   "ok": true,
+   "detail": "1"
+  },
+  {
+   "name": "case01.contract_filled",
+   "ok": true,
+   "detail": "{\"title\": \"面向中文科技文献的结构化解析方法研究\", \"sections\": [{\"path\": \"摘要\", \"level\": 1, \"page\": 1}, {\"path\": \"1 引言\", \"level\": 1, \"page\":"
+  },
+  {
+   "name": "case01.recall",
+   "ok": true,
+   "detail": "1.0054"
+  },
+  {
+   "name": "case02.status",
+   "ok": true,
+   "detail": "success"
+  },
+  {
+   "name": "case02.two_sections",
+   "ok": true,
+   "detail": "6"
+  },
+  {
+   "name": "case02.has_level2",
+   "ok": true,
+   "detail": "[{'path': 'Abstract', 'level': 1, 'page': 1}, {'path': '1 INTRODUCTION', 'level': 1, 'page': 1}, {'path': '2 METHOD', 'level': 1, 'page': 1}, {'path': '2 METHOD"
+  },
+  {
+   "name": "case02.title_alias",
+   "ok": true,
+   "detail": "SCALING SPARSE RETRIEVAL: A CONTROLLED STUDY OF HYBRID RERANKING"
+  },
+  {
+   "name": "case03.partial",
+   "ok": true,
+   "detail": "partial"
+  },
+  {
+   "name": "case03.no_text_layer",
+   "ok": true,
+   "detail": "[{\"file\": \"scanned.pdf\", \"code\": \"no_text_layer\", \"detail\": \"parse_pdf exit 3: run scripts/ocr_pages.py, transcribe each ocr/prompt-XX.md into ocr/page-XX.md, then scripts/merge_ocr.py --require all\"}"
+  },
+  {
+   "name": "case03.no_fabricated_text",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "name": "negative.broken_pdf_status",
+   "ok": true,
+   "detail": "failed"
+  },
+  {
+   "name": "negative.broken_pdf_warning",
+   "ok": true,
+   "detail": "{\"warnings\": [{\"file\": \"broken.pdf\", \"code\": \"parse_failed\", \"detail\": \"ERROR: C:\\\\Users\\\\mzn\\\\AppData\\\\Local\\\\Temp\\\\pdf-bad-1n5iaz_i\\\\broken.pdf: cannot open PDF (FileDataError: Failed to open file '"
+  },
+  {
+   "name": "negative.unknown_field_reported",
+   "ok": true,
+   "detail": "[\"layout_semantics_v9\"]"
+  }
+ ],
+ "failed": 0,
+ "note": "local runtime test on synthetic fixtures; not the official cases"
+}

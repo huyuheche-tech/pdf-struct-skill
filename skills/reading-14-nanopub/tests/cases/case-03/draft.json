@@ -1,0 +1,40 @@
+{
+ "assertions": [
+  {
+   "id": "a1",
+   "text": "该层在 ImageNet 上把期望校准误差从 8.4% 降到 6.3%。",
+   "subject": "校准层",
+   "predicate": "has_property",
+   "object": "期望校准误差 6.3%",
+   "conditions": "",
+   "evidence": "在 ImageNet 上，该层把期望校准误差从 8.4% 降到 6.3%。",
+   "source_id": "paper-calibration-zh",
+   "paragraph_id": "s01.p01",
+   "confidence": "high"
+  },
+  {
+   "id": "a2",
+   "text": "在 ImageNet-C 严重度 3 的分布偏移下，该层把误差控制在 7.0% 以下。",
+   "subject": "校准层",
+   "predicate": "has_property",
+   "object": "误差低于 7.0%",
+   "conditions": "ImageNet-C 严重度 3 分布偏移",
+   "evidence": "在 ImageNet-C 严重度 3 的分布偏移下，该层仍把误差控制在 7.0% 以下。",
+   "source_id": "paper-calibration-zh",
+   "paragraph_id": "s01.p01",
+   "confidence": "high"
+  },
+  {
+   "id": "a3",
+   "text": "该层每次推理仅增加 0.4 毫秒。",
+   "subject": "校准层",
+   "predicate": "measured_by",
+   "object": "0.4 毫秒/次",
+   "conditions": "",
+   "evidence": "该层每次推理仅增加 0.4 毫秒。",
+   "source_id": "paper-calibration-zh",
+   "paragraph_id": "s01.p01",
+   "confidence": "high"
+  }
+ ]
+}

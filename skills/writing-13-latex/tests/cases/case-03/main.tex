@@ -1,0 +1,46 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{natbib}
+\usepackage[margin=2.5cm]{geometry}
+
+\title{中文短文的公式与引用检查}
+\author{示例作者}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+本文用一段中文短文检验公式编号、交叉引用与文献引用的完整性。
+\end{abstract}
+
+\section{引言}
+\label{sec:intro}
+检索增强的问答系统把外部索引与小型阅读器结合
+\citep{lewis2020rag}。稠密检索是该任务上常用的基线
+\citep{karpukhin2020dpr}。中文场景下的评测口径见 \citet{zhao2019zh}。
+
+\section{方法}
+\label{sec:method}
+给定问题 $q$ 与前 $k$ 个段落，阅读器对每个段落打分。训练目标为
+\begin{equation}
+  \label{eq:loss}
+  \mathcal{L} = \frac{1}{N} \sum_{i=1}^{N} \ell(y_i, \hat{y}_i)
+\end{equation}
+其中 $N$ 是样本数。准确率定义为
+\begin{equation}
+  \label{eq:acc}
+  \mathrm{Acc} = \frac{TP + TN}{TP + TN + FP + FN}
+\end{equation}
+式~\ref{eq:loss} 与式~\ref{eq:acc} 给出训练与评价的口径。
+
+\section{结果}
+\label{sec:results}
+在合成开发集上，融合阅读器的准确率为 72.4 点，比稀疏基线高 11.2 点
+\citep{lewis2020rag}。评价按式~\ref{eq:acc} 的定义计算。
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\end{document}

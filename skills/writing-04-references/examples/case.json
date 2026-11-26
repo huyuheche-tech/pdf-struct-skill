@@ -1,0 +1,8 @@
+{
+ "case_id": "example-refs-001",
+ "task": "two entries cited out of order; renumber by first appearance",
+ "style": "gbt7714",
+ "library": "refs.bib",
+ "manuscript": "manuscript.md",
+ "output_contract": ["references", "renumber_map", "checks", "metrics", "status"]
+}

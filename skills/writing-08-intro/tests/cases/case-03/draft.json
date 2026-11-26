@@ -1,0 +1,22 @@
+{
+ "sections": {
+  "background": "标注数据稀缺是文本分类的主要瓶颈 [liu2019]。现有系统依赖大规模标注语料，而标注成本很高 [zhang2020]。",
+  "related_work": "基于注意力的编码器改善了序列建模 [vaswani2017]；在低资源场景下，循环基线仍然具有竞争力 [chen2021]。",
+  "gap": "已有研究很少在固定预算下单独考察编码器 [liu2019]，也少有工作报告跨随机种子的方差 [wang2018]。",
+  "contributions": [
+   "我们提出一种面向低资源文本分类的轻量注意力编码器。",
+   "我们在三个数据集上将验证误差降低 18.4%。",
+   "我们在固定训练预算下评估所有方法。"
+  ]
+ },
+ "author_judgment": ["contributions"],
+ "contribution_evidence": [
+  {"contribution": 1, "anchor": "p002.s02", "quote": "我们研究在标注数据稀缺时，轻量注意力编码器能否提升分类准确率"},
+  {"contribution": 2, "anchor": "p002.s03", "quote": "编码器相对强基线将验证误差降低 18.4%"},
+  {"contribution": 3, "anchor": "p004.s04", "quote": "所有比较都使用 40 个 epoch 的固定训练预算"}
+ ],
+ "groups": [
+  {"label": "attention-based", "works": ["liu2019", "vaswani2017"]},
+  {"label": "recurrent-baselines", "works": ["chen2021", "wang2018"]}
+ ]
+}

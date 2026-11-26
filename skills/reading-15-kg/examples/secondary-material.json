@@ -1,0 +1,11 @@
+{
+ "paper_id": "p2",
+ "title": "A Tiny ViT Study",
+ "doi": "10.0000/example.tiny.p2",
+ "paragraphs": [
+  {"paragraph_id": "p2-1", "section": "Method",
+   "text": "We fine-tune ViT-B/16 on CIFAR-100 for 30 epochs."},
+  {"paragraph_id": "p2-2", "section": "Results",
+   "text": "ViT-B/16 reaches 91.2% top-1 accuracy on CIFAR-100."}
+ ]
+}

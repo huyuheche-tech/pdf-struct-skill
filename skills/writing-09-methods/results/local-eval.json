@@ -1,0 +1,81 @@
+{
+ "checks": [
+  {
+   "name": "case01.exit",
+   "ok": true,
+   "detail": "case_id=methods-local-01 status=success params=20 errors=0"
+  },
+  {
+   "name": "case01.success",
+   "ok": true,
+   "detail": "success"
+  },
+  {
+   "name": "case01.no_errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case01.params_ge_8",
+   "ok": true,
+   "detail": "20"
+  },
+  {
+   "name": "case01.coverage_full",
+   "ok": true,
+   "detail": "{\"params\": 20, \"numbers_sourced\": 16, \"n_numbers\": 16, \"coverage\": 1.0, \"repro_items\": 8}"
+  },
+  {
+   "name": "case01.repro_items_8",
+   "ok": true,
+   "detail": "{\"params\": 20, \"numbers_sourced\": 16, \"n_numbers\": 16, \"coverage\": 1.0, \"repro_items\": 8}"
+  },
+  {
+   "name": "case01.contract_filled",
+   "ok": true,
+   "detail": "{\"methods\": \"## Training procedure\\n\\nWe first tokenise every input with the shared vocabulary, then fine-tune a compact transformer for 40 epochs, and finally select the checkpoint with the best vali"
+  },
+  {
+   "name": "case02.partial",
+   "ok": true,
+   "detail": "partial"
+  },
+  {
+   "name": "case02.detects_number_unsourced",
+   "ok": true,
+   "detail": "number_unsourced,repro_gap,repro_gap"
+  },
+  {
+   "name": "case02.detects_repro_gap",
+   "ok": true,
+   "detail": "number_unsourced,repro_gap,repro_gap"
+  },
+  {
+   "name": "case03.success",
+   "ok": true,
+   "detail": "success"
+  },
+  {
+   "name": "case03.no_errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case03.table_params",
+   "ok": true,
+   "detail": "20"
+  },
+  {
+   "name": "negative.batch_128_unsourced",
+   "ok": true,
+   "detail": "number_unsourced,number_unsourced"
+  },
+  {
+   "name": "negative.dataset_underspecified",
+   "ok": true,
+   "detail": "dataset_underspecified"
+  }
+ ],
+ "failed": 0,
+ "note": "local self-test only; not the official platform cases"
+}

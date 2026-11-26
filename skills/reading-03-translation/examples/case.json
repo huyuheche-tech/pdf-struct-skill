@@ -1,0 +1,7 @@
+{
+ "case_id": "example-001",
+ "source_language": "en",
+ "target_language": "zh",
+ "glossary": [{"source": "attention mechanism", "target": "注意力机制"}],
+ "output_contract": ["translated_segments", "glossary", "consistency_report", "status"]
+}

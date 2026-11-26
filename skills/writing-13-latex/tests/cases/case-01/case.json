@@ -1,0 +1,6 @@
+{
+ "case_id": "local-latex-01-broken",
+ "main_tex": "main.tex",
+ "compile": false,
+ "output_contract": ["latex", "diagnostics", "checks", "metrics", "status", "files"]
+}

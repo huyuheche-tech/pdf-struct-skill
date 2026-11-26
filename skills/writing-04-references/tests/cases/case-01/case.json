@@ -1,0 +1,8 @@
+{
+ "case_id": "local-refs-01",
+ "task": "reconcile a 3-entry .bib against a manuscript that cites [1], [2,4] and [2]",
+ "style": "gbt7714",
+ "library": "refs.bib",
+ "manuscript": "manuscript.md",
+ "output_contract": ["references", "renumber_map", "checks", "metrics", "status"]
+}

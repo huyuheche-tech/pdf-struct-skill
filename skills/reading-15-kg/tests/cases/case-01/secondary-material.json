@@ -1,0 +1,19 @@
+{
+ "paper_id": "p2",
+ "title": "Vision Transformer Fine-Tuning at Small Scale",
+ "doi": "10.0000/example.kg.p2",
+ "paragraphs": [
+  {"paragraph_id": "p2-1", "section": "Abstract",
+   "text": "We fine-tune a vision transformer on a small image benchmark and compare it with a convolutional baseline. The study is deliberately narrow."},
+  {"paragraph_id": "p2-2", "section": "Method",
+   "text": "We fine-tune ViT-B/16 on CIFAR-100 for 30 epochs with a batch size of 64. Only the classification head and the last block are updated."},
+  {"paragraph_id": "p2-3", "section": "Dataset",
+   "text": "All experiments use CIFAR-100; we report top-1 accuracy on the test split."},
+  {"paragraph_id": "p2-4", "section": "Results",
+   "text": "ViT-B/16 fine-tuning reaches 91.2% top-1 accuracy on CIFAR-100, 1.5 points above the CNN baseline."},
+  {"paragraph_id": "p2-5", "section": "Limitation",
+   "text": "The comparison uses different image resolutions from the original ViT paper, so absolute numbers are not comparable across studies."},
+  {"paragraph_id": "p2-6", "section": "Conclusion",
+   "text": "Fine-tuning a small ViT is competitive on CIFAR-100, but the result does not transfer to ImageNet-scale claims."}
+ ]
+}

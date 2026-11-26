@@ -1,0 +1,42 @@
+schema: skill-resources/v1
+name: structured-paper-notes
+version: 1.0.0
+description: >
+  Turn a paper into anchored structured notes: stable sNN.pMM paragraph ids,
+  a five-field card (question/data/method/findings/limitations), per-section
+  summaries and knowledge points, each resolved against the source quote.
+  Reads /input/case.json, writes /app/output/result.json plus notes.md,
+  notes.json, sections.json and checks.json.
+
+entry: scripts/run_case.py
+entry_args: ["--outline"]
+
+runtime:
+  python: "3.11"
+  pip: []
+  system: []
+  notes: >
+    Standard library only. PDF text is read with pymupdf when present, then
+    pdftotext, then a minimal stream extractor (marked partial). No network.
+
+resources:
+  - path: scripts/run_case.py
+    role: entry
+  - path: scripts/notes_builder.py
+    role: engine
+  - path: scripts/skillkit.py
+    role: library
+  - path: references/anchor-rules.md
+    role: docs
+  - path: references/notes-schema.md
+    role: docs
+  - path: references/check-rules.md
+    role: docs
+  - path: examples/README.md
+    role: docs
+
+limits:
+  text_files: 50
+  bytes_per_file: 512000
+  bytes_total: 2097152
+  symlinks: false

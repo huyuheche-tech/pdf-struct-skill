@@ -1,0 +1,6 @@
+{
+ "case_id": "methods-local-02",
+ "title": "Compact Transformer for GLUE Text Classification",
+ "materials": ["config.json", "train.log", "notes.md"],
+ "output_contract": ["methods", "tables", "checks", "status"]
+}

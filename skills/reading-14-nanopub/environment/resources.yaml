@@ -1,0 +1,42 @@
+schema: skill-resources/v1
+name: nanopub-assertion-builder
+version: 1.0.0
+description: >
+  Split paper conclusions into atomic, evidence-bound nanopublication
+  assertions: controlled predicates, retained conditions, no over-broad
+  wording, duplicates flagged, exported as assertion/provenance/pubinfo with
+  stable URNs. Reads /input/case.json, writes /app/output/result.json plus
+  nanopub.json, assertions.md, sections.json and checks.json.
+
+entry: scripts/run_case.py
+entry_args: ["--outline"]
+
+runtime:
+  python: "3.11"
+  pip: []
+  system: []
+  notes: >
+    Standard library only. PDF text is read with pymupdf when present, then
+    pdftotext, then a minimal stream extractor (marked partial). No network.
+
+resources:
+  - path: scripts/run_case.py
+    role: entry
+  - path: scripts/nanopub_builder.py
+    role: engine
+  - path: scripts/skillkit.py
+    role: library
+  - path: references/assertion-schema.md
+    role: docs
+  - path: references/controlled-vocab.md
+    role: docs
+  - path: references/check-rules.md
+    role: docs
+  - path: examples/README.md
+    role: docs
+
+limits:
+  text_files: 50
+  bytes_per_file: 512000
+  bytes_total: 2097152
+  symlinks: false

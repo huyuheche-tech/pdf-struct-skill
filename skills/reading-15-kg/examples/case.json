@@ -1,0 +1,4 @@
+{
+ "case_id": "example-kg",
+ "output_contract": ["graph", "queries", "checks", "metrics", "status"]
+}

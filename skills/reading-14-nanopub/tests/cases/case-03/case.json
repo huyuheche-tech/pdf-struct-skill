@@ -1,0 +1,8 @@
+{
+ "case_id": "nanopub-local-03",
+ "title": "冻结分类器的校准层（中文摘要）",
+ "material": "material.md",
+ "doi": "10.0000/local.nanopub.03",
+ "created": "2026-01-15T00:00:00Z",
+ "output_contract": ["assertions", "nanopub", "checks", "metrics"]
+}

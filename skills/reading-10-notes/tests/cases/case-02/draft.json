@@ -1,0 +1,64 @@
+{
+ "card": {
+  "research_question": {
+   "text": "增益来自检索本身，还是来自更大的 reader？",
+   "anchor": "s02.p01",
+   "quote": "We ask how much of the gain comes from retrieval rather than from a larger reader."
+  },
+  "data": {
+   "text": "2018 年 Wikipedia dump，每题检索 20 个段落。",
+   "anchor": "s03.p01",
+   "quote": "We build an index over the 2018 Wikipedia dump"
+  },
+  "method": {
+   "text": "12 层编码器 reader，训练 3 轮、批大小 32，检索模块冻结。",
+   "anchor": "s03.p01",
+   "quote": "The reader is a 12-layer encoder trained for 3 epochs with a batch size of 32."
+  },
+  "findings": [
+   {
+    "text": "Natural Questions 上 exact match 达到 41.7，比闭卷基线高 4.2 点。",
+    "anchor": "s09.p09",
+    "quote": "The retrieval-augmented reader reaches 41.7 exact match on Natural Questions"
+   },
+   {
+    "text": "去掉检索会损失 9.1 点。",
+    "anchor": "s04.p01",
+    "quote": "removing retrieval costs 9.1 points"
+   }
+  ],
+  "limitations": []
+ },
+ "section_summaries": [
+  {
+   "section_id": "s01",
+   "text": "摘要给出方法定位、4.2 点提升以及仅限英语的范围说明。",
+   "anchor": "s01.p01",
+   "quote": "The reader improves exact-match accuracy by 4.2 points over a closed-book baseline"
+  },
+  {
+   "section_id": "s02",
+   "text": "对比闭卷与检索式 reader，提出归因问题。",
+   "anchor": "s02.p01",
+   "quote": "Closed-book readers must store all evidence in their parameters."
+  },
+  {
+   "section_id": "s04",
+   "text": "报告 41.7 EM、消融损失 9.1 点，并声明只评估英语。",
+   "anchor": "s04.p01",
+   "quote": "Ablations show that removing retrieval costs 9.1 points."
+  }
+ ],
+ "knowledge_points": [
+  {
+   "text": "检索增强 reader 在 Natural Questions 上比闭卷基线高 4.2 点。",
+   "anchor": "s04.p01",
+   "quote": "4.2 points above the closed-book baseline"
+  },
+  {
+   "text": "移除检索模块会造成 9.1 点损失，说明增益主要来自检索。",
+   "anchor": "s04.p01",
+   "quote": "removing retrieval costs 9.1 points"
+  }
+ ]
+}

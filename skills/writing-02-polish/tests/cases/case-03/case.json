@@ -1,0 +1,7 @@
+{
+ "case_id": "local-polish-03-zh",
+ "task": "polish a Chinese abstract with a locked term; numbers, citations and negation must survive",
+ "language": "zh",
+ "glossary_file": "glossary.csv",
+ "output_contract": {"fields": ["edited_text", "edits", "checks", "metrics", "status"]}
+}

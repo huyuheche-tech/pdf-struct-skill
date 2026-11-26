@@ -1,0 +1,7 @@
+{
+ "case_id": "local-kg-03-incremental",
+ "corpus": "corpus-manifest.json",
+ "material": "material.json",
+ "base_graph": "base-graph.json",
+ "output_contract": ["graph", "checks", "metrics", "status"]
+}

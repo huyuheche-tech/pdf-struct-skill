@@ -1,0 +1,6 @@
+{
+ "case_id": "local-03-zh-en",
+ "source_language": "zh",
+ "target_language": "en",
+ "output_contract": {"required": ["translated_segments", "glossary", "uncertainty", "status"]}
+}

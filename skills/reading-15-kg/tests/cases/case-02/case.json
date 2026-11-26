@@ -1,0 +1,6 @@
+{
+ "case_id": "local-kg-02-bad-graph",
+ "corpus": "corpus-manifest.json",
+ "material": "material.json",
+ "output_contract": ["graph", "checks", "metrics", "status"]
+}

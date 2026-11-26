@@ -1,0 +1,14 @@
+{
+ "case_id": "example-001",
+ "title": "EXAMPLE Attention Encoder for Low-Resource Text Classification",
+ "materials": [
+  "material.md",
+  "refs.bib"
+ ],
+ "output_contract": [
+  "sections",
+  "evidence",
+  "checks",
+  "status"
+ ]
+}

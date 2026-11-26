@@ -1,0 +1,7 @@
+{
+ "corpus": "example-kg",
+ "papers": [
+  {"paper_id": "p1", "file": "primary-material.json", "role": "primary"},
+  {"paper_id": "p2", "file": "secondary-material.json", "role": "secondary"}
+ ]
+}

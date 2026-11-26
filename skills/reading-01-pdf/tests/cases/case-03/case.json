@@ -1,0 +1,5 @@
+{
+ "case_id": "local-pdf-scanned",
+ "input": "scanned.pdf",
+ "output_contract": ["pages", "text", "sections", "uncertainty"]
+}

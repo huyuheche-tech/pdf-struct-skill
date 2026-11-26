@@ -1,0 +1,52 @@
+{
+ "assertions": [
+  {
+   "id": "a1",
+   "text": "The calibration layer reduces expected calibration error from 8.4% to 6.3% on ImageNet.",
+   "subject": "calibration layer",
+   "predicate": "has_property",
+   "object": "expected calibration error 6.3% (from 8.4%)",
+   "conditions": "",
+   "evidence": "On ImageNet, the calibration layer reduces expected calibration error from 8.4% to 6.3%.",
+   "source_id": "paper-imagenet-calibration",
+   "paragraph_id": "s02.p01",
+   "confidence": "high"
+  },
+  {
+   "id": "a2",
+   "text": "Under severity-3 ImageNet-C shift, the calibration layer keeps expected calibration error below 7.0%.",
+   "subject": "calibration layer",
+   "predicate": "has_property",
+   "object": "expected calibration error below 7.0%",
+   "conditions": "ImageNet-C severity 3 distribution shift",
+   "evidence": "Under distribution shift (ImageNet-C, severity 3), the layer keeps the error below 7.0%.",
+   "source_id": "paper-imagenet-calibration",
+   "paragraph_id": "s02.p01",
+   "confidence": "high"
+  },
+  {
+   "id": "a3",
+   "text": "The calibration layer adds 0.4 ms per image at inference time.",
+   "subject": "calibration layer",
+   "predicate": "has_property",
+   "object": "0.4 ms per image latency",
+   "conditions": "",
+   "evidence": "The layer adds 0.4 ms per image at inference time.",
+   "source_id": "paper-imagenet-calibration",
+   "paragraph_id": "s02.p01",
+   "confidence": "high"
+  },
+  {
+   "id": "a4",
+   "text": "The gain persists with only 100 calibration samples in most cases.",
+   "subject": "calibration layer",
+   "predicate": "supports",
+   "object": "robustness to 100 calibration samples",
+   "conditions": "only 100 samples; most cases",
+   "evidence": "In most cases the gain persists when only 100 calibration samples are used.",
+   "source_id": "paper-imagenet-calibration",
+   "paragraph_id": "s02.p01",
+   "confidence": "medium"
+  }
+ ]
+}

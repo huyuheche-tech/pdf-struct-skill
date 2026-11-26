@@ -1,0 +1,55 @@
+\documentclass[11pt]{article}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{natbib}
+\usepackage[margin=1in]{geometry}
+
+\title{Three-Line Tables and Honest Baselines}
+\author{Example Author}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+A short clean manuscript that shows what a passing build looks like.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+Fusion readers improve retrieval-augmented question answering
+\citep{lewis2020rag}. Dense retrieval is a strong baseline
+\citep{karpukhin2020dpr}. We compare both under one budget.
+
+\section{Method}
+\label{sec:method}
+Given a question $q$ and the top-$k$ passages, the reader scores each passage
+and attends over the scores. Training uses the frozen retriever.
+
+\section{Results}
+\label{sec:results}
+Table~\ref{tab:dev} reports development accuracy. The gap between the sparse
+and dense baselines is 9.8 points, consistent with prior work.
+
+\begin{table}[t]
+\centering
+\caption{Development accuracy on the synthetic split.}
+\label{tab:dev}
+\begin{tabular}{lcc}
+\toprule
+Model & Dev & Test \\
+\midrule
+Sparse only & 61.2 & 60.4 \\
+Dense only & 71.0 & 70.2 \\
+Fusion (ours) & 72.4 & 71.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Section~\ref{sec:method} fixes the training budget, so the comparison in
+Table~\ref{tab:dev} is like for like.
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\end{document}

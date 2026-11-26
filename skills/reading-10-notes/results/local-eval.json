@@ -1,0 +1,111 @@
+{
+ "checks": [
+  {
+   "name": "case01.exit",
+   "ok": true,
+   "detail": "case_id=notes-local-01 status=success sections=4 covered=4 errors=0"
+  },
+  {
+   "name": "case01.success",
+   "ok": true,
+   "detail": "success"
+  },
+  {
+   "name": "case01.no_errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case01.fields_complete",
+   "ok": true,
+   "detail": "{\"sections\": 4, \"covered\": 4, \"fields_complete\": \"5/5\", \"anchors_resolved\": \"6/6\", \"duplicates\": 0}"
+  },
+  {
+   "name": "case01.anchors_resolved",
+   "ok": true,
+   "detail": "{\"sections\": 4, \"covered\": 4, \"fields_complete\": \"5/5\", \"anchors_resolved\": \"6/6\", \"duplicates\": 0}"
+  },
+  {
+   "name": "case01.sections_covered",
+   "ok": true,
+   "detail": "{\"sections\": 4, \"covered\": 4, \"fields_complete\": \"5/5\", \"anchors_resolved\": \"6/6\", \"duplicates\": 0}"
+  },
+  {
+   "name": "case01.contract_filled",
+   "ok": true,
+   "detail": "{\"notes\": \"# 论文笔记：Sparse Attention for Low-Resource Translation\\n\\n> status: **success**；章节 4 个；硬错误 0 条。\\n> 锚点格式 `sNN.pMM`（段落）或 `sNN.pMM@start-end`（段内字符区间）。\\n\\n"
+  },
+  {
+   "name": "case01.outputs_exist",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case02.partial",
+   "ok": true,
+   "detail": "partial"
+  },
+  {
+   "name": "case02.detects_anchor_unresolved",
+   "ok": true,
+   "detail": "anchor_unresolved,limitations_missing,section_uncovered"
+  },
+  {
+   "name": "case02.detects_limitations_missing",
+   "ok": true,
+   "detail": "anchor_unresolved,limitations_missing,section_uncovered"
+  },
+  {
+   "name": "case02.detects_section_uncovered",
+   "ok": true,
+   "detail": "anchor_unresolved,limitations_missing,section_uncovered"
+  },
+  {
+   "name": "case03.success",
+   "ok": true,
+   "detail": "success"
+  },
+  {
+   "name": "case03.no_errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case03.chinese_sections",
+   "ok": true,
+   "detail": "[\"摘要\", \"方法\", \"结果\", \"局限\"]"
+  },
+  {
+   "name": "nodraft.partial",
+   "ok": true,
+   "detail": "partial"
+  },
+  {
+   "name": "nodraft.next_step",
+   "ok": true,
+   "detail": "write /app/work/draft.json as {\"card\":{\"research_question\":{\"text\":\"...\",\"anchor\":\"s01.p01\",\"quote\":\"...\"},\"data\":{...},"
+  },
+  {
+   "name": "nodraft.candidate_flag",
+   "ok": true,
+   "detail": "candidate findings empty"
+  },
+  {
+   "name": "nomaterial.failed",
+   "ok": true,
+   "detail": "failed"
+  },
+  {
+   "name": "negative.anchor_unresolved",
+   "ok": true,
+   "detail": "anchor_unresolved"
+  },
+  {
+   "name": "negative.duplicate_point",
+   "ok": true,
+   "detail": "duplicate_point"
+  }
+ ],
+ "failed": 0,
+ "note": "local self-test only; not the official platform cases"
+}

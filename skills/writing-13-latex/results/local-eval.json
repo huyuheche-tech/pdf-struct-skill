@@ -1,0 +1,121 @@
+{
+ "checks": [
+  {
+   "name": "case01.exit",
+   "ok": true,
+   "detail": "case_id=local-latex-01-broken status=partial errors=4 warnings=2 compiled=False fixes=0"
+  },
+  {
+   "name": "case01.partial",
+   "ok": true,
+   "detail": "partial"
+  },
+  {
+   "name": "case01.detects_cite_undefined",
+   "ok": true,
+   "detail": "unbalanced_math,cite_undefined,label_duplicate,table_column_mismatch"
+  },
+  {
+   "name": "case01.detects_label_duplicate",
+   "ok": true,
+   "detail": "unbalanced_math,cite_undefined,label_duplicate,table_column_mismatch"
+  },
+  {
+   "name": "case01.detects_table_column_mismatch",
+   "ok": true,
+   "detail": "unbalanced_math,cite_undefined,label_duplicate,table_column_mismatch"
+  },
+  {
+   "name": "case01.detects_unbalanced_math",
+   "ok": true,
+   "detail": "unbalanced_math,cite_undefined,label_duplicate,table_column_mismatch"
+  },
+  {
+   "name": "case01.warns_caption_missing",
+   "ok": true,
+   "detail": "bib_unused,caption_missing"
+  },
+  {
+   "name": "case01.contract_filled",
+   "ok": true,
+   "detail": "{\"latex\": \"\\\\documentclass[11pt]{article}\\n\\\\usepackage{booktabs}\\n\\\\usepackage{amsmath}\\n\\\\usepackage{natbib}\\n\\\\usepackage[margin=1in]{geometry}\\n\\n\\\\title{A Small Study of Retrieval-Augmented Quest"
+  },
+  {
+   "name": "case01.errors_have_file_line_and_source",
+   "ok": true,
+   "detail": "[{\"code\": \"unbalanced_math\", \"severity\": \"error\", \"file\": \"main.tex\", \"line\": 33, \"text\": \"The accuracy is $72.4 on the synthetic development split, which we discuss\", \"detail\": \"$ 共 3 个，奇数：数学模式没有闭合\","
+  },
+  {
+   "name": "case02.success",
+   "ok": true,
+   "detail": "success"
+  },
+  {
+   "name": "case02.no_errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case02.compiled_false",
+   "ok": true,
+   "detail": "False"
+  },
+  {
+   "name": "case02.no_fake_compile_claim",
+   "ok": true,
+   "detail": "report.md claims a compile"
+  },
+  {
+   "name": "case02.no_compile_error_when_missing",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case03.success",
+   "ok": true,
+   "detail": "success"
+  },
+  {
+   "name": "case03.no_errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case03.three_citations",
+   "ok": true,
+   "detail": "3"
+  },
+  {
+   "name": "case03.two_equations",
+   "ok": true,
+   "detail": "5"
+  },
+  {
+   "name": "negative.fix_removes_duplicate_label",
+   "ok": true,
+   "detail": "occurrences=1"
+  },
+  {
+   "name": "negative.fix_syncs_ref",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "negative.fix_marks_todo_cite",
+   "ok": true,
+   "detail": "unbalanced_math,table_column_mismatch"
+  },
+  {
+   "name": "negative.fix_leaves_table_for_human",
+   "ok": true,
+   "detail": "unbalanced_math,table_column_mismatch"
+  },
+  {
+   "name": "negative.compiled_stays_false",
+   "ok": true,
+   "detail": "{\"errors\": 2, \"warnings\": 3, \"compiled\": false, \"cite_keys\": 2, \"labels\": 4, \"lines\": 57}"
+  }
+ ],
+ "failed": 0,
+ "note": "local self-test only; not the official platform cases"
+}

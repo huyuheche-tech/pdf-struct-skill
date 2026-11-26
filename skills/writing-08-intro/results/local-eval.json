@@ -1,0 +1,81 @@
+{
+ "checks": [
+  {
+   "name": "case01.exit",
+   "ok": true,
+   "detail": "case_id=intro-local-01 status=success evidence=7 errors=0"
+  },
+  {
+   "name": "case01.success",
+   "ok": true,
+   "detail": "success"
+  },
+  {
+   "name": "case01.no_errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case01.four_sections",
+   "ok": true,
+   "detail": "{\"background\": true, \"related_work\": true, \"gap\": true, \"contributions\": true}"
+  },
+  {
+   "name": "case01.contributions_bound",
+   "ok": true,
+   "detail": "{\"n_claims\": 1, \"supported\": 1, \"contributions\": 3, \"bound\": 3, \"groups\": 2, \"citations\": 6}"
+  },
+  {
+   "name": "case01.contract_filled",
+   "ok": true,
+   "detail": "{\"sections\": {\"background\": \"Label scarcity limits text classification in many applied domains [liu2019]. Prior systems rely on large annotated corpora, yet annotation remains expensive [zhang2020].\","
+  },
+  {
+   "name": "case02.partial",
+   "ok": true,
+   "detail": "partial"
+  },
+  {
+   "name": "case02.detects_claim_unsupported",
+   "ok": true,
+   "detail": "claim_unsupported,contribution_unbound,gap_unsupported"
+  },
+  {
+   "name": "case02.detects_contribution_unbound",
+   "ok": true,
+   "detail": "claim_unsupported,contribution_unbound,gap_unsupported"
+  },
+  {
+   "name": "case02.detects_gap_unsupported",
+   "ok": true,
+   "detail": "claim_unsupported,contribution_unbound,gap_unsupported"
+  },
+  {
+   "name": "case03.success",
+   "ok": true,
+   "detail": "success"
+  },
+  {
+   "name": "case03.no_errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case03.groups_two",
+   "ok": true,
+   "detail": "{\"n_claims\": 1, \"supported\": 1, \"contributions\": 3, \"bound\": 3, \"groups\": 2, \"citations\": 6}"
+  },
+  {
+   "name": "negative.section_missing",
+   "ok": true,
+   "detail": "section_missing"
+  },
+  {
+   "name": "negative.citation_unknown",
+   "ok": true,
+   "detail": "citation_unknown"
+  }
+ ],
+ "failed": 0,
+ "note": "local self-test only; not the official platform cases"
+}

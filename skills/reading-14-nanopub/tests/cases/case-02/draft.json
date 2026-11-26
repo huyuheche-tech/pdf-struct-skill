@@ -1,0 +1,40 @@
+{
+ "assertions": [
+  {
+   "id": "a1",
+   "text": "The reranker lifts nDCG@10 from 0.312 to 0.358 and it costs 4.6 points to remove the reranker.",
+   "subject": "reranker",
+   "predicate": "has_property",
+   "object": "nDCG@10 0.358",
+   "conditions": "",
+   "evidence": "On MS MARCO, the reranker lifts nDCG@10 from 0.312 to 0.358.",
+   "source_id": "paper-msmarco-reranker",
+   "paragraph_id": "s02.p01",
+   "confidence": "high"
+  },
+  {
+   "id": "a2",
+   "text": "Three independent laboratories validated the reranker.",
+   "subject": "three laboratories",
+   "predicate": "supports",
+   "object": "reranker validity",
+   "conditions": "",
+   "evidence": "Three independent laboratories validated the reranker in 2025.",
+   "source_id": "paper-msmarco-reranker",
+   "paragraph_id": "s02.p01",
+   "confidence": "medium"
+  },
+  {
+   "id": "a3",
+   "text": "The reranker always improves retrieval quality on every dataset.",
+   "subject": "reranker",
+   "predicate": "has_property",
+   "object": "retrieval quality",
+   "conditions": "",
+   "evidence": "On MS MARCO, the reranker lifts nDCG@10 from 0.312 to 0.358.",
+   "source_id": "paper-msmarco-reranker",
+   "paragraph_id": "s02.p01",
+   "confidence": "low"
+  }
+ ]
+}
