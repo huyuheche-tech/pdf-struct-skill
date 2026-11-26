@@ -1,0 +1,284 @@
+{
+  "arm_version": "1.1",
+  "paper": {
+    "title": "weekly-skill: layout-aware PDF structure parser for scientific papers (阅读01｜文献文档解析)",
+    "authors": "skill submission; demo papers parsed: Kaiming He et al. (arXiv:1512.03385); Ashish Vaswani et al. (arXiv:1706.03762); Jacob Devlin et al. (arXiv:1810.04805); Tom B. Brown et al. (arXiv:2005.14165); Alexey Dosovitskiy et al. (arXiv:2010.11929, the held-out sample)",
+    "challenge_id": "product-arena-08-3027d350",
+    "target_claims": [
+      "A skill that turns a scientific PDF into a page- and bbox-traceable structured document (blocks, sections, tables, figures, formulas, references) in one deterministic pass, and reports character-level completeness instead of asserting it."
+    ],
+    "target_figures": [
+      "results/resnet/figures/F2.png"
+    ],
+    "target_tables": [
+      "results/resnet/tables/T1.csv"
+    ]
+  },
+  "entrypoint": "src/reproduce.py",
+  "execution": {
+    "log_path": "results/run.log",
+    "exit_code": 0,
+    "ran_at": "2026-11-26T14:06:31+08:00",
+    "ran_by": "agent",
+    "wall_time_s": 131.0,
+    "artifacts": [
+      {
+        "id": "A1",
+        "path": "results/resnet/report.json",
+        "type": "data",
+        "format": "json",
+        "description": "ResNet (two-column CVPR) parse report: per-page column count and gutters, type histogram, char_recall, selfcheck."
+      },
+      {
+        "id": "A2",
+        "path": "results/resnet/text.md",
+        "type": "data",
+        "format": "txt",
+        "description": "Reading-order text for ResNet; every block carries its page, type, column and bbox in an HTML comment."
+      },
+      {
+        "id": "A3",
+        "path": "results/resnet/tables/T1.csv",
+        "type": "table",
+        "format": "csv",
+        "description": "ResNet architecture table rebuilt cell-by-cell from word boxes (7 columns, nested multi-line cells preserved)."
+      },
+      {
+        "id": "A4",
+        "path": "results/resnet/figures/F2.png",
+        "type": "figure",
+        "format": "png",
+        "description": "Figure 2 crop with caption glued to its artwork."
+      },
+      {
+        "id": "A5",
+        "path": "results/resnet/overlay/page-01.png",
+        "type": "figure",
+        "format": "png",
+        "description": "Layout diagnosis overlay: box colour = block type, magenta = detected gutter, numbers = reading order."
+      },
+      {
+        "id": "A6",
+        "path": "results/transformer/report.json",
+        "type": "data",
+        "format": "json",
+        "description": "Transformer (single-column, 15 pages) parse report."
+      },
+      {
+        "id": "A7",
+        "path": "results/transformer/text.md",
+        "type": "data",
+        "format": "txt",
+        "description": "Reading-order text for the single-column paper."
+      },
+      {
+        "id": "A8",
+        "path": "outputs/response.md",
+        "type": "data",
+        "format": "txt"
+      },
+      {
+        "id": "A9",
+        "path": "outputs/result.json",
+        "type": "data",
+        "format": "json"
+      },
+      {
+        "id": "A10",
+        "path": "outputs/answer.txt",
+        "type": "data",
+        "format": "txt"
+      },
+      {
+        "id": "A11",
+        "path": "raw_messages.jsonl",
+        "type": "log",
+        "format": "txt"
+      },
+      {
+        "id": "A12",
+        "path": "outputs/SKILL.md",
+        "type": "data",
+        "format": "txt"
+      },
+      {
+        "id": "A13",
+        "path": "results/baseline.json",
+        "type": "data",
+        "format": "json",
+        "description": "Bare-agent baseline vs this skill on the same five PDFs: running-header lines, figure-label chars in body, glued headings, cross-column interleavings, tables/cells, blocks with bbox (per case and per page)."
+      },
+      {
+        "id": "A14",
+        "path": "results/vit/report.json",
+        "type": "data",
+        "format": "json",
+        "description": "Held-out sample (ViT, ICLR template): 22 pages, single-column body + two-column appendix, 742 blocks, 22 sections, selfcheck ok."
+      },
+      {
+        "id": "A15",
+        "path": "outputs/scripts/baseline_compare.py",
+        "type": "code",
+        "format": "py",
+        "description": "Measurement script behind A13: recomputes every baseline metric from the PDF geometry."
+      },
+      {
+        "id": "A16",
+        "path": "outputs/examples/quickstart.md",
+        "type": "data",
+        "format": "txt",
+        "description": "30-line paste-and-use contract for an agent (install, three commands, what to read, what to report)."
+      },
+      {
+        "id": "A17",
+        "path": "outputs/references/baseline.md",
+        "type": "data",
+        "format": "txt",
+        "description": "Baseline method, metric definitions, per-corpus table and the caveats (n/a is n/a)."
+      }
+    ]
+  },
+  "trace": {
+    "files": [
+      "traces/trace.jsonl"
+    ],
+    "step_count": 9
+  },
+  "characterization": {
+    "path": "characterization.json"
+  },
+  "expected_outputs": [
+    {
+      "name": "char_recall_resnet",
+      "type": "metric",
+      "produced_by": [
+        "A1"
+      ],
+      "reference": "emitted_chars / (text_layer_chars - dropped_running_chars) for the two-column paper",
+      "expected_value": 1.0018,
+      "tolerance": 0.02,
+      "comparison_method": "numeric_tolerance"
+    },
+    {
+      "name": "char_recall_transformer",
+      "type": "metric",
+      "produced_by": [
+        "A6"
+      ],
+      "reference": "same completeness metric for the single-column paper",
+      "expected_value": 1.0012,
+      "tolerance": 0.02,
+      "comparison_method": "numeric_tolerance"
+    },
+    {
+      "name": "figure_count_resnet",
+      "type": "metric",
+      "produced_by": [
+        "A1"
+      ],
+      "reference": "visually counted figures in arXiv 1512.03385",
+      "expected_value": 7,
+      "comparison_method": "exact_match"
+    },
+    {
+      "name": "figure_count_transformer",
+      "type": "metric",
+      "produced_by": [
+        "A6"
+      ],
+      "reference": "visually counted figures in arXiv 1706.03762",
+      "expected_value": 5,
+      "comparison_method": "exact_match"
+    },
+    {
+      "name": "reference_count_resnet",
+      "type": "metric",
+      "produced_by": [
+        "A1"
+      ],
+      "reference": "numbered bibliography entries in arXiv 1512.03385",
+      "expected_value": 69,
+      "comparison_method": "exact_match"
+    }
+  ],
+  "environment": {
+    "python_version": "3.13.12",
+    "dependencies": "pymupdf==2.1; pillow==12.3.0; numpy==2.5.1",
+    "gpu_required": false,
+    "estimated_runtime_minutes": 1,
+    "extra_packages": [],
+    "docker_image": "python:3.12-slim + pymupdf==2.1",
+    "lock_file": "requirements.txt"
+  },
+  "data_sources": [
+    {
+      "name": "Attention Is All You Need (arXiv:1706.03762)",
+      "uri": "https://arxiv.org/abs/1706.03762",
+      "path": "corpus/transformer.pdf (not bundled: arXiv redistribution; re-download from uri)",
+      "license": "arXiv non-exclusive distribution license",
+      "size_bytes": 2215244
+    },
+    {
+      "name": "Deep Residual Learning for Image Recognition (arXiv:1512.03385)",
+      "uri": "https://arxiv.org/abs/1512.03385",
+      "path": "corpus/resnet.pdf (not bundled: arXiv redistribution; re-download from uri)",
+      "license": "arXiv non-exclusive distribution license",
+      "size_bytes": 819383
+    },
+    {
+      "name": "BERT: Pre-training of Deep Bidirectional Transformers (arXiv:1810.04805)",
+      "uri": "https://arxiv.org/abs/1810.04805",
+      "path": "corpus/bert.pdf (not bundled)",
+      "license": "arXiv non-exclusive distribution license",
+      "size_bytes": 775166
+    },
+    {
+      "name": "Language Models are Few-Shot Learners (arXiv:2005.14165)",
+      "uri": "https://arxiv.org/abs/2005.14165",
+      "path": "corpus/gpt3.pdf (not bundled)",
+      "license": "arXiv non-exclusive distribution license",
+      "size_bytes": 6768044
+    },
+    {
+      "name": "An Image is Worth 16x16 Words (arXiv:2010.11929)",
+      "uri": "https://arxiv.org/abs/2010.11929",
+      "path": "corpus/vit.pdf (not bundled; held-out sample)",
+      "license": "arXiv non-exclusive distribution license",
+      "size_bytes": 3587206
+    }
+  ],
+  "agents_used": [
+    {
+      "agent_id": "deepseek-harness",
+      "role": "skill authoring, parser implementation, QA against five public papers (four development, one held out)"
+    }
+  ],
+  "skills_used": [
+    {
+      "skill_id": "weekly-skill",
+      "version": "2.0.0",
+      "parameters": {
+        "schema": "pdf-struct/2"
+      }
+    }
+  ],
+  "provenance": {
+    "created_by": "mixed",
+    "platform": "deepseek-harness"
+  },
+  "handoff": {
+    "status": "partial",
+    "next_suggestion": "widen the envelope: 3-column layouts, fully scanned books, and tables without ruling lines are declared-but-untested; run the OCR branch end-to-end with a vision model on a real scan",
+    "blocked_by": "none",
+    "hypothesis": "the remaining error budget is dominated by column detection on pages where a full-width figure splits a multi-column band",
+    "next_owner_hint": {
+      "start_at": "references/method.md section 7 (reading order) and section 4 (column voting)",
+      "why": "the residual error budget sits in pages where a full-width figure splits a multi-column band"
+    },
+    "modality_notes": {
+      "execution": "results/ holds a real run of the bundled parser on five public papers; results/run.log is the verbatim stdout of that run; results/baseline.json is the bare-agent comparison produced by outputs/scripts/baseline_compare.py",
+      "characterization": "7 deviations from paper, 7 envelope entries (4 measured / 3 declared), 5 failure modes, 4 sensitivity sweeps",
+      "trace": "hand-written 9-step trace of the actual build session (the platform trace-record installer rewrites ~/.claude/skills/*/SKILL.md and was not run)"
+    }
+  }
+}

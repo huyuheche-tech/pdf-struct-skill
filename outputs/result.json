@@ -1,0 +1,295 @@
+{
+  "schema": "weekly-skill/result/1",
+  "note": "以下为公开演示语料（arXiv 预印本）的运行结果，用于说明输出契约；不是隐藏评测用例，也不代表正式评测分数。五个用例共用同一份脚本与同一组阈值，没有任何按语料的特判。",
+  "skill": {
+    "name": "weekly-skill",
+    "engine": "pdf-struct/2",
+    "entry": "outputs/scripts/parse_pdf.py"
+  },
+  "baseline": {
+    "file": "results/baseline.json",
+    "note": "裸 Agent（PyMuPDF get_text 纯文本）与本 Skill 在同一批 PDF 上的逐项对照"
+  },
+  "totals": {
+    "pages": 140,
+    "blocks": 3483,
+    "sections": 146,
+    "tables": 80,
+    "references": 495,
+    "tables_detected": 85,
+    "table_cells": 2586
+  },
+  "cases": [
+    {
+      "case_id": "demo-resnet",
+      "input": {
+        "file": "corpus/resnet.pdf",
+        "kind": "pdf",
+        "layout": "双栏（CVPR 模板）",
+        "has_text_layer": true
+      },
+      "role": "主用例：双栏 + 大量图内标注",
+      "main_result": {
+        "pages": 12,
+        "blocks": 583,
+        "sections": 16,
+        "headings": 17,
+        "tables": 14,
+        "figures": 7,
+        "formulas": 7,
+        "references": 69,
+        "figure_labels": 241,
+        "char_recall": 1.0018,
+        "char_recall_vs_full_layer": 0.9674,
+        "dropped_running_chars": 15,
+        "selfcheck": {
+          "errors": [],
+          "warnings": [],
+          "ok": true
+        },
+        "warnings": [],
+        "tables_detected": 14,
+        "tables_rejected": 0,
+        "table_cells": 213
+      },
+      "evidence": {
+        "report": "results/resnet/report.json",
+        "paths": [
+          "results/resnet/report.json",
+          "results/resnet/text.md",
+          "results/resnet/overlay/page-01.png",
+          "results/resnet/tables/T1.csv"
+        ],
+        "blocks_have_bbox": true,
+        "bbox_source": "text_layer"
+      },
+      "status": "success",
+      "status_reason": "4 条不变式全部通过，char_recall 落在 [0.90, 1.05] 内",
+      "uncertainty": [
+        "表格表头与多行单元格的归属依赖 bbox_cells 的词框划分，个别跨行合并单元格可能被拆成两行",
+        "作者行顺序按文字流，可能与视觉列顺序不同",
+        "分栏判定在通栏图夹在双栏之间的页面上可能退化为单栏（需 overlay 复核）"
+      ]
+    },
+    {
+      "case_id": "demo-transformer",
+      "input": {
+        "file": "corpus/transformer.pdf",
+        "kind": "pdf",
+        "layout": "单栏（arXiv 模板）",
+        "has_text_layer": true
+      },
+      "role": "单栏基线",
+      "main_result": {
+        "pages": 15,
+        "blocks": 510,
+        "sections": 25,
+        "headings": 26,
+        "tables": 4,
+        "figures": 5,
+        "formulas": 2,
+        "references": 58,
+        "figure_labels": 253,
+        "char_recall": 1.0012,
+        "char_recall_vs_full_layer": 0.966,
+        "dropped_running_chars": 20,
+        "selfcheck": {
+          "errors": [],
+          "warnings": [],
+          "ok": true
+        },
+        "warnings": [],
+        "tables_detected": 4,
+        "tables_rejected": 0,
+        "table_cells": 70
+      },
+      "evidence": {
+        "report": "results/transformer/report.json",
+        "paths": [
+          "results/transformer/report.json",
+          "results/transformer/text.md",
+          "results/transformer/overlay/page-01.png"
+        ],
+        "blocks_have_bbox": true,
+        "bbox_source": "text_layer"
+      },
+      "status": "success",
+      "status_reason": "4 条不变式全部通过，char_recall 落在 [0.90, 1.05] 内",
+      "uncertainty": [
+        "表格表头与多行单元格的归属依赖 bbox_cells 的词框划分，个别跨行合并单元格可能被拆成两行",
+        "作者行顺序按文字流，可能与视觉列顺序不同",
+        "分栏判定在通栏图夹在双栏之间的页面上可能退化为单栏（需 overlay 复核）"
+      ]
+    },
+    {
+      "case_id": "demo-bert",
+      "input": {
+        "file": "corpus/bert.pdf",
+        "kind": "pdf",
+        "layout": "双栏（ACL 模板）",
+        "has_text_layer": true
+      },
+      "role": "尾注式参考文献 + 附录多行横幅标题",
+      "main_result": {
+        "pages": 16,
+        "blocks": 687,
+        "sections": 27,
+        "headings": 28,
+        "tables": 6,
+        "figures": 4,
+        "formulas": 2,
+        "references": 115,
+        "figure_labels": 250,
+        "char_recall": 0.9969,
+        "char_recall_vs_full_layer": 0.9749,
+        "dropped_running_chars": 0,
+        "selfcheck": {
+          "errors": [],
+          "warnings": [],
+          "ok": true
+        },
+        "warnings": [
+          {
+            "code": "title_merged",
+            "extra_lines": 1,
+            "detail": "document title spans 2 visual lines; they have been joined into one block so the second line does not become a phantom section"
+          },
+          {
+            "code": "heading_merged",
+            "merged_lines": 3,
+            "detail": "3 heading line(s) were joined into the heading they continue (a heading never ends on a connective)"
+          }
+        ],
+        "tables_detected": 7,
+        "tables_rejected": 1,
+        "table_cells": 183
+      },
+      "evidence": {
+        "report": "results/bert/report.json",
+        "paths": [
+          "results/bert/report.json"
+        ],
+        "blocks_have_bbox": true,
+        "bbox_source": "text_layer"
+      },
+      "status": "success",
+      "status_reason": "4 条不变式全部通过，char_recall 落在 [0.90, 1.05] 内",
+      "uncertainty": [
+        "表格表头与多行单元格的归属依赖 bbox_cells 的词框划分，个别跨行合并单元格可能被拆成两行",
+        "作者行顺序按文字流，可能与视觉列顺序不同",
+        "分栏判定在通栏图夹在双栏之间的页面上可能退化为单栏（需 overlay 复核）",
+        "标题跨 2 行、附录横幅标题跨 3 行：已按 `title_merged` / `heading_merged` 合并并写入 warnings"
+      ]
+    },
+    {
+      "case_id": "demo-gpt3",
+      "input": {
+        "file": "corpus/gpt3.pdf",
+        "kind": "pdf",
+        "layout": "单栏 75 页",
+        "has_text_layer": true
+      },
+      "role": "长文压力：961 块 / 51 表仍满足页内顺序不变式",
+      "main_result": {
+        "pages": 75,
+        "blocks": 961,
+        "sections": 56,
+        "headings": 57,
+        "tables": 48,
+        "figures": 33,
+        "formulas": 0,
+        "references": 183,
+        "figure_labels": 0,
+        "char_recall": 1.013,
+        "char_recall_vs_full_layer": 1.0121,
+        "dropped_running_chars": 140,
+        "selfcheck": {
+          "errors": [],
+          "warnings": [
+            "sparse_table:T35",
+            "sparse_table:T36",
+            "sparse_table:T44"
+          ],
+          "ok": true
+        },
+        "warnings": [],
+        "tables_detected": 51,
+        "tables_rejected": 3,
+        "table_cells": 1843
+      },
+      "evidence": {
+        "report": "results/gpt3/report.json",
+        "paths": [
+          "results/gpt3/report.json"
+        ],
+        "blocks_have_bbox": true,
+        "bbox_source": "text_layer"
+      },
+      "status": "success",
+      "status_reason": "4 条不变式全部通过，char_recall 落在 [0.90, 1.05] 内",
+      "uncertainty": [
+        "表格表头与多行单元格的归属依赖 bbox_cells 的词框划分，个别跨行合并单元格可能被拆成两行",
+        "作者行顺序按文字流，可能与视觉列顺序不同",
+        "分栏判定在通栏图夹在双栏之间的页面上可能退化为单栏（需 overlay 复核）",
+        "3 条 sparse_table 非阻塞 warning（T35/T36/T44）：表头稀疏，仍可用但需人工确认"
+      ]
+    },
+    {
+      "case_id": "holdout-vit",
+      "input": {
+        "file": "corpus/vit.pdf",
+        "kind": "pdf",
+        "layout": "单栏正文 + 双栏附录（ICLR 模板）",
+        "has_text_layer": true
+      },
+      "role": "泛化验证：定稿前未参与阈值调整的第 5 篇",
+      "main_result": {
+        "pages": 22,
+        "blocks": 742,
+        "sections": 22,
+        "headings": 23,
+        "tables": 8,
+        "figures": 14,
+        "formulas": 14,
+        "references": 70,
+        "figure_labels": 383,
+        "char_recall": 1.0016,
+        "char_recall_vs_full_layer": 0.941,
+        "dropped_running_chars": 849,
+        "selfcheck": {
+          "errors": [],
+          "warnings": [],
+          "ok": true
+        },
+        "warnings": [
+          {
+            "code": "title_merged",
+            "extra_lines": 1,
+            "detail": "document title spans 2 visual lines; they have been joined into one block so the second line does not become a phantom section"
+          }
+        ],
+        "tables_detected": 9,
+        "tables_rejected": 1,
+        "table_cells": 277
+      },
+      "evidence": {
+        "report": "results/vit/report.json",
+        "paths": [
+          "results/vit/report.json",
+          "results/vit/text.md",
+          "results/vit/overlay/page-01.png"
+        ],
+        "blocks_have_bbox": true,
+        "bbox_source": "text_layer"
+      },
+      "status": "success",
+      "status_reason": "4 条不变式全部通过，char_recall 落在 [0.90, 1.05] 内",
+      "uncertainty": [
+        "表格表头与多行单元格的归属依赖 bbox_cells 的词框划分，个别跨行合并单元格可能被拆成两行",
+        "作者行顺序按文字流，可能与视觉列顺序不同",
+        "分栏判定在通栏图夹在双栏之间的页面上可能退化为单栏（需 overlay 复核）",
+        "附录页为双栏、正文为单栏的混合版面：`pages[].columns` 逐页不同，跨栏不变式按页生效"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,279 @@
+{
+ "input": {
+  "path": "bert.pdf",
+  "sha256": "5692a5514787a8c6727b4ff3b726a3385798bc68e12138d1d4af83947e2acf6e",
+  "bytes": 775166,
+  "pages": 16
+ },
+ "engine": {
+  "name": "pymupdf",
+  "version": "2.1",
+  "mupdf": "1.28.6",
+  "python": "3.13.12",
+  "pipeline": "pdf-struct/2"
+ },
+ "document": {
+  "pages": 16,
+  "column_template": 2,
+  "has_text_layer": true
+ },
+ "stats": {
+  "n_pages_parsed": 16,
+  "text_layer_chars": 53921,
+  "dropped_running_chars": 0,
+  "masked_figure_label_chars": 1191,
+  "emitted_chars": 52565,
+  "char_recall": 0.9969,
+  "char_recall_vs_full_layer": 0.9749,
+  "n_blocks": 687,
+  "n_headings": 28,
+  "n_formulas": 2,
+  "n_tables": 7,
+  "n_table_cells": 187,
+  "n_figures": 4,
+  "n_sections": 27,
+  "blocks_with_bbox": 687,
+  "blocks_with_page": 687,
+  "types": {
+   "affiliation": 2,
+   "author": 4,
+   "body": 250,
+   "caption": 10,
+   "figure": 4,
+   "figure_label": 250,
+   "footnote": 14,
+   "formula": 2,
+   "heading": 28,
+   "margin_artifact": 2,
+   "reference": 115,
+   "table": 6
+  }
+ },
+ "warnings": [
+  {
+   "code": "title_merged",
+   "extra_lines": 1,
+   "detail": "document title spans 2 visual lines; they have been joined into one block so the second line does not become a phantom section"
+  },
+  {
+   "code": "heading_merged",
+   "merged_lines": 3,
+   "detail": "3 heading line(s) were joined into the heading they continue (a heading never ends on a connective)"
+  }
+ ],
+ "selfcheck": {
+  "errors": [],
+  "warnings": [],
+  "ok": true
+ },
+ "pages": [
+  {
+   "page": 1,
+   "columns": 2,
+   "gutters": [
+    [
+     292.0,
+     306.0
+    ]
+   ],
+   "text_layer_chars": 3384,
+   "n_blocks": 22,
+   "empty": false
+  },
+  {
+   "page": 2,
+   "columns": 2,
+   "gutters": [
+    [
+     292.0,
+     306.0
+    ]
+   ],
+   "text_layer_chars": 3859,
+   "n_blocks": 14,
+   "empty": false
+  },
+  {
+   "page": 3,
+   "columns": 2,
+   "gutters": [
+    [
+     292.0,
+     306.0
+    ]
+   ],
+   "text_layer_chars": 3115,
+   "n_blocks": 66,
+   "empty": false
+  },
+  {
+   "page": 4,
+   "columns": 2,
+   "gutters": [
+    [
+     292.0,
+     306.0
+    ]
+   ],
+   "text_layer_chars": 4039,
+   "n_blocks": 13,
+   "empty": false
+  },
+  {
+   "page": 5,
+   "columns": 2,
+   "gutters": [
+    [
+     297.0,
+     306.0
+    ]
+   ],
+   "text_layer_chars": 3228,
+   "n_blocks": 62,
+   "empty": false
+  },
+  {
+   "page": 6,
+   "columns": 2,
+   "gutters": [
+    [
+     292.0,
+     306.0
+    ]
+   ],
+   "text_layer_chars": 3690,
+   "n_blocks": 20,
+   "empty": false
+  },
+  {
+   "page": 7,
+   "columns": 2,
+   "gutters": [
+    [
+     292.0,
+     306.0
+    ]
+   ],
+   "text_layer_chars": 3059,
+   "n_blocks": 38,
+   "empty": false
+  },
+  {
+   "page": 8,
+   "columns": 2,
+   "gutters": [
+    [
+     292.0,
+     306.0
+    ]
+   ],
+   "text_layer_chars": 3732,
+   "n_blocks": 17,
+   "empty": false
+  },
+  {
+   "page": 9,
+   "columns": 2,
+   "gutters": [
+    [
+     292.0,
+     306.0
+    ]
+   ],
+   "text_layer_chars": 3443,
+   "n_blocks": 15,
+   "empty": false
+  },
+  {
+   "page": 10,
+   "columns": 2,
+   "gutters": [
+    [
+     292.0,
+     306.0
+    ]
+   ],
+   "text_layer_chars": 3919,
+   "n_blocks": 47,
+   "empty": false
+  },
+  {
+   "page": 11,
+   "columns": 2,
+   "gutters": [
+    [
+     292.0,
+     306.0
+    ]
+   ],
+   "text_layer_chars": 4108,
+   "n_blocks": 51,
+   "empty": false
+  },
+  {
+   "page": 12,
+   "columns": 2,
+   "gutters": [
+    [
+     292.0,
+     306.0
+    ]
+   ],
+   "text_layer_chars": 3294,
+   "n_blocks": 71,
+   "empty": false
+  },
+  {
+   "page": 13,
+   "columns": 2,
+   "gutters": [
+    [
+     294.0,
+     306.0
+    ]
+   ],
+   "text_layer_chars": 3081,
+   "n_blocks": 81,
+   "empty": false
+  },
+  {
+   "page": 14,
+   "columns": 2,
+   "gutters": [
+    [
+     292.0,
+     306.0
+    ]
+   ],
+   "text_layer_chars": 3420,
+   "n_blocks": 27,
+   "empty": false
+  },
+  {
+   "page": 15,
+   "columns": 2,
+   "gutters": [
+    [
+     292.0,
+     306.0
+    ]
+   ],
+   "text_layer_chars": 1952,
+   "n_blocks": 114,
+   "empty": false
+  },
+  {
+   "page": 16,
+   "columns": 2,
+   "gutters": [
+    [
+     292.0,
+     306.0
+    ]
+   ],
+   "text_layer_chars": 2598,
+   "n_blocks": 33,
+   "empty": false
+  }
+ ]
+}

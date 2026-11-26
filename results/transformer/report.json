@@ -1,0 +1,213 @@
+{
+ "input": {
+  "path": "transformer.pdf",
+  "sha256": "bdfaa68d8984f0dc02beaca527b76f207d99b666d31d1da728ee0728182df697",
+  "bytes": 2215244,
+  "pages": 15
+ },
+ "engine": {
+  "name": "pymupdf",
+  "version": "2.1",
+  "mupdf": "1.28.6",
+  "python": "3.13.12",
+  "pipeline": "pdf-struct/2"
+ },
+ "document": {
+  "pages": 15,
+  "column_template": 1,
+  "has_text_layer": true
+ },
+ "stats": {
+  "n_pages_parsed": 15,
+  "text_layer_chars": 33401,
+  "dropped_running_chars": 20,
+  "masked_figure_label_chars": 1155,
+  "emitted_chars": 32265,
+  "char_recall": 1.0012,
+  "char_recall_vs_full_layer": 0.966,
+  "n_blocks": 510,
+  "n_headings": 26,
+  "n_formulas": 2,
+  "n_tables": 4,
+  "n_table_cells": 70,
+  "n_figures": 5,
+  "n_sections": 25,
+  "blocks_with_bbox": 510,
+  "blocks_with_page": 510,
+  "types": {
+   "affiliation": 17,
+   "author": 8,
+   "body": 121,
+   "caption": 10,
+   "figure": 5,
+   "figure_label": 253,
+   "footnote": 5,
+   "formula": 2,
+   "heading": 26,
+   "margin_artifact": 1,
+   "reference": 58,
+   "table": 4
+  }
+ },
+ "warnings": [],
+ "selfcheck": {
+  "errors": [],
+  "warnings": [],
+  "ok": true
+ },
+ "pages": [
+  {
+   "page": 1,
+   "columns": 1,
+   "gutters": [],
+   "text_layer_chars": 2462,
+   "n_blocks": 32,
+   "empty": false
+  },
+  {
+   "page": 2,
+   "columns": 1,
+   "gutters": [],
+   "text_layer_chars": 3634,
+   "n_blocks": 14,
+   "empty": false
+  },
+  {
+   "page": 3,
+   "columns": 1,
+   "gutters": [],
+   "text_layer_chars": 1535,
+   "n_blocks": 12,
+   "empty": false
+  },
+  {
+   "page": 4,
+   "columns": 2,
+   "gutters": [
+    [
+     268.0,
+     357.0
+    ]
+   ],
+   "text_layer_chars": 2109,
+   "n_blocks": 28,
+   "empty": false
+  },
+  {
+   "page": 5,
+   "columns": 1,
+   "gutters": [],
+   "text_layer_chars": 2674,
+   "n_blocks": 23,
+   "empty": false
+  },
+  {
+   "page": 6,
+   "columns": 2,
+   "gutters": [
+    [
+     229.0,
+     234.0
+    ]
+   ],
+   "text_layer_chars": 2926,
+   "n_blocks": 17,
+   "empty": false
+  },
+  {
+   "page": 7,
+   "columns": 1,
+   "gutters": [],
+   "text_layer_chars": 2801,
+   "n_blocks": 16,
+   "empty": false
+  },
+  {
+   "page": 8,
+   "columns": 3,
+   "gutters": [
+    [
+     278.0,
+     287.0
+    ],
+    [
+     358.0,
+     382.0
+    ]
+   ],
+   "text_layer_chars": 2658,
+   "n_blocks": 18,
+   "empty": false
+  },
+  {
+   "page": 9,
+   "columns": 3,
+   "gutters": [
+    [
+     359.0,
+     368.0
+    ],
+    [
+     426.0,
+     437.0
+    ]
+   ],
+   "text_layer_chars": 2480,
+   "n_blocks": 13,
+   "empty": false
+  },
+  {
+   "page": 10,
+   "columns": 2,
+   "gutters": [
+    [
+     404.0,
+     428.0
+    ]
+   ],
+   "text_layer_chars": 2649,
+   "n_blocks": 27,
+   "empty": false
+  },
+  {
+   "page": 11,
+   "columns": 1,
+   "gutters": [],
+   "text_layer_chars": 2787,
+   "n_blocks": 27,
+   "empty": false
+  },
+  {
+   "page": 12,
+   "columns": 1,
+   "gutters": [],
+   "text_layer_chars": 2767,
+   "n_blocks": 23,
+   "empty": false
+  },
+  {
+   "page": 13,
+   "columns": 1,
+   "gutters": [],
+   "text_layer_chars": 669,
+   "n_blocks": 50,
+   "empty": false
+  },
+  {
+   "page": 14,
+   "columns": 1,
+   "gutters": [],
+   "text_layer_chars": 623,
+   "n_blocks": 105,
+   "empty": false
+  },
+  {
+   "page": 15,
+   "columns": 1,
+   "gutters": [],
+   "text_layer_chars": 627,
+   "n_blocks": 105,
+   "empty": false
+  }
+ ]
+}

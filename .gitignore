@@ -1,0 +1,12 @@
+# runtime / editor noise
+__pycache__/
+*.pyc
+out/
+.venv/
+venv/
+
+# the demo PDFs are fetched from arXiv, not committed
+corpus/*.pdf
+
+# per-run scratch
+*.log.txt

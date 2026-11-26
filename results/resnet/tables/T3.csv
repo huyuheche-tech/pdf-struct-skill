@@ -1,0 +1,18 @@
+model,top-1 err. top-5 err.
+"VGG-16 [41]
+GoogLeNet [44]
+PReLU-net [13]","28.07 9.33
+- 9.15
+24.27 7.38"
+"plain-34
+ResNet-34 A
+ResNet-34 B
+ResNet-34 C","28.54 10.02
+25.03 7.76
+24.52 7.46
+24.19 7.40"
+"ResNet-50
+ResNet-101
+ResNet-152","22.85 6.71
+21.75 6.05
+21.43 5.71"

@@ -1,0 +1,20 @@
+提交内容：一个可被 Agent 调用的科研 PDF 解析 Skill（weekly-skill / pdf-struct/2）。
+
+用途：把科研 PDF 转成带页码与 bbox 的结构化结果（正文/标题/表格/图/公式/参考文献/章节树），
+并输出可核验的 text.md（每块带溯源注释）、overlay 页面图与自检统计。
+
+调用：python scripts/parse_pdf.py <paper.pdf> --out out/<name>  （扫描件走 ocr_pages.py + merge_ocr.py）
+对照：python scripts/baseline_compare.py <paper.pdf> --doc out/<name>/doc.json  （量化"比裸 dump 好在哪"）
+
+演示语料实测（公开 arXiv 论文 + 一篇留出样本，非正式评测用例）：
+  resnet.pdf      12 页 583 块 16 章节 14 表  7 图  7 公式  69 参考文献 char_recall 1.0018 selfcheck OK
+  transformer.pdf 15 页 510 块 25 章节  4 表  5 图  2 公式  58 参考文献 char_recall 1.0012 selfcheck OK
+  bert.pdf        16 页 687 块 27 章节  6 表  4 图  2 公式 115 参考文献 char_recall 0.9969 selfcheck OK
+  gpt3.pdf        75 页 961 块 56 章节 48 表 33 图  0 公式 183 参考文献 char_recall 1.0130 selfcheck OK
+  vit.pdf（留出） 22 页 742 块 22 章节  8 表 14 图 14 公式  70 参考文献 char_recall 1.0016 selfcheck OK
+  合计 140 页 / 3,483 块 / 146 章节 / 80 表（2,586 单元格）/ 495 条参考文献，5/5 自检通过
+
+与裸 Agent 纯文本 dump 的对照（同批 PDF，六个几何判据）：章节 0 → 146、表/单元格 0/0 → 80/2,586、
+可定位块 0 → 3,483、图内文字混入 6,280 字符 → 0、页眉残留 22 行 → 0、双栏串栏 54 次 → 0。
+
+详见 outputs/response.md 与 SKILL.md、references/method.md、references/schema.md、references/baseline.md。

@@ -1,0 +1,296 @@
+{
+ "input": {
+  "path": "vit.pdf",
+  "sha256": "f031259d8c15905506f3cf3d376b695b3110cb6f724792d5396776dcae610b16",
+  "bytes": 3587206,
+  "pages": 22
+ },
+ "engine": {
+  "name": "pymupdf",
+  "version": "2.1",
+  "mupdf": "1.28.6",
+  "python": "3.13.12",
+  "pipeline": "pdf-struct/2"
+ },
+ "document": {
+  "pages": 22,
+  "column_template": 1,
+  "has_text_layer": true
+ },
+ "stats": {
+  "n_pages_parsed": 22,
+  "text_layer_chars": 56495,
+  "dropped_running_chars": 849,
+  "masked_figure_label_chars": 2571,
+  "emitted_chars": 53160,
+  "char_recall": 1.0016,
+  "char_recall_vs_full_layer": 0.941,
+  "n_blocks": 742,
+  "n_headings": 23,
+  "n_formulas": 14,
+  "n_tables": 9,
+  "n_table_cells": 282,
+  "n_figures": 14,
+  "n_sections": 22,
+  "blocks_with_bbox": 742,
+  "blocks_with_page": 742,
+  "types": {
+   "affiliation": 1,
+   "author": 2,
+   "body": 158,
+   "caption": 26,
+   "figure": 14,
+   "figure_label": 383,
+   "footnote": 25,
+   "formula": 14,
+   "heading": 23,
+   "margin_artifact": 18,
+   "reference": 70,
+   "table": 8
+  }
+ },
+ "warnings": [
+  {
+   "code": "title_merged",
+   "extra_lines": 1,
+   "detail": "document title spans 2 visual lines; they have been joined into one block so the second line does not become a phantom section"
+  }
+ ],
+ "selfcheck": {
+  "errors": [],
+  "warnings": [],
+  "ok": true
+ },
+ "pages": [
+  {
+   "page": 1,
+   "columns": 1,
+   "gutters": [],
+   "text_layer_chars": 2970,
+   "n_blocks": 14,
+   "empty": false
+  },
+  {
+   "page": 2,
+   "columns": 1,
+   "gutters": [],
+   "text_layer_chars": 3879,
+   "n_blocks": 8,
+   "empty": false
+  },
+  {
+   "page": 3,
+   "columns": 2,
+   "gutters": [
+    [
+     323.0,
+     401.0
+    ]
+   ],
+   "text_layer_chars": 2385,
+   "n_blocks": 36,
+   "empty": false
+  },
+  {
+   "page": 4,
+   "columns": 1,
+   "gutters": [],
+   "text_layer_chars": 3411,
+   "n_blocks": 31,
+   "empty": false
+  },
+  {
+   "page": 5,
+   "columns": 1,
+   "gutters": [],
+   "text_layer_chars": 3782,
+   "n_blocks": 13,
+   "empty": false
+  },
+  {
+   "page": 6,
+   "columns": 1,
+   "gutters": [],
+   "text_layer_chars": 3045,
+   "n_blocks": 34,
+   "empty": false
+  },
+  {
+   "page": 7,
+   "columns": 1,
+   "gutters": [],
+   "text_layer_chars": 2353,
+   "n_blocks": 59,
+   "empty": false
+  },
+  {
+   "page": 8,
+   "columns": 2,
+   "gutters": [
+    [
+     295.0,
+     384.0
+    ]
+   ],
+   "text_layer_chars": 3512,
+   "n_blocks": 17,
+   "empty": false
+  },
+  {
+   "page": 9,
+   "columns": 2,
+   "gutters": [
+    [
+     363.0,
+     430.0
+    ]
+   ],
+   "text_layer_chars": 2821,
+   "n_blocks": 31,
+   "empty": false
+  },
+  {
+   "page": 10,
+   "columns": 1,
+   "gutters": [],
+   "text_layer_chars": 2662,
+   "n_blocks": 23,
+   "empty": false
+  },
+  {
+   "page": 11,
+   "columns": 1,
+   "gutters": [],
+   "text_layer_chars": 2864,
+   "n_blocks": 25,
+   "empty": false
+  },
+  {
+   "page": 12,
+   "columns": 1,
+   "gutters": [],
+   "text_layer_chars": 2167,
+   "n_blocks": 20,
+   "empty": false
+  },
+  {
+   "page": 13,
+   "columns": 2,
+   "gutters": [
+    [
+     349.0,
+     358.0
+    ]
+   ],
+   "text_layer_chars": 2376,
+   "n_blocks": 27,
+   "empty": false
+  },
+  {
+   "page": 14,
+   "columns": 2,
+   "gutters": [
+    [
+     273.0,
+     282.0
+    ]
+   ],
+   "text_layer_chars": 3227,
+   "n_blocks": 14,
+   "empty": false
+  },
+  {
+   "page": 15,
+   "columns": 2,
+   "gutters": [
+    [
+     312.0,
+     363.0
+    ]
+   ],
+   "text_layer_chars": 2459,
+   "n_blocks": 9,
+   "empty": false
+  },
+  {
+   "page": 16,
+   "columns": 1,
+   "gutters": [],
+   "text_layer_chars": 2470,
+   "n_blocks": 38,
+   "empty": false
+  },
+  {
+   "page": 17,
+   "columns": 1,
+   "gutters": [],
+   "text_layer_chars": 2164,
+   "n_blocks": 24,
+   "empty": false
+  },
+  {
+   "page": 18,
+   "columns": 2,
+   "gutters": [
+    [
+     341.0,
+     368.0
+    ]
+   ],
+   "text_layer_chars": 2136,
+   "n_blocks": 89,
+   "empty": false
+  },
+  {
+   "page": 19,
+   "columns": 3,
+   "gutters": [
+    [
+     311.0,
+     317.0
+    ],
+    [
+     358.0,
+     377.0
+    ]
+   ],
+   "text_layer_chars": 2872,
+   "n_blocks": 40,
+   "empty": false
+  },
+  {
+   "page": 20,
+   "columns": 2,
+   "gutters": [
+    [
+     295.0,
+     376.0
+    ]
+   ],
+   "text_layer_chars": 2037,
+   "n_blocks": 43,
+   "empty": false
+  },
+  {
+   "page": 21,
+   "columns": 2,
+   "gutters": [
+    [
+     179.0,
+     409.0
+    ]
+   ],
+   "text_layer_chars": 380,
+   "n_blocks": 130,
+   "empty": false
+  },
+  {
+   "page": 22,
+   "columns": 1,
+   "gutters": [],
+   "text_layer_chars": 523,
+   "n_blocks": 18,
+   "empty": false
+  }
+ ]
+}

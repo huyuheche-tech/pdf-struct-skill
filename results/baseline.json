@@ -1,0 +1,1036 @@
+{
+  "schema": "pdf-struct/baseline/1",
+  "note": "bare-agent baseline = PyMuPDF page.get_text('text') in document order, no layout pass, no table finder, no provenance. Same PDFs, same run as results/*/report.json. cross_column_interleavings is null for single-column documents (the metric has no meaning there); it is only scored on pages where both column bands carry >=8 lines and the gutter is <=12% of the content width.",
+  "totals_baseline": {
+    "running_header_lines": 22,
+    "figure_label_chars_in_body": 6280,
+    "headings_glued_into_prose": 2,
+    "cross_column_interleavings": null,
+    "blocks_with_bbox": 0,
+    "sections": 0,
+    "tables": 0,
+    "table_cells": 0
+  },
+  "cases": [
+    {
+      "file": "resnet.pdf",
+      "pages": 12,
+      "baseline": {
+        "method": "pymupdf page.get_text('text') in document order",
+        "chars": 49574,
+        "lines": 1742,
+        "blocks_with_bbox": 0,
+        "sections": 0,
+        "tables": 0,
+        "table_cells": 0,
+        "running_header_lines": 0,
+        "figure_label_chars_in_body": 1653,
+        "headings_glued_into_prose": 0,
+        "cross_column_interleavings": 32,
+        "two_column_pages": 12
+      },
+      "skill": {
+        "method": "pdf-struct/2",
+        "chars": 47956,
+        "lines": null,
+        "blocks_with_bbox": 583,
+        "sections": 16,
+        "tables": 14,
+        "table_cells": 213,
+        "running_header_lines": 0,
+        "figure_label_chars_in_body": 0,
+        "headings_glued_into_prose": 0,
+        "cross_column_interleavings": 0,
+        "dropped_running_chars": 15,
+        "char_recall": 1.0018,
+        "selfcheck_ok": true
+      },
+      "page_metrics": [
+        {
+          "page": 1,
+          "naive_lines": 111,
+          "header_lines": 0,
+          "interleavings": 1
+        },
+        {
+          "page": 2,
+          "naive_lines": 109,
+          "header_lines": 0,
+          "interleavings": 0
+        },
+        {
+          "page": 3,
+          "naive_lines": 104,
+          "header_lines": 0,
+          "interleavings": 0
+        },
+        {
+          "page": 4,
+          "naive_lines": 173,
+          "header_lines": 0,
+          "interleavings": 0
+        },
+        {
+          "page": 5,
+          "naive_lines": 237,
+          "header_lines": 0,
+          "interleavings": 11
+        },
+        {
+          "page": 6,
+          "naive_lines": 157,
+          "header_lines": 0,
+          "interleavings": 0
+        },
+        {
+          "page": 7,
+          "naive_lines": 143,
+          "header_lines": 0,
+          "interleavings": 0
+        },
+        {
+          "page": 8,
+          "naive_lines": 172,
+          "header_lines": 0,
+          "interleavings": 3
+        },
+        {
+          "page": 9,
+          "naive_lines": 124,
+          "header_lines": 0,
+          "interleavings": 0
+        },
+        {
+          "page": 10,
+          "naive_lines": 105,
+          "header_lines": 0,
+          "interleavings": 0
+        },
+        {
+          "page": 11,
+          "naive_lines": 169,
+          "header_lines": 0,
+          "interleavings": 17
+        },
+        {
+          "page": 12,
+          "naive_lines": 138,
+          "header_lines": 0,
+          "interleavings": 0
+        }
+      ]
+    },
+    {
+      "file": "transformer.pdf",
+      "pages": 15,
+      "baseline": {
+        "method": "pymupdf page.get_text('text') in document order",
+        "chars": 33401,
+        "lines": 1048,
+        "blocks_with_bbox": 0,
+        "sections": 0,
+        "tables": 0,
+        "table_cells": 0,
+        "running_header_lines": 0,
+        "figure_label_chars_in_body": 1122,
+        "headings_glued_into_prose": 0,
+        "cross_column_interleavings": null,
+        "two_column_pages": 0
+      },
+      "skill": {
+        "method": "pdf-struct/2",
+        "chars": 32265,
+        "lines": null,
+        "blocks_with_bbox": 510,
+        "sections": 25,
+        "tables": 4,
+        "table_cells": 70,
+        "running_header_lines": 0,
+        "figure_label_chars_in_body": 0,
+        "headings_glued_into_prose": 0,
+        "cross_column_interleavings": 0,
+        "dropped_running_chars": 20,
+        "char_recall": 1.0012,
+        "selfcheck_ok": true
+      },
+      "page_metrics": [
+        {
+          "page": 1,
+          "naive_lines": 56,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 2,
+          "naive_lines": 53,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 3,
+          "naive_lines": 27,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 4,
+          "naive_lines": 43,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 5,
+          "naive_lines": 56,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 6,
+          "naive_lines": 64,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 7,
+          "naive_lines": 51,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 8,
+          "naive_lines": 87,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 9,
+          "naive_lines": 149,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 10,
+          "naive_lines": 76,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 11,
+          "naive_lines": 47,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 12,
+          "naive_lines": 43,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 13,
+          "naive_lines": 72,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 14,
+          "naive_lines": 112,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 15,
+          "naive_lines": 112,
+          "header_lines": 0,
+          "interleavings": null
+        }
+      ]
+    },
+    {
+      "file": "bert.pdf",
+      "pages": 16,
+      "baseline": {
+        "method": "pymupdf page.get_text('text') in document order",
+        "chars": 53921,
+        "lines": 2069,
+        "blocks_with_bbox": 0,
+        "sections": 0,
+        "tables": 0,
+        "table_cells": 0,
+        "running_header_lines": 0,
+        "figure_label_chars_in_body": 1140,
+        "headings_glued_into_prose": 2,
+        "cross_column_interleavings": 22,
+        "two_column_pages": 16
+      },
+      "skill": {
+        "method": "pdf-struct/2",
+        "chars": 52565,
+        "lines": null,
+        "blocks_with_bbox": 687,
+        "sections": 27,
+        "tables": 6,
+        "table_cells": 183,
+        "running_header_lines": 0,
+        "figure_label_chars_in_body": 0,
+        "headings_glued_into_prose": 0,
+        "cross_column_interleavings": 0,
+        "dropped_running_chars": 0,
+        "char_recall": 0.9969,
+        "selfcheck_ok": true
+      },
+      "page_metrics": [
+        {
+          "page": 1,
+          "naive_lines": 97,
+          "header_lines": 0,
+          "interleavings": 1
+        },
+        {
+          "page": 2,
+          "naive_lines": 108,
+          "header_lines": 0,
+          "interleavings": 0
+        },
+        {
+          "page": 3,
+          "naive_lines": 136,
+          "header_lines": 0,
+          "interleavings": 3
+        },
+        {
+          "page": 4,
+          "naive_lines": 107,
+          "header_lines": 0,
+          "interleavings": 0
+        },
+        {
+          "page": 5,
+          "naive_lines": 133,
+          "header_lines": 0,
+          "interleavings": 5
+        },
+        {
+          "page": 6,
+          "naive_lines": 158,
+          "header_lines": 0,
+          "interleavings": 7
+        },
+        {
+          "page": 7,
+          "naive_lines": 163,
+          "header_lines": 0,
+          "interleavings": 0
+        },
+        {
+          "page": 8,
+          "naive_lines": 128,
+          "header_lines": 0,
+          "interleavings": 0
+        },
+        {
+          "page": 9,
+          "naive_lines": 158,
+          "header_lines": 0,
+          "interleavings": 0
+        },
+        {
+          "page": 10,
+          "naive_lines": 116,
+          "header_lines": 0,
+          "interleavings": 0
+        },
+        {
+          "page": 11,
+          "naive_lines": 124,
+          "header_lines": 0,
+          "interleavings": 0
+        },
+        {
+          "page": 12,
+          "naive_lines": 115,
+          "header_lines": 0,
+          "interleavings": 0
+        },
+        {
+          "page": 13,
+          "naive_lines": 135,
+          "header_lines": 0,
+          "interleavings": 3
+        },
+        {
+          "page": 14,
+          "naive_lines": 111,
+          "header_lines": 0,
+          "interleavings": 0
+        },
+        {
+          "page": 15,
+          "naive_lines": 153,
+          "header_lines": 0,
+          "interleavings": 3
+        },
+        {
+          "page": 16,
+          "naive_lines": 127,
+          "header_lines": 0,
+          "interleavings": 0
+        }
+      ]
+    },
+    {
+      "file": "gpt3.pdf",
+      "pages": 75,
+      "baseline": {
+        "method": "pymupdf page.get_text('text') in document order",
+        "chars": 198595,
+        "lines": 5392,
+        "blocks_with_bbox": 0,
+        "sections": 0,
+        "tables": 0,
+        "table_cells": 0,
+        "running_header_lines": 0,
+        "figure_label_chars_in_body": 0,
+        "headings_glued_into_prose": 0,
+        "cross_column_interleavings": null,
+        "two_column_pages": 0
+      },
+      "skill": {
+        "method": "pdf-struct/2",
+        "chars": 201000,
+        "lines": null,
+        "blocks_with_bbox": 961,
+        "sections": 56,
+        "tables": 48,
+        "table_cells": 1843,
+        "running_header_lines": 0,
+        "figure_label_chars_in_body": 0,
+        "headings_glued_into_prose": 0,
+        "cross_column_interleavings": 0,
+        "dropped_running_chars": 140,
+        "char_recall": 1.013,
+        "selfcheck_ok": true
+      },
+      "page_metrics": [
+        {
+          "page": 1,
+          "naive_lines": 57,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 2,
+          "naive_lines": 96,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 3,
+          "naive_lines": 37,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 4,
+          "naive_lines": 37,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 5,
+          "naive_lines": 35,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 6,
+          "naive_lines": 54,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 7,
+          "naive_lines": 24,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 8,
+          "naive_lines": 114,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 9,
+          "naive_lines": 51,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 10,
+          "naive_lines": 55,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 11,
+          "naive_lines": 33,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 12,
+          "naive_lines": 55,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 13,
+          "naive_lines": 73,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 14,
+          "naive_lines": 35,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 15,
+          "naive_lines": 69,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 16,
+          "naive_lines": 40,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 17,
+          "naive_lines": 51,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 18,
+          "naive_lines": 81,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 19,
+          "naive_lines": 73,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 20,
+          "naive_lines": 35,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 21,
+          "naive_lines": 34,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 22,
+          "naive_lines": 32,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 23,
+          "naive_lines": 107,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 24,
+          "naive_lines": 32,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 25,
+          "naive_lines": 35,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 26,
+          "naive_lines": 93,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 27,
+          "naive_lines": 27,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 28,
+          "naive_lines": 74,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 29,
+          "naive_lines": 58,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 30,
+          "naive_lines": 67,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 31,
+          "naive_lines": 35,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 32,
+          "naive_lines": 40,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 33,
+          "naive_lines": 55,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 34,
+          "naive_lines": 52,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 35,
+          "naive_lines": 51,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 36,
+          "naive_lines": 61,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 37,
+          "naive_lines": 63,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 38,
+          "naive_lines": 38,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 39,
+          "naive_lines": 56,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 40,
+          "naive_lines": 55,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 41,
+          "naive_lines": 17,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 42,
+          "naive_lines": 39,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 43,
+          "naive_lines": 51,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 44,
+          "naive_lines": 42,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 45,
+          "naive_lines": 531,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 46,
+          "naive_lines": 213,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 47,
+          "naive_lines": 85,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 48,
+          "naive_lines": 44,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 49,
+          "naive_lines": 124,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 50,
+          "naive_lines": 57,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 51,
+          "naive_lines": 81,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 52,
+          "naive_lines": 77,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 53,
+          "naive_lines": 88,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 54,
+          "naive_lines": 77,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 55,
+          "naive_lines": 59,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 56,
+          "naive_lines": 61,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 57,
+          "naive_lines": 67,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 58,
+          "naive_lines": 68,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 59,
+          "naive_lines": 80,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 60,
+          "naive_lines": 54,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 61,
+          "naive_lines": 56,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 62,
+          "naive_lines": 19,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 63,
+          "naive_lines": 883,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 64,
+          "naive_lines": 4,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 65,
+          "naive_lines": 3,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 66,
+          "naive_lines": 5,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 67,
+          "naive_lines": 3,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 68,
+          "naive_lines": 46,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 69,
+          "naive_lines": 45,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 70,
+          "naive_lines": 45,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 71,
+          "naive_lines": 50,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 72,
+          "naive_lines": 46,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 73,
+          "naive_lines": 48,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 74,
+          "naive_lines": 50,
+          "header_lines": 0,
+          "interleavings": null
+        },
+        {
+          "page": 75,
+          "naive_lines": 4,
+          "header_lines": 0,
+          "interleavings": null
+        }
+      ]
+    },
+    {
+      "file": "vit.pdf",
+      "pages": 22,
+      "baseline": {
+        "method": "pymupdf page.get_text('text') in document order",
+        "chars": 56495,
+        "lines": 1935,
+        "blocks_with_bbox": 0,
+        "sections": 0,
+        "tables": 0,
+        "table_cells": 0,
+        "running_header_lines": 22,
+        "figure_label_chars_in_body": 2365,
+        "headings_glued_into_prose": 0,
+        "cross_column_interleavings": null,
+        "two_column_pages": 0
+      },
+      "skill": {
+        "method": "pdf-struct/2",
+        "chars": 53160,
+        "lines": null,
+        "blocks_with_bbox": 742,
+        "sections": 22,
+        "tables": 8,
+        "table_cells": 277,
+        "running_header_lines": 0,
+        "figure_label_chars_in_body": 0,
+        "headings_glued_into_prose": 0,
+        "cross_column_interleavings": 0,
+        "dropped_running_chars": 849,
+        "char_recall": 1.0016,
+        "selfcheck_ok": true
+      },
+      "page_metrics": [
+        {
+          "page": 1,
+          "naive_lines": 56,
+          "header_lines": 1,
+          "interleavings": null
+        },
+        {
+          "page": 2,
+          "naive_lines": 53,
+          "header_lines": 1,
+          "interleavings": null
+        },
+        {
+          "page": 3,
+          "naive_lines": 73,
+          "header_lines": 1,
+          "interleavings": null
+        },
+        {
+          "page": 4,
+          "naive_lines": 69,
+          "header_lines": 1,
+          "interleavings": null
+        },
+        {
+          "page": 5,
+          "naive_lines": 74,
+          "header_lines": 1,
+          "interleavings": null
+        },
+        {
+          "page": 6,
+          "naive_lines": 118,
+          "header_lines": 1,
+          "interleavings": null
+        },
+        {
+          "page": 7,
+          "naive_lines": 89,
+          "header_lines": 1,
+          "interleavings": null
+        },
+        {
+          "page": 8,
+          "naive_lines": 64,
+          "header_lines": 1,
+          "interleavings": null
+        },
+        {
+          "page": 9,
+          "naive_lines": 79,
+          "header_lines": 1,
+          "interleavings": null
+        },
+        {
+          "page": 10,
+          "naive_lines": 47,
+          "header_lines": 1,
+          "interleavings": null
+        },
+        {
+          "page": 11,
+          "naive_lines": 49,
+          "header_lines": 1,
+          "interleavings": null
+        },
+        {
+          "page": 12,
+          "naive_lines": 39,
+          "header_lines": 1,
+          "interleavings": null
+        },
+        {
+          "page": 13,
+          "naive_lines": 146,
+          "header_lines": 1,
+          "interleavings": null
+        },
+        {
+          "page": 14,
+          "naive_lines": 66,
+          "header_lines": 1,
+          "interleavings": null
+        },
+        {
+          "page": 15,
+          "naive_lines": 304,
+          "header_lines": 1,
+          "interleavings": null
+        },
+        {
+          "page": 16,
+          "naive_lines": 100,
+          "header_lines": 1,
+          "interleavings": null
+        },
+        {
+          "page": 17,
+          "naive_lines": 73,
+          "header_lines": 1,
+          "interleavings": null
+        },
+        {
+          "page": 18,
+          "naive_lines": 149,
+          "header_lines": 1,
+          "interleavings": null
+        },
+        {
+          "page": 19,
+          "naive_lines": 66,
+          "header_lines": 1,
+          "interleavings": null
+        },
+        {
+          "page": 20,
+          "naive_lines": 64,
+          "header_lines": 1,
+          "interleavings": null
+        },
+        {
+          "page": 21,
+          "naive_lines": 131,
+          "header_lines": 1,
+          "interleavings": null
+        },
+        {
+          "page": 22,
+          "naive_lines": 26,
+          "header_lines": 1,
+          "interleavings": null
+        }
+      ]
+    }
+  ]
+}

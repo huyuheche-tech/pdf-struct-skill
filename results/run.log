@@ -1,0 +1,72 @@
+# pdf-parse execution log -- regenerated 2026-11-26T14:06:31+0800 on DESKTOP-CJN2GH3
+# command: python src/reproduce.py --pdf <paper> --out results --self-check
+# python: 3.13.12  engine: pymupdf 2.1 (MuPDF 1.28.6)
+
+=== case: corpus/resnet.pdf -> results/resnet/  (exit 0) ===
+  self-check: engine import OK, CLI answers --help
+  $ C:\Users\mzn\AppData\Local\Programs\Python\Python313\python.exe D:\dsh_workplace\bundle\outputs\scripts\parse_pdf.py D:\dsh_workplace\corpus\resnet.pdf --out D:\dsh_workplace\work\_fresh\resnet
+  parsed: resnet.pdf
+  pages=12 blocks=583 headings=17 formulas=7 tables=14 figures=7
+  text_layer_chars=49574 emitted_chars=47956 char_recall=1.0018
+  selfcheck: OK (0 errors, 0 warnings)
+  case resnet -> D:\dsh_workplace\work\_fresh\resnet (exit 0)
+  self-check: all emitted report.json files report selfcheck ok
+
+=== case: corpus/transformer.pdf -> results/transformer/  (exit 0) ===
+  self-check: engine import OK, CLI answers --help
+  $ C:\Users\mzn\AppData\Local\Programs\Python\Python313\python.exe D:\dsh_workplace\bundle\outputs\scripts\parse_pdf.py D:\dsh_workplace\corpus\transformer.pdf --out D:\dsh_workplace\work\_fresh\transformer
+  parsed: transformer.pdf
+  pages=15 blocks=510 headings=26 formulas=2 tables=4 figures=5
+  text_layer_chars=33401 emitted_chars=32265 char_recall=1.0012
+  selfcheck: OK (0 errors, 0 warnings)
+  case transformer -> D:\dsh_workplace\work\_fresh\transformer (exit 0)
+  self-check: all emitted report.json files report selfcheck ok
+
+=== case: corpus/bert.pdf -> results/bert/  (exit 0) ===
+  self-check: engine import OK, CLI answers --help
+  $ C:\Users\mzn\AppData\Local\Programs\Python\Python313\python.exe D:\dsh_workplace\bundle\outputs\scripts\parse_pdf.py D:\dsh_workplace\corpus\bert.pdf --out D:\dsh_workplace\work\_fresh\bert
+  parsed: bert.pdf
+  pages=16 blocks=687 headings=28 formulas=2 tables=7 figures=4
+  text_layer_chars=53921 emitted_chars=52565 char_recall=0.9969
+  selfcheck: OK (0 errors, 0 warnings)
+  case bert -> D:\dsh_workplace\work\_fresh\bert (exit 0)
+  self-check: all emitted report.json files report selfcheck ok
+
+=== case: corpus/gpt3.pdf -> results/gpt3/  (exit 0) ===
+  self-check: engine import OK, CLI answers --help
+  $ C:\Users\mzn\AppData\Local\Programs\Python\Python313\python.exe D:\dsh_workplace\bundle\outputs\scripts\parse_pdf.py D:\dsh_workplace\corpus\gpt3.pdf --out D:\dsh_workplace\work\_fresh\gpt3
+  parsed: gpt3.pdf
+  pages=75 blocks=961 headings=57 formulas=0 tables=51 figures=33
+  text_layer_chars=198595 emitted_chars=201000 char_recall=1.013
+  selfcheck: OK (0 errors, 3 warnings)
+  case gpt3 -> D:\dsh_workplace\work\_fresh\gpt3 (exit 0)
+  self-check: all emitted report.json files report selfcheck ok
+
+=== case: corpus/vit.pdf -> results/vit/  (exit 0) ===
+  self-check: engine import OK, CLI answers --help
+  $ C:\Users\mzn\AppData\Local\Programs\Python\Python313\python.exe D:\dsh_workplace\bundle\outputs\scripts\parse_pdf.py D:\dsh_workplace\corpus\vit.pdf --out D:\dsh_workplace\work\_fresh\vit
+  MuPDF error: format error: object is not a stream
+  
+  MuPDF error: format error: object is not a stream
+  
+  MuPDF error: format error: object is not a stream
+  
+  MuPDF error: format error: object is not a stream
+  
+  MuPDF error: format error: object is not a stream
+  
+  MuPDF error: format error: object is not a stream
+  
+  parsed: vit.pdf
+  pages=22 blocks=742 headings=23 formulas=14 tables=9 figures=14
+  text_layer_chars=56495 emitted_chars=53160 char_recall=1.0016
+  selfcheck: OK (0 errors, 0 warnings)
+  case vit -> D:\dsh_workplace\work\_fresh\vit (exit 0)
+  self-check: all emitted report.json files report selfcheck ok
+
+note: bert ships report.json only (figures/overlay/text.md/doc.json omitted for size; regenerate with the command above)
+
+note: gpt3 ships report.json only (figures/overlay/text.md/doc.json omitted for size; regenerate with the command above)
+
+note: vit ships report.json + text.md + overlay/page-01.png (figures/tables omitted for size; regenerate with the command above)
+
