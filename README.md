@@ -38,7 +38,7 @@ python outputs/scripts/parse_pdf.py paper.pdf --out out/paper
 产物：`doc.json`（结构化结果）、`text.md`（带溯源注释的阅读顺序文本）、`report.json`（精简报告）、
 `tables/T*.csv`、`figures/F*.png`、`overlay/page-XX.png`（判版可视化：框色=类型，紫线=gutter，数字=阅读顺序）。
 
-退出码：`0` 成功 / `2` 参数错误 / `3` 无文本层（转 OCR 分支）/ `4` 自检未通过。
+退出码：`0` 成功 / `2` 参数错误、文件打不开、加密、0 页 / `3` 无文本层（转 OCR 分支）或解析中途异常 / `4` 自检未通过。
 完整说明见 `outputs/SKILL.md`，一屏接入版见 `outputs/examples/quickstart.md`。
 
 ## 3. 实测（可复现，非示例虚构）
@@ -132,7 +132,7 @@ outputs/response.md            本次提交的主交付说明（结论/理由/�
 outputs/result.json            结构化结果（五例统计 + 汇总）
 outputs/answer.txt             一句话结论 + 命令 + 关键数字
 src/reproduce.py               ARM 入口：批量解析并跑自检（--pdf 可重复）
-results/                       五例实测产物 + run.log + baseline.json（预检要求 ≤50 文件，现 32 个）
+results/                       五例实测产物 + run.log + baseline.json（预检要求 ≤50 文件，现 37 个）
 traces/trace.jsonl             归一化的 9 步 ARM 轨迹（工具配对、产物锚点、成本）
 traces/raw_messages.jsonl      本次会话导出的模型对话记录
 native_trace/session.jsonl     同一份对话记录（评测机要求 native_trace 下恰好一个文件）
