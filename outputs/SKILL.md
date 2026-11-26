@@ -217,4 +217,4 @@ python scripts/merge_ocr.py out/paper --pages 1-3        # 只合并部分页
   `scripts/ocr_pages.py` + `scripts/merge_ocr.py`（扫描件分支）。
 - 依赖：PyMuPDF 2.1（MuPDF 1.28.6，AGPL，仅本地解析，不联网）、Pillow 12.3（overlay 与裁图）。
 - 算法与取舍见 `references/method.md`；schema 逐字段说明见 `references/schema.md`；对照方法见 `references/baseline.md`。
-- 示例调用与示例输出见 `examples/`（`quickstart.md` 是 30 行接入版；示例仅用于说明调用方式，不是正式用例结果）。
+- 示例调用与示例输出见 `examples/`（`quickstart.md` 是一屏接入版；示例仅用于说明调用方式，不是正式用例结果）。

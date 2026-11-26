@@ -1,6 +1,6 @@
 # Quickstart —— 粘贴即用（给 Agent 的最短路径）
 
-> 30 行版本。完整契约见 `../SKILL.md`，字段含义见 `../references/schema.md`。
+> 一屏版本（32 行非空）。完整契约见 `../SKILL.md`，字段含义见 `../references/schema.md`。
 > 目标：**一次粘贴 → 拿到带页码与坐标的结构化结果**，不读长文档也能正确调用。
 
 ## 1. 安装（一次）

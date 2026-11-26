@@ -127,7 +127,7 @@
         "path": "outputs/examples/quickstart.md",
         "type": "data",
         "format": "txt",
-        "description": "30-line paste-and-use contract for an agent (install, three commands, what to read, what to report)."
+        "description": "One-screen paste-and-use contract for an agent (install, three commands, what to read, what to report, three rules)."
       },
       {
         "id": "A17",

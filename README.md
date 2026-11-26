@@ -39,7 +39,7 @@ python outputs/scripts/parse_pdf.py paper.pdf --out out/paper
 `tables/T*.csv`、`figures/F*.png`、`overlay/page-XX.png`（判版可视化：框色=类型，紫线=gutter，数字=阅读顺序）。
 
 退出码：`0` 成功 / `2` 参数错误 / `3` 无文本层（转 OCR 分支）/ `4` 自检未通过。
-完整说明见 `outputs/SKILL.md`，30 行接入版见 `outputs/examples/quickstart.md`。
+完整说明见 `outputs/SKILL.md`，一屏接入版见 `outputs/examples/quickstart.md`。
 
 ## 3. 实测（可复现，非示例虚构）
 
@@ -104,7 +104,7 @@ outputs/scripts/merge_ocr.py   把逐页转录合并进 doc.json（保留 page �
 outputs/references/method.md   方法与阈值取舍（含每处阈值的失败模式）
 outputs/references/schema.md   doc.json 字段级契约
 outputs/references/baseline.md 基线对照的方法、逐例结果与读法
-outputs/examples/quickstart.md 30 行粘贴即用（Agent 最短路径）
+outputs/examples/quickstart.md 一屏粘贴即用（Agent 最短路径）
 outputs/examples/README.md     最小调用示例（明确标注为示例，非正式评测结果）
 outputs/response.md            本次提交的主交付说明（结论/理由/实测/基线/边界/证据定位）
 outputs/result.json            结构化结果（五例统计 + 汇总）

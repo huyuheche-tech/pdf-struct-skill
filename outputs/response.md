@@ -26,7 +26,7 @@
 | `outputs/scripts/baseline_compare.py` | **对照工具**：同一份 PDF 上量化「裸 Agent 的纯文本 dump」与本引擎的差距（6 个判据） |
 | `outputs/scripts/ocr_pages.py` | 扫描件分支：渲染页面 + 生成逐页转写提示词包（交给视觉模型转写） |
 | `outputs/scripts/merge_ocr.py` | 把视觉转写结果合并回 `doc.json`，标注 `bbox:null` / `bbox_source:"vision"` / `confidence` |
-| `outputs/examples/quickstart.md` | **粘贴即用**的 30 行接入说明（Agent 读完就能正确调用，不需要读长文档） |
+| `outputs/examples/quickstart.md` | **粘贴即用**的一屏接入说明（Agent 读完就能正确调用，不需要读长文档） |
 | `outputs/references/method.md` | 方法说明：每个阈值的取值理由、实测数据、已知失败模式 |
 | `outputs/references/baseline.md` | 基线对照方法与逐例结果（本文件 §5 的完整版） |
 | `outputs/references/schema.md` | 输出字段契约（逐字段类型与语义） |
@@ -116,7 +116,7 @@ python src/reproduce.py --pdf corpus/resnet.pdf --pdf corpus/vit.pdf --out out -
 - 可视图层校验：`results/resnet/overlay/page-01.png`、`results/transformer/overlay/page-01.png`、`results/vit/overlay/page-01.png`
 - 表格重建样例：`results/resnet/tables/T1.csv`
 - 偏差与包络：`characterization.json`（6 条偏差、7 条包络、5 条失败模式、4 条阈值敏感性）
-- 接入方式：`outputs/examples/quickstart.md`（30 行，粘贴即用）
+- 接入方式：`outputs/examples/quickstart.md`（一屏，粘贴即用）
 
 ## 8. 运行状态
 
