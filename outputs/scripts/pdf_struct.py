@@ -644,6 +644,16 @@ def order_blocks(blocks, cols, gutters):
         return crosses_gutter(b["bbox"], gutters)
     span = sorted([b for b in blocks if spanning(b)], key=lambda b: (b["bbox"][1], b["bbox"][0]))
     colblocks = [b for b in blocks if not spanning(b)]
+    # figures/tables are created with column -1 ("unknown"), but a figure that
+    # sits *inside* one column is not a band separator: giving it -1 would sort
+    # it before the left column of its own band.  Re-derive the column from the
+    # geometry whenever the stored value is negative.
+    for b in colblocks:
+        c = b.get("column")
+        if not isinstance(c, int) or c < 0:
+            cc = column_of(b["bbox"], cols)
+            if cc is not None:
+                b["column"] = cc
     bounds = [-1e9] + [b["bbox"][1] for b in span] + [1e9]
     ordered = []
     for bi in range(len(bounds) - 1):

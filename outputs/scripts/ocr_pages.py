@@ -3,7 +3,7 @@
 
 Use this when `parse_pdf.py` exits 3 (the PDF has no text layer) or when a page
 is reported as `empty`.  The skill does *not* bundle an OCR engine: a model with
-vision reads `ocr/page-XX.png` and writes `ocr/page-XX.txt`.  That is deliberate
+vision reads `ocr/page-XX.png` and writes `ocr/page-XX.md`.  That is deliberate
 -- guessing text from a blurry scan is worse than saying "unreadable".
 
 Usage:
@@ -53,7 +53,7 @@ PROMPT = """# 逐页转录任务（第 {pno} 页）
 7. **无法辨认**的行写 `[unreadable]`，不要猜测、不要补全、不要用"大概是…"。
 8. 输出纯文本，第一行固定为 `## page {pno}`，最后一行写 `confidence: high|medium|low`。
 
-把结果保存为 `ocr/page-{pno:02d}.txt`。
+把结果保存为 `ocr/page-{pno:02d}.md`（旧流程的 `.txt` 仍被 merge_ocr.py 接受）。
 """
 
 
@@ -81,8 +81,9 @@ def main(argv=None):
         pix.save(os.path.join(ocr_dir, name))
         txt = os.path.join(ocr_dir, "page-%02d.txt" % (i + 1))
         index.append({"page": i + 1, "image": "ocr/" + name,
-                      "transcript": "ocr/page-%02d.txt" % (i + 1),
-                      "transcript_exists": os.path.exists(txt),
+                      "transcript": "ocr/page-%02d.md" % (i + 1),
+                      "transcript_exists": os.path.exists(txt) or os.path.exists(
+                          os.path.join(ocr_dir, "page-%02d.md" % (i + 1))),
                       "text_layer_chars": len(page.get_text("text").strip())})
         with open(os.path.join(ocr_dir, "prompt-%02d.md" % (i + 1)), "w",
                   encoding="utf-8") as fh:
@@ -91,7 +92,7 @@ def main(argv=None):
     with open(os.path.join(ocr_dir, "prompt.md"), "w", encoding="utf-8") as fh:
         fh.write("# OCR 分支：逐页转录\n\n")
         fh.write("对下面每一页：读 `ocr/prompt-XX.md`，看 `ocr/page-XX.png`，"
-                 "把转录写到 `ocr/page-XX.txt`。全部写完后运行：\n\n")
+                 "把转录写到 `ocr/page-XX.md`。全部写完后运行：\n\n")
         fh.write("```bash\npython scripts/merge_ocr.py %s\n```\n\n" % args.out)
         for it in index:
             fh.write("- 第 %d 页 -> `%s` -> `%s`（已有转录：%s）\n"

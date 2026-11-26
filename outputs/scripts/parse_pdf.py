@@ -102,8 +102,12 @@ def write_text_md(doc, path, fig_map):
             elif t == "figure":
                 fid = b.get("figure_id")
                 src = fig_map.get(fid, "")
+                # the caption also appears as its own `caption` block right after
+                # this line; keep the alt text complete (no hard cut) so a reader
+                # never sees a sentence severed mid-word
+                cap = " ".join((fig_caption.get(fid) or "figure").split())
                 L.append(prov)
-                L.append("![%s](%s)\n" % (fig_caption.get(fid, "figure")[:80], src))
+                L.append("![%s](%s)\n" % (cap.replace("]", r"\]"), src))
             elif t == "formula":
                 L.append(prov)
                 L.append("$$ %s $$\n" % b["text"].strip())

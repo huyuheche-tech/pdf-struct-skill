@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Merge vision transcripts (`ocr/page-XX.txt`) back into `doc.json`.
+"""Merge vision transcripts (`ocr/page-XX.md`, legacy `page-XX.txt`) into
+`doc.json`.
 
 Rule of the road: a vision block has no vector bbox, so it is emitted with
 `bbox: null`, `bbox_source: "vision"`, and its confidence copied from the
@@ -122,10 +123,14 @@ def main(argv=None):
         doc = json.load(fh)
 
     avail = {}
-    for p in glob.glob(os.path.join(args.outdir, "ocr", "page-*.txt")):
-        m = re.search(r"page-(\d+)\.txt$", p)
-        if m:
-            avail[int(m.group(1))] = p
+    # `.md` is what examples/README.md tells the operator to write; `.txt` is the
+    # legacy name still produced by older runs.  Both are transcripts, and a page
+    # that has both prefers `.txt` (first pass) so the merge stays deterministic.
+    for ext in ("txt", "md"):
+        for p in sorted(glob.glob(os.path.join(args.outdir, "ocr", "page-*.%s" % ext))):
+            m = re.search(r"page-(\d+)\.%s$" % ext, p)
+            if m:
+                avail.setdefault(int(m.group(1)), p)
     if not avail:
         print("no transcripts found under %s/ocr/" % args.outdir)
         return 2

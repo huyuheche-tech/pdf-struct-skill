@@ -188,7 +188,7 @@ Scaled Dot-Product Attention
 Multi-Head Attention
 
 <!-- p4-b002 | type=figure | col=-1 | bbox=108.0,82.7,504.0,284.4 -->
-![Figure 2: (left) Scaled Dot-Product Attention. (right) Multi-Head Attention cons](figures/F2.png)
+![Figure 2: (left) Scaled Dot-Product Attention. (right) Multi-Head Attention consists of several](figures/F2.png)
 
 <!-- p4-b003 | type=caption | col=-1 | bbox=108.0,274.4,504.0,284.4 -->
 Figure 2: (left) Scaled Dot-Product Attention. (right) Multi-Head Attention consists of several
@@ -887,7 +887,7 @@ shift-reduce constituent parsing. In Proceedings of the 51st Annual Meeting of t
 ### Attention Visualizations
 
 <!-- p13-b001 | type=figure | col=-1 | bbox=108.0,84.2,504.7,355.1 -->
-![Figure 3: An example of the attention mechanism following long-distance dependen](figures/F3.png)
+![Figure 3: An example of the attention mechanism following long-distance dependencies in the encoder self-attention in layer 5 of 6. Many of the attention heads attend to a distant dependency of the verb ‘making’, completing the phrase ‘making...more difficult’. Attentions here shown only for the word ‘making’. Different colors represent different heads. Best viewed in color.](figures/F3.png)
 
 <!-- p13-b049 | type=caption | col=0 | bbox=108.0,312.3,504.2,355.1 -->
 Figure 3: An example of the attention mechanism following long-distance dependencies in the encoder self-attention in layer 5 of 6. Many of the attention heads attend to a distant dependency of the verb ‘making’, completing the phrase ‘making...more difficult’. Attentions here shown only for the word ‘making’. Different colors represent different heads. Best viewed in color.
@@ -895,7 +895,7 @@ Figure 3: An example of the attention mechanism following long-distance dependen
 
 <!-- ===== page 14 | columns=1 | gutters=[] -->
 <!-- p14-b000 | type=figure | col=-1 | bbox=108.0,123.9,505.4,646.1 -->
-![Figure 4: Two attention heads, also in layer 5 of 6, apparently involved in anap](figures/F4.png)
+![Figure 4: Two attention heads, also in layer 5 of 6, apparently involved in anaphora resolution. Top: Full attentions for head 5. Bottom: Isolated attentions from just the word ‘its’ for attention heads 5 and 6. Note that the attentions are very sharp for this word.](figures/F4.png)
 
 <!-- p14-b104 | type=caption | col=0 | bbox=108.0,614.3,505.4,646.1 -->
 Figure 4: Two attention heads, also in layer 5 of 6, apparently involved in anaphora resolution. Top: Full attentions for head 5. Bottom: Isolated attentions from just the word ‘its’ for attention heads 5 and 6. Note that the attentions are very sharp for this word.
@@ -903,7 +903,7 @@ Figure 4: Two attention heads, also in layer 5 of 6, apparently involved in anap
 
 <!-- ===== page 15 | columns=1 | gutters=[] -->
 <!-- p15-b000 | type=figure | col=-1 | bbox=108.0,138.2,504.0,634.2 -->
-![Figure 5: Many of the attention heads exhibit behaviour that seems related to th](figures/F5.png)
+![Figure 5: Many of the attention heads exhibit behaviour that seems related to the structure of the sentence. We give two such examples above, from two different heads from the encoder self-attention at layer 5 of 6. The heads clearly learned to perform different tasks.](figures/F5.png)
 
 <!-- p15-b104 | type=caption | col=0 | bbox=108.0,602.3,504.0,634.2 -->
 Figure 5: Many of the attention heads exhibit behaviour that seems related to the structure of the sentence. We give two such examples above, from two different heads from the encoder self-attention at layer 5 of 6. The heads clearly learned to perform different tasks.

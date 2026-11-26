@@ -118,7 +118,7 @@ text_layer_chars      文本层字符总数（去空白）
 dropped_running_chars 判为页眉/页脚而剔除的字符
 masked_figure_label_chars 图内文字（figure_label）的字符
 emitted_chars         实际进入正文的字符
-char_recall           emitted / (text_layer − dropped_running)    目标 ≥ 0.90，> 1.05 视为重复输出
+char_recall           emitted / (text_layer − dropped_running − masked_figure_label)   目标 ≥ 0.90，> 1.05 视为重复输出
 char_recall_vs_full_layer emitted / text_layer                    仅作参考（图内文字本就不该进正文）
 n_blocks / n_headings / n_formulas / n_tables / n_table_cells / n_figures / n_sections
 blocks_with_bbox / blocks_with_page   自检用：应等于 n_blocks（视觉块单独计）

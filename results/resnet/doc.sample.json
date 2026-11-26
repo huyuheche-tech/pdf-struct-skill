@@ -1,0 +1,3151 @@
+{
+ "_sample_note": "Trimmed for size, not a different run: blocks are limited to page 1, tables to T1 (cells + bbox_cells kept), references to the first 3, figures kept in full. Every field is verbatim from the run that produced results/resnet/report.json; regenerate the complete file with: python outputs/scripts/parse_pdf.py corpus/resnet.pdf --out out/resnet",
+ "schema": "pdf-struct/2",
+ "source": {
+  "path": "resnet.pdf",
+  "sha256": "1e0651b6810ecba34a3dbc5b5b0209226f889004607c1f203540a48d64e5a93a",
+  "bytes": 819383,
+  "pages": 12
+ },
+ "engine": {
+  "name": "pymupdf",
+  "version": "2.1",
+  "mupdf": "1.28.6",
+  "python": "3.13.12",
+  "pipeline": "pdf-struct/2"
+ },
+ "document": {
+  "pages": 12,
+  "column_template": 2,
+  "has_text_layer": true
+ },
+ "metadata": {
+  "title": {
+   "text": "Deep Residual Learning for Image Recognition",
+   "page": 1,
+   "bbox": [
+    153.45,
+    105.92,
+    441.78,
+    120.27
+   ],
+   "size": 14.35
+  },
+  "authors": [
+   "Xiangyu Zhang",
+   "Kaiming He",
+   "Shaoqing Ren",
+   "Jian Sun"
+  ],
+  "affiliations": [
+   {
+    "text": "Microsoft Research",
+    "page": 1,
+    "bbox": [
+     249.14,
+     169.13,
+     343.1,
+     181.08
+    ]
+   }
+  ],
+  "emails": [],
+  "abstract": "Deeper neural networks are more difﬁcult to train. We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions with reference to the layer inputs, instead of learning unreferenced functions. We provide comprehensive empirical evidence showing that these residual networks are easier to optimize, and can gain accuracy from considerably increased depth. On the ImageNet dataset we evaluate residual nets with a depth of up to 152 layers—8× deeper than VGG nets [41] but still having lower complexity. An ensemble of these residual nets achieves 3.57% error on the ImageNet test set. This result won the 1st place on the ILSVRC 2015 classiﬁcation task. We also present analysis on CIFAR-10 with 100 and 1000 layers. The depth of representations is of central importance for many visual recognition tasks. Solely due to our extremely deep representations, we obtain a 28% relative improvement on the COCO object detection dataset. Deep residual nets are foundations of our submissions to ILSVRC & COCO 2015 competitions1, where we also won the 1st places on the tasks of ImageNet detection, ImageNet localization, COCO detection, and COCO segmentation.",
+  "abstract_pages": [
+   1
+  ],
+  "keywords": [],
+  "title_text": "Deep Residual Learning for Image Recognition"
+ },
+ "stats": {
+  "n_pages_parsed": 12,
+  "text_layer_chars": 49574,
+  "dropped_running_chars": 15,
+  "masked_figure_label_chars": 1687,
+  "emitted_chars": 47956,
+  "char_recall": 1.0018,
+  "char_recall_vs_full_layer": 0.9674,
+  "n_blocks": 583,
+  "n_headings": 17,
+  "n_formulas": 7,
+  "n_tables": 14,
+  "n_table_cells": 213,
+  "n_figures": 7,
+  "n_sections": 16,
+  "blocks_with_bbox": 583,
+  "blocks_with_page": 583,
+  "types": {
+   "affiliation": 2,
+   "author": 4,
+   "body": 164,
+   "caption": 18,
+   "figure": 7,
+   "figure_label": 241,
+   "footnote": 39,
+   "formula": 7,
+   "heading": 17,
+   "margin_artifact": 1,
+   "reference": 69,
+   "table": 14
+  }
+ },
+ "warnings": [],
+ "selfcheck": {
+  "errors": [],
+  "warnings": [],
+  "ok": true
+ },
+ "pages": [
+  {
+   "page": 1,
+   "width": 612.0,
+   "height": 792.0,
+   "columns": 2,
+   "column_bands": [
+    [
+     50.11,
+     288.0
+    ],
+    [
+     307.0,
+     545.12
+    ]
+   ],
+   "gutters": [
+    [
+     288.0,
+     307.0
+    ]
+   ],
+   "text_layer_chars": 3613,
+   "dropped_running_chars": 1,
+   "n_blocks": 47,
+   "n_lines": 109,
+   "dropped_running_text": [
+    "1"
+   ],
+   "body_size": 10.0,
+   "empty": false
+  },
+  {
+   "page": 2,
+   "width": 612.0,
+   "height": 792.0,
+   "columns": 2,
+   "column_bands": [
+    [
+     50.11,
+     288.0
+    ],
+    [
+     307.0,
+     545.12
+    ]
+   ],
+   "gutters": [
+    [
+     288.0,
+     307.0
+    ]
+   ],
+   "text_layer_chars": 4607,
+   "dropped_running_chars": 1,
+   "n_blocks": 29,
+   "n_lines": 107,
+   "dropped_running_text": [
+    "2"
+   ],
+   "body_size": 10.0,
+   "empty": false
+  },
+  {
+   "page": 3,
+   "width": 612.0,
+   "height": 792.0,
+   "columns": 2,
+   "column_bands": [
+    [
+     50.11,
+     288.0
+    ],
+    [
+     307.0,
+     545.12
+    ]
+   ],
+   "gutters": [
+    [
+     288.0,
+     307.0
+    ]
+   ],
+   "text_layer_chars": 4511,
+   "dropped_running_chars": 1,
+   "n_blocks": 43,
+   "n_lines": 102,
+   "dropped_running_text": [
+    "3"
+   ],
+   "body_size": 10.0,
+   "empty": false
+  },
+  {
+   "page": 4,
+   "width": 612.0,
+   "height": 792.0,
+   "columns": 2,
+   "column_bands": [
+    [
+     50.11,
+     288.0
+    ],
+    [
+     307.0,
+     545.12
+    ]
+   ],
+   "gutters": [
+    [
+     288.0,
+     307.0
+    ]
+   ],
+   "text_layer_chars": 3727,
+   "dropped_running_chars": 1,
+   "n_blocks": 126,
+   "n_lines": 173,
+   "dropped_running_text": [
+    "4"
+   ],
+   "body_size": 10.0,
+   "empty": false
+  },
+  {
+   "page": 5,
+   "width": 612.0,
+   "height": 792.0,
+   "columns": 2,
+   "column_bands": [
+    [
+     50.11,
+     288.0
+    ],
+    [
+     307.0,
+     545.12
+    ]
+   ],
+   "gutters": [
+    [
+     288.0,
+     307.0
+    ]
+   ],
+   "text_layer_chars": 3175,
+   "dropped_running_chars": 1,
+   "n_blocks": 49,
+   "n_lines": 213,
+   "dropped_running_text": [
+    "5"
+   ],
+   "body_size": 10.0,
+   "empty": false
+  },
+  {
+   "page": 6,
+   "width": 612.0,
+   "height": 792.0,
+   "columns": 2,
+   "column_bands": [
+    [
+     50.11,
+     288.0
+    ],
+    [
+     307.0,
+     545.12
+    ]
+   ],
+   "gutters": [
+    [
+     288.0,
+     307.0
+    ]
+   ],
+   "text_layer_chars": 3823,
+   "dropped_running_chars": 1,
+   "n_blocks": 33,
+   "n_lines": 157,
+   "dropped_running_text": [
+    "6"
+   ],
+   "body_size": 10.0,
+   "empty": false
+  },
+  {
+   "page": 7,
+   "width": 612.0,
+   "height": 792.0,
+   "columns": 2,
+   "column_bands": [
+    [
+     50.11,
+     288.0
+    ],
+    [
+     307.0,
+     545.12
+    ]
+   ],
+   "gutters": [
+    [
+     288.0,
+     307.0
+    ]
+   ],
+   "text_layer_chars": 4218,
+   "dropped_running_chars": 1,
+   "n_blocks": 24,
+   "n_lines": 142,
+   "dropped_running_text": [
+    "7"
+   ],
+   "body_size": 10.0,
+   "empty": false
+  },
+  {
+   "page": 8,
+   "width": 612.0,
+   "height": 792.0,
+   "columns": 2,
+   "column_bands": [
+    [
+     50.11,
+     288.0
+    ],
+    [
+     307.0,
+     545.12
+    ]
+   ],
+   "gutters": [
+    [
+     288.0,
+     307.0
+    ]
+   ],
+   "text_layer_chars": 3642,
+   "dropped_running_chars": 1,
+   "n_blocks": 98,
+   "n_lines": 169,
+   "dropped_running_text": [
+    "8"
+   ],
+   "body_size": 10.0,
+   "empty": false
+  },
+  {
+   "page": 9,
+   "width": 612.0,
+   "height": 792.0,
+   "columns": 2,
+   "column_bands": [
+    [
+     50.11,
+     288.0
+    ],
+    [
+     307.0,
+     545.12
+    ]
+   ],
+   "gutters": [
+    [
+     288.0,
+     307.0
+    ]
+   ],
+   "text_layer_chars": 5433,
+   "dropped_running_chars": 1,
+   "n_blocks": 70,
+   "n_lines": 119,
+   "dropped_running_text": [
+    "9"
+   ],
+   "body_size": 8.0,
+   "empty": false
+  },
+  {
+   "page": 10,
+   "width": 612.0,
+   "height": 792.0,
+   "columns": 2,
+   "column_bands": [
+    [
+     50.11,
+     288.0
+    ],
+    [
+     307.0,
+     545.12
+    ]
+   ],
+   "gutters": [
+    [
+     288.0,
+     307.0
+    ]
+   ],
+   "text_layer_chars": 4516,
+   "dropped_running_chars": 2,
+   "n_blocks": 17,
+   "n_lines": 103,
+   "dropped_running_text": [
+    "10"
+   ],
+   "body_size": 10.0,
+   "empty": false
+  },
+  {
+   "page": 11,
+   "width": 612.0,
+   "height": 792.0,
+   "columns": 2,
+   "column_bands": [
+    [
+     50.11,
+     288.0
+    ],
+    [
+     294.0,
+     545.12
+    ]
+   ],
+   "gutters": [
+    [
+     288.0,
+     294.0
+    ]
+   ],
+   "text_layer_chars": 3670,
+   "dropped_running_chars": 2,
+   "n_blocks": 32,
+   "n_lines": 127,
+   "dropped_running_text": [
+    "11"
+   ],
+   "body_size": 10.0,
+   "empty": false
+  },
+  {
+   "page": 12,
+   "width": 612.0,
+   "height": 792.0,
+   "columns": 2,
+   "column_bands": [
+    [
+     50.11,
+     288.0
+    ],
+    [
+     307.0,
+     545.12
+    ]
+   ],
+   "gutters": [
+    [
+     288.0,
+     307.0
+    ]
+   ],
+   "text_layer_chars": 4639,
+   "dropped_running_chars": 2,
+   "n_blocks": 15,
+   "n_lines": 130,
+   "dropped_running_text": [
+    "12"
+   ],
+   "body_size": 10.0,
+   "empty": false
+  }
+ ],
+ "sections": [
+  {
+   "id": "S1",
+   "title": "Abstract",
+   "level": 1,
+   "page": 1,
+   "bbox": [
+    145.99,
+    225.25,
+    190.48,
+    237.2
+   ],
+   "block_id": "p1-b008",
+   "path": "Abstract"
+  },
+  {
+   "id": "S2",
+   "title": "1. Introduction",
+   "level": 1,
+   "page": 1,
+   "bbox": [
+    50.11,
+    535.23,
+    126.95,
+    547.18
+   ],
+   "block_id": "p1-b011",
+   "path": "1. Introduction"
+  },
+  {
+   "id": "S3",
+   "title": "2. Related Work",
+   "level": 1,
+   "page": 2,
+   "bbox": [
+    308.86,
+    195.07,
+    391.97,
+    207.03
+   ],
+   "block_id": "p2-b022",
+   "path": "2. Related Work"
+  },
+  {
+   "id": "S4",
+   "title": "3. Deep Residual Learning",
+   "level": 1,
+   "page": 3,
+   "bbox": [
+    50.11,
+    108.96,
+    185.43,
+    120.92
+   ],
+   "block_id": "p3-b001",
+   "path": "3. Deep Residual Learning"
+  },
+  {
+   "id": "S5",
+   "title": "3.1. Residual Learning",
+   "level": 2,
+   "page": 3,
+   "bbox": [
+    50.11,
+    128.76,
+    155.9,
+    139.72
+   ],
+   "block_id": "p3-b002",
+   "path": "3. Deep Residual Learning / 3.1. Residual Learning"
+  },
+  {
+   "id": "S6",
+   "title": "3.2. Identity Mapping by Shortcuts",
+   "level": 2,
+   "page": 3,
+   "bbox": [
+    50.11,
+    561.76,
+    213.9,
+    572.72
+   ],
+   "block_id": "p3-b015",
+   "path": "3. Deep Residual Learning / 3.2. Identity Mapping by Shortcuts"
+  },
+  {
+   "id": "S7",
+   "title": "3.3. Network Architectures",
+   "level": 2,
+   "page": 3,
+   "bbox": [
+    308.86,
+    462.76,
+    434.95,
+    473.72
+   ],
+   "block_id": "p3-b038",
+   "path": "3. Deep Residual Learning / 3.3. Network Architectures"
+  },
+  {
+   "id": "S8",
+   "title": "3.4. Implementation",
+   "level": 2,
+   "page": 4,
+   "bbox": [
+    308.86,
+    236.14,
+    402.92,
+    247.1
+   ],
+   "block_id": "p4-b117",
+   "path": "3. Deep Residual Learning / 3.4. Implementation"
+  },
+  {
+   "id": "S9",
+   "title": "4. Experiments",
+   "level": 1,
+   "page": 4,
+   "bbox": [
+    308.86,
+    491.61,
+    385.9,
+    503.57
+   ],
+   "block_id": "p4-b120",
+   "path": "4. Experiments"
+  },
+  {
+   "id": "S10",
+   "title": "4.1. ImageNet Classiﬁcation",
+   "level": 2,
+   "page": 4,
+   "bbox": [
+    308.86,
+    511.31,
+    439.14,
+    522.27
+   ],
+   "block_id": "p4-b121",
+   "path": "4. Experiments / 4.1. ImageNet Classiﬁcation"
+  },
+  {
+   "id": "S11",
+   "title": "4.2. CIFAR-10 and Analysis",
+   "level": 2,
+   "page": 7,
+   "bbox": [
+    50.11,
+    389.13,
+    180.34,
+    400.09
+   ],
+   "block_id": "p7-b008",
+   "path": "4. Experiments / 4.2. CIFAR-10 and Analysis"
+  },
+  {
+   "id": "S12",
+   "title": "4.3. Object Detection on PASCAL and MS COCO",
+   "level": 2,
+   "page": 8,
+   "bbox": [
+    308.86,
+    505.14,
+    542.13,
+    516.1
+   ],
+   "block_id": "p8-b095",
+   "path": "4. Experiments / 4.3. Object Detection on PASCAL and MS COCO"
+  },
+  {
+   "id": "S13",
+   "title": "References",
+   "level": 1,
+   "page": 9,
+   "bbox": [
+    50.11,
+    72.79,
+    105.66,
+    84.74
+   ],
+   "block_id": "p9-b000",
+   "path": "References"
+  },
+  {
+   "id": "S14",
+   "title": "A. Object Detection Baselines",
+   "level": 1,
+   "page": 10,
+   "bbox": [
+    50.11,
+    72.79,
+    200.86,
+    84.74
+   ],
+   "block_id": "p10-b000",
+   "path": "A. Object Detection Baselines"
+  },
+  {
+   "id": "S15",
+   "title": "B. Object Detection Improvements",
+   "level": 1,
+   "page": 10,
+   "bbox": [
+    308.86,
+    232.37,
+    485.7,
+    244.32
+   ],
+   "block_id": "p10-b011",
+   "path": "B. Object Detection Improvements"
+  },
+  {
+   "id": "S16",
+   "title": "C. ImageNet Localization",
+   "level": 1,
+   "page": 12,
+   "bbox": [
+    50.11,
+    285.1,
+    180.6,
+    297.05
+   ],
+   "block_id": "p12-b004",
+   "path": "C. ImageNet Localization"
+  }
+ ],
+ "tables": [
+  {
+   "bbox": [
+    127.91,
+    73.78,
+    467.31,
+    216.71
+   ],
+   "n_rows": 9,
+   "n_cols": 7,
+   "header": [
+    "layer name",
+    "output size",
+    "18-layer",
+    "34-layer",
+    "50-layer",
+    "101-layer",
+    "152-layer"
+   ],
+   "rows": [
+    [
+     "layer name",
+     "output size",
+     "18-layer",
+     "34-layer",
+     "50-layer",
+     "101-layer",
+     "152-layer"
+    ],
+    [
+     "conv1",
+     "112×112",
+     "",
+     "",
+     "7×7, 64, stride 2",
+     "",
+     ""
+    ],
+    [
+     "",
+     "",
+     "",
+     "",
+     "3×3 max pool, stride 2",
+     "",
+     ""
+    ],
+    [
+     "conv2 x",
+     "56×56",
+     "3×3, 64\n×2\n3×3, 64",
+     "3×3, 64\n×3\n3×3, 64",
+     " 1×1, 64 \n3×3, 64 ×3\n\n1×1, 256",
+     " 1×1, 64 \n3×3, 64 ×3\n\n1×1, 256",
+     " 1×1, 64 \n3×3, 64 ×3\n\n1×1, 256"
+    ],
+    [
+     "conv3 x",
+     "28×28",
+     "3×3, 128\n×2\n3×3, 128",
+     "3×3, 128\n×4\n3×3, 128",
+     " 1×1, 128 \n3×3, 128 ×4\n\n1×1, 512",
+     " 1×1, 128 \n3×3, 128 ×4\n\n1×1, 512",
+     " 1×1, 128 \n3×3, 128 ×8\n\n1×1, 512"
+    ],
+    [
+     "conv4 x",
+     "14×14",
+     "3×3, 256\n×2\n3×3, 256",
+     "3×3, 256\n×6\n3×3, 256",
+     "  1×1, 256\n3×3, 256 ×6\n\n1×1, 1024",
+     "  1×1, 256\n3×3, 256 ×23\n\n1×1, 1024",
+     "  1×1, 256\n3×3, 256 ×36\n\n1×1, 1024"
+    ],
+    [
+     "conv5 x",
+     "7×7",
+     "3×3, 512\n×2\n3×3, 512",
+     "3×3, 512\n×3\n3×3, 512",
+     " 1×1, 512 \n3×3, 512 ×3\n\n1×1, 2048",
+     " 1×1, 512 \n3×3, 512 ×3\n\n1×1, 2048",
+     " 1×1, 512 \n3×3, 512 ×3\n\n1×1, 2048"
+    ],
+    [
+     "",
+     "1×1",
+     "",
+     "average pool, 1000-d fc, softmax",
+     "",
+     "",
+     ""
+    ],
+    [
+     "FLOPs",
+     "",
+     "1.8×109",
+     "3.6×109",
+     "3.8×109",
+     "7.6×109",
+     "11.3×109"
+    ]
+   ],
+   "body_rows": [
+    [
+     "conv1",
+     "112×112",
+     "",
+     "",
+     "7×7, 64, stride 2",
+     "",
+     ""
+    ],
+    [
+     "",
+     "",
+     "",
+     "",
+     "3×3 max pool, stride 2",
+     "",
+     ""
+    ],
+    [
+     "conv2 x",
+     "56×56",
+     "3×3, 64\n×2\n3×3, 64",
+     "3×3, 64\n×3\n3×3, 64",
+     " 1×1, 64 \n3×3, 64 ×3\n\n1×1, 256",
+     " 1×1, 64 \n3×3, 64 ×3\n\n1×1, 256",
+     " 1×1, 64 \n3×3, 64 ×3\n\n1×1, 256"
+    ],
+    [
+     "conv3 x",
+     "28×28",
+     "3×3, 128\n×2\n3×3, 128",
+     "3×3, 128\n×4\n3×3, 128",
+     " 1×1, 128 \n3×3, 128 ×4\n\n1×1, 512",
+     " 1×1, 128 \n3×3, 128 ×4\n\n1×1, 512",
+     " 1×1, 128 \n3×3, 128 ×8\n\n1×1, 512"
+    ],
+    [
+     "conv4 x",
+     "14×14",
+     "3×3, 256\n×2\n3×3, 256",
+     "3×3, 256\n×6\n3×3, 256",
+     "  1×1, 256\n3×3, 256 ×6\n\n1×1, 1024",
+     "  1×1, 256\n3×3, 256 ×23\n\n1×1, 1024",
+     "  1×1, 256\n3×3, 256 ×36\n\n1×1, 1024"
+    ],
+    [
+     "conv5 x",
+     "7×7",
+     "3×3, 512\n×2\n3×3, 512",
+     "3×3, 512\n×3\n3×3, 512",
+     " 1×1, 512 \n3×3, 512 ×3\n\n1×1, 2048",
+     " 1×1, 512 \n3×3, 512 ×3\n\n1×1, 2048",
+     " 1×1, 512 \n3×3, 512 ×3\n\n1×1, 2048"
+    ],
+    [
+     "",
+     "1×1",
+     "",
+     "average pool, 1000-d fc, softmax",
+     "",
+     "",
+     ""
+    ],
+    [
+     "FLOPs",
+     "",
+     "1.8×109",
+     "3.6×109",
+     "3.8×109",
+     "7.6×109",
+     "11.3×109"
+    ]
+   ],
+   "cells": [
+    {
+     "row": 0,
+     "col": 0,
+     "text": "layer name"
+    },
+    {
+     "row": 0,
+     "col": 1,
+     "text": "output size"
+    },
+    {
+     "row": 0,
+     "col": 2,
+     "text": "18-layer"
+    },
+    {
+     "row": 0,
+     "col": 3,
+     "text": "34-layer"
+    },
+    {
+     "row": 0,
+     "col": 4,
+     "text": "50-layer"
+    },
+    {
+     "row": 0,
+     "col": 5,
+     "text": "101-layer"
+    },
+    {
+     "row": 0,
+     "col": 6,
+     "text": "152-layer"
+    },
+    {
+     "row": 1,
+     "col": 0,
+     "text": "conv1"
+    },
+    {
+     "row": 1,
+     "col": 1,
+     "text": "112×112"
+    },
+    {
+     "row": 1,
+     "col": 2,
+     "text": ""
+    },
+    {
+     "row": 1,
+     "col": 3,
+     "text": ""
+    },
+    {
+     "row": 1,
+     "col": 4,
+     "text": "7×7, 64, stride 2"
+    },
+    {
+     "row": 1,
+     "col": 5,
+     "text": ""
+    },
+    {
+     "row": 1,
+     "col": 6,
+     "text": ""
+    },
+    {
+     "row": 2,
+     "col": 0,
+     "text": ""
+    },
+    {
+     "row": 2,
+     "col": 1,
+     "text": ""
+    },
+    {
+     "row": 2,
+     "col": 2,
+     "text": ""
+    },
+    {
+     "row": 2,
+     "col": 3,
+     "text": ""
+    },
+    {
+     "row": 2,
+     "col": 4,
+     "text": "3×3 max pool, stride 2"
+    },
+    {
+     "row": 2,
+     "col": 5,
+     "text": ""
+    },
+    {
+     "row": 2,
+     "col": 6,
+     "text": ""
+    },
+    {
+     "row": 3,
+     "col": 0,
+     "text": "conv2 x"
+    },
+    {
+     "row": 3,
+     "col": 1,
+     "text": "56×56"
+    },
+    {
+     "row": 3,
+     "col": 2,
+     "text": "3×3, 64\n×2\n3×3, 64"
+    },
+    {
+     "row": 3,
+     "col": 3,
+     "text": "3×3, 64\n×3\n3×3, 64"
+    },
+    {
+     "row": 3,
+     "col": 4,
+     "text": " 1×1, 64 \n3×3, 64 ×3\n\n1×1, 256"
+    },
+    {
+     "row": 3,
+     "col": 5,
+     "text": " 1×1, 64 \n3×3, 64 ×3\n\n1×1, 256"
+    },
+    {
+     "row": 3,
+     "col": 6,
+     "text": " 1×1, 64 \n3×3, 64 ×3\n\n1×1, 256"
+    },
+    {
+     "row": 4,
+     "col": 0,
+     "text": "conv3 x"
+    },
+    {
+     "row": 4,
+     "col": 1,
+     "text": "28×28"
+    },
+    {
+     "row": 4,
+     "col": 2,
+     "text": "3×3, 128\n×2\n3×3, 128"
+    },
+    {
+     "row": 4,
+     "col": 3,
+     "text": "3×3, 128\n×4\n3×3, 128"
+    },
+    {
+     "row": 4,
+     "col": 4,
+     "text": " 1×1, 128 \n3×3, 128 ×4\n\n1×1, 512"
+    },
+    {
+     "row": 4,
+     "col": 5,
+     "text": " 1×1, 128 \n3×3, 128 ×4\n\n1×1, 512"
+    },
+    {
+     "row": 4,
+     "col": 6,
+     "text": " 1×1, 128 \n3×3, 128 ×8\n\n1×1, 512"
+    },
+    {
+     "row": 5,
+     "col": 0,
+     "text": "conv4 x"
+    },
+    {
+     "row": 5,
+     "col": 1,
+     "text": "14×14"
+    },
+    {
+     "row": 5,
+     "col": 2,
+     "text": "3×3, 256\n×2\n3×3, 256"
+    },
+    {
+     "row": 5,
+     "col": 3,
+     "text": "3×3, 256\n×6\n3×3, 256"
+    },
+    {
+     "row": 5,
+     "col": 4,
+     "text": "  1×1, 256\n3×3, 256 ×6\n\n1×1, 1024"
+    },
+    {
+     "row": 5,
+     "col": 5,
+     "text": "  1×1, 256\n3×3, 256 ×23\n\n1×1, 1024"
+    },
+    {
+     "row": 5,
+     "col": 6,
+     "text": "  1×1, 256\n3×3, 256 ×36\n\n1×1, 1024"
+    },
+    {
+     "row": 6,
+     "col": 0,
+     "text": "conv5 x"
+    },
+    {
+     "row": 6,
+     "col": 1,
+     "text": "7×7"
+    },
+    {
+     "row": 6,
+     "col": 2,
+     "text": "3×3, 512\n×2\n3×3, 512"
+    },
+    {
+     "row": 6,
+     "col": 3,
+     "text": "3×3, 512\n×3\n3×3, 512"
+    },
+    {
+     "row": 6,
+     "col": 4,
+     "text": " 1×1, 512 \n3×3, 512 ×3\n\n1×1, 2048"
+    },
+    {
+     "row": 6,
+     "col": 5,
+     "text": " 1×1, 512 \n3×3, 512 ×3\n\n1×1, 2048"
+    },
+    {
+     "row": 6,
+     "col": 6,
+     "text": " 1×1, 512 \n3×3, 512 ×3\n\n1×1, 2048"
+    },
+    {
+     "row": 7,
+     "col": 0,
+     "text": ""
+    },
+    {
+     "row": 7,
+     "col": 1,
+     "text": "1×1"
+    },
+    {
+     "row": 7,
+     "col": 2,
+     "text": ""
+    },
+    {
+     "row": 7,
+     "col": 3,
+     "text": "average pool, 1000-d fc, softmax"
+    },
+    {
+     "row": 7,
+     "col": 4,
+     "text": ""
+    },
+    {
+     "row": 7,
+     "col": 5,
+     "text": ""
+    },
+    {
+     "row": 7,
+     "col": 6,
+     "text": ""
+    },
+    {
+     "row": 8,
+     "col": 0,
+     "text": "FLOPs"
+    },
+    {
+     "row": 8,
+     "col": 1,
+     "text": ""
+    },
+    {
+     "row": 8,
+     "col": 2,
+     "text": "1.8×109"
+    },
+    {
+     "row": 8,
+     "col": 3,
+     "text": "3.6×109"
+    },
+    {
+     "row": 8,
+     "col": 4,
+     "text": "3.8×109"
+    },
+    {
+     "row": 8,
+     "col": 5,
+     "text": "7.6×109"
+    },
+    {
+     "row": 8,
+     "col": 6,
+     "text": "11.3×109"
+    }
+   ],
+   "bbox_cells": [
+    {
+     "row": 0,
+     "col": 0,
+     "bbox": [
+      127.91,
+      73.78,
+      158.52,
+      80.92
+     ]
+    },
+    {
+     "row": 0,
+     "col": 1,
+     "bbox": [
+      158.52,
+      73.78,
+      190.85,
+      80.92
+     ]
+    },
+    {
+     "row": 0,
+     "col": 2,
+     "bbox": [
+      190.85,
+      73.78,
+      242.57,
+      80.92
+     ]
+    },
+    {
+     "row": 0,
+     "col": 3,
+     "bbox": [
+      242.57,
+      73.78,
+      294.29,
+      80.92
+     ]
+    },
+    {
+     "row": 0,
+     "col": 4,
+     "bbox": [
+      294.29,
+      73.78,
+      352.51,
+      80.92
+     ]
+    },
+    {
+     "row": 0,
+     "col": 5,
+     "bbox": [
+      352.51,
+      73.78,
+      411.01,
+      80.92
+     ]
+    },
+    {
+     "row": 0,
+     "col": 6,
+     "bbox": [
+      411.01,
+      73.78,
+      467.31,
+      80.92
+     ]
+    },
+    {
+     "row": 1,
+     "col": 0,
+     "bbox": [
+      127.91,
+      80.92,
+      158.52,
+      89.71
+     ]
+    },
+    {
+     "row": 1,
+     "col": 1,
+     "bbox": [
+      158.52,
+      80.92,
+      190.85,
+      89.71
+     ]
+    },
+    {
+     "row": 1,
+     "col": 2,
+     "bbox": [
+      190.85,
+      80.92,
+      242.57,
+      89.71
+     ]
+    },
+    {
+     "row": 1,
+     "col": 3,
+     "bbox": [
+      242.57,
+      80.92,
+      294.29,
+      89.71
+     ]
+    },
+    {
+     "row": 1,
+     "col": 4,
+     "bbox": [
+      294.29,
+      80.92,
+      352.51,
+      89.71
+     ]
+    },
+    {
+     "row": 1,
+     "col": 5,
+     "bbox": [
+      352.51,
+      80.92,
+      411.01,
+      89.71
+     ]
+    },
+    {
+     "row": 1,
+     "col": 6,
+     "bbox": [
+      411.01,
+      80.92,
+      467.31,
+      89.71
+     ]
+    },
+    {
+     "row": 2,
+     "col": 0,
+     "bbox": [
+      127.91,
+      89.71,
+      158.52,
+      98.5
+     ]
+    },
+    {
+     "row": 2,
+     "col": 1,
+     "bbox": [
+      158.52,
+      89.71,
+      190.85,
+      98.5
+     ]
+    },
+    {
+     "row": 2,
+     "col": 2,
+     "bbox": [
+      190.85,
+      89.71,
+      242.57,
+      98.5
+     ]
+    },
+    {
+     "row": 2,
+     "col": 3,
+     "bbox": [
+      242.57,
+      89.71,
+      294.29,
+      98.5
+     ]
+    },
+    {
+     "row": 2,
+     "col": 4,
+     "bbox": [
+      294.29,
+      89.71,
+      411.01,
+      98.5
+     ]
+    },
+    {
+     "row": 2,
+     "col": 5,
+     "bbox": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "row": 2,
+     "col": 6,
+     "bbox": [
+      411.01,
+      89.71,
+      467.31,
+      98.5
+     ]
+    },
+    {
+     "row": 3,
+     "col": 0,
+     "bbox": [
+      127.91,
+      98.5,
+      158.52,
+      124.1
+     ]
+    },
+    {
+     "row": 3,
+     "col": 1,
+     "bbox": [
+      158.52,
+      98.5,
+      190.85,
+      124.1
+     ]
+    },
+    {
+     "row": 3,
+     "col": 2,
+     "bbox": [
+      190.85,
+      98.5,
+      242.57,
+      124.1
+     ]
+    },
+    {
+     "row": 3,
+     "col": 3,
+     "bbox": [
+      242.57,
+      98.5,
+      294.29,
+      124.1
+     ]
+    },
+    {
+     "row": 3,
+     "col": 4,
+     "bbox": [
+      294.29,
+      98.5,
+      352.51,
+      124.1
+     ]
+    },
+    {
+     "row": 3,
+     "col": 5,
+     "bbox": [
+      352.51,
+      98.5,
+      411.01,
+      124.1
+     ]
+    },
+    {
+     "row": 3,
+     "col": 6,
+     "bbox": [
+      411.01,
+      98.5,
+      467.31,
+      124.1
+     ]
+    },
+    {
+     "row": 4,
+     "col": 0,
+     "bbox": [
+      127.91,
+      124.1,
+      158.52,
+      149.96
+     ]
+    },
+    {
+     "row": 4,
+     "col": 1,
+     "bbox": [
+      158.52,
+      124.1,
+      190.85,
+      149.96
+     ]
+    },
+    {
+     "row": 4,
+     "col": 2,
+     "bbox": [
+      190.85,
+      124.1,
+      242.57,
+      149.96
+     ]
+    },
+    {
+     "row": 4,
+     "col": 3,
+     "bbox": [
+      242.57,
+      124.1,
+      294.29,
+      149.96
+     ]
+    },
+    {
+     "row": 4,
+     "col": 4,
+     "bbox": [
+      294.29,
+      124.1,
+      352.51,
+      149.96
+     ]
+    },
+    {
+     "row": 4,
+     "col": 5,
+     "bbox": [
+      352.51,
+      124.1,
+      411.01,
+      149.96
+     ]
+    },
+    {
+     "row": 4,
+     "col": 6,
+     "bbox": [
+      411.01,
+      124.1,
+      467.31,
+      149.96
+     ]
+    },
+    {
+     "row": 5,
+     "col": 0,
+     "bbox": [
+      127.91,
+      149.96,
+      158.52,
+      175.81
+     ]
+    },
+    {
+     "row": 5,
+     "col": 1,
+     "bbox": [
+      158.52,
+      149.96,
+      190.85,
+      175.81
+     ]
+    },
+    {
+     "row": 5,
+     "col": 2,
+     "bbox": [
+      190.85,
+      149.96,
+      242.57,
+      175.81
+     ]
+    },
+    {
+     "row": 5,
+     "col": 3,
+     "bbox": [
+      242.57,
+      149.96,
+      294.29,
+      175.81
+     ]
+    },
+    {
+     "row": 5,
+     "col": 4,
+     "bbox": [
+      294.29,
+      149.96,
+      352.51,
+      175.81
+     ]
+    },
+    {
+     "row": 5,
+     "col": 5,
+     "bbox": [
+      352.51,
+      149.96,
+      411.01,
+      175.81
+     ]
+    },
+    {
+     "row": 5,
+     "col": 6,
+     "bbox": [
+      411.01,
+      149.96,
+      467.31,
+      175.81
+     ]
+    },
+    {
+     "row": 6,
+     "col": 0,
+     "bbox": [
+      127.91,
+      175.81,
+      158.52,
+      201.67
+     ]
+    },
+    {
+     "row": 6,
+     "col": 1,
+     "bbox": [
+      158.52,
+      175.81,
+      190.85,
+      201.67
+     ]
+    },
+    {
+     "row": 6,
+     "col": 2,
+     "bbox": [
+      190.85,
+      175.81,
+      242.57,
+      201.67
+     ]
+    },
+    {
+     "row": 6,
+     "col": 3,
+     "bbox": [
+      242.57,
+      175.81,
+      294.29,
+      201.67
+     ]
+    },
+    {
+     "row": 6,
+     "col": 4,
+     "bbox": [
+      294.29,
+      175.81,
+      352.51,
+      201.67
+     ]
+    },
+    {
+     "row": 6,
+     "col": 5,
+     "bbox": [
+      352.51,
+      175.81,
+      411.01,
+      201.67
+     ]
+    },
+    {
+     "row": 6,
+     "col": 6,
+     "bbox": [
+      411.01,
+      175.81,
+      467.31,
+      201.67
+     ]
+    },
+    {
+     "row": 7,
+     "col": 0,
+     "bbox": [
+      127.91,
+      201.67,
+      158.52,
+      210.46
+     ]
+    },
+    {
+     "row": 7,
+     "col": 1,
+     "bbox": [
+      158.52,
+      201.67,
+      190.85,
+      210.46
+     ]
+    },
+    {
+     "row": 7,
+     "col": 2,
+     "bbox": [
+      190.85,
+      201.67,
+      242.57,
+      210.46
+     ]
+    },
+    {
+     "row": 7,
+     "col": 3,
+     "bbox": [
+      242.57,
+      201.67,
+      411.01,
+      210.46
+     ]
+    },
+    {
+     "row": 7,
+     "col": 4,
+     "bbox": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "row": 7,
+     "col": 5,
+     "bbox": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "row": 7,
+     "col": 6,
+     "bbox": [
+      411.01,
+      201.67,
+      467.31,
+      210.46
+     ]
+    },
+    {
+     "row": 8,
+     "col": 0,
+     "bbox": [
+      127.91,
+      210.46,
+      190.85,
+      216.71
+     ]
+    },
+    {
+     "row": 8,
+     "col": 1,
+     "bbox": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "row": 8,
+     "col": 2,
+     "bbox": [
+      190.85,
+      210.46,
+      242.57,
+      216.71
+     ]
+    },
+    {
+     "row": 8,
+     "col": 3,
+     "bbox": [
+      242.57,
+      210.46,
+      294.29,
+      216.71
+     ]
+    },
+    {
+     "row": 8,
+     "col": 4,
+     "bbox": [
+      294.29,
+      210.46,
+      352.51,
+      216.71
+     ]
+    },
+    {
+     "row": 8,
+     "col": 5,
+     "bbox": [
+      352.51,
+      210.46,
+      411.01,
+      216.71
+     ]
+    },
+    {
+     "row": 8,
+     "col": 6,
+     "bbox": [
+      411.01,
+      210.46,
+      467.31,
+      216.71
+     ]
+    }
+   ],
+   "fill_rate": 0.746,
+   "method": "pymupdf_find_tables",
+   "page": 5,
+   "id": "T1",
+   "caption": "Table 1. Architectures for ImageNet. Building blocks are shown in brackets (see also Fig. 5), with the numbers of blocks stacked. Downsampling is performed by conv3 1, conv4 1, and conv5 1 with a stride of 2.",
+   "unassigned_lines": [
+    "\u0014",
+    "\u0015",
+    "\u0014",
+    "\u0015",
+    "\u0014",
+    "\u0015",
+    "\u0014",
+    "\u0015",
+    "\u0014",
+    "\u0015",
+    "\u0014",
+    "\u0015",
+    "\u0014",
+    "\u0015",
+    "\u0014",
+    "\u0015"
+   ],
+   "n_unassigned": 16,
+   "absorbed_blocks": 123,
+   "csv": "tables/T1.csv"
+  }
+ ],
+ "tables_rejected": [],
+ "figures": [
+  {
+   "id": "F1",
+   "page": 1,
+   "bbox": [
+    308.86,
+    224.39,
+    545.14,
+    346.73
+   ],
+   "caption": "Figure 1. Training error (left) and test error (right) on CIFAR-10 with 20-layer and 56-layer “plain” networks. The deeper network has higher training error, and thus test error. Similar phenomena on ImageNet is presented in Fig. 4.",
+   "artwork": "vector",
+   "width": null,
+   "height": null,
+   "image": "figures/F1.png"
+  },
+  {
+   "id": "F2",
+   "page": 2,
+   "bbox": [
+    86.62,
+    84.86,
+    249.86,
+    167.12
+   ],
+   "caption": "Figure 2. Residual learning: a building block.",
+   "artwork": "vector",
+   "width": null,
+   "height": null,
+   "image": "figures/F2.png"
+  },
+  {
+   "id": "F3",
+   "page": 4,
+   "bbox": [
+    50.11,
+    580.53,
+    286.37,
+    685.72
+   ],
+   "caption": "Figure 3. Example network architectures for ImageNet. Left: the VGG-19 model [41] (19.6 billion FLOPs) as a reference. Middle: a plain network with 34 parameter layers (3.6 billion FLOPs). Right: a residual network with 34 parameter layers (3.6 billion FLOPs). The dotted shortcuts increase dimensions. Table 1 shows",
+   "artwork": "vector",
+   "width": null,
+   "height": null,
+   "image": "figures/F3.png"
+  },
+  {
+   "id": "F4",
+   "page": 5,
+   "bbox": [
+    50.11,
+    251.4,
+    545.12,
+    401.34
+   ],
+   "caption": "Figure 4. Training on ImageNet. Thin curves denote training error, and bold curves denote validation error of the center crops. Left: plain",
+   "artwork": "vector",
+   "width": null,
+   "height": null,
+   "image": "figures/F4.png"
+  },
+  {
+   "id": "F5",
+   "page": 6,
+   "bbox": [
+    308.86,
+    72.0,
+    545.11,
+    187.99
+   ],
+   "caption": "Figure 5. A deeper residual function F for ImageNet. Left: a building block (on 56×56 feature maps) as in Fig. 3 for ResNet- 34. Right: a “bottleneck” building block for ResNet-50/101/152.",
+   "artwork": "vector",
+   "width": null,
+   "height": null,
+   "image": "figures/F5.png"
+  },
+  {
+   "id": "F6",
+   "page": 8,
+   "bbox": [
+    50.11,
+    212.18,
+    286.36,
+    348.24
+   ],
+   "caption": "Figure 7. Standard deviations (std) of layer responses on CIFAR- 10. The responses are the outputs of each 3×3 layer, after BN and",
+   "artwork": "vector",
+   "width": null,
+   "height": null,
+   "image": "figures/F6.png"
+  },
+  {
+   "id": "F7",
+   "page": 8,
+   "bbox": [
+    50.11,
+    72.04,
+    545.11,
+    192.5
+   ],
+   "caption": "Figure 6. Training on CIFAR-10. Dashed lines denote training error, and bold lines denote testing error. Left: plain networks. The error of plain-110 is higher than 60% and not displayed. Middle: ResNets. Right: ResNets with 110 and 1202 layers.",
+   "artwork": "vector",
+   "width": null,
+   "height": null,
+   "image": "figures/F7.png"
+  }
+ ],
+ "references": [
+  {
+   "id": "R1",
+   "text": "Y. Bengio, P. Simard, and P. Frasconi. Learning long-term dependen-",
+   "page": 9,
+   "bbox": [
+    54.1,
+    92.36,
+    286.36,
+    100.33
+   ]
+  },
+  {
+   "id": "R2",
+   "text": "cies with gradient descent is difﬁcult. IEEE Transactions on Neural Networks, 5(2):157–166, 1994.",
+   "page": 9,
+   "bbox": [
+    68.37,
+    101.68,
+    286.37,
+    119.26
+   ]
+  },
+  {
+   "id": "R3",
+   "text": "C. M. Bishop. Neural networks for pattern recognition. Oxford",
+   "page": 9,
+   "bbox": [
+    54.1,
+    121.6,
+    286.36,
+    129.71
+   ]
+  }
+ ],
+ "blocks": [
+  {
+   "page": 1,
+   "bbox": [
+    153.45,
+    105.92,
+    441.78,
+    120.27
+   ],
+   "column": -1,
+   "type": "heading",
+   "text": "Deep Residual Learning for Image Recognition",
+   "raw": "Deep Residual Learning for Image Recognition",
+   "n_lines": 1,
+   "size": 14.35,
+   "bold": true,
+   "italic": false,
+   "mono": false,
+   "font": "NimbusRomNo9L-Medi",
+   "sup_sub": "Deep Residual Learning for Image Recognition",
+   "rotated": false,
+   "order": 0,
+   "page_order": 0,
+   "id": "p1-b000"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    222.06,
+    152.39,
+    296.77,
+    164.34
+   ],
+   "column": -1,
+   "type": "author",
+   "text": "Xiangyu Zhang",
+   "raw": "Xiangyu Zhang",
+   "n_lines": 1,
+   "size": 11.96,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "NimbusRomNo9L-Regu",
+   "sup_sub": "Xiangyu Zhang",
+   "rotated": false,
+   "order": 1,
+   "page_order": 1,
+   "id": "p1-b001"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    136.39,
+    152.39,
+    195.16,
+    164.34
+   ],
+   "column": 0,
+   "type": "author",
+   "text": "Kaiming He",
+   "raw": "Kaiming He",
+   "n_lines": 1,
+   "size": 11.96,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "NimbusRomNo9L-Regu",
+   "sup_sub": "Kaiming He",
+   "rotated": false,
+   "order": 2,
+   "page_order": 2,
+   "id": "p1-b002"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    323.67,
+    152.39,
+    391.08,
+    164.34
+   ],
+   "column": 1,
+   "type": "author",
+   "text": "Shaoqing Ren",
+   "raw": "Shaoqing Ren",
+   "n_lines": 1,
+   "size": 11.96,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "NimbusRomNo9L-Regu",
+   "sup_sub": "Shaoqing Ren",
+   "rotated": false,
+   "order": 3,
+   "page_order": 3,
+   "id": "p1-b003"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    417.98,
+    152.39,
+    458.83,
+    164.34
+   ],
+   "column": 1,
+   "type": "author",
+   "text": "Jian Sun",
+   "raw": "Jian Sun",
+   "n_lines": 1,
+   "size": 11.96,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "NimbusRomNo9L-Regu",
+   "sup_sub": "Jian Sun",
+   "rotated": false,
+   "order": 4,
+   "page_order": 4,
+   "id": "p1-b004"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    249.14,
+    169.13,
+    343.1,
+    181.08
+   ],
+   "column": -1,
+   "type": "affiliation",
+   "text": "Microsoft Research",
+   "raw": "Microsoft Research",
+   "n_lines": 1,
+   "size": 11.96,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "NimbusRomNo9L-Regu",
+   "sup_sub": "Microsoft Research",
+   "rotated": false,
+   "order": 5,
+   "page_order": 5,
+   "id": "p1-b005"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    195.49,
+    184.82,
+    399.73,
+    202.1
+   ],
+   "column": -1,
+   "type": "affiliation",
+   "text": "{kahe, v-xiangz, v-shren, jiansun}@microsoft.com",
+   "raw": "{kahe, v-xiangz, v-shren, jiansun}@microsoft.com",
+   "n_lines": 1,
+   "size": 9.96,
+   "bold": false,
+   "italic": true,
+   "mono": false,
+   "font": "CMSY10",
+   "sup_sub": "{kahe, v-xiangz, v-shren, jiansun}@microsoft.com",
+   "rotated": false,
+   "order": 6,
+   "page_order": 6,
+   "id": "p1-b006"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    10.94,
+    208.94,
+    37.62,
+    560.0
+   ],
+   "column": -1,
+   "type": "margin_artifact",
+   "text": "arXiv:1512.03385v1  [cs.CV]  10 Dec 2015",
+   "raw": "arXiv:1512.03385v1  [cs.CV]  10 Dec 2015",
+   "n_lines": 1,
+   "size": 20.0,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "arXiv:1512.03385v1  [cs.CV]  10 Dec 2015",
+   "rotated": true,
+   "order": 7,
+   "page_order": 7,
+   "id": "p1-b007"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    145.99,
+    225.25,
+    190.48,
+    237.2
+   ],
+   "column": 0,
+   "type": "heading",
+   "text": "Abstract",
+   "raw": "Abstract",
+   "n_lines": 1,
+   "size": 11.96,
+   "bold": true,
+   "italic": false,
+   "mono": false,
+   "font": "NimbusRomNo9L-Medi",
+   "sup_sub": "Abstract",
+   "rotated": false,
+   "order": 8,
+   "page_order": 8,
+   "id": "p1-b008",
+   "level": 1
+  },
+  {
+   "page": 1,
+   "bbox": [
+    50.11,
+    246.05,
+    286.37,
+    423.38
+   ],
+   "column": 0,
+   "type": "body",
+   "text": "Deeper neural networks are more difﬁcult to train. We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions with reference to the layer inputs, instead of learning unreferenced functions. We provide comprehensive empirical evidence showing that these residual networks are easier to optimize, and can gain accuracy from considerably increased depth. On the ImageNet dataset we evaluate residual nets with a depth of up to 152 layers—8× deeper than VGG nets [41] but still having lower complexity. An ensemble of these residual nets achieves 3.57% error on the ImageNet test set. This result won the 1st place on the ILSVRC 2015 classiﬁcation task. We also present analysis on CIFAR-10 with 100 and 1000 layers.",
+   "raw": "Deeper neural networks are more difﬁcult to train. We\npresent a residual learning framework to ease the training\nof networks that are substantially deeper than those used\npreviously. We explicitly reformulate the layers as learn-\ning residual functions with reference to the layer inputs, in-\nstead of learning unreferenced functions. We provide com-\nprehensive empirical evidence showing that these residual\nnetworks are easier to optimize, and can gain accuracy from\nconsiderably increased depth. On the ImageNet dataset we\nevaluate residual nets with a depth of up to 152 layers—8×\ndeeper than VGG nets [41] but still having lower complex-\nity. An ensemble of these residual nets achieves 3.57% error\non the ImageNet test set. This result won the 1st place on the\nILSVRC 2015 classiﬁcation task. We also present analysis\non CIFAR-10 with 100 and 1000 layers.",
+   "n_lines": 15,
+   "size": 9.96,
+   "bold": false,
+   "italic": true,
+   "mono": false,
+   "font": "NimbusRomNo9L-ReguItal",
+   "sup_sub": "Deeper neural networks are more difﬁcult to train. We\npresent a residual learning framework to ease the training\nof networks that are substantially deeper than those used\npreviously. We explicitly reformulate the layers as learn-\ning residual functions with reference to the layer inputs, in-\nstead of learning unreferenced functions. We provide com-\nprehensive empirical evidence showing that these residual\nnetworks are easier to optimize, and can gain accuracy from\nconsiderably increased depth. On the ImageNet dataset we\nevaluate residual nets with a depth of up to 152 layers—8×\ndeeper than VGG nets [41] but still having lower complex-\nity. An ensemble of these residual nets achieves 3.57% error\non the ImageNet test set. This result won the 1st place on the\nILSVRC 2015 classiﬁcation task. We also present analysis\non CIFAR-10 with 100 and 1000 layers.",
+   "rotated": false,
+   "order": 9,
+   "page_order": 9,
+   "id": "p1-b009"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    50.11,
+    425.8,
+    286.37,
+    519.45
+   ],
+   "column": 0,
+   "type": "body",
+   "text": "The depth of representations is of central importance for many visual recognition tasks. Solely due to our extremely deep representations, we obtain a 28% relative improvement on the COCO object detection dataset. Deep residual nets are foundations of our submissions to ILSVRC & COCO 2015 competitions1, where we also won the 1st places on the tasks of ImageNet detection, ImageNet localization, COCO detection, and COCO segmentation.",
+   "raw": "The depth of representations is of central importance\nfor many visual recognition tasks. Solely due to our ex-\ntremely deep representations, we obtain a 28% relative im-\nprovement on the COCO object detection dataset. Deep\nresidual nets are foundations of our submissions to ILSVRC\n& COCO 2015 competitions1, where we also won the 1st\nplaces on the tasks of ImageNet detection, ImageNet local-\nization, COCO detection, and COCO segmentation.",
+   "n_lines": 8,
+   "size": 9.96,
+   "bold": false,
+   "italic": true,
+   "mono": false,
+   "font": "NimbusRomNo9L-ReguItal",
+   "sup_sub": "The depth of representations is of central importance\nfor many visual recognition tasks. Solely due to our ex-\ntremely deep representations, we obtain a 28% relative im-\nprovement on the COCO object detection dataset. Deep\nresidual nets are foundations of our submissions to ILSVRC\n& COCO 2015 competitions^1, where we also won the 1st\nplaces on the tasks of ImageNet detection, ImageNet local-\nization, COCO detection, and COCO segmentation.",
+   "rotated": false,
+   "order": 10,
+   "page_order": 10,
+   "id": "p1-b010"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    50.11,
+    535.23,
+    126.95,
+    547.18
+   ],
+   "column": 0,
+   "type": "heading",
+   "text": "1. Introduction",
+   "raw": "1. Introduction",
+   "n_lines": 1,
+   "size": 11.96,
+   "bold": true,
+   "italic": false,
+   "mono": false,
+   "font": "NimbusRomNo9L-Medi",
+   "sup_sub": "1. Introduction",
+   "rotated": false,
+   "order": 11,
+   "page_order": 11,
+   "id": "p1-b011",
+   "level": 1
+  },
+  {
+   "page": 1,
+   "bbox": [
+    50.11,
+    556.2,
+    286.37,
+    685.72
+   ],
+   "column": 0,
+   "type": "body",
+   "text": "Deep convolutional neural networks [22, 21] have led to a series of breakthroughs for image classiﬁcation [21, 50, 40]. Deep networks naturally integrate low/mid/highlevel features [50] and classiﬁers in an end-to-end multilayer fashion, and the “levels” of features can be enriched by the number of stacked layers (depth). Recent evidence [41, 44] reveals that network depth is of crucial importance, and the leading results [41, 44, 13, 16] on the challenging ImageNet dataset [36] all exploit “very deep” [41] models, with a depth of sixteen [41] to thirty [16]. Many other nontrivial visual recognition tasks [8, 12, 7, 32, 27] have also",
+   "raw": "Deep convolutional neural networks [22, 21] have led\nto a series of breakthroughs for image classiﬁcation [21,\n50, 40]. Deep networks naturally integrate low/mid/high-\nlevel features [50] and classiﬁers in an end-to-end multi-\nlayer fashion, and the “levels” of features can be enriched\nby the number of stacked layers (depth). Recent evidence\n[41, 44] reveals that network depth is of crucial importance,\nand the leading results [41, 44, 13, 16] on the challenging\nImageNet dataset [36] all exploit “very deep” [41] models,\nwith a depth of sixteen [41] to thirty [16]. Many other non-\ntrivial visual recognition tasks [8, 12, 7, 32, 27] have also",
+   "n_lines": 11,
+   "size": 9.96,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "NimbusRomNo9L-Regu",
+   "sup_sub": "Deep convolutional neural networks [22, 21] have led\nto a series of breakthroughs for image classiﬁcation [21,\n50, 40]. Deep networks naturally integrate low/mid/high-\nlevel features [50] and classiﬁers in an end-to-end multi-\nlayer fashion, and the “levels” of features can be enriched\nby the number of stacked layers (depth). Recent evidence\n[41, 44] reveals that network depth is of crucial importance,\nand the leading results [41, 44, 13, 16] on the challenging\nImageNet dataset [36] all exploit “very deep” [41] models,\nwith a depth of sixteen [41] to thirty [16]. Many other non-\ntrivial visual recognition tasks [8, 12, 7, 32, 27] have also",
+   "rotated": false,
+   "order": 12,
+   "page_order": 12,
+   "id": "p1-b012"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    60.97,
+    695.68,
+    260.3,
+    704.47
+   ],
+   "column": 0,
+   "type": "footnote",
+   "text": "1http://image-net.org/challenges/LSVRC/2015/",
+   "raw": "1http://image-net.org/challenges/LSVRC/2015/",
+   "n_lines": 1,
+   "size": 7.57,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "NimbusRomNo9L-Regu",
+   "sup_sub": "1http://image-net.org/challenges/LSVRC/2015/",
+   "rotated": false,
+   "order": 13,
+   "page_order": 13,
+   "id": "p1-b013"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    50.11,
+    697.29,
+    286.36,
+    712.83
+   ],
+   "column": 0,
+   "type": "footnote",
+   "text": "and http://mscoco.org/dataset/#detections-challenge2015.",
+   "raw": "and\nhttp://mscoco.org/dataset/#detections-challenge2015.",
+   "n_lines": 2,
+   "size": 7.57,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "NimbusRomNo9L-Regu",
+   "sup_sub": "and\nhttp://mscoco.org/dataset/#detections-challenge2015.",
+   "rotated": false,
+   "order": 14,
+   "page_order": 14,
+   "id": "p1-b014"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    308.86,
+    224.39,
+    545.14,
+    346.73
+   ],
+   "column": 1,
+   "type": "figure",
+   "text": "",
+   "raw": "",
+   "n_lines": 0,
+   "size": 10.0,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "",
+   "sup_sub": null,
+   "figure_id": "F1",
+   "rotated": false,
+   "order": 15,
+   "page_order": 15,
+   "id": "p1-b015"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    316.26,
+    224.89,
+    319.6,
+    228.23
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "20",
+   "raw": "20",
+   "n_lines": 1,
+   "size": 3.34,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "20",
+   "rotated": false,
+   "masked_chars": 2,
+   "order": 16,
+   "page_order": 16,
+   "id": "p1-b016"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    438.09,
+    224.89,
+    441.43,
+    228.23
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "20",
+   "raw": "20",
+   "n_lines": 1,
+   "size": 3.34,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "20",
+   "rotated": false,
+   "masked_chars": 2,
+   "order": 17,
+   "page_order": 17,
+   "id": "p1-b017"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    308.98,
+    235.53,
+    315.53,
+    282.12
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "training error (%)",
+   "raw": "training error (%)",
+   "n_lines": 1,
+   "size": 6.55,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "training error (%)",
+   "rotated": true,
+   "masked_chars": 16,
+   "order": 18,
+   "page_order": 18,
+   "id": "p1-b018"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    521.65,
+    240.43,
+    543.58,
+    258.95
+   ],
+   "column": 1,
+   "type": "formula",
+   "text": "56-layer 20-layer",
+   "raw": "56-layer\n20-layer",
+   "n_lines": 2,
+   "size": 6.58,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "TT93o00",
+   "sup_sub": "56-layer\n20-layer",
+   "rotated": false,
+   "order": 19,
+   "page_order": 19,
+   "id": "p1-b019"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    430.81,
+    241.3,
+    437.36,
+    276.51
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "test error (%)",
+   "raw": "test error (%)",
+   "n_lines": 1,
+   "size": 6.55,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "test error (%)",
+   "rotated": true,
+   "masked_chars": 12,
+   "order": 20,
+   "page_order": 20,
+   "id": "p1-b020"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    316.26,
+    257.37,
+    319.6,
+    260.71
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "10",
+   "raw": "10",
+   "n_lines": 1,
+   "size": 3.34,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "10",
+   "rotated": false,
+   "masked_chars": 2,
+   "order": 21,
+   "page_order": 21,
+   "id": "p1-b021"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    438.09,
+    257.37,
+    441.43,
+    260.71
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "10",
+   "raw": "10",
+   "n_lines": 1,
+   "size": 3.34,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "10",
+   "rotated": false,
+   "masked_chars": 2,
+   "order": 22,
+   "page_order": 22,
+   "id": "p1-b022"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    400.26,
+    263.25,
+    422.19,
+    285.28
+   ],
+   "column": 1,
+   "type": "formula",
+   "text": "56-layer 20-layer",
+   "raw": "56-layer\n20-layer",
+   "n_lines": 2,
+   "size": 6.58,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "TT93o00",
+   "sup_sub": "56-layer\n20-layer",
+   "rotated": false,
+   "order": 23,
+   "page_order": 23,
+   "id": "p1-b023"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    317.05,
+    289.93,
+    319.56,
+    293.27
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "0",
+   "raw": "0 ",
+   "n_lines": 1,
+   "size": 3.34,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "0 ",
+   "rotated": false,
+   "masked_chars": 1,
+   "order": 24,
+   "page_order": 24,
+   "id": "p1-b024"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    439.76,
+    289.93,
+    441.43,
+    293.27
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "0",
+   "raw": "0",
+   "n_lines": 1,
+   "size": 3.34,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "0",
+   "rotated": false,
+   "masked_chars": 1,
+   "order": 25,
+   "page_order": 25,
+   "id": "p1-b025"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    319.34,
+    292.13,
+    321.01,
+    295.47
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "0",
+   "raw": "0",
+   "n_lines": 1,
+   "size": 3.34,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "0",
+   "rotated": false,
+   "masked_chars": 1,
+   "order": 26,
+   "page_order": 26,
+   "id": "p1-b026"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    335.22,
+    292.13,
+    336.89,
+    295.47
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "1",
+   "raw": "1",
+   "n_lines": 1,
+   "size": 3.34,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "1",
+   "rotated": false,
+   "masked_chars": 1,
+   "order": 27,
+   "page_order": 27,
+   "id": "p1-b027"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    351.2,
+    292.13,
+    352.87,
+    295.47
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "2",
+   "raw": "2",
+   "n_lines": 1,
+   "size": 3.34,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "2",
+   "rotated": false,
+   "masked_chars": 1,
+   "order": 28,
+   "page_order": 28,
+   "id": "p1-b028"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    367.08,
+    292.13,
+    368.75,
+    295.47
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "3",
+   "raw": "3",
+   "n_lines": 1,
+   "size": 3.34,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "3",
+   "rotated": false,
+   "masked_chars": 1,
+   "order": 29,
+   "page_order": 29,
+   "id": "p1-b029"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    383.06,
+    292.13,
+    384.73,
+    295.47
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "4",
+   "raw": "4",
+   "n_lines": 1,
+   "size": 3.34,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "4",
+   "rotated": false,
+   "masked_chars": 1,
+   "order": 30,
+   "page_order": 30,
+   "id": "p1-b030"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    399.03,
+    292.13,
+    400.7,
+    295.47
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "5",
+   "raw": "5",
+   "n_lines": 1,
+   "size": 3.34,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "5",
+   "rotated": false,
+   "masked_chars": 1,
+   "order": 31,
+   "page_order": 31,
+   "id": "p1-b031"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    414.92,
+    292.13,
+    416.59,
+    295.47
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "6",
+   "raw": "6",
+   "n_lines": 1,
+   "size": 3.34,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "6",
+   "rotated": false,
+   "masked_chars": 1,
+   "order": 32,
+   "page_order": 32,
+   "id": "p1-b032"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    441.16,
+    292.13,
+    442.83,
+    295.47
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "0",
+   "raw": "0",
+   "n_lines": 1,
+   "size": 3.34,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "0",
+   "rotated": false,
+   "masked_chars": 1,
+   "order": 33,
+   "page_order": 33,
+   "id": "p1-b033"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    457.05,
+    292.13,
+    458.72,
+    295.47
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "1",
+   "raw": "1",
+   "n_lines": 1,
+   "size": 3.34,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "1",
+   "rotated": false,
+   "masked_chars": 1,
+   "order": 34,
+   "page_order": 34,
+   "id": "p1-b034"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    473.02,
+    292.13,
+    474.69,
+    295.47
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "2",
+   "raw": "2",
+   "n_lines": 1,
+   "size": 3.34,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "2",
+   "rotated": false,
+   "masked_chars": 1,
+   "order": 35,
+   "page_order": 35,
+   "id": "p1-b035"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    488.91,
+    292.13,
+    490.58,
+    295.47
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "3",
+   "raw": "3",
+   "n_lines": 1,
+   "size": 3.34,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "3",
+   "rotated": false,
+   "masked_chars": 1,
+   "order": 36,
+   "page_order": 36,
+   "id": "p1-b036"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    504.88,
+    292.13,
+    506.55,
+    295.47
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "4",
+   "raw": "4",
+   "n_lines": 1,
+   "size": 3.34,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "4",
+   "rotated": false,
+   "masked_chars": 1,
+   "order": 37,
+   "page_order": 37,
+   "id": "p1-b037"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    520.86,
+    292.13,
+    522.53,
+    295.47
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "5",
+   "raw": "5",
+   "n_lines": 1,
+   "size": 3.34,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "5",
+   "rotated": false,
+   "masked_chars": 1,
+   "order": 38,
+   "page_order": 38,
+   "id": "p1-b038"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    536.75,
+    292.13,
+    538.42,
+    295.47
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "6",
+   "raw": "6",
+   "n_lines": 1,
+   "size": 3.34,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "6",
+   "rotated": false,
+   "masked_chars": 1,
+   "order": 39,
+   "page_order": 39,
+   "id": "p1-b039"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    357.87,
+    295.64,
+    383.92,
+    302.2
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "iter. (1e4)",
+   "raw": "iter. (1e4)",
+   "n_lines": 1,
+   "size": 6.55,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "iter. (1e4)",
+   "rotated": false,
+   "masked_chars": 10,
+   "order": 40,
+   "page_order": 40,
+   "id": "p1-b040"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    479.69,
+    295.64,
+    505.75,
+    302.2
+   ],
+   "column": 1,
+   "type": "figure_label",
+   "text": "iter. (1e4)",
+   "raw": "iter. (1e4)",
+   "n_lines": 1,
+   "size": 6.55,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "Times-Roman",
+   "sup_sub": "iter. (1e4)",
+   "rotated": false,
+   "masked_chars": 10,
+   "order": 41,
+   "page_order": 41,
+   "id": "p1-b041"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    308.86,
+    304.89,
+    545.11,
+    346.73
+   ],
+   "column": 1,
+   "type": "caption",
+   "text": "Figure 1. Training error (left) and test error (right) on CIFAR-10 with 20-layer and 56-layer “plain” networks. The deeper network has higher training error, and thus test error. Similar phenomena on ImageNet is presented in Fig. 4.",
+   "raw": "Figure 1. Training error (left) and test error (right) on CIFAR-10\nwith 20-layer and 56-layer “plain” networks. The deeper network\nhas higher training error, and thus test error. Similar phenomena\non ImageNet is presented in Fig. 4.",
+   "n_lines": 4,
+   "size": 8.97,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "NimbusRomNo9L-Regu",
+   "sup_sub": "Figure 1. Training error (left) and test error (right) on CIFAR-10\nwith 20-layer and 56-layer “plain” networks. The deeper network\nhas higher training error, and thus test error. Similar phenomena\non ImageNet is presented in Fig. 4.",
+   "rotated": false,
+   "order": 42,
+   "page_order": 42,
+   "id": "p1-b042"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    308.86,
+    362.81,
+    472.51,
+    372.77
+   ],
+   "column": 1,
+   "type": "body",
+   "text": "greatly beneﬁted from very deep models.",
+   "raw": "greatly beneﬁted from very deep models.",
+   "n_lines": 1,
+   "size": 9.96,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "NimbusRomNo9L-Regu",
+   "sup_sub": "greatly beneﬁted from very deep models.",
+   "rotated": false,
+   "order": 43,
+   "page_order": 43,
+   "id": "p1-b043"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    308.86,
+    376.55,
+    545.12,
+    494.28
+   ],
+   "column": 1,
+   "type": "body",
+   "text": "Driven by the signiﬁcance of depth, a question arises: Is learning better networks as easy as stacking more layers? An obstacle to answering this question was the notorious problem of vanishing/exploding gradients [1, 9], which hamper convergence from the beginning. This problem, however, has been largely addressed by normalized initialization [23, 9, 37, 13] and intermediate normalization layers [16], which enable networks with tens of layers to start converging for stochastic gradient descent (SGD) with backpropagation [22].",
+   "raw": "Driven by the signiﬁcance of depth, a question arises: Is\nlearning better networks as easy as stacking more layers?\nAn obstacle to answering this question was the notorious\nproblem of vanishing/exploding gradients [1, 9], which\nhamper convergence from the beginning. This problem,\nhowever, has been largely addressed by normalized initial-\nization [23, 9, 37, 13] and intermediate normalization layers\n[16], which enable networks with tens of layers to start con-\nverging for stochastic gradient descent (SGD) with back-\npropagation [22].",
+   "n_lines": 10,
+   "size": 9.96,
+   "bold": false,
+   "italic": true,
+   "mono": false,
+   "font": "NimbusRomNo9L-ReguItal",
+   "sup_sub": "Driven by the signiﬁcance of depth, a question arises: Is\nlearning better networks as easy as stacking more layers?\nAn obstacle to answering this question was the notorious\nproblem of vanishing/exploding gradients [1, 9], which\nhamper convergence from the beginning.This problem,\nhowever, has been largely addressed by normalized initial-\nization [23, 9, 37, 13] and intermediate normalization layers\n[16], which enable networks with tens of layers to start con-\nverging for stochastic gradient descent (SGD) with back-\npropagation [22].",
+   "rotated": false,
+   "order": 44,
+   "page_order": 44,
+   "id": "p1-b044"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    308.86,
+    498.24,
+    545.12,
+    591.89
+   ],
+   "column": 1,
+   "type": "body",
+   "text": "When deeper networks are able to start converging, a degradation problem has been exposed: with the network depth increasing, accuracy gets saturated (which might be unsurprising) and then degrades rapidly. Unexpectedly, such degradation is not caused by overﬁtting, and adding more layers to a suitably deep model leads to higher training error, as reported in [11, 42] and thoroughly veriﬁed by our experiments. Fig. 1 shows a typical example.",
+   "raw": "When deeper networks are able to start converging, a\ndegradation problem has been exposed: with the network\ndepth increasing, accuracy gets saturated (which might be\nunsurprising) and then degrades rapidly. Unexpectedly,\nsuch degradation is not caused by overﬁtting, and adding\nmore layers to a suitably deep model leads to higher train-\ning error, as reported in [11, 42] and thoroughly veriﬁed by\nour experiments. Fig. 1 shows a typical example.",
+   "n_lines": 8,
+   "size": 9.96,
+   "bold": false,
+   "italic": true,
+   "mono": false,
+   "font": "NimbusRomNo9L-Regu",
+   "sup_sub": "When deeper networks are able to start converging, a\ndegradation problem has been exposed: with the network\ndepth increasing, accuracy gets saturated (which might be\nunsurprising) and then degrades rapidly.Unexpectedly,\nsuch degradation is not caused by overﬁtting, and adding\nmore layers to a suitably deep model leads to higher train-\ning error, as reported in [11, 42] and thoroughly veriﬁed by\nour experiments. Fig. 1 shows a typical example.",
+   "rotated": false,
+   "order": 45,
+   "page_order": 45,
+   "id": "p1-b045"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    308.86,
+    595.85,
+    545.12,
+    713.41
+   ],
+   "column": 1,
+   "type": "body",
+   "text": "The degradation (of training accuracy) indicates that not all systems are similarly easy to optimize. Let us consider a shallower architecture and its deeper counterpart that adds more layers onto it. There exists a solution by construction to the deeper model: the added layers are identity mapping, and the other layers are copied from the learned shallower model. The existence of this constructed solution indicates that a deeper model should produce no higher training error than its shallower counterpart. But experiments show that our current solvers on hand are unable to ﬁnd solutions that",
+   "raw": "The degradation (of training accuracy) indicates that not\nall systems are similarly easy to optimize. Let us consider a\nshallower architecture and its deeper counterpart that adds\nmore layers onto it. There exists a solution by construction\nto the deeper model: the added layers are identity mapping,\nand the other layers are copied from the learned shallower\nmodel. The existence of this constructed solution indicates\nthat a deeper model should produce no higher training error\nthan its shallower counterpart. But experiments show that\nour current solvers on hand are unable to ﬁnd solutions that",
+   "n_lines": 10,
+   "size": 9.96,
+   "bold": false,
+   "italic": true,
+   "mono": false,
+   "font": "NimbusRomNo9L-Regu",
+   "sup_sub": "The degradation (of training accuracy) indicates that not\nall systems are similarly easy to optimize. Let us consider a\nshallower architecture and its deeper counterpart that adds\nmore layers onto it. There exists a solution by construction\nto the deeper model: the added layers are identity mapping,\nand the other layers are copied from the learned shallower\nmodel. The existence of this constructed solution indicates\nthat a deeper model should produce no higher training error\nthan its shallower counterpart. But experiments show that\nour current solvers on hand are unable to ﬁnd solutions that",
+   "rotated": false,
+   "order": 46,
+   "page_order": 46,
+   "id": "p1-b046"
+  }
+ ]
+}

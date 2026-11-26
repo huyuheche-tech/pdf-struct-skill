@@ -18,9 +18,9 @@
   "execution": {
     "log_path": "results/run.log",
     "exit_code": 0,
-    "ran_at": "2026-11-26T14:06:31+08:00",
+    "ran_at": "2026-11-26T14:37:45+08:00",
     "ran_by": "agent",
-    "wall_time_s": 131.0,
+    "wall_time_s": 135.0,
     "artifacts": [
       {
         "id": "A1",
@@ -135,6 +135,27 @@
         "type": "data",
         "format": "txt",
         "description": "Baseline method, metric definitions, per-corpus table and the caveats (n/a is n/a)."
+      },
+      {
+        "id": "A18",
+        "path": "tests/test_engine.py",
+        "type": "code",
+        "format": "py",
+        "description": "27 black-box assertions over three synthetic fixtures (CJK two-column, multi-line title, scanned page); no pytest, no network, exit 1 on failure."
+      },
+      {
+        "id": "A19",
+        "path": "results/resnet/doc.sample.json",
+        "type": "data",
+        "format": "json",
+        "description": "Trimmed doc.json from the same run: 12 pages, 16 sections, page-1 blocks, T1 cells and bbox_cells (63 each) - the artifact behind the bbox/table claims."
+      },
+      {
+        "id": "A20",
+        "path": "outputs/scripts/make_fixtures.py",
+        "type": "code",
+        "format": "py",
+        "description": "Deterministic generator for the three fixtures, so the tests can be rebuilt from source."
       }
     ]
   },
@@ -276,8 +297,8 @@
       "why": "the residual error budget sits in pages where a full-width figure splits a multi-column band"
     },
     "modality_notes": {
-      "execution": "results/ holds a real run of the bundled parser on five public papers; results/run.log is the verbatim stdout of that run; results/baseline.json is the bare-agent comparison produced by outputs/scripts/baseline_compare.py",
-      "characterization": "7 deviations from paper, 7 envelope entries (4 measured / 3 declared), 5 failure modes, 4 sensitivity sweeps",
+      "execution": "results/ holds a real run of the bundled parser on five public papers; results/run.log is the verbatim stdout of that run; results/baseline.json is the bare-agent comparison; tests/test_engine.py exercises the CJK, multi-line-title and scanned-page paths without needing the corpus",
+      "characterization": "7 deviations from paper, 10 envelope entries (7 measured / 3 declared), 5 failure modes, 4 sensitivity sweeps, plus 3 synthetic fixtures (CJK two-column, multi-line title, scanned page)",
       "trace": "hand-written 9-step trace of the actual build session (the platform trace-record installer rewrites ~/.claude/skills/*/SKILL.md and was not run)"
     }
   }

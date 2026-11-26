@@ -25,31 +25,31 @@ Microsoft Research
 <!-- p1-b006 | type=affiliation | col=-1 | bbox=195.5,184.8,399.7,202.1 -->
 {kahe, v-xiangz, v-shren, jiansun}@microsoft.com
 
-<!-- p1-b008 | type=figure | col=-1 | bbox=308.9,224.4,545.1,346.7 -->
-![Figure 1. Training error (left) and test error (right) on CIFAR-10 with 20-layer](figures/F1.png)
-
-<!-- p1-b011 | type=heading | col=0 | bbox=146.0,225.2,190.5,237.2 -->
+<!-- p1-b008 | type=heading | col=0 | bbox=146.0,225.2,190.5,237.2 -->
 ## Abstract
 
-<!-- p1-b012 | type=body | col=0 | bbox=50.1,246.1,286.4,423.4 -->
+<!-- p1-b009 | type=body | col=0 | bbox=50.1,246.1,286.4,423.4 -->
 Deeper neural networks are more difﬁcult to train. We present a residual learning framework to ease the training of networks that are substantially deeper than those used previously. We explicitly reformulate the layers as learning residual functions with reference to the layer inputs, instead of learning unreferenced functions. We provide comprehensive empirical evidence showing that these residual networks are easier to optimize, and can gain accuracy from considerably increased depth. On the ImageNet dataset we evaluate residual nets with a depth of up to 152 layers—8× deeper than VGG nets [41] but still having lower complexity. An ensemble of these residual nets achieves 3.57% error on the ImageNet test set. This result won the 1st place on the ILSVRC 2015 classiﬁcation task. We also present analysis on CIFAR-10 with 100 and 1000 layers.
 
-<!-- p1-b013 | type=body | col=0 | bbox=50.1,425.8,286.4,519.5 -->
+<!-- p1-b010 | type=body | col=0 | bbox=50.1,425.8,286.4,519.5 -->
 The depth of representations is of central importance for many visual recognition tasks. Solely due to our extremely deep representations, we obtain a 28% relative improvement on the COCO object detection dataset. Deep residual nets are foundations of our submissions to ILSVRC & COCO 2015 competitions1, where we also won the 1st places on the tasks of ImageNet detection, ImageNet localization, COCO detection, and COCO segmentation.
 
-<!-- p1-b014 | type=heading | col=0 | bbox=50.1,535.2,127.0,547.2 -->
+<!-- p1-b011 | type=heading | col=0 | bbox=50.1,535.2,127.0,547.2 -->
 ## 1. Introduction
 
-<!-- p1-b015 | type=body | col=0 | bbox=50.1,556.2,286.4,685.7 -->
+<!-- p1-b012 | type=body | col=0 | bbox=50.1,556.2,286.4,685.7 -->
 Deep convolutional neural networks [22, 21] have led to a series of breakthroughs for image classiﬁcation [21, 50, 40]. Deep networks naturally integrate low/mid/highlevel features [50] and classiﬁers in an end-to-end multilayer fashion, and the “levels” of features can be enriched by the number of stacked layers (depth). Recent evidence [41, 44] reveals that network depth is of crucial importance, and the leading results [41, 44, 13, 16] on the challenging ImageNet dataset [36] all exploit “very deep” [41] models, with a depth of sixteen [41] to thirty [16]. Many other nontrivial visual recognition tasks [8, 12, 7, 32, 27] have also
 
-<!-- p1-b016 | type=footnote | col=0 | bbox=61.0,695.7,260.3,704.5 -->
+<!-- p1-b013 | type=footnote | col=0 | bbox=61.0,695.7,260.3,704.5 -->
 1http://image-net.org/challenges/LSVRC/2015/
 
-<!-- p1-b017 | type=footnote | col=0 | bbox=50.1,697.3,286.4,712.8 -->
+<!-- p1-b014 | type=footnote | col=0 | bbox=50.1,697.3,286.4,712.8 -->
 and http://mscoco.org/dataset/#detections-challenge2015.
 
-<!-- p1-b020 | type=formula | col=1 | bbox=521.6,240.4,543.6,258.9 -->
+<!-- p1-b015 | type=figure | col=1 | bbox=308.9,224.4,545.1,346.7 -->
+![Figure 1. Training error (left) and test error (right) on CIFAR-10 with 20-layer and 56-layer “plain” networks. The deeper network has higher training error, and thus test error. Similar phenomena on ImageNet is presented in Fig. 4.](figures/F1.png)
+
+<!-- p1-b019 | type=formula | col=1 | bbox=521.6,240.4,543.6,258.9 -->
 $$ 56-layer 20-layer $$
 
 <!-- p1-b023 | type=formula | col=1 | bbox=400.3,263.2,422.2,285.3 -->
@@ -72,11 +72,11 @@ The degradation (of training accuracy) indicates that not all systems are simila
 
 
 <!-- ===== page 2 | columns=2 | gutters=[[288.0, 307.0]] -->
-<!-- p2-b000 | type=figure | col=-1 | bbox=86.6,84.9,249.9,167.1 -->
-![Figure 2. Residual learning: a building block.](figures/F2.png)
-
-<!-- p2-b001 | type=body | col=0 | bbox=142.9,78.4,148.5,87.7 -->
+<!-- p2-b000 | type=body | col=0 | bbox=142.9,78.4,148.5,87.7 -->
 x
+
+<!-- p2-b001 | type=figure | col=0 | bbox=86.6,84.9,249.9,167.1 -->
+![Figure 2. Residual learning: a building block.](figures/F2.png)
 
 <!-- p2-b009 | type=caption | col=0 | bbox=86.6,146.2,249.9,167.1 -->
 Figure 2. Residual learning: a building block.
@@ -271,62 +271,62 @@ It is worth noticing that our model has fewer ﬁlters and lower complexity than
 
 
 <!-- ===== page 4 | columns=2 | gutters=[[288.0, 307.0]] -->
-<!-- p4-b000 | type=figure | col=-1 | bbox=50.1,580.5,286.4,685.7 -->
-![Figure 3. Example network architectures for ImageNet. Left: the VGG-19 model [41](figures/F3.png)
-
-<!-- p4-b001 | type=footnote | col=0 | bbox=85.9,77.5,110.5,85.4 -->
+<!-- p4-b000 | type=footnote | col=0 | bbox=85.9,77.5,110.5,85.4 -->
 VGG-19
 
-<!-- p4-b002 | type=footnote | col=0 | bbox=146.9,77.5,190.2,85.4 -->
+<!-- p4-b001 | type=footnote | col=0 | bbox=146.9,77.5,190.2,85.4 -->
 34-layer plain
 
-<!-- p4-b003 | type=footnote | col=0 | bbox=212.4,77.5,265.3,85.4 -->
+<!-- p4-b002 | type=footnote | col=0 | bbox=212.4,77.5,265.3,85.4 -->
 34-layer residual
 
-<!-- p4-b004 | type=footnote | col=0 | bbox=92.1,91.4,104.2,96.3 -->
+<!-- p4-b003 | type=footnote | col=0 | bbox=92.1,91.4,104.2,96.3 -->
 image
 
-<!-- p4-b005 | type=footnote | col=0 | bbox=162.3,91.4,174.3,96.3 -->
+<!-- p4-b004 | type=footnote | col=0 | bbox=162.3,91.4,174.3,96.3 -->
 image
 
-<!-- p4-b006 | type=footnote | col=0 | bbox=232.4,91.4,244.5,96.3 -->
+<!-- p4-b005 | type=footnote | col=0 | bbox=232.4,91.4,244.5,96.3 -->
 image
 
-<!-- p4-b007 | type=footnote | col=0 | bbox=52.7,101.1,67.4,106.0 -->
+<!-- p4-b006 | type=footnote | col=0 | bbox=52.7,101.1,67.4,106.0 -->
 output
 
-<!-- p4-b009 | type=footnote | col=0 | bbox=50.9,106.9,68.1,111.9 -->
+<!-- p4-b008 | type=footnote | col=0 | bbox=50.9,106.9,68.1,111.9 -->
 size: 224
 
-<!-- p4-b012 | type=footnote | col=0 | bbox=50.9,133.7,68.1,144.4 -->
+<!-- p4-b011 | type=footnote | col=0 | bbox=50.9,133.7,68.1,144.4 -->
 output size: 112
 
-<!-- p4-b013 | type=footnote | col=0 | bbox=84.2,142.1,111.5,159.7 -->
+<!-- p4-b012 | type=footnote | col=0 | bbox=84.2,142.1,111.5,159.7 -->
 3x3 conv, 128 3x3 conv, 128
 
-<!-- p4-b019 | type=footnote | col=0 | bbox=52.1,171.4,67.4,182.2 -->
+<!-- p4-b018 | type=footnote | col=0 | bbox=52.1,171.4,67.4,182.2 -->
 output size: 56
 
-<!-- p4-b039 | type=footnote | col=0 | bbox=52.1,260.3,67.4,271.1 -->
+<!-- p4-b038 | type=footnote | col=0 | bbox=52.1,260.3,67.4,271.1 -->
 output size: 28
 
-<!-- p4-b058 | type=footnote | col=0 | bbox=52.7,354.7,67.4,359.6 -->
+<!-- p4-b057 | type=footnote | col=0 | bbox=52.7,354.7,67.4,359.6 -->
 output
 
-<!-- p4-b059 | type=footnote | col=0 | bbox=90.1,357.6,105.7,362.6 -->
+<!-- p4-b058 | type=footnote | col=0 | bbox=90.1,357.6,105.7,362.6 -->
 pool, /2
 
-<!-- p4-b062 | type=footnote | col=0 | bbox=52.1,360.6,66.9,365.5 -->
+<!-- p4-b061 | type=footnote | col=0 | bbox=52.1,360.6,66.9,365.5 -->
 size: 14
 
-<!-- p4-b089 | type=footnote | col=0 | bbox=52.7,506.9,67.4,511.8 -->
+<!-- p4-b088 | type=footnote | col=0 | bbox=52.7,506.9,67.4,511.8 -->
 output
 
-<!-- p4-b090 | type=footnote | col=0 | bbox=90.2,509.8,105.8,514.7 -->
+<!-- p4-b089 | type=footnote | col=0 | bbox=90.2,509.8,105.8,514.7 -->
 pool, /2
 
-<!-- p4-b093 | type=footnote | col=0 | bbox=53.3,512.7,65.6,517.7 -->
+<!-- p4-b092 | type=footnote | col=0 | bbox=53.3,512.7,65.6,517.7 -->
 size: 7
+
+<!-- p4-b103 | type=figure | col=0 | bbox=50.1,580.5,286.4,685.7 -->
+![Figure 3. Example network architectures for ImageNet. Left: the VGG-19 model [41\] (19.6 billion FLOPs) as a reference. Middle: a plain network with 34 parameter layers (3.6 billion FLOPs). Right: a residual network with 34 parameter layers (3.6 billion FLOPs). The dotted shortcuts increase dimensions. Table 1 shows](figures/F3.png)
 
 <!-- p4-b113 | type=caption | col=0 | bbox=50.1,632.8,286.4,685.7 -->
 Figure 3. Example network architectures for ImageNet. Left: the VGG-19 model [41] (19.6 billion FLOPs) as a reference. Middle: a plain network with 34 parameter layers (3.6 billion FLOPs). Right: a residual network with 34 parameter layers (3.6 billion FLOPs). The dotted shortcuts increase dimensions. Table 1 shows
@@ -453,9 +453,9 @@ FLOPs |  | 1.8×109 | 3.6×109 | 3.8×109 | 7.6×109 | 11.3×109
 Table 1. Architectures for ImageNet. Building blocks are shown in brackets (see also Fig. 5), with the numbers of blocks stacked. Downsampling is performed by conv3 1, conv4 1, and conv5 1 with a stride of 2.
 
 <!-- p5-b002 | type=figure | col=-1 | bbox=50.1,251.4,545.1,401.3 -->
-![Figure 4. Training on ImageNet. Thin curves denote training error, and bold curv](figures/F4.png)
+![Figure 4. Training on ImageNet. Thin curves denote training error, and bold curves denote validation error of the center crops. Left: plain](figures/F4.png)
 
-<!-- p5-b011 | type=formula | col=0 | bbox=115.8,353.1,142.7,371.1 -->
+<!-- p5-b010 | type=formula | col=0 | bbox=115.8,353.1,142.7,371.1 -->
 $$ plain-18 plain-34 $$
 
 <!-- p5-b036 | type=caption | col=-1 | bbox=50.1,392.3,545.1,401.3 -->
@@ -464,14 +464,14 @@ Figure 4. Training on ImageNet. Thin curves denote training error, and bold curv
 <!-- p5-b037 | type=body | col=-1 | bbox=50.1,403.3,545.1,412.3 -->
 networks of 18 and 34 layers. Right: ResNets of 18 and 34 layers. In this plot, the residual networks have no extra parameter compared to
 
-<!-- p5-b038 | type=table | col=-1 | bbox=101.5,445.7,235.0,478.2 -->
+<!-- p5-b038 | type=body | col=0 | bbox=50.1,414.3,135.5,423.3 -->
+their plain counterparts.
+
+<!-- p5-b039 | type=table | col=0 | bbox=101.5,445.7,235.0,478.2 -->
 [table T2]
  | plain | ResNet
 18 layers | 27.94 | 27.88
 34 layers | 28.54 | 25.03
-
-<!-- p5-b039 | type=body | col=0 | bbox=50.1,414.3,135.5,423.3 -->
-their plain counterparts.
 
 <!-- p5-b040 | type=body | col=0 | bbox=50.1,469.5,286.4,516.5 -->
 28.54 Table 2. Top-1 error (%, 10-crop testing) on ImageNet validation. Here the ResNets have no extra parameter compared to their plain counterparts. Fig. 4 shows the training procedures.
@@ -502,10 +502,7 @@ Second, compared to its plain counterpart, the 34-layer
 
 
 <!-- ===== page 6 | columns=2 | gutters=[[288.0, 307.0]] -->
-<!-- p6-b000 | type=figure | col=-1 | bbox=308.9,72.0,545.1,188.0 -->
-![Figure 5. A deeper residual function F for ImageNet. Left: a building block (on ](figures/F5.png)
-
-<!-- p6-b001 | type=table | col=-1 | bbox=88.5,72.1,248.0,208.8 -->
+<!-- p6-b000 | type=table | col=0 | bbox=88.5,72.1,248.0,208.8 -->
 [table T3]
 model | top-1 err. top-5 err.
 VGG-16 [41]
@@ -526,7 +523,13 @@ ResNet-152 | 22.85 6.71
 21.75 6.05
 21.43 5.71
 
-<!-- p6-b002 | type=table | col=-1 | bbox=60.0,255.1,276.5,389.3 -->
+<!-- p6-b001 | type=caption | col=0 | bbox=50.1,214.3,286.4,223.3 -->
+Table 3. Error rates (%, 10-crop testing) on ImageNet validation.
+
+<!-- p6-b002 | type=body | col=0 | bbox=50.1,225.3,286.4,245.2 -->
+VGG-16 is based on our test. ResNet-50/101/152 are of option B that only uses projections for increasing dimensions.
+
+<!-- p6-b003 | type=table | col=0 | bbox=60.0,255.1,276.5,389.3 -->
 [table T4]
 method | top-1 err. top-5 err.
 VGG [41] (ILSVRC’14)
@@ -547,7 +550,13 @@ ResNet-152 | 21.84 5.71
 19.87 4.60
 19.38 4.49
 
-<!-- p6-b003 | type=table | col=-1 | bbox=60.0,426.2,276.5,512.1 -->
+<!-- p6-b004 | type=caption | col=0 | bbox=50.1,395.2,286.4,404.3 -->
+Table 4. Error rates (%) of single-model results on the ImageNet
+
+<!-- p6-b005 | type=body | col=0 | bbox=50.1,402.5,221.3,415.2 -->
+validation set (except † reported on the test set).
+
+<!-- p6-b006 | type=table | col=0 | bbox=60.0,426.2,276.5,512.1 -->
 [table T5]
 method | top-5 err. (test)
 VGG [41] (ILSVRC’14)
@@ -560,32 +569,23 @@ BN-inception [16] | 6.8
 4.82
 ResNet (ILSVRC’15) | 3.57
 
-<!-- p6-b004 | type=caption | col=0 | bbox=50.1,214.3,286.4,223.3 -->
-Table 3. Error rates (%, 10-crop testing) on ImageNet validation.
-
-<!-- p6-b005 | type=body | col=0 | bbox=50.1,225.3,286.4,245.2 -->
-VGG-16 is based on our test. ResNet-50/101/152 are of option B that only uses projections for increasing dimensions.
-
-<!-- p6-b006 | type=caption | col=0 | bbox=50.1,395.2,286.4,404.3 -->
-Table 4. Error rates (%) of single-model results on the ImageNet
-
-<!-- p6-b007 | type=body | col=0 | bbox=50.1,402.5,221.3,415.2 -->
-validation set (except † reported on the test set).
-
-<!-- p6-b008 | type=body | col=0 | bbox=50.1,501.5,286.4,527.1 -->
+<!-- p6-b007 | type=body | col=0 | bbox=50.1,501.5,286.4,527.1 -->
 3.57 Table 5. Error rates (%) of ensembles. The top-5 error is on the
 
-<!-- p6-b009 | type=body | col=0 | bbox=50.1,529.1,234.2,538.1 -->
+<!-- p6-b008 | type=body | col=0 | bbox=50.1,529.1,234.2,538.1 -->
 test set of ImageNet and reported by the test server.
 
-<!-- p6-b010 | type=body | col=0 | bbox=50.1,563.1,286.4,608.9 -->
+<!-- p6-b009 | type=body | col=0 | bbox=50.1,563.1,286.4,608.9 -->
 ResNet reduces the top-1 error by 3.5% (Table 2), resulting from the successfully reduced training error (Fig. 4 right vs. left). This comparison veriﬁes the effectiveness of residual learning on extremely deep systems.
 
-<!-- p6-b011 | type=body | col=0 | bbox=50.1,612.3,286.4,694.0 -->
+<!-- p6-b010 | type=body | col=0 | bbox=50.1,612.3,286.4,694.0 -->
 Last, we also note that the 18-layer plain/residual nets are comparably accurate (Table 2), but the 18-layer ResNet converges faster (Fig. 4 right vs. left). When the net is “not overly deep” (18 layers here), the current SGD solver is still able to ﬁnd good solutions to the plain net. In this case, the ResNet eases the optimization by providing faster convergence at the early stage.
 
-<!-- p6-b012 | type=body | col=0 | bbox=50.1,703.4,286.4,713.4 -->
+<!-- p6-b011 | type=body | col=0 | bbox=50.1,703.4,286.4,713.4 -->
 Identity vs. Projection Shortcuts. We have shown that
+
+<!-- p6-b012 | type=figure | col=1 | bbox=308.9,72.0,545.1,188.0 -->
+![Figure 5. A deeper residual function F for ImageNet. Left: a building block (on 56×56 feature maps) as in Fig. 3 for ResNet- 34. Right: a “bottleneck” building block for ResNet-50/101/152.](figures/F5.png)
 
 <!-- p6-b025 | type=caption | col=1 | bbox=308.9,156.8,545.1,188.0 -->
 Figure 5. A deeper residual function F for ImageNet. Left: a building block (on 56×56 feature maps) as in Fig. 3 for ResNet- 34. Right: a “bottleneck” building block for ResNet-50/101/152.
@@ -613,7 +613,52 @@ The parameter-free identity shortcuts are particularly important for the bottlen
 
 
 <!-- ===== page 7 | columns=2 | gutters=[[288.0, 307.0]] -->
-<!-- p7-b000 | type=table | col=-1 | bbox=311.2,73.2,542.8,242.6 -->
+<!-- p7-b000 | type=body | col=0 | bbox=50.1,74.4,286.4,108.3 -->
+34-layer net with this 3-layer bottleneck block, resulting in a 50-layer ResNet (Table 1). We use option B for increasing dimensions. This model has 3.8 billion FLOPs.
+
+<!-- p7-b001 | type=body | col=0 | bbox=62.1,110.6,286.4,120.7 -->
+101-layer and 152-layer ResNets: We construct 101-
+
+<!-- p7-b002 | type=body | col=0 | bbox=50.1,122.7,286.4,180.5 -->
+layer and 152-layer ResNets by using more 3-layer blocks (Table 1). Remarkably, although the depth is signiﬁcantly increased, the 152-layer ResNet (11.3 billion FLOPs) still has lower complexity than VGG-16/19 nets (15.3/19.6 billion FLOPs).
+
+<!-- p7-b003 | type=body | col=0 | bbox=50.1,182.9,286.4,252.7 -->
+The 50/101/152-layer ResNets are more accurate than the 34-layer ones by considerable margins (Table 3 and 4). We do not observe the degradation problem and thus enjoy signiﬁcant accuracy gains from considerably increased depth. The beneﬁts of depth are witnessed for all evaluation metrics (Table 3 and 4).
+
+<!-- p7-b004 | type=body | col=0 | bbox=50.1,261.0,286.4,271.1 -->
+Comparisons with State-of-the-art Methods. In Table 4
+
+<!-- p7-b005 | type=body | col=0 | bbox=50.1,273.0,286.4,354.7 -->
+we compare with the previous best single-model results. Our baseline 34-layer ResNets have achieved very competitive accuracy. Our 152-layer ResNet has a single-model top-5 validation error of 4.49%. This single-model result outperforms all previous ensemble results (Table 5). We combine six models of different depth to form an ensemble (only with two 152-layer ones at the time of submitting).
+
+<!-- p7-b006 | type=body | col=0 | bbox=50.1,356.6,286.4,366.7 -->
+This leads to 3.57% top-5 error on the test set (Table 5).
+
+<!-- p7-b007 | type=body | col=0 | bbox=50.1,368.5,232.5,378.5 -->
+This entry won the 1st place in ILSVRC 2015.
+
+<!-- p7-b008 | type=heading | col=0 | bbox=50.1,389.1,180.3,400.1 -->
+### 4.2. CIFAR-10 and Analysis
+
+<!-- p7-b009 | type=body | col=0 | bbox=50.1,408.4,286.4,490.1 -->
+We conducted more studies on the CIFAR-10 dataset [20], which consists of 50k training images and 10k testing images in 10 classes. We present experiments trained on the training set and evaluated on the test set. Our focus is on the behaviors of extremely deep networks, but not on pushing the state-of-the-art results, so we intentionally use simple architectures as follows.
+
+<!-- p7-b010 | type=body | col=0 | bbox=50.1,492.5,286.4,622.0 -->
+The plain/residual architectures follow the form in Fig. 3 (middle/right). The network inputs are 32×32 images, with the per-pixel mean subtracted. The ﬁrst layer is 3×3 convolutions. Then we use a stack of 6n layers with 3×3 convolutions on the feature maps of sizes {32, 16, 8} respectively, with 2n layers for each feature map size. The numbers of ﬁlters are {16, 32, 64} respectively. The subsampling is performed by convolutions with a stride of 2. The network ends with a global average pooling, a 10-way fully-connected layer, and softmax. There are totally 6n+2 stacked weighted layers. The following table summarizes the architecture:
+
+<!-- p7-b011 | type=table | col=0 | bbox=74.2,632.8,262.3,669.8 -->
+[table T7]
+output map size | 32×32 | 16×16 | 8×8
+\# layers
+\# ﬁlters | 1+2n
+16 | 2n
+32 | 2n
+64
+
+<!-- p7-b012 | type=body | col=0 | bbox=50.1,659.1,286.4,713.4 -->
+64 When shortcut connections are used, they are connected to the pairs of 3×3 layers (totally 3n shortcuts). On this dataset we use identity shortcuts in all cases (i.e., option A),
+
+<!-- p7-b013 | type=table | col=1 | bbox=311.2,73.2,542.8,242.6 -->
 [table T6]
 method |  |  | error (%)
 Maxout [10]
@@ -653,51 +698,6 @@ ResNet | 20
 6.43 (6.61±0.16)
 7.93
 
-<!-- p7-b001 | type=table | col=-1 | bbox=74.2,632.8,262.3,669.8 -->
-[table T7]
-output map size | 32×32 | 16×16 | 8×8
-\# layers
-\# ﬁlters | 1+2n
-16 | 2n
-32 | 2n
-64
-
-<!-- p7-b002 | type=body | col=0 | bbox=50.1,74.4,286.4,108.3 -->
-34-layer net with this 3-layer bottleneck block, resulting in a 50-layer ResNet (Table 1). We use option B for increasing dimensions. This model has 3.8 billion FLOPs.
-
-<!-- p7-b003 | type=body | col=0 | bbox=62.1,110.6,286.4,120.7 -->
-101-layer and 152-layer ResNets: We construct 101-
-
-<!-- p7-b004 | type=body | col=0 | bbox=50.1,122.7,286.4,180.5 -->
-layer and 152-layer ResNets by using more 3-layer blocks (Table 1). Remarkably, although the depth is signiﬁcantly increased, the 152-layer ResNet (11.3 billion FLOPs) still has lower complexity than VGG-16/19 nets (15.3/19.6 billion FLOPs).
-
-<!-- p7-b005 | type=body | col=0 | bbox=50.1,182.9,286.4,252.7 -->
-The 50/101/152-layer ResNets are more accurate than the 34-layer ones by considerable margins (Table 3 and 4). We do not observe the degradation problem and thus enjoy signiﬁcant accuracy gains from considerably increased depth. The beneﬁts of depth are witnessed for all evaluation metrics (Table 3 and 4).
-
-<!-- p7-b006 | type=body | col=0 | bbox=50.1,261.0,286.4,271.1 -->
-Comparisons with State-of-the-art Methods. In Table 4
-
-<!-- p7-b007 | type=body | col=0 | bbox=50.1,273.0,286.4,354.7 -->
-we compare with the previous best single-model results. Our baseline 34-layer ResNets have achieved very competitive accuracy. Our 152-layer ResNet has a single-model top-5 validation error of 4.49%. This single-model result outperforms all previous ensemble results (Table 5). We combine six models of different depth to form an ensemble (only with two 152-layer ones at the time of submitting).
-
-<!-- p7-b008 | type=body | col=0 | bbox=50.1,356.6,286.4,366.7 -->
-This leads to 3.57% top-5 error on the test set (Table 5).
-
-<!-- p7-b009 | type=body | col=0 | bbox=50.1,368.5,232.5,378.5 -->
-This entry won the 1st place in ILSVRC 2015.
-
-<!-- p7-b010 | type=heading | col=0 | bbox=50.1,389.1,180.3,400.1 -->
-### 4.2. CIFAR-10 and Analysis
-
-<!-- p7-b011 | type=body | col=0 | bbox=50.1,408.4,286.4,490.1 -->
-We conducted more studies on the CIFAR-10 dataset [20], which consists of 50k training images and 10k testing images in 10 classes. We present experiments trained on the training set and evaluated on the test set. Our focus is on the behaviors of extremely deep networks, but not on pushing the state-of-the-art results, so we intentionally use simple architectures as follows.
-
-<!-- p7-b012 | type=body | col=0 | bbox=50.1,492.5,286.4,622.0 -->
-The plain/residual architectures follow the form in Fig. 3 (middle/right). The network inputs are 32×32 images, with the per-pixel mean subtracted. The ﬁrst layer is 3×3 convolutions. Then we use a stack of 6n layers with 3×3 convolutions on the feature maps of sizes {32, 16, 8} respectively, with 2n layers for each feature map size. The numbers of ﬁlters are {16, 32, 64} respectively. The subsampling is performed by convolutions with a stride of 2. The network ends with a global average pooling, a 10-way fully-connected layer, and softmax. There are totally 6n+2 stacked weighted layers. The following table summarizes the architecture:
-
-<!-- p7-b013 | type=body | col=0 | bbox=50.1,659.1,286.4,713.4 -->
-64 When shortcut connections are used, they are connected to the pairs of 3×3 layers (totally 3n shortcuts). On this dataset we use identity shortcuts in all cases (i.e., option A),
-
 <!-- p7-b014 | type=caption | col=1 | bbox=308.9,253.1,545.1,262.1 -->
 Table 6. Classiﬁcation error on the CIFAR-10 test set. All meth-
 
@@ -731,18 +731,42 @@ We further explore n = 18 that leads to a 110-layer ResNet. In this case, we ﬁ
 
 <!-- ===== page 8 | columns=2 | gutters=[[288.0, 307.0]] -->
 <!-- p8-b000 | type=figure | col=-1 | bbox=50.1,72.0,545.1,192.5 -->
-![Figure 6. Training on CIFAR-10. Dashed lines denote training error, and bold lin](figures/F7.png)
+![Figure 6. Training on CIFAR-10. Dashed lines denote training error, and bold lines denote testing error. Left: plain networks. The error of plain-110 is higher than 60% and not displayed. Middle: ResNets. Right: ResNets with 110 and 1202 layers.](figures/F7.png)
 
-<!-- p8-b012 | type=formula | col=0 | bbox=121.3,140.1,135.6,160.6 -->
+<!-- p8-b011 | type=formula | col=0 | bbox=121.3,140.1,135.6,160.6 -->
 $$ plain-20 plain-32 plain-44 plain-56 $$
 
 <!-- p8-b046 | type=caption | col=-1 | bbox=50.1,172.5,545.1,192.5 -->
 Figure 6. Training on CIFAR-10. Dashed lines denote training error, and bold lines denote testing error. Left: plain networks. The error of plain-110 is higher than 60% and not displayed. Middle: ResNets. Right: ResNets with 110 and 1202 layers.
 
-<!-- p8-b047 | type=figure | col=-1 | bbox=50.1,212.2,286.4,348.2 -->
-![Figure 7. Standard deviations (std) of layer responses on CIFAR- 10. The respons](figures/F6.png)
+<!-- p8-b047 | type=figure | col=0 | bbox=50.1,212.2,286.4,348.2 -->
+![Figure 7. Standard deviations (std) of layer responses on CIFAR- 10. The responses are the outputs of each 3×3 layer, after BN and](figures/F6.png)
 
-<!-- p8-b048 | type=table | col=-1 | bbox=397.9,213.1,518.3,258.6 -->
+<!-- p8-b076 | type=caption | col=0 | bbox=50.1,328.3,286.4,348.2 -->
+Figure 7. Standard deviations (std) of layer responses on CIFAR- 10. The responses are the outputs of each 3×3 layer, after BN and
+
+<!-- p8-b077 | type=body | col=0 | bbox=50.1,350.1,286.4,370.2 -->
+before nonlinearity. Top: the layers are shown in their original order. Bottom: the responses are ranked in descending order.
+
+<!-- p8-b078 | type=body | col=0 | bbox=50.1,392.4,286.4,414.3 -->
+networks such as FitNet [35] and Highway [42] (Table 6), yet is among the state-of-the-art results (6.43%, Table 6).
+
+<!-- p8-b079 | type=body | col=0 | bbox=50.1,422.3,286.4,432.3 -->
+Analysis of Layer Responses. Fig. 7 shows the standard
+
+<!-- p8-b080 | type=body | col=0 | bbox=50.1,434.3,286.4,587.7 -->
+deviations (std) of the layer responses. The responses are the outputs of each 3×3 layer, after BN and before other nonlinearity (ReLU/addition). For ResNets, this analysis reveals the response strength of the residual functions. Fig. 7 shows that ResNets have generally smaller responses than their plain counterparts. These results support our basic motivation (Sec.3.1) that the residual functions might be generally closer to zero than the non-residual functions. We also notice that the deeper ResNet has smaller magnitudes of responses, as evidenced by the comparisons among ResNet-20, 56, and 110 in Fig. 7. When there are more layers, an individual layer of ResNets tends to modify the signal less.
+
+<!-- p8-b081 | type=body | col=0 | bbox=50.1,595.7,286.4,605.7 -->
+Exploring Over 1000 layers. We explore an aggressively
+
+<!-- p8-b082 | type=body | col=0 | bbox=50.1,607.5,286.4,677.5 -->
+deep model of over 1000 layers. We set n = 200 that leads to a 1202-layer network, which is trained as described above. Our method shows no optimization difﬁculty, and this 103-layer network is able to achieve training error <0.1% (Fig. 6, right). Its test error is still fairly good (7.93%, Table 6).
+
+<!-- p8-b083 | type=body | col=0 | bbox=50.1,679.5,286.4,713.4 -->
+But there are still open problems on such aggressively deep models. The testing result of this 1202-layer network is worse than that of our 110-layer network, although both
+
+<!-- p8-b084 | type=table | col=1 | bbox=397.9,213.1,518.3,258.6 -->
 [table T8]
 07+12 | 07++12
 VOC 07 test | VOC 12 test
@@ -750,53 +774,29 @@ VOC 07 test | VOC 12 test
 76.4 | 70.4
 73.8
 
-<!-- p8-b051 | type=table | col=-1 | bbox=344.2,302.2,509.7,331.9 -->
+<!-- p8-b085 | type=body | col=1 | bbox=343.6,213.8,388.7,222.8 -->
+training data
+
+<!-- p8-b086 | type=body | col=1 | bbox=351.4,225.8,381.0,234.7 -->
+test data
+
+<!-- p8-b087 | type=body | col=1 | bbox=350.6,237.7,381.8,246.6 -->
+VGG-16
+
+<!-- p8-b088 | type=body | col=1 | bbox=308.9,249.2,545.1,274.1 -->
+ResNet-101 Table 7. Object detection mAP (%) on the PASCAL VOC
+
+<!-- p8-b089 | type=body | col=1 | bbox=308.9,276.0,545.1,285.0 -->
+2007/2012 test sets using baseline Faster R-CNN. See also Ta-
+
+<!-- p8-b090 | type=body | col=1 | bbox=308.9,287.0,420.7,296.0 -->
+ble 10 and 11 for better results.
+
+<!-- p8-b091 | type=table | col=1 | bbox=344.2,302.2,509.7,331.9 -->
 [table T9]
 metric | mAP@.5 | mAP@[.5, .95]
 VGG-16 | 41.5 | 21.2
 ResNet-101 | 48.4 | 27.2
-
-<!-- p8-b078 | type=caption | col=0 | bbox=50.1,328.3,286.4,348.2 -->
-Figure 7. Standard deviations (std) of layer responses on CIFAR- 10. The responses are the outputs of each 3×3 layer, after BN and
-
-<!-- p8-b079 | type=body | col=0 | bbox=50.1,350.1,286.4,370.2 -->
-before nonlinearity. Top: the layers are shown in their original order. Bottom: the responses are ranked in descending order.
-
-<!-- p8-b080 | type=body | col=0 | bbox=50.1,392.4,286.4,414.3 -->
-networks such as FitNet [35] and Highway [42] (Table 6), yet is among the state-of-the-art results (6.43%, Table 6).
-
-<!-- p8-b081 | type=body | col=0 | bbox=50.1,422.3,286.4,432.3 -->
-Analysis of Layer Responses. Fig. 7 shows the standard
-
-<!-- p8-b082 | type=body | col=0 | bbox=50.1,434.3,286.4,587.7 -->
-deviations (std) of the layer responses. The responses are the outputs of each 3×3 layer, after BN and before other nonlinearity (ReLU/addition). For ResNets, this analysis reveals the response strength of the residual functions. Fig. 7 shows that ResNets have generally smaller responses than their plain counterparts. These results support our basic motivation (Sec.3.1) that the residual functions might be generally closer to zero than the non-residual functions. We also notice that the deeper ResNet has smaller magnitudes of responses, as evidenced by the comparisons among ResNet-20, 56, and 110 in Fig. 7. When there are more layers, an individual layer of ResNets tends to modify the signal less.
-
-<!-- p8-b083 | type=body | col=0 | bbox=50.1,595.7,286.4,605.7 -->
-Exploring Over 1000 layers. We explore an aggressively
-
-<!-- p8-b084 | type=body | col=0 | bbox=50.1,607.5,286.4,677.5 -->
-deep model of over 1000 layers. We set n = 200 that leads to a 1202-layer network, which is trained as described above. Our method shows no optimization difﬁculty, and this 103-layer network is able to achieve training error <0.1% (Fig. 6, right). Its test error is still fairly good (7.93%, Table 6).
-
-<!-- p8-b085 | type=body | col=0 | bbox=50.1,679.5,286.4,713.4 -->
-But there are still open problems on such aggressively deep models. The testing result of this 1202-layer network is worse than that of our 110-layer network, although both
-
-<!-- p8-b086 | type=body | col=1 | bbox=343.6,213.8,388.7,222.8 -->
-training data
-
-<!-- p8-b087 | type=body | col=1 | bbox=351.4,225.8,381.0,234.7 -->
-test data
-
-<!-- p8-b088 | type=body | col=1 | bbox=350.6,237.7,381.8,246.6 -->
-VGG-16
-
-<!-- p8-b089 | type=body | col=1 | bbox=308.9,249.2,545.1,274.1 -->
-ResNet-101 Table 7. Object detection mAP (%) on the PASCAL VOC
-
-<!-- p8-b090 | type=body | col=1 | bbox=308.9,276.0,545.1,285.0 -->
-2007/2012 test sets using baseline Faster R-CNN. See also Ta-
-
-<!-- p8-b091 | type=body | col=1 | bbox=308.9,287.0,420.7,296.0 -->
-ble 10 and 11 for better results.
 
 <!-- p8-b092 | type=body | col=1 | bbox=308.9,325.0,545.1,349.9 -->
 ResNet-101 Table 8. Object detection mAP (%) on the COCO validation set
@@ -1174,7 +1174,25 @@ COCO+07++12 | 70.4
 <!-- p11-b019 | type=caption | col=-1 | bbox=50.1,340.6,545.1,361.0 -->
 Table 11. Detection results on the PASCAL VOC 2012 test set (http://host.robots.ox.ac.uk:8080/leaderboard/ displaylb.php?challengeid=11&compid=4). The baseline is the Faster R-CNN system. The system “baseline+++” include
 
-<!-- p11-b020 | type=table | col=-1 | bbox=324.2,391.8,529.1,445.6 -->
+<!-- p11-b020 | type=body | col=0 | bbox=50.1,362.9,260.7,371.9 -->
+box reﬁnement, context, and multi-scale testing in Table 9.
+
+<!-- p11-b021 | type=body | col=0 | bbox=50.1,394.0,286.4,451.8 -->
+We select two adjacent scales from the pyramid following [33]. RoI pooling and subsequent layers are performed on the feature maps of these two scales [33], which are merged by maxout as in [33]. Multi-scale testing improves the mAP by over 2 points (Table 9).
+
+<!-- p11-b022 | type=body | col=0 | bbox=50.1,459.2,286.4,529.2 -->
+Using validation data. Next we use the 80k+40k trainval set for training and the 20k test-dev set for evaluation. The testdev set has no publicly available ground truth and the result is reported by the evaluation server. Under this setting, the results are an mAP@.5 of 55.7% and an mAP@[.5, .95] of 34.9% (Table 9). This is our single-model result.
+
+<!-- p11-b023 | type=body | col=0 | bbox=50.1,536.6,286.4,630.2 -->
+Ensemble. In Faster R-CNN, the system is designed to learn region proposals and also object classiﬁers, so an ensemble can be used to boost both tasks. We use an ensemble for proposing regions, and the union set of proposals are processed by an ensemble of per-region classiﬁers. Table 9 shows our result based on an ensemble of 3 networks. The mAP is 59.0% and 37.4% on the test-dev set. This result won the 1st place in the detection task in COCO 2015.
+
+<!-- p11-b024 | type=body | col=0 | bbox=50.1,642.9,113.4,652.9 -->
+PASCAL VOC
+
+<!-- p11-b025 | type=body | col=0 | bbox=50.1,655.6,286.4,713.4 -->
+We revisit the PASCAL VOC dataset based on the above model. With the single model on the COCO dataset (55.7% mAP@.5 in Table 9), we ﬁne-tune this model on the PAS- CAL VOC sets. The improvements of box reﬁnement, context, and multi-scale testing are also adopted. By doing so
+
+<!-- p11-b026 | type=table | col=1 | bbox=324.2,391.8,529.1,445.6 -->
 [table T12]
  | val2 | test
 GoogLeNet [44] (ILSVRC’14) | - | 43.9
@@ -1182,24 +1200,6 @@ our single model (ILSVRC’15)
 our ensemble (ILSVRC’15) | 60.5
 63.6 | 58.8
 62.1
-
-<!-- p11-b021 | type=body | col=0 | bbox=50.1,362.9,260.7,371.9 -->
-box reﬁnement, context, and multi-scale testing in Table 9.
-
-<!-- p11-b022 | type=body | col=0 | bbox=50.1,394.0,286.4,451.8 -->
-We select two adjacent scales from the pyramid following [33]. RoI pooling and subsequent layers are performed on the feature maps of these two scales [33], which are merged by maxout as in [33]. Multi-scale testing improves the mAP by over 2 points (Table 9).
-
-<!-- p11-b023 | type=body | col=0 | bbox=50.1,459.2,286.4,529.2 -->
-Using validation data. Next we use the 80k+40k trainval set for training and the 20k test-dev set for evaluation. The testdev set has no publicly available ground truth and the result is reported by the evaluation server. Under this setting, the results are an mAP@.5 of 55.7% and an mAP@[.5, .95] of 34.9% (Table 9). This is our single-model result.
-
-<!-- p11-b024 | type=body | col=0 | bbox=50.1,536.6,286.4,630.2 -->
-Ensemble. In Faster R-CNN, the system is designed to learn region proposals and also object classiﬁers, so an ensemble can be used to boost both tasks. We use an ensemble for proposing regions, and the union set of proposals are processed by an ensemble of per-region classiﬁers. Table 9 shows our result based on an ensemble of 3 networks. The mAP is 59.0% and 37.4% on the test-dev set. This result won the 1st place in the detection task in COCO 2015.
-
-<!-- p11-b025 | type=body | col=0 | bbox=50.1,642.9,113.4,652.9 -->
-PASCAL VOC
-
-<!-- p11-b026 | type=body | col=0 | bbox=50.1,655.6,286.4,713.4 -->
-We revisit the PASCAL VOC dataset based on the above model. With the single model on the COCO dataset (55.7% mAP@.5 in Table 9), we ﬁne-tune this model on the PAS- CAL VOC sets. The improvements of box reﬁnement, context, and multi-scale testing are also adopted. By doing so
 
 <!-- p11-b027 | type=body | col=1 | bbox=308.9,434.7,545.1,482.0 -->
 our ensemble (ILSVRC’15) Table 12. Our results (mAP, %) on the ImageNet detection dataset. Our detection system is Faster R-CNN [32] with the improvements in Table 9, using ResNet-101.
@@ -1218,7 +1218,7 @@ The ImageNet Detection (DET) task involves 200 object categories. The accuracy i
 
 
 <!-- ===== page 12 | columns=2 | gutters=[[288.0, 307.0]] -->
-<!-- p12-b000 | type=table | col=-1 | bbox=51.9,72.7,284.6,147.5 -->
+<!-- p12-b000 | type=table | col=0 | bbox=51.9,72.7,284.6,147.5 -->
 [table T13]
 LOC
 method | LOC
@@ -1247,7 +1247,31 @@ ensemble | 14.4
 10.6
 8.9
 
-<!-- p12-b001 | type=table | col=-1 | bbox=313.5,72.7,540.5,142.4 -->
+<!-- p12-b001 | type=caption | col=0 | bbox=50.1,152.9,286.4,205.7 -->
+Table 13. Localization error (%) on the ImageNet validation. In the column of “LOC error on GT class” ([41]), the ground truth class is used. In the “testing” column, “1-crop” denotes testing on a center crop of 224×224 pixels, “dense” denotes dense (fully convolutional) and multi-scale testing.
+
+<!-- p12-b002 | type=body | col=0 | bbox=50.1,224.5,286.4,258.4 -->
+58.8% mAP and our ensemble of 3 models has 62.1% mAP on the DET test set (Table 12). This result won the 1st place in the ImageNet detection task in ILSVRC 2015, surpassing
+
+<!-- p12-b003 | type=body | col=0 | bbox=50.1,260.3,216.7,270.3 -->
+the second place by 8.5 points (absolute).
+
+<!-- p12-b004 | type=heading | col=0 | bbox=50.1,285.1,180.6,297.1 -->
+## C. ImageNet Localization
+
+<!-- p12-b005 | type=body | col=0 | bbox=50.1,306.5,286.4,436.0 -->
+The ImageNet Localization (LOC) task [36] requires to classify and localize the objects. Following [40, 41], we assume that the image-level classiﬁers are ﬁrst adopted for predicting the class labels of an image, and the localization algorithm only accounts for predicting bounding boxes based on the predicted classes. We adopt the “per-class regression” (PCR) strategy [40, 41], learning a bounding box regressor for each class. We pre-train the networks for ImageNet classiﬁcation and then ﬁne-tune them for localization. We train networks on the provided 1000-class ImageNet training set.
+
+<!-- p12-b006 | type=body | col=0 | bbox=50.1,438.8,286.4,592.2 -->
+Our localization algorithm is based on the RPN framework of [32] with a few modiﬁcations. Unlike the way in [32] that is category-agnostic, our RPN for localization is designed in a per-class form. This RPN ends with two sibling 1×1 convolutional layers for binary classiﬁcation (cls) and box regression (reg), as in [32]. The cls and reg layers are both in a per-class from, in contrast to [32]. Speciﬁcally, the cls layer has a 1000-d output, and each dimension is binary logistic regression for predicting being or not being an object class; the reg layer has a 1000×4-d output consisting of box regressors for 1000 classes. As in [32], our bounding box regression is with reference to multiple translation-invariant “anchor” boxes at each position.
+
+<!-- p12-b007 | type=body | col=0 | bbox=50.1,595.0,286.4,676.7 -->
+As in our ImageNet classiﬁcation training (Sec. 3.4), we randomly sample 224×224 crops for data augmentation. We use a mini-batch size of 256 images for ﬁne-tuning. To avoid negative samples being dominate, 8 anchors are randomly sampled for each image, where the sampled positive and negative anchors have a ratio of 1:1 [32]. For testing, the network is applied on the image fully-convolutionally.
+
+<!-- p12-b008 | type=caption | col=0 | bbox=50.1,679.5,286.4,713.4 -->
+Table 13 compares the localization results. Following [41], we ﬁrst perform “oracle” testing using the ground truth class as the classiﬁcation prediction. VGG’s paper [41] re-
+
+<!-- p12-b009 | type=table | col=1 | bbox=313.5,72.7,540.5,142.4 -->
 [table T14]
 method | top-5 localization err | 
  | val | test
@@ -1259,30 +1283,6 @@ VGG [41] (ILSVRC’14) | 30.0
 26.7
 25.3
 ours (ILSVRC’15) | 8.9 | 9.0
-
-<!-- p12-b002 | type=caption | col=0 | bbox=50.1,152.9,286.4,205.7 -->
-Table 13. Localization error (%) on the ImageNet validation. In the column of “LOC error on GT class” ([41]), the ground truth class is used. In the “testing” column, “1-crop” denotes testing on a center crop of 224×224 pixels, “dense” denotes dense (fully convolutional) and multi-scale testing.
-
-<!-- p12-b003 | type=body | col=0 | bbox=50.1,224.5,286.4,258.4 -->
-58.8% mAP and our ensemble of 3 models has 62.1% mAP on the DET test set (Table 12). This result won the 1st place in the ImageNet detection task in ILSVRC 2015, surpassing
-
-<!-- p12-b004 | type=body | col=0 | bbox=50.1,260.3,216.7,270.3 -->
-the second place by 8.5 points (absolute).
-
-<!-- p12-b005 | type=heading | col=0 | bbox=50.1,285.1,180.6,297.1 -->
-## C. ImageNet Localization
-
-<!-- p12-b006 | type=body | col=0 | bbox=50.1,306.5,286.4,436.0 -->
-The ImageNet Localization (LOC) task [36] requires to classify and localize the objects. Following [40, 41], we assume that the image-level classiﬁers are ﬁrst adopted for predicting the class labels of an image, and the localization algorithm only accounts for predicting bounding boxes based on the predicted classes. We adopt the “per-class regression” (PCR) strategy [40, 41], learning a bounding box regressor for each class. We pre-train the networks for ImageNet classiﬁcation and then ﬁne-tune them for localization. We train networks on the provided 1000-class ImageNet training set.
-
-<!-- p12-b007 | type=body | col=0 | bbox=50.1,438.8,286.4,592.2 -->
-Our localization algorithm is based on the RPN framework of [32] with a few modiﬁcations. Unlike the way in [32] that is category-agnostic, our RPN for localization is designed in a per-class form. This RPN ends with two sibling 1×1 convolutional layers for binary classiﬁcation (cls) and box regression (reg), as in [32]. The cls and reg layers are both in a per-class from, in contrast to [32]. Speciﬁcally, the cls layer has a 1000-d output, and each dimension is binary logistic regression for predicting being or not being an object class; the reg layer has a 1000×4-d output consisting of box regressors for 1000 classes. As in [32], our bounding box regression is with reference to multiple translation-invariant “anchor” boxes at each position.
-
-<!-- p12-b008 | type=body | col=0 | bbox=50.1,595.0,286.4,676.7 -->
-As in our ImageNet classiﬁcation training (Sec. 3.4), we randomly sample 224×224 crops for data augmentation. We use a mini-batch size of 256 images for ﬁne-tuning. To avoid negative samples being dominate, 8 anchors are randomly sampled for each image, where the sampled positive and negative anchors have a ratio of 1:1 [32]. For testing, the network is applied on the image fully-convolutionally.
-
-<!-- p12-b009 | type=caption | col=0 | bbox=50.1,679.5,286.4,713.4 -->
-Table 13 compares the localization results. Following [41], we ﬁrst perform “oracle” testing using the ground truth class as the classiﬁcation prediction. VGG’s paper [41] re-
 
 <!-- p12-b010 | type=body | col=1 | bbox=308.9,132.0,545.1,167.8 -->
 ours (ILSVRC’15) Table 14. Comparisons of localization error (%) on the ImageNet dataset with state-of-the-art methods.

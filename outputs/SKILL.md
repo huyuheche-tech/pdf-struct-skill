@@ -189,6 +189,7 @@ python scripts/merge_ocr.py out/paper --pages 1-3        # 只合并部分页
 
 - [ ] `selfcheck.ok == true`（否则先修，别交付）
 - [ ] 有文本层时 `0.95 <= stats.char_recall <= 1.05`；OCR 模式下 `char_recall` 为 `null` 且 `stats.ocr_pages` 非空
+      （定义：`emitted_chars / (text_layer_chars − dropped_running_chars − masked_figure_label_chars)`；原始口径 `char_recall_vs_full_layer = emitted_chars / text_layer_chars` 用于看有没有丢字）
 - [ ] `blocks_with_bbox == n_blocks`（纯文本层文档）；OCR 模式允许 `blocks_with_bbox < n_blocks`
 - [ ] 每页 `columns` 与 overlay 一致；跨栏块 `column == -1`
 - [ ] `sections[].path` 的层级与页面上编号一致（3.2 在 3.3 之前）
@@ -206,6 +207,10 @@ python scripts/merge_ocr.py out/paper --pages 1-3        # 只合并部分页
   汇总时请以 `pages[]` 为准，不要只信 `document.column_template`。
 - 章节识别覆盖两种常见排版：编号 + 字号/字重变化，以及**正文号字号的全大写编号小节**（`3.1 VISION TRANSFORMER (VIT)`）；
   无编号、无字号差异、又与正文同字重的"暗标题"仍可能被当正文（此时 `sections` 会少，但文字不丢）。
+- **中文**：编号标题（`1 引言`、`2.1 检索增强`）、无空格断行拼接、中文表格已在合成双栏语料上验证；
+  未在真实中文期刊 PDF 上验证，竖排或中英混排的复杂版式请用 overlay 复核。
+- **图/表栏号按几何重算**：完全落在一栏内的图/表归该栏（否则会被当成带区分界，抢到同带正文之前）；
+  跨栏图仍是带区分界。图区 bbox 判错时栏号也会错，需 overlay 复核。
 - 表格嵌套（单元格内含多行多列）按单元格内多行文本保留，不展开为子表。
 - 作者顺序按页面行序，个别版式（作者分列排版）可能与阅读顺序不一致，需人工确认。
 - 只处理 PDF；DOCX/HTML 请先用 office/latex 工具链转 PDF。
@@ -214,7 +219,9 @@ python scripts/merge_ocr.py out/paper --pages 1-3        # 只合并部分页
 
 - `pdf-struct/2`，脚本 `scripts/pdf_struct.py` + `scripts/parse_pdf.py`（本 Skill 自带，无外部服务）。
 - 工具箱：`scripts/parse_pdf.py`（主入口）、`scripts/baseline_compare.py`（与裸 dump 的量化对照）、
-  `scripts/ocr_pages.py` + `scripts/merge_ocr.py`（扫描件分支）。
+  `scripts/ocr_pages.py` + `scripts/merge_ocr.py`（扫描件分支）、`scripts/make_fixtures.py`（合成语料）。
+- 自测：`python tests/test_engine.py`（27 条断言，三个合成 PDF：中文双栏 / 跨行标题 / 无文本层扫描页）。
+  改引擎前后都应跑一遍；它不依赖外部语料，也不联网。
 - 依赖：PyMuPDF 2.1（MuPDF 1.28.6，AGPL，仅本地解析，不联网）、Pillow 12.3（overlay 与裁图）。
 - 算法与取舍见 `references/method.md`；schema 逐字段说明见 `references/schema.md`；对照方法见 `references/baseline.md`。
 - 示例调用与示例输出见 `examples/`（`quickstart.md` 是一屏接入版；示例仅用于说明调用方式，不是正式用例结果）。

@@ -53,7 +53,7 @@ python outputs/scripts/parse_pdf.py paper.pdf --out out/paper
 | arXiv 2005.14165 *GPT-3*（75 页压力） | 单栏 | 75 | 961 | 56 | 0 | 48 / 51 | 33/33 | 183 | 1.0130 | OK |
 | arXiv 2010.11929 *ViT*（**留出样本**） | 单栏正文 + 双栏附录 | 22 | 742 | 22 | 14 | 8 / 9 | 14/14 | 70 | 1.0016 | OK |
 
-`char_recall = 输出正文字符 / (文本层字符 − 页眉页脚)`；> 1.05 视为重复输出（自检会报错）。
+`char_recall = 输出正文字符 / (文本层字符 − 页眉页脚 − 图内/边角文字)`；> 1.05 视为重复输出（自检会报错）。对整层的原始比值另存为 `char_recall_vs_full_layer`，两者之差就是被显式排除的图内标签与页眉（逐块可查）。
 ResNet 的 241 个 `figure_label` 块（图内坐标轴/结构标注）与 1 个 `margin_artifact` 不计入正文，
 因此 `char_recall_vs_full_layer = 0.9674` —— 差额就是"本来就不该进正文"的部分，逐块可查。
 
@@ -74,9 +74,11 @@ GPT-3 那例另有 3 条 `sparse_table` 非阻塞 warning（表头稀疏、仍�
 |---|---|---|
 | 章节 / 表 / 单元格 | 0 / 0 / 0 | **146 / 80 / 2,586** |
 | 可定位到页+坐标的块 | 0 | **3,483** |
-| 图内文字混入正文 | 6,280 字符 | **0**（归入 `figure_label`，可查可取） |
+| 图内文字混入正文 | 6,280 字符 | **6,280 字符归位、1 处漏网**（归入 `figure_label`，可查可取；漏网见 `outputs/response.md` §6） |
 | 页眉页脚进正文 | 22 行 | **0**（归入 `dropped_running_text`） |
 | 双栏串栏（读右栏又回左栏） | 54 次 | **0** |
+
+另有一组**不依赖语料**的自测：`python tests/test_engine.py` 用三个合成 PDF（中文双栏、跨行标题+全大写小节、无文本层扫描页）跑 27 条断言，覆盖 `columns==2`、中文编号标题进章节树、`title_merged`、扫描件 `exit 3 → merge → bbox:null/char_recall:null`。
 
 复算：`python outputs/scripts/baseline_compare.py <paper>.pdf --doc out/<paper>/doc.json`；
 原始数据 `results/baseline.json`，判据定义与逐例表 `outputs/references/baseline.md`。
@@ -105,6 +107,9 @@ outputs/references/method.md   方法与阈值取舍（含每处阈值的失败�
 outputs/references/schema.md   doc.json 字段级契约
 outputs/references/baseline.md 基线对照的方法、逐例结果与读法
 outputs/examples/quickstart.md 一屏粘贴即用（Agent 最短路径）
+tests/test_engine.py           27 条黑盒断言（中文双栏 / 跨行标题 / 扫描件），不依赖 pytest
+tests/fixtures/                三个合成语料 + outputs/scripts/make_fixtures.py 可重建
+results/resnet/doc.sample.json 裁剪版 doc.json：sections + T1 的 cells/bbox_cells + 首页 blocks
 outputs/examples/README.md     最小调用示例（明确标注为示例，非正式评测结果）
 outputs/response.md            本次提交的主交付说明（结论/理由/实测/基线/边界/证据定位）
 outputs/result.json            结构化结果（五例统计 + 汇总）

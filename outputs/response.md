@@ -30,6 +30,9 @@
 | `outputs/references/method.md` | 方法说明：每个阈值的取值理由、实测数据、已知失败模式 |
 | `outputs/references/baseline.md` | 基线对照方法与逐例结果（本文件 §5 的完整版） |
 | `outputs/references/schema.md` | 输出字段契约（逐字段类型与语义） |
+| `tests/` | **27 条黑盒断言 + 3 个合成语料**（中文双栏 / 跨行标题 / 扫描件），`python tests/test_engine.py` 一键跑，不依赖 pytest、不联网 |
+| `results/resnet/doc.sample.json` | 裁剪版 `doc.json`（12 页 `pages` + 16 节 `sections` + 首页 47 个 `blocks` + T1 的 63 个 `cells`/`bbox_cells`），让“逐格带坐标”可以直接翻看 |
+| `corpus/SOURCES.md` / `LICENSE` | 五篇语料的 arXiv 地址与 sha256（PDF 不随包分发）/ MIT 许可 |
 | `results/` | 五篇语料的运行产物 + `run.log` + `baseline.json` |
 | `characterization.json` | 与论文/预期值的偏差、适用包络、失败模式、阈值敏感性 |
 | `traces/trace.jsonl` | 构建过程的 9 步结构化轨迹（含工具调用配对、产物锚点、成本） |
@@ -38,7 +41,7 @@
 ## 3. 方法与关键设计（为什么这样能"提得全 / 排得对 / 拆得清 / 核得回"）
 
 1. **提得全**：文本层为唯一真值来源，不做 OCR 猜测；页眉/页脚/页码按「重复行的位置 + 内容相似度」判定后**丢弃但计数**，
-   `stats.char_recall` = 实际输出字符 / （文本层字符 − 被判为页眉页脚重复的字符），五篇为 `1.0018 / 1.0012 / 0.9969 / 1.0130 / 1.0016`。
+   `stats.char_recall` = 实际输出字符 / （文本层字符 − 页眉页脚重复字符 − 图内/边角文字），五篇为 `1.0018 / 1.0012 / 0.9969 / 1.0130 / 1.0016`；对整层（什么都不扣）的比值另存为 `char_recall_vs_full_layer`（`0.9674 / 0.9660 / 0.9749 / 1.0121 / 0.9410`），差额就是刻意不放进正文的那部分。
    图内标签（坐标轴、图例）单独标为 `figure_label` 并计 `masked_chars`，**不混入正文**。
 2. **排得对**：只用**短行**（宽度 < 0.62 内容宽）投票找栏间空白，容忍恰好 1 条越界行（公式编号 `(2)` 常见），最小沟宽 6 pt；
    两栏页若某页误判单栏，用全文模板回填（`cols_derived:"document_template"`）；
@@ -49,7 +52,8 @@
    公式区按数学符号密度与行数判定，上下标用 span 的 flag 位还原。
 4. **核得回**：每个块都有 `page` 与 `bbox`；`text.md` 每块前带 `<!-- p3-b004 | type=body | col=0 | bbox=... -->` 溯源注释；
    `overlay/page-XX.png` 把块框、分栏沟、阅读序号画在原页上，人眼可一眼校验；`report.json` 记录 `selfcheck` 结果与各项统计。
-5. **自检（运行时，失败即 exit 4）**：① 每块必须有 page+bbox；② 每页 order 连续无洞；③ 任何块不得跨栏沟；④ `char_recall ≥ 0.90`。
+5. **排得对（续）**：图/表块创建时 `column=-1`（未知），若它的 bbox 其实完全落在某一栏内，`order_blocks` 会按几何重新解析栏号；否则它会被当成“带区分界”抢到同带正文之前——ResNet 第 1 页的图 1 曾因此排在 `1. Introduction` 之前，修好后的顺序是“左栏到底 → 右栏图 1”，这正是双栏论文的读法。
+6. **自检（运行时，失败即 exit 4）**：① 每块必须有 page+bbox；② 每页 order 连续无洞；③ 任何块不得跨栏沟；④ `char_recall ≥ 0.90`。
 
 ## 4. 实测（演示语料 + 一篇留出样本，可复现）
 
@@ -67,6 +71,10 @@
   两处修复都写进了 `warnings`（`title_merged` / `heading_merged`），BERT 与 ViT 的 `report.json` 里可以查到。
 - `bert.pdf` 的表 6/7 与 `gpt3.pdf` 的 48/51 差额是**被几何闸门拒绝**的网格（`tables_rejected`），不是漏检；拒绝后那块文字留在正文里，不漏字。
 - `gpt3` 另有 3 条非阻塞 warning（`sparse_table:T35/T36/T44`），已点名在 `results/gpt3/report.json` 的 `selfcheck.warnings`。
+
+- `146` 是 `sections` 数；另有 5 个**文档标题**块计入 `n_headings`（合计 151），标题不重复算作章节。
+- `80 / 85` 与 `2,586` 是**通过几何闸门**的表与单元格；`report.json` 的 `n_table_cells` 统计的是**全部检出网格**（含 5 张被拒表，合计 2,904）。两个口径都真实，文档统一用前者，需要“检出量”时看 `stats.n_tables`。
+- `vit.pdf` 的 `results/run.log` 里有 7 行 `MuPDF error: object is not a stream`（该 PDF 的部分流对象损坏，PyMuPDF 会跳过并继续）；解析结果与自检不受影响，但这是一个**未在早期版本披露**的降级信号，记在 §6。
 
 复现命令：
 
@@ -87,7 +95,7 @@ python src/reproduce.py --pdf corpus/resnet.pdf --pdf corpus/vit.pdf --out out -
 | 章节树 | 0 | **146** | 基线没有块类型，标题与正文不可分 |
 | 表 / 单元格（带坐标） | 0 / 0 | **80 / 2,586** | 基线是文本流，行列与单元格归属不可恢复 |
 | 可定位到页+坐标的块 | 0 | **3,483** | 基线只有字符，没有位置 |
-| 图内文字混入正文 | 6,280 字符 | **0** | 归入 `figure_label`，`masked_chars` 记账，需要时可取回 |
+| 图内文字混入正文 | 6,280 字符 | **1 处漏网**（共 6,280 字符被归位） | 归入 `figure_label` 并计 `masked_chars`；ResNet p2 有一个 `x` 轴标因图区上沿判定偏了 0.5pt 未被遮罩，已列在 §6 |
 | 页眉页脚进正文 | 22 行（仅 ViT 触发） | **0** | 归入 `dropped_running_text`，逐页可查 |
 | 双栏串栏（同一页读了右栏又回左栏） | 54 次（resnet 32 / bert 22） | **0** | 自检不变式：任何块不得跨栏沟 |
 
@@ -106,6 +114,9 @@ python src/reproduce.py --pdf corpus/resnet.pdf --pdf corpus/vit.pdf --out out -
 - **数学密集段落**可能被标为 `formula`；**旋转水印**（如 arXiv 侧边章）可能被当作 `margin_artifact` 丢弃，字符记账里已计入 `masked/dropped`。
 - 作者行顺序依赖 PDF 内文字流顺序，可能与视觉列顺序不完全一致（ResNet 上出现 `Xiangyu Zhang` 先于 `Kaiming He`）。
 - **`--pages` 探版模式会保留页眉**：页眉判定依赖跨页重复，只解析 2 页时可能不足；探版只看栏数与版面，正式解析请全量跑。
+- **遮罩按“块心是否落在图区矩形内”判定**：图区上沿判偏时，边缘轴标可能漏 1 处（ResNet p2 的 `x`），字符记账仍闭合，但“图内文字 0 混入”应读作“6,280 字符被归位，1 处漏网”。
+- **扫描件的转录文件名曾是坏的**：`merge_ocr.py` 之前只找 `ocr/page-*.txt`，而文档让操作者写 `page-01.md`，照文档做必然 `exit 2`。本轮已修（两种扩展都接受），并由 `tests/fixtures/scanned.pdf` 端到端锁住；但**真实视觉模型的识别率仍未测**，只验证了“渲染 → 提示 → 合并”的管线。
+- **图/表的栏号是按几何重算的**：跨栏图仍是带区分界；落入单栏的图表归该栏。若图区 bbox 本身判错（例如把图注算进图区），它会被分到错误的栏，需 overlay 复核。
 
 ## 7. 证据定位（供复核）
 
@@ -115,7 +126,9 @@ python src/reproduce.py --pdf corpus/resnet.pdf --pdf corpus/vit.pdf --out out -
 - 带溯源注释的正文：`results/resnet/text.md`、`results/transformer/text.md`、`results/vit/text.md`
 - 可视图层校验：`results/resnet/overlay/page-01.png`、`results/transformer/overlay/page-01.png`、`results/vit/overlay/page-01.png`
 - 表格重建样例：`results/resnet/tables/T1.csv`
-- 偏差与包络：`characterization.json`（6 条偏差、7 条包络、5 条失败模式、4 条阈值敏感性）
+- 偏差与包络：`characterization.json`（7 条偏差、10 条包络（7 实测 / 3 声明）、5 条失败模式、4 条阈值敏感性、3 个合成语料）
+- 自测：`tests/test_engine.py`（27 条断言，全绿）；合成语料生成器 `outputs/scripts/make_fixtures.py`
+- 主产物样例：`results/resnet/doc.sample.json`（`sections` / `tables[].cells` / `bbox_cells` / `dropped_running_text` 都能直接看到）
 - 接入方式：`outputs/examples/quickstart.md`（一屏，粘贴即用）
 
 ## 8. 运行状态

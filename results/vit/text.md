@@ -72,7 +72,7 @@ Another recent related model is image GPT (iGPT) (Chen et al., 2020a), which app
 
 <!-- ===== page 3 | columns=2 | gutters=[[323.0, 401.0]] -->
 <!-- p3-b002 | type=figure | col=-1 | bbox=108.0,81.9,504.0,309.2 -->
-![Figure 1: Model overview. We split an image into ﬁxed-size patches, linearly emb](figures/F1.png)
+![Figure 1: Model overview. We split an image into ﬁxed-size patches, linearly embed each of them, add position embeddings, and feed the resulting sequence of vectors to a standard Transformer encoder. In order to perform classiﬁcation, we use the standard approach of adding an extra learnable “classiﬁcation token” to the sequence. The illustration of the Transformer encoder was inspired by](figures/F1.png)
 
 <!-- p3-b018 | type=caption | col=-1 | bbox=108.0,266.3,504.0,309.2 -->
 Figure 1: Model overview. We split an image into ﬁxed-size patches, linearly embed each of them, add position embeddings, and feed the resulting sequence of vectors to a standard Transformer encoder. In order to perform classiﬁcation, we use the standard approach of adding an extra learnable “classiﬁcation token” to the sequence. The illustration of the Transformer encoder was inspired by
@@ -306,10 +306,10 @@ TPUv3-core-days | 2.5k | 0.68k | 0.23k | 9.9k | 12.3k
 TPUv3-core-days Table 2: Comparison with state of the art on popular image classiﬁcation benchmarks. We report mean and standard deviation of the accuracies, averaged over three ﬁne-tuning runs. Vision Transformer models pre-trained on the JFT-300M dataset outperform ResNet-based baselines on all datasets, while taking substantially less computational resources to pre-train. ViT pre-trained on the smaller public ImageNet-21k dataset performs well too. ∗Slightly improved 88.5% result reported in Touvron et al. (2020).
 
 <!-- p6-b002 | type=figure | col=-1 | bbox=108.0,283.7,504.0,896.8 -->
-![Figure 2: Breakdown of VTAB performance in Natural, Specialized, and Structured ](figures/F2.png)
+![Figure 2: Breakdown of VTAB performance in Natural, Specialized, and Structured task groups. model still took substantially less compute to pre-train than prior state of the art. However, we note that pre-training efﬁciency may be affected not only by the architecture choice, but also other parameters, such as training schedule, optimizer, weight decay, etc. We provide a controlled study of performance vs. compute for different architectures in Section 4.4. Finally, the ViT-L/16 model pre-trained on the public ImageNet-21k dataset performs well on most datasets too, while taking fewer resources to pre-train: it could be trained using a standard cloud TPUv3 with 8 cores in approximately 30 days.](figures/F2.png)
 
 <!-- p6-b003 | type=figure | col=-1 | bbox=108.0,283.7,504.0,896.8 -->
-![Figure 2 decomposes the VTAB tasks into their respective groups, and compares to](figures/F3.png)
+![Figure 2 decomposes the VTAB tasks into their respective groups, and compares to previous SOTA methods on this benchmark: BiT, VIVI – a ResNet co-trained on ImageNet and Youtube (Tschannen et al., 2020), and S4L – supervised plus semi-supervised learning on ImageNet (Zhai et al., 2019a). ViT-H/14 outperforms BiT-R152x4, and other methods, on the Natural and Structured tasks. On the Specialized the performance of the top two models is similar.](figures/F3.png)
 
 <!-- p6-b028 | type=caption | col=0 | bbox=108.0,391.0,504.0,490.9 -->
 Figure 2: Breakdown of VTAB performance in Natural, Specialized, and Structured task groups. model still took substantially less compute to pre-train than prior state of the art. However, we note that pre-training efﬁciency may be affected not only by the architecture choice, but also other parameters, such as training schedule, optimizer, weight decay, etc. We provide a controlled study of performance vs. compute for different architectures in Section 4.4. Finally, the ViT-L/16 model pre-trained on the public ImageNet-21k dataset performs well on most datasets too, while taking fewer resources to pre-train: it could be trained using a standard cloud TPUv3 with 8 cores in approximately 30 days.
@@ -335,7 +335,7 @@ First, we pre-train ViT models on datasets of increasing size: ImageNet, ImageNe
 ![Figure 3: Transfer to ImageNet.](figures/F4.png)
 
 <!-- p7-b001 | type=figure | col=-1 | bbox=108.0,81.9,493.8,290.8 -->
-![Figure 4: Linear few-shot evaluation on Imalarge ViT models perform worse than B](figures/F5.png)
+![Figure 4: Linear few-shot evaluation on Imalarge ViT models perform worse than BiT geNet versus pre-training size. ResNets per- ResNets (shaded area) when pre-trained on form better with smaller pre-training datasets small datasets, they shine when pre-trained on but plateau sooner than ViT, which performs larger datasets. Similarly, larger ViT variants better with larger pre-training. ViT-b is ViT-B overtake smaller ones as the dataset grows.](figures/F5.png)
 
 <!-- p7-b019 | type=formula | col=0 | bbox=353.0,177.0,416.1,186.8 -->
 $$ ViT-L/32 ViT-b/32 $$
@@ -420,7 +420,7 @@ Figure 5 contains the transfer performance versus total pre-training compute (se
 <!-- p8-b005 | type=body | col=-1 | bbox=108.0,334.1,375.2,409.8 -->
 To begin to understand how the Vision Transformer processes image data, we analyze its internal representations. The ﬁrst layer of the Vision Transformer linearly projects the ﬂattened patches into a lower-dimensional space (Eq. 1). Figure 7 (left) shows the top principal components of the the learned embedding ﬁlters. The components resemble plausible basis functions for a low-dimensional representation of the ﬁne structure within each patch.
 
-<!-- p8-b006 | type=figure | col=-1 | bbox=385.2,339.7,504.0,543.0 -->
+<!-- p8-b006 | type=figure | col=1 | bbox=385.2,339.7,504.0,543.0 -->
 ![Figure 6: Representative ex-](figures/F6.png)
 
 <!-- p8-b009 | type=body | col=-1 | bbox=108.0,416.8,375.2,514.5 -->
@@ -450,7 +450,7 @@ Transformers show impressive performance on NLP tasks. However, much of their su
 
 <!-- ===== page 9 | columns=2 | gutters=[[363.0, 430.0]] -->
 <!-- p9-b001 | type=figure | col=-1 | bbox=108.0,101.2,504.0,229.4 -->
-![Figure 7: Left: Filters of the initial linear embedding of RGB values of ViT-L/3](figures/F7.png)
+![Figure 7: Left: Filters of the initial linear embedding of RGB values of ViT-L/32. Center: Sim-](figures/F7.png)
 
 <!-- p9-b017 | type=caption | col=-1 | bbox=108.0,219.3,504.0,229.4 -->
 Figure 7: Left: Filters of the initial linear embedding of RGB values of ViT-L/32. Center: Sim-
@@ -1250,7 +1250,7 @@ Table 8 summarizes the results from this ablation study on a ViT-B/16 model. As 
 hyperparameters (Figure 10).
 
 <!-- p18-b052 | type=figure | col=-1 | bbox=108.0,427.7,504.0,657.9 -->
-![Figure 11: Size of attended area by head and network depth. Attention distance w](figures/F10.png)
+![Figure 11: Size of attended area by head and network depth. Attention distance was computed for 128 example images by averaging the distance between the query pixel and all other pixels, weighted by the attention weight. Each dot shows the mean attention distance across images for one of 16](figures/F10.png)
 
 <!-- p18-b071 | type=formula | col=1 | bbox=369.9,428.5,427.0,439.6 -->
 $$ R50x1 + ViT-L/16 $$
@@ -1282,10 +1282,10 @@ for the largest models at the largest resolutions.
 Figure 12 (right) shows this quantity for the same set of models. This shows that large ViT models have a clear advantage in terms of memory-efﬁciency over ResNet
 
 <!-- p19-b004 | type=figure | col=-1 | bbox=108.0,162.0,504.0,377.8 -->
-![Figure 12 (right) shows this quantity for the same set of models. This shows tha](figures/F11.png)
+![Figure 12 (right) shows this quantity for the same set of models. This shows that large ViT models have a clear advantage in terms of memory-efﬁciency over ResNet](figures/F11.png)
 
 <!-- p19-b006 | type=figure | col=-1 | bbox=108.0,215.5,504.0,417.0 -->
-![Figure 12: Left: Real wall-clock timings of various architectures across input s](figures/F12.png)
+![Figure 12: Left: Real wall-clock timings of various architectures across input sizes. ViT models have speed comparable to similar ResNets. Right: Largest per-core batch-size ﬁtting on device with](figures/F12.png)
 
 <!-- p19-b013 | type=formula | col=1 | bbox=330.1,224.2,357.1,244.2 -->
 $$ ViT-B/16 ViT-L/16 $$
@@ -1323,7 +1323,7 @@ unlocked by a carefully optimized implementation.
 
 <!-- ===== page 20 | columns=2 | gutters=[[295.0, 376.0]] -->
 <!-- p20-b000 | type=figure | col=-1 | bbox=108.0,81.9,504.0,260.6 -->
-![Figure 13: Performance of Axial-Attention based models, in terms of top-1 accura](figures/F13.png)
+![Figure 13: Performance of Axial-Attention based models, in terms of top-1 accuracy on ImageNet](figures/F13.png)
 
 <!-- p20-b032 | type=caption | col=-1 | bbox=108.0,250.7,504.0,260.6 -->
 Figure 13: Performance of Axial-Attention based models, in terms of top-1 accuracy on ImageNet
