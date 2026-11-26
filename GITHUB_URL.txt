@@ -1,0 +1,5 @@
+https://github.com/huyuheche-tech/pdf-struct-skill
+
+pdf-struct/2 - layout-aware scientific PDF parser skill (MIT).
+Full source, the five real runs behind results/, the bare-agent baseline,
+the three-tool comparison and all 81 self-test assertions are in this repository.
