@@ -5,6 +5,42 @@ description: 解析科研 PDF（arXiv/CVPR/期刊/中文论文/扫描件），�
 
 # 科研 PDF 结构化解析（pdf-struct）
 
+## 0. 运行契约（平台执行时先读这一节）
+
+平台把本 Skill 装到 `/skills/weekly-skill`，把案例放在 `/input/case.json` + `task.md`，要求把成品写到
+`/app/output/`。**一条命令就能满足这个契约**：
+
+```bash
+python scripts/run_case.py          # 默认读 /input/case.json，写 /app/output/result.json
+```
+
+它做三件事：从 `case.json`（递归找 `*.pdf`，找不到就扫 `/input`）定位 PDF → 调 `scripts/parse_pdf.py`
+解析 → 写 `result.json` 和每个 PDF 的 `doc.json`、`text.md`。本地调试用
+`--case <case.json> --input-dir <dir> --out <dir> --work <dir>`。
+
+`result.json` 固定字段：
+
+| 字段 | 含义 |
+|---|---|
+| `case_id` | 取自 `case.json` 的 `case_id`/`id`，缺省用 PDF 文件名 |
+| `status` | `success` / `partial` / `failed`（有 warning 或自检未过就是 `partial`） |
+| `main_result.documents[]` | 每个 PDF 的 `pages/title/sections/tables/figures/formulas/references/char_recall` |
+| `evidence` | 溯源方式（page+bbox）与各 PDF 的 `doc_json` |
+| `uncertainty` | `warnings`、`missing_fields`、不可读页；**读不出就写这里，不许猜** |
+| `sources` | 输入文件、sha256、字节数 |
+| `output_contract` | 按 `case.json` 的 `output_contract` 逐字段回填；不认识的字段写 `null` 并记入 `missing_fields` |
+| `runs` | 每次解析的退出码与 stderr 尾部 |
+
+**预算**：单案例 ≤900 秒、≤64 次模型请求、单次回复 ≤16384 token。默认 `--no-overlay`（不出调试图），
+100 页以内通常 1–2 分钟；超过 200 页先按 `--pages` 分批，避免超时。
+**资源限制**：≤50 个 UTF-8 文本文件、单文件 ≤500KB、合计 ≤2MB、无符号链接。
+
+**扫描件**：`run_case.py` 发现 `parse_pdf.py` 退出码 3 时，会把 `no_text_layer` 写入 `uncertainty`，
+并给出下一步（`ocr_pages.py` → 逐页 `ocr/page-XX.md` → `merge_ocr.py --require all`）。
+此时**不要**把空文本当成功，`status` 必须是 `partial`。
+
+**边界**：不解释公式语义、不判断科学结论真假、不做翻译；只负责把版面和文字正确搬出来并留下溯源。
+
 ## 1. 用途
 
 把一个 PDF 变成**可被程序继续消费、并且每一块都能回到原页坐标**的结构：

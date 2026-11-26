@@ -24,6 +24,8 @@
 | `outputs/SKILL.md` | Skill 本体的契约：用途、调用方式、输入、输出字段、五步工作流、异常处理、自检清单、边界 |
 | `outputs/scripts/pdf_struct.py` | 解析引擎（分栏、行合并、段落、分类、表格、图注、章节、元数据、参考文献、统计） |
 | `outputs/scripts/parse_pdf.py` | 命令行入口：产出 `doc.json` / `text.md` / `report.json` / `tables/*.csv` / `figures/*.png` / `overlay/*.png` |
+| `outputs/scripts/run_case.py` | **平台运行入口**：读 `/input/case.json`（递归找 PDF，找不到就扫 `/input`）→ 调 `parse_pdf.py` → 写 `/app/output/result.json` + 每篇的 `doc.json`/`text.md`；`status`/`evidence`/`uncertainty`/`output_contract` 按案例契约回填 |
+| `outputs/environment/resources.yaml` | 资源入口：入口脚本、依赖（pymupdf/pillow）、文件清单与 50 文件 / 500KB / 2MB 限额 |
 | `outputs/scripts/baseline_compare.py` | **对照工具**：同一份 PDF 上量化「裸 Agent 的纯文本 dump」与本引擎的差距（6 个判据） |
 | `outputs/scripts/compare_tools.py` | **三工具同口径对比**：裸 dump / `pymupdf4llm` / 本引擎，7 个判据 × 5 篇，产出 `results/compare_tools.json` |
 | `outputs/scripts/perf_bench.py` | 逐篇耗时（3 次取中位数）与峰值 RSS，产出 `results/perf.json` |

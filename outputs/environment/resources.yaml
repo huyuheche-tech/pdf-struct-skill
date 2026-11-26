@@ -1,0 +1,49 @@
+schema: skill-resources/v1
+name: weekly-skill
+version: 1.0.0
+description: >
+  Layout-aware scientific PDF parser. Reads /input/case.json, parses the PDF(s)
+  it points at, and writes /app/output/result.json plus per-PDF doc.json and
+  text.md. Every block carries page + bbox provenance.
+
+entry: scripts/run_case.py
+entry_args: []
+
+runtime:
+  python: "3.12"
+  pip:
+    - "pymupdf>=1.24,<2"
+    - "pillow>=10"
+  system: []
+  notes: >
+    CPU only. parse_pdf.py is the deterministic parser; run_case.py is the
+    runtime wrapper that resolves the case file and writes the result contract.
+    The OCR branch (ocr_pages.py + merge_ocr.py) needs a vision model supplied
+    by the harness; no OCR engine is bundled.
+
+# paths are relative to the skill root (the directory that contains SKILL.md)
+resources:
+  - path: scripts/run_case.py
+    role: entry
+  - path: scripts/parse_pdf.py
+    role: cli
+  - path: scripts/pdf_struct.py
+    role: library
+  - path: scripts/ocr_pages.py
+    role: ocr
+  - path: scripts/merge_ocr.py
+    role: ocr
+  - path: references/method.md
+    role: docs
+  - path: references/schema.md
+    role: docs
+  - path: references/baseline.md
+    role: docs
+  - path: examples/quickstart.md
+    role: docs
+
+limits:
+  text_files: 50
+  bytes_per_file: 512000
+  bytes_total: 2097152
+  symlinks: false

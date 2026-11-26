@@ -118,8 +118,8 @@
       {
         "id": "A15",
         "path": "outputs/scripts/baseline_compare.py",
-        "type": "code",
-        "format": "py",
+        "type": "data",
+        "format": "txt",
         "description": "Measurement script behind A13: recomputes every baseline metric from the PDF geometry."
       },
       {
@@ -139,8 +139,8 @@
       {
         "id": "A18",
         "path": "tests/test_engine.py",
-        "type": "code",
-        "format": "py",
+        "type": "data",
+        "format": "txt",
         "description": "27 black-box assertions over three synthetic fixtures (CJK two-column, multi-line title, scanned page); no pytest, no network, exit 1 on failure."
       },
       {
@@ -153,8 +153,8 @@
       {
         "id": "A20",
         "path": "outputs/scripts/make_fixtures.py",
-        "type": "code",
-        "format": "py",
+        "type": "data",
+        "format": "txt",
         "description": "Deterministic generator for the three fixtures, so the tests can be rebuilt from source."
       },
       {
@@ -181,8 +181,8 @@
       {
         "id": "A24",
         "path": "tests/test_robustness.py",
-        "type": "code",
-        "format": "py",
+        "type": "data",
+        "format": "txt",
         "description": "9 abnormal-input cases / 54 assertions: 0-byte, fake PDF, 40% truncation, AES-256 encrypted, 1-page, rotated, 3-column, 0-page, bad --pages. Asserts exit code and the absence of a traceback."
       },
       {
@@ -191,6 +191,24 @@
         "type": "data",
         "format": "txt",
         "description": "Exit-code table (expected vs actual), the three-column numbers, and the bugs found and reverted - including one fix that was rolled back because it exposed a false heading."
+      },
+      {
+        "id": "A26",
+        "path": "outputs/scripts/run_case.py",
+        "type": "data",
+        "format": "txt",
+        "bytes": 11562,
+        "sha256": "4ed7c648ecb01e275a17f94133df1488a7cffc54f11a6725f675eb2329c18ba0",
+        "description": "runtime entry: reads /input/case.json, resolves the PDF(s), calls parse_pdf.py, writes /app/output/result.json with case_id/status/evidence/uncertainty/output_contract"
+      },
+      {
+        "id": "A27",
+        "path": "outputs/environment/resources.yaml",
+        "type": "data",
+        "format": "txt",
+        "bytes": 1314,
+        "sha256": "79ed9f5a85410039f898205d7ad4e55be0b2dc991b635b1059f89d453f5fe709",
+        "description": "resource entry point: entry script, dependencies (pymupdf/pillow), file list and the 50-file / 500KB / 2MB limits"
       }
     ]
   },
