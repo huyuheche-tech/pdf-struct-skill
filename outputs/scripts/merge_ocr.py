@@ -166,6 +166,15 @@ def main(argv=None):
     doc["stats"]["n_blocks"] = len(doc["blocks"])
     doc["stats"]["ocr_pages"] = pages_done
     doc["stats"]["ocr_blocks"] = added
+    # `char_recall` is text-layer-chars / emitted-chars.  Once a page's blocks
+    # come from vision, that ratio no longer describes the document: it would
+    # keep reporting the vector text layer's recall (typically 1.0) while the
+    # emitted text is the model's reading.  Null it instead of overstating.
+    if doc["stats"].get("char_recall") is not None:
+        doc["stats"]["char_recall"] = None
+        doc["stats"]["char_recall_note"] = (
+            "set to null: pages %s are vision transcripts, so the text-layer "
+            "ratio no longer applies" % pages_done)
     doc["stats"]["note"] = ("blocks from vision have bbox=null and bbox_source=vision; "
                             "they are traceable to a page, not to a vector box")
     with open(doc_path, "w", encoding="utf-8") as fh:

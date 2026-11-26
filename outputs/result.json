@@ -291,5 +291,26 @@
         "附录页为双栏、正文为单栏的混合版面：`pages[].columns` 逐页不同，跨栏不变式按页生效"
       ]
     }
-  ]
+  ],
+  "supplement": {
+    "tool_comparison": {
+      "file": "results/compare_tools.json",
+      "note": "same criteria, three extractors (raw dump / pymupdf4llm 2.1 / this skill)"
+    },
+    "performance": {
+      "file": "results/perf.json",
+      "note": "140 pages in 132.64 s (1.06 pages/s), peak sampled RSS 618.3 MB; text-only run 124.26 s"
+    },
+    "ocr_upper_bound": {
+      "file": "results/ocr-eval.json",
+      "note": "one real page at 200 dpi, n=1: char_similarity 1.0 folded / 0.9956 raw; upper bound, not a recognition rate"
+    },
+    "self_tests": {
+      "files": [
+        "tests/test_engine.py",
+        "tests/test_robustness.py"
+      ],
+      "note": "27 + 54 assertions, all pass, no pytest, no network"
+    }
+  }
 }

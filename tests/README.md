@@ -50,6 +50,8 @@ PY="C:/Users/mzn/AppData/Local/Programs/Python/Python313/python.exe"
 #    只跑某几个： test_engine.py cjk / title / scanned
 
 echo $?          # 0 = 全绿，1 = 有 FAIL
+#
+# 当前状态：27 + 54 = 81 条断言，全部 PASS（`27 checks, 0 failed` / `54 checks, 0 failed`）
 ```
 
 - 屏幕输出是**纯 ASCII**（目标机器控制台是 GBK，中文 `print` 会炸）。
@@ -135,3 +137,38 @@ echo $?          # 0 = 全绿，1 = 有 FAIL
   它们**不随 `results/` 记账**，也不冒充真实语料。
 - 运行产物写到 `tests/_work/`（不随包分发）：`last_run.txt` 是 UTF-8 明细，
   `{cjk,title-wrap,scanned}/` 是每次解析的中间结果，删掉即可重来。
+
+## 8. 第 2 轮新增：异常输入 × 三栏证据（`tests/test_robustness.py`）
+
+这一套只补两件事：**坏输入是否干净报错、退出码是否与 `SKILL.md` 一致**，以及**三栏正文是否判对**。
+它和 `test_engine.py` **互相独立**，两套可以任意顺序、任意次数跑：
+
+```bash
+PY="C:/Users/mzn/AppData/Local/Programs/Python/Python313/python.exe"
+
+"$PY" tests/test_engine.py          # 27 条：中文双栏 / 两行标题 / 扫描件合并
+"$PY" tests/test_robustness.py      # 54 条：9 个坏输入/边界 case（含 8 个必需 case）
+"$PY" tests/test_robustness.py three    # 只跑名字含 three 的 case
+
+echo $?          # 0 = 全绿，1 = 有 FAIL
+```
+
+9 个 case 各自证什么（详细数字、最小复现见 `tests/robustness.md`）：
+
+| case | 生成方式 | 被固化的断言 |
+|---|---|---|
+| `zero-byte` | 0 字节文件 | 退出码 **2**（§7 损坏）、stderr 有英文原因、**无 traceback**、不写 `doc.json` |
+| `not-a-pdf` | 纯文本改 `.pdf` | 同上 |
+| `truncated` | `corpus/resnet.pdf` 前 40% 字节（无该语料时用现场生成的 6 页 PDF） | 不崩：要么 `exit=2` 说明原因，要么 `exit∈{0,4}` 且 `n_pages_parsed≥1` + 非空 `warnings`，要么 `exit=3` 且确有 `empty` 页 + `ocr_required` 告警 |
+| `encrypted` | AES-256，`user_pw` 必需 | 退出码 **2**、stderr 含 `encrypted`/`password`、无 traceback |
+| `one-page` | 单页、无页眉 | `exit=0`、`selfcheck.ok`、`dropped_running_chars=0`（页眉判定不误报）、`char_recall∈[0.9,1.05]` |
+| `rotated` | 同一页加 `/Rotate 90` | `exit=0`、`char_recall∈[0.9,1.05]`、首尾正文行都在、`pages[].width/height` 交换（595×842→842×595）。**引擎没有 `pages[].rotation` 字段，报告里如实写"未记录"，不伪造** |
+| `three-col` | A4，3 栏×60 mm、栏距 6 mm，三个编号标题 | `pages[].columns=3` 且 `column_template=3`；三个标题进 `sections`；`char_recall∈[0.9,1.05]`；按栏顺序 `0→1→2`、栏内 y 单调；**附加**：正文块不得被判成跨栏（当前 **FAIL**，真实缺陷，见 robustness.md §3.3） |
+| `empty` | 手写 `/Count 0` 的 0 页 PDF | 退出码 **2**、stderr 含 `0 pages`、无 `ZeroDivisionError`、不写 `doc.json` |
+| `bad-pages`（附加） | `--pages 1-x` | 退出码 **2**（§2 用法错误）、无 traceback（修复前是 ValueError traceback） |
+
+- 全部坏输入都在 `tests/_work/robust/<case>/` 现场生成，**不往包里塞二进制**；
+  唯一可选入库的是 `tests/fixtures/three-col.pdf`，本实现不需要它。
+- 断言逐行 `PASS/FAIL`，屏幕输出**纯 ASCII**；明细（含中文）写 `tests/_work/robust/last_run.txt`。
+- 本轮修了 `parse_pdf.py` 的退出码/错误流（加密、损坏、0 页、`--pages`），**没动**任何版面算法；
+  五篇语料 `work/regress.py` 逐键 identical。三栏那条 FAIL 是真实缺陷，按约束保留。

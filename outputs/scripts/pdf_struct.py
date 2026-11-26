@@ -45,6 +45,17 @@ MATH_CHARS = set(
     "⁰¹²³⁴⁵⁶⁷⁸⁹₀₁₂₃₄₅₆₇₈₉"
 )
 CJK_RE = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]")
+
+# Text-layer bboxes carry side bearings: a paragraph set to one column can have
+# its ink poke a few points past the column edge (a 60 mm column whose longest
+# line runs 4 pt long).  Ink overhang below this tolerance is not a column
+# crossing - it neither makes a block a band separator (order_blocks) nor a
+# self-check error (column_block_crosses_gutter).
+GUTTER_INK_TOL = 4.0
+
+# A block whose width is at least this share inside one column belongs to that
+# column.  Same threshold for ordering and for the self-check (one definition).
+COLUMN_OWN_RATIO = 0.80
 PAGENUM_RE = re.compile(r"^[\s\-–—]*(\d{1,4}|[ivxlcdm]{1,7})[\s\-–—]*$", re.I)
 NUM_HEAD_RE = re.compile(r"^(?P<num>\d{1,2}(?:\.\d{1,2}){0,3})\.?\s+(?P<rest>\S.{0,90})$")
 CN_HEAD_RE = re.compile(
@@ -270,6 +281,20 @@ def column_of(bbox, cols, tol=1.5):
         if ov > best_ov:
             best, best_ov = i, ov
     return best if best_ov > tol else -1
+
+
+def column_overlap_ratio(bbox, cols):
+    """Share of a block's width that falls inside its best-matching column.
+
+    1.0 = wholly inside one column, ~0.5 = straddles two equal columns.  Used
+    both for ordering (order_blocks) and for the column-purity self-check, so
+    "belongs to a column" has exactly one definition in the engine.
+    """
+    w = max(1.0, bbox[2] - bbox[0])
+    best = 0.0
+    for c0, c1 in cols:
+        best = max(best, min(bbox[2], c1) - max(bbox[0], c0))
+    return max(0.0, best) / w
 
 
 # --------------------------------------------------------------------------- #
@@ -641,6 +666,13 @@ def order_blocks(blocks, cols, gutters):
     def spanning(b):
         if len(cols) <= 1:
             return True
+        # "touches the gutter" is necessary but not sufficient: a paragraph that
+        # is no wider than one column cannot be a band separator even when its
+        # ink pokes a few points into the gutter (a 60 mm column whose longest
+        # line runs 4 pt long).  Without this, such a block is sorted to the end
+        # of the page and its sentence jumps behind the next heading.
+        if column_overlap_ratio(b["bbox"], cols) >= COLUMN_OWN_RATIO:
+            return False
         return crosses_gutter(b["bbox"], gutters)
     span = sorted([b for b in blocks if spanning(b)], key=lambda b: (b["bbox"][1], b["bbox"][0]))
     colblocks = [b for b in blocks if not spanning(b)]
@@ -1250,6 +1282,14 @@ def extract_front_matter(blocks, figures=()):
                 and not _in_any(b["bbox"], fig_boxes):
             b["type"] = "affiliation"
         elif fm["authors"] and any(a in t for a in fm["authors"]) and len(t) <= 220:
+            # NOTE: this branch can swallow a numbered heading whose text
+            # contains an all-caps author name ("1 INTRODUCTION"), which costs a
+            # short paper its whole section tree.  Guarding it with
+            # `type not in ("heading","title")` was tried and reverted: it also
+            # promotes a bullet list in BERT's appendix ("- Effect of Number of
+            # Training Steps; and - Ablation ...") to a level-3 heading, i.e.
+            # 27 -> 31 sections with one of the four being false.  The right fix
+            # needs a bullet-list rule first; see tests/robustness.md 3.7.
             b["type"] = "author"
     return fm
 

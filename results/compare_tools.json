@@ -1,0 +1,314 @@
+{
+  "schema": "pdf-struct/toolcompare/1",
+  "note": "Routes run over the whole document (no --pages probe). naive = PyMuPDF page.get_text('text'). pymupdf4llm = pymupdf4llm 2.1 to_markdown(doc, use_ocr=False), every other argument at library default (table_strategy='lines_strict'); OCR is off because no OCR engine is installed offline. skill = outputs/scripts/parse_pdf.py (pdf-struct/2): heading/table/block counts read from results/<name>/report.json (stats.n_sections, n_tables, n_blocks), body text from a regenerated run in work/_tools_probe/engine/<name> whose stats are asserted equal to the shipped report.json. Geometry helpers (_lines_of_page, _col_of, two-column gate) are copied from baseline_compare.py. running_header_lines_leaked: header set per PDF = engine dropped_running_text (len>=8, non-numeric) UNION lines in the top/bottom 10% repeated on >=3 pages; the same set is applied to all three tools, a hit is a full-line match after whitespace normalisation. figure_label_chars_leaked: inventory = chars of engine blocks typed figure_label; a label (>=4 chars, so body numbers cannot fake a match) counts when it appears on that same page of the tool's output and is not explainable by a non-figure block of that page. Two honest caveats, both visible in diag: (1) the running-header metric only fires on vit -- the other four PDFs carry page numbers only in their margins, and bare numbers are excluded by design, so 0 there means 'no qualifying running head', not 'measured clean'; (2) gpt3 has an empty figure_label inventory (its figures are vector charts without typed labels), so its figure value of 0 means 'nothing to leak' -- diag marks it figure_metric_applicable=false. cross_column_interleavings: scored only for document-level 2-column PDFs (resnet, bert) with baseline's gate (gutter <=12% of content width, >=8 units in each band); the unit is the tool's own emitted unit (line for naive/pymupdf4llm, paragraph block for skill) and units straddling the gutter are skipped; null = not applicable, never zero. In results/baseline.json the skill side of that metric was 0 by construction (the engine's own block order); here it is re-measured from the emitted text.md with the same rule, which is why it is not exactly 0. wall_time_s: naive and pymupdf4llm are the median of 3 full runs in one process; skill is the median of 3 end-to-end CLI runs from results/perf.json when present (that CLI run also rasterises figures and overlay PNGs, which the other two do not), else one run. n/a = not computable.",
+  "tools": [
+    "naive",
+    "pymupdf4llm",
+    "skill"
+  ],
+  "cases": [
+    {
+      "file": "resnet.pdf",
+      "pages": 12,
+      "naive": {
+        "heading_count": 0,
+        "table_count": 0,
+        "bbox_blocks": 0,
+        "running_header_lines_leaked": 0,
+        "figure_label_chars_leaked": 1417,
+        "cross_column_interleavings": 26,
+        "wall_time_s": 0.037
+      },
+      "pymupdf4llm": {
+        "heading_count": 23,
+        "table_count": 14,
+        "bbox_blocks": 0,
+        "running_header_lines_leaked": 0,
+        "figure_label_chars_leaked": 1323,
+        "cross_column_interleavings": 71,
+        "wall_time_s": 12.641
+      },
+      "skill": {
+        "heading_count": 16,
+        "table_count": 14,
+        "bbox_blocks": 583,
+        "running_header_lines_leaked": 0,
+        "figure_label_chars_leaked": 0,
+        "cross_column_interleavings": 1,
+        "wall_time_s": 16.304
+      }
+    },
+    {
+      "file": "transformer.pdf",
+      "pages": 15,
+      "naive": {
+        "heading_count": 0,
+        "table_count": 0,
+        "bbox_blocks": 0,
+        "running_header_lines_leaked": 0,
+        "figure_label_chars_leaked": 842,
+        "cross_column_interleavings": null,
+        "wall_time_s": 0.071
+      },
+      "pymupdf4llm": {
+        "heading_count": 26,
+        "table_count": 4,
+        "bbox_blocks": 0,
+        "running_header_lines_leaked": 0,
+        "figure_label_chars_leaked": 842,
+        "cross_column_interleavings": null,
+        "wall_time_s": 9.889
+      },
+      "skill": {
+        "heading_count": 25,
+        "table_count": 4,
+        "bbox_blocks": 510,
+        "running_header_lines_leaked": 0,
+        "figure_label_chars_leaked": 0,
+        "cross_column_interleavings": null,
+        "wall_time_s": 11.934
+      }
+    },
+    {
+      "file": "bert.pdf",
+      "pages": 16,
+      "naive": {
+        "heading_count": 0,
+        "table_count": 0,
+        "bbox_blocks": 0,
+        "running_header_lines_leaked": 0,
+        "figure_label_chars_leaked": 562,
+        "cross_column_interleavings": 22,
+        "wall_time_s": 0.052
+      },
+      "pymupdf4llm": {
+        "heading_count": 35,
+        "table_count": 7,
+        "bbox_blocks": 0,
+        "running_header_lines_leaked": 0,
+        "figure_label_chars_leaked": 731,
+        "cross_column_interleavings": 84,
+        "wall_time_s": 13.391
+      },
+      "skill": {
+        "heading_count": 27,
+        "table_count": 7,
+        "bbox_blocks": 687,
+        "running_header_lines_leaked": 0,
+        "figure_label_chars_leaked": 0,
+        "cross_column_interleavings": 2,
+        "wall_time_s": 16.267
+      }
+    },
+    {
+      "file": "gpt3.pdf",
+      "pages": 75,
+      "naive": {
+        "heading_count": 0,
+        "table_count": 0,
+        "bbox_blocks": 0,
+        "running_header_lines_leaked": 0,
+        "figure_label_chars_leaked": 0,
+        "cross_column_interleavings": null,
+        "wall_time_s": 0.073
+      },
+      "pymupdf4llm": {
+        "heading_count": 63,
+        "table_count": 52,
+        "bbox_blocks": 0,
+        "running_header_lines_leaked": 0,
+        "figure_label_chars_leaked": 0,
+        "cross_column_interleavings": null,
+        "wall_time_s": 60.807
+      },
+      "skill": {
+        "heading_count": 56,
+        "table_count": 51,
+        "bbox_blocks": 961,
+        "running_header_lines_leaked": 0,
+        "figure_label_chars_leaked": 0,
+        "cross_column_interleavings": null,
+        "wall_time_s": 68.118
+      }
+    },
+    {
+      "file": "vit.pdf",
+      "pages": 22,
+      "naive": {
+        "heading_count": 0,
+        "table_count": 0,
+        "bbox_blocks": 0,
+        "running_header_lines_leaked": 22,
+        "figure_label_chars_leaked": 1745,
+        "cross_column_interleavings": null,
+        "wall_time_s": 0.072
+      },
+      "pymupdf4llm": {
+        "heading_count": 35,
+        "table_count": 9,
+        "bbox_blocks": 0,
+        "running_header_lines_leaked": 22,
+        "figure_label_chars_leaked": 1551,
+        "cross_column_interleavings": null,
+        "wall_time_s": 14.721
+      },
+      "skill": {
+        "heading_count": 22,
+        "table_count": 9,
+        "bbox_blocks": 742,
+        "running_header_lines_leaked": 0,
+        "figure_label_chars_leaked": 0,
+        "cross_column_interleavings": null,
+        "wall_time_s": 20.017
+      }
+    }
+  ],
+  "totals": {
+    "naive": {
+      "heading_count": 0,
+      "table_count": 0,
+      "bbox_blocks": 0,
+      "running_header_lines_leaked": 22,
+      "figure_label_chars_leaked": 4566,
+      "cross_column_interleavings": 48,
+      "wall_time_s": 0.305
+    },
+    "pymupdf4llm": {
+      "heading_count": 182,
+      "table_count": 86,
+      "bbox_blocks": 0,
+      "running_header_lines_leaked": 22,
+      "figure_label_chars_leaked": 4447,
+      "cross_column_interleavings": 155,
+      "wall_time_s": 111.449
+    },
+    "skill": {
+      "heading_count": 146,
+      "table_count": 85,
+      "bbox_blocks": 3483,
+      "running_header_lines_leaked": 0,
+      "figure_label_chars_leaked": 0,
+      "cross_column_interleavings": 3,
+      "wall_time_s": 132.64
+    }
+  },
+  "diag": {
+    "resnet": {
+      "header_set_size": 0,
+      "header_set_sample": [],
+      "figure_label_inventory_chars": 1870,
+      "figure_label_inventory_chars_ge4": 1730,
+      "figure_metric_applicable": true,
+      "naive_figure_leak_fraction": 0.8191,
+      "pymupdf4llm_figure_leak_fraction": 0.7647,
+      "skill_n_headings": 17,
+      "seconds_naive_all": [
+        0.0372,
+        0.0363,
+        0.0377
+      ],
+      "seconds_pymupdf4llm_all": [
+        14.5491,
+        12.1823,
+        12.6408
+      ],
+      "pymupdf4llm_error": null,
+      "skill_wall_source": "perf.json median of 3",
+      "regenerated_stats_equal_shipped": true
+    },
+    "transformer": {
+      "header_set_size": 0,
+      "header_set_sample": [],
+      "figure_label_inventory_chars": 1151,
+      "figure_label_inventory_chars_ge4": 936,
+      "figure_metric_applicable": true,
+      "naive_figure_leak_fraction": 0.8996,
+      "pymupdf4llm_figure_leak_fraction": 0.8996,
+      "skill_n_headings": 26,
+      "seconds_naive_all": [
+        0.0896,
+        0.0643,
+        0.0714
+      ],
+      "seconds_pymupdf4llm_all": [
+        8.6833,
+        10.2562,
+        9.889
+      ],
+      "pymupdf4llm_error": null,
+      "skill_wall_source": "perf.json median of 3",
+      "regenerated_stats_equal_shipped": true
+    },
+    "bert": {
+      "header_set_size": 0,
+      "header_set_sample": [],
+      "figure_label_inventory_chars": 1212,
+      "figure_label_inventory_chars_ge4": 841,
+      "figure_metric_applicable": true,
+      "naive_figure_leak_fraction": 0.6683,
+      "pymupdf4llm_figure_leak_fraction": 0.8692,
+      "skill_n_headings": 28,
+      "seconds_naive_all": [
+        0.0291,
+        0.0539,
+        0.0521
+      ],
+      "seconds_pymupdf4llm_all": [
+        12.8751,
+        13.3911,
+        13.8696
+      ],
+      "pymupdf4llm_error": null,
+      "skill_wall_source": "perf.json median of 3",
+      "regenerated_stats_equal_shipped": true
+    },
+    "gpt3": {
+      "header_set_size": 0,
+      "header_set_sample": [],
+      "figure_label_inventory_chars": 0,
+      "figure_label_inventory_chars_ge4": 0,
+      "figure_metric_applicable": false,
+      "naive_figure_leak_fraction": null,
+      "pymupdf4llm_figure_leak_fraction": null,
+      "skill_n_headings": 57,
+      "seconds_naive_all": [
+        0.0734,
+        0.0727,
+        0.0716
+      ],
+      "seconds_pymupdf4llm_all": [
+        61.0782,
+        58.1493,
+        60.8073
+      ],
+      "pymupdf4llm_error": null,
+      "skill_wall_source": "perf.json median of 3",
+      "regenerated_stats_equal_shipped": true
+    },
+    "vit": {
+      "header_set_size": 1,
+      "header_set_sample": [
+        "PublishedasaconferencepaperatICLR2021"
+      ],
+      "figure_label_inventory_chars": 2608,
+      "figure_label_inventory_chars_ge4": 2097,
+      "figure_metric_applicable": true,
+      "naive_figure_leak_fraction": 0.8321,
+      "pymupdf4llm_figure_leak_fraction": 0.7396,
+      "skill_n_headings": 23,
+      "seconds_naive_all": [
+        0.1608,
+        0.0701,
+        0.0719
+      ],
+      "seconds_pymupdf4llm_all": [
+        15.1061,
+        14.6928,
+        14.7207
+      ],
+      "pymupdf4llm_error": null,
+      "skill_wall_source": "perf.json median of 3",
+      "regenerated_stats_equal_shipped": true
+    }
+  }
+}

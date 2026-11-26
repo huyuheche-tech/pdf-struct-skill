@@ -12,7 +12,8 @@ Writes (all UTF-8):
     OUTDIR/figures/F*.png  cropped figure images referenced by the JSON
     OUTDIR/overlay/*.png   page render with block boxes + reading-order numbers
 
-Exit codes: 0 ok, 2 usage error, 3 unreadable/no text layer (OCR route needed),
+Exit codes: 0 ok, 2 usage error or unreadable file (encrypted / corrupt /
+            0 pages), 3 opens but has no text layer (OCR route needed),
             4 self-check found a hard violation.
 """
 from __future__ import annotations
@@ -25,7 +26,8 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from pdf_struct import parse_document  # noqa: E402
+from pdf_struct import (parse_document, GUTTER_INK_TOL,  # noqa: E402
+                         COLUMN_OWN_RATIO, column_overlap_ratio)
 
 try:
     import pymupdf as fitz
@@ -185,6 +187,30 @@ def write_overlays(doc, pdf, outdir, dpi):
     return made
 
 
+def file_level_error(path):
+    """Failures that happen *before* any layout work, as (exit_code, message).
+
+    SKILL.md §7 routes encrypted/corrupt input to exit 2 (reason on stderr).
+    Exit 3 is reserved for "opens fine but has no text layer" -> OCR route.
+    Without this guard all of those fell into the generic `parse failed -> 3`
+    handler and were reported as "scanned document, go to OCR", which is wrong
+    for a file that cannot be opened at all (and for a 0-page file that OCR
+    could never fill either).
+    """
+    try:
+        d = fitz.open(path)
+    except Exception as exc:                     # EmptyFileError, FileDataError
+        return 2, "cannot open PDF (%s: %s)" % (type(exc).__name__, exc)
+    try:
+        if d.needs_pass:
+            return 2, "PDF is encrypted; a password is required"
+        if d.page_count == 0:
+            return 2, "PDF has 0 pages; nothing to parse (file may be truncated or corrupt)"
+    finally:
+        d.close()
+    return None
+
+
 def selfcheck(doc):
     """Structural invariants that must hold for a trustworthy parse."""
     errs, warns = [], []
@@ -206,11 +232,16 @@ def selfcheck(doc):
             errs.append("order_not_contiguous:p%d" % p["page"])
     # column purity: a block classified into a column must not cross a gutter
     for p in doc["pages"]:
+        bands = p.get("column_bands") or []
         for g0, g1 in p.get("gutters", []):
             for b in blocks:
                 if b["page"] != p["page"] or b.get("column", -1) < 0:
                     continue
-                if b["bbox"][0] < g1 - 1 and b["bbox"][2] > g0 + 1:
+                # a block that sits >=80% inside one column is not "spanning";
+                # its ink may still overrun the column edge by a few points
+                if bands and column_overlap_ratio(b["bbox"], bands) >= COLUMN_OWN_RATIO:
+                    continue
+                if b["bbox"][0] < g1 - GUTTER_INK_TOL and b["bbox"][2] > g0 + GUTTER_INK_TOL:
                     errs.append("column_block_crosses_gutter:%s" % b["id"])
     st = doc["stats"]
     if st.get("char_recall") is not None and st["char_recall"] < 0.90:
@@ -238,22 +269,34 @@ def main(argv=None):
     args = ap.parse_args(argv)
 
     if not os.path.exists(args.pdf):
-        print("ERROR: no such file: %s" % args.pdf)
+        # SKILL.md §7: every failure reason goes to stderr, so a caller can
+        # separate the error from the report on stdout
+        sys.stderr.write("ERROR: no such file: %s\n" % args.pdf)
         return 2
     max_pages = None
     if args.pages:
         spec = args.pages.strip()
-        if "-" in spec:
-            a, b = spec.split("-")[:2]
-            max_pages = int(b)
-        else:
-            max_pages = max(int(x) for x in spec.split(","))
+        try:
+            if "-" in spec:
+                a, b = spec.split("-")[:2]
+                max_pages = int(b)
+            else:
+                max_pages = max(int(x) for x in spec.split(","))
+        except ValueError:
+            # SKILL.md §2: malformed usage is exit 2, never a traceback
+            sys.stderr.write("ERROR: bad --pages value %r (use 1-6 or 1,3,5)\n"
+                             % args.pages)
+            return 2
+    bad = file_level_error(args.pdf)
+    if bad:
+        sys.stderr.write("ERROR: %s: %s\n" % (args.pdf, bad[1]))
+        return bad[0]
     ensure_dir(args.out)
 
     try:
         doc, pdf = parse_document(args.pdf, max_pages=max_pages, dpi=args.dpi)
     except Exception as exc:
-        print("ERROR: parse failed: %s: %s" % (type(exc).__name__, exc))
+        sys.stderr.write("ERROR: parse failed: %s: %s\n" % (type(exc).__name__, exc))
         return 3
 
     fig_map = {} if args.no_figures else write_figures(doc, pdf, args.out)

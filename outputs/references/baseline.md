@@ -43,6 +43,10 @@ text = "".join(page.get_text("text") for page in fitz.open(pdf))
 
 "→"左边是基线，右边是本 Skill。加粗表示差异来自结构化处理，而不是字符数变化。
 
+> **注意"跨栏交错"这一列**：右边的 0 是**自检不变式口径**（`baseline_compare.py` 按构造给出：
+> 自检禁止块跨 gutter，所以它恒为 0，第三方无法用它反驳）。**同口径实测**是从发出去的
+> `text.md` 单元序列数出来的 **3 次**（resnet 1 / bert 2），见 §5。两个口径不混用。
+
 ## 4. 怎么读这张表（避免过度解读）
 
 - **字符总数几乎一样**（如 resnet 49574 vs 47956，差值是图内文字与页眉页脚被归位而非丢弃）。
@@ -56,3 +60,30 @@ text = "".join(page.get_text("text") for page in fitz.open(pdf))
 
 `baseline_compare.py` 只用两个输入：PDF 本身，以及本引擎产出的 `doc.json`（提供 gutter 几何、页眉清单、块清单）。
 换实现只需替换 `doc.json`，判据不变；因此这张表可以被任何人用同一批公开 PDF 复现或反驳。
+
+## 5. 三工具同口径对比（`results/compare_tools.json`）
+
+同一批 5 篇 PDF、同一套判据，第三种工具是 **`pymupdf4llm 2.1`**（PyMuPDF 官方 Markdown 导出器，
+最常见的轻量 PDF→MD 方案）。`skill` 一侧的数字从 `text.md` / `report.json` 实测，不是按构造给 0。
+
+| 判据（5 篇合计） | 裸 dump | pymupdf4llm 2.1 | 本 Skill |
+|---|---|---|---|
+| 章节 | 0 | 182 | **146** |
+| 表 | 0 | 86 | 85 |
+| 带页 + 坐标的块 | 0 | 0 | **3,483** |
+| 图内文字混入正文（字符） | 4,566 | 4,447 | **0** |
+| 页眉行混入正文 | 22 | 22 | **0** |
+| 双栏串栏 | 48 | 155 | **3** |
+| 端到端耗时（默认参数） | 0.3 s | 111.4 s | 132.6 s（`--no-overlay --no-figures` 124.3 s） |
+
+三条必须一起读：
+
+1. **`182` 不等于"章节更多"**：它把 `### greatly benefited from very deep models.` 这种正文句也标成标题，
+   且 `##` 的层级与真实父子关系无关（没有 `sections[].path`）。本 Skill 的 146 是**带层级的节点数**。
+2. **表 85 vs 86 基本持平**：`pymupdf4llm` 底层同样调 `find_tables`，这一项不该算优势；
+   差别在**每个单元格的坐标**（`bbox_cells`）与被闸门拒掉的 5 张表**显式记账**（`tables_rejected`）。
+3. **耗时本引擎更慢**：默认路径慢 19%，纯文本路径慢 11%——换来坐标、章节树、逐格坐标与图内文字归位。
+   这一项如实写"不占优"，不拿"含出图"当借口（纯文本模式已单独计时）。
+
+复算：`python outputs/scripts/compare_tools.py --json results/compare_tools.json`；
+耗时：`python outputs/scripts/perf_bench.py --json results/perf.json`。

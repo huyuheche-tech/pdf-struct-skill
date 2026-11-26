@@ -1,0 +1,496 @@
+{
+ "schema": "pdf-struct/ocreval/1",
+ "note": "n=1 page (resnet p1), 200 dpi, transcription by a general vision model, single pass, no tuning. This measures the merge pipeline + one model's reading, not a benchmark.",
+ "case": {
+  "file": "corpus/resnet.pdf",
+  "page": 1,
+  "dpi": 200,
+  "transcriber": "vision model (single pass, see note)",
+  "char_similarity": 1.0,
+  "char_similarity_raw": 0.9956,
+  "token_recall": 1.0,
+  "line_count_ratio": 1.0135,
+  "column_order_ok": true,
+  "running_header_dropped": true,
+  "blocks": 16,
+  "mean_confidence": 0.9,
+  "missing_examples": [
+   "s are more difﬁcult to train.",
+   "RC 2015 classiﬁcation task. W",
+   "r image classiﬁcation [21, 50",
+   "50] and classiﬁers in an end-",
+   ". greatly beneﬁted from very",
+   "n by the signiﬁcance of depth"
+  ],
+  "extra_examples": [
+   "s are more difficult to train.",
+   "RC 2015 classification task. W",
+   "r image classification [21, 50",
+   "50] and classifiers in an end-",
+   ". greatly benefited from very",
+   "n by the significance of depth"
+  ]
+ },
+ "caveats": [
+  "n=1 page, one model, one pass: this bounds one run, it is not a benchmark and the standard error of a single page is large.",
+  "the 'scan' here is a 200 dpi rasterisation of a born-digital PDF: no skew, no JPEG noise, no photocopy blur. A real scan starts lower than this, so these numbers are an upper bound for the branch, not a field expectation.",
+  "char_similarity folds typography (NFKC, ligatures, quotes, dashes) on both sides, which is why it can reach 1.0.  The same transcript without that folding scores 0.9956: the 9 fi/ff ligature codepoints in the text layer were read as two plain letters.  That gap is also the proof this transcript was read off the image and not copied out of the text layer (a copy would score 1.0 unfolded as well); missing/extra_examples are drawn from that strict stream, see detail.char_diffs for the exact character pairs.",
+  "in-figure text is excluded from the truth set and not transcribed (28 figure_label blocks on this page, per prompt rule 5 the figure is a placeholder); token_recall therefore does not measure axis labels or legends.",
+  "column_order_ok walks the truth lines in column order and checks that the vision block each line landed in (containment match) never goes backwards; it verifies the transcript's order, not the model's attention.",
+  "mean_confidence is the transcript's single confidence line mapped high/medium/low -> 0.9/0.6/0.3; it is nominal, not calibrated."
+ ],
+ "assertions": [
+  {
+   "check": "bbox is null on every page block",
+   "ok": true,
+   "detail": "16 blocks"
+  },
+  {
+   "check": "bbox_source == vision",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "confidence present on every block",
+   "ok": true,
+   "detail": "high"
+  },
+  {
+   "check": "stats.char_recall is null",
+   "ok": true,
+   "detail": "None"
+  },
+  {
+   "check": "stats.ocr_pages covers page 1",
+   "ok": true,
+   "detail": "[1]"
+  },
+  {
+   "check": "transcript produced blocks",
+   "ok": true,
+   "detail": "16"
+  },
+  {
+   "check": "ocr/text.md written",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "transcript is not a byte-copy of the text layer",
+   "ok": true,
+   "detail": "raw_char_similarity=0.9956 (ligature chars in truth: 9)"
+  }
+ ],
+ "detail": {
+  "char_edit_distance": 0,
+  "raw_char_similarity": 0.9956,
+  "raw_edit_distance": 18,
+  "ligature_chars_in_truth": 9,
+  "char_diffs": [
+   {
+    "op": "replace",
+    "truth": "s are more difﬁcult to train.",
+    "read": "s are more difficult to train."
+   },
+   {
+    "op": "replace",
+    "truth": "RC 2015 classiﬁcation task. W",
+    "read": "RC 2015 classification task. W"
+   },
+   {
+    "op": "replace",
+    "truth": "r image classiﬁcation [21, 50",
+    "read": "r image classification [21, 50"
+   },
+   {
+    "op": "replace",
+    "truth": "50] and classiﬁers in an end-",
+    "read": "50] and classifiers in an end-"
+   },
+   {
+    "op": "replace",
+    "truth": ". greatly beneﬁted from very",
+    "read": ". greatly benefited from very"
+   },
+   {
+    "op": "replace",
+    "truth": "n by the signiﬁcance of depth",
+    "read": "n by the significance of depth"
+   },
+   {
+    "op": "replace",
+    "truth": "caused by overﬁtting, and add",
+    "read": "caused by overfitting, and add"
+   },
+   {
+    "op": "replace",
+    "truth": "horoughly veriﬁed by our expe",
+    "read": "horoughly verified by our expe"
+   },
+   {
+    "op": "replace",
+    "truth": "are unable to ﬁnd solutions t",
+    "read": "are unable to find solutions t"
+   }
+  ],
+  "chars_truth": 4106,
+  "chars_transcript": 4106,
+  "lines_truth": 74,
+  "lines_transcript": 75,
+  "words_truth": 325,
+  "words_transcript": 325,
+  "words_shared": 325,
+  "figure_label_blocks_excluded": 28,
+  "column_sequence": [
+   0,
+   1,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   3,
+   4,
+   4,
+   4,
+   4,
+   4,
+   4,
+   4,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   7,
+   7,
+   8,
+   8,
+   8,
+   8,
+   9,
+   10,
+   10,
+   10,
+   10,
+   10,
+   10,
+   10,
+   10,
+   10,
+   11,
+   11,
+   11,
+   11,
+   11,
+   11,
+   12,
+   12,
+   12,
+   12,
+   12,
+   12,
+   12,
+   12,
+   12
+  ],
+  "matches": [
+   {
+    "truth": "p1-b000",
+    "side": "L",
+    "vision_block": 0,
+    "containment": 1.0,
+    "text": "Deep Residual Learning for Image Recognition"
+   },
+   {
+    "truth": "p1-b006",
+    "side": "L",
+    "vision_block": 1,
+    "containment": 1.0,
+    "text": "{kahe, v-xiangz, v-shren, jiansun}@microsoft.com"
+   },
+   {
+    "truth": "p1-b015",
+    "side": "L",
+    "vision_block": 3,
+    "containment": 1.0,
+    "text": "Deeper neural networks are more difﬁcult to train. We"
+   },
+   {
+    "truth": "p1-b019",
+    "side": "L",
+    "vision_block": 3,
+    "containment": 1.0,
+    "text": "present a residual learning framework to ease the training"
+   },
+   {
+    "truth": "p1-b021",
+    "side": "L",
+    "vision_block": 3,
+    "containment": 1.0,
+    "text": "of networks that are substantially deeper than those used"
+   },
+   {
+    "truth": "p1-b023",
+    "side": "L",
+    "vision_block": 3,
+    "containment": 1.0,
+    "text": "previously. We explicitly reformulate the layers as learn-"
+   },
+   {
+    "truth": "p1-b040",
+    "side": "L",
+    "vision_block": 3,
+    "containment": 1.0,
+    "text": "ing residual functions with reference to the layer inputs, in-"
+   },
+   {
+    "truth": "p1-b044",
+    "side": "L",
+    "vision_block": 3,
+    "containment": 1.0,
+    "text": "stead of learning unreferenced functions. We provide com-"
+   },
+   {
+    "truth": "p1-b046",
+    "side": "L",
+    "vision_block": 3,
+    "containment": 1.0,
+    "text": "prehensive empirical evidence showing that these residual"
+   },
+   {
+    "truth": "p1-b048",
+    "side": "L",
+    "vision_block": 3,
+    "containment": 1.0,
+    "text": "networks are easier to optimize, and can gain accuracy from"
+   },
+   {
+    "truth": "p1-b050",
+    "side": "L",
+    "vision_block": 3,
+    "containment": 1.0,
+    "text": "considerably increased depth. On the ImageNet dataset we evaluate resi"
+   },
+   {
+    "truth": "p1-b052",
+    "side": "L",
+    "vision_block": 3,
+    "containment": 1.0,
+    "text": "deeper than VGG nets [41] but still having lower complex-"
+   },
+   {
+    "truth": "p1-b054",
+    "side": "L",
+    "vision_block": 3,
+    "containment": 1.0,
+    "text": "ity. An ensemble of these residual nets achieves 3.57% error"
+   },
+   {
+    "truth": "p1-b056",
+    "side": "L",
+    "vision_block": 3,
+    "containment": 1.0,
+    "text": "on the ImageNet test set. This result won the 1st place on the"
+   },
+   {
+    "truth": "p1-b058",
+    "side": "L",
+    "vision_block": 3,
+    "containment": 1.0,
+    "text": "ILSVRC 2015 classiﬁcation task. We also present analysis"
+   },
+   {
+    "truth": "p1-b060",
+    "side": "L",
+    "vision_block": 3,
+    "containment": 1.0,
+    "text": "on CIFAR-10 with 100 and 1000 layers."
+   },
+   {
+    "truth": "p1-b062",
+    "side": "L",
+    "vision_block": 4,
+    "containment": 1.0,
+    "text": "The depth of representations is of central importance"
+   },
+   {
+    "truth": "p1-b064",
+    "side": "L",
+    "vision_block": 4,
+    "containment": 1.0,
+    "text": "for many visual recognition tasks. Solely due to our ex-"
+   },
+   {
+    "truth": "p1-b066",
+    "side": "L",
+    "vision_block": 4,
+    "containment": 1.0,
+    "text": "tremely deep representations, we obtain a 28% relative im-"
+   },
+   {
+    "truth": "p1-b068",
+    "side": "L",
+    "vision_block": 4,
+    "containment": 1.0,
+    "text": "provement on the COCO object detection dataset. Deep"
+   },
+   {
+    "truth": "p1-b070",
+    "side": "L",
+    "vision_block": 4,
+    "containment": 1.0,
+    "text": "residual nets are foundations of our submissions to ILSVRC"
+   },
+   {
+    "truth": "p1-b072",
+    "side": "L",
+    "vision_block": 4,
+    "containment": 1.0,
+    "text": "& COCO 2015 competitions1, where we also won the 1st places on the tas"
+   },
+   {
+    "truth": "p1-b074",
+    "side": "L",
+    "vision_block": 4,
+    "containment": 1.0,
+    "text": "ization, COCO detection, and COCO segmentation."
+   },
+   {
+    "truth": "p1-b078",
+    "side": "L",
+    "vision_block": 6,
+    "containment": 1.0,
+    "text": "Deep convolutional neural networks [22, 21] have led"
+   },
+   {
+    "truth": "p1-b080",
+    "side": "L",
+    "vision_block": 6,
+    "containment": 1.0,
+    "text": "to a series of breakthroughs for image classiﬁcation [21,"
+   },
+   {
+    "truth": "p1-b082",
+    "side": "L",
+    "vision_block": 6,
+    "containment": 1.0,
+    "text": "50, 40]. Deep networks naturally integrate low/mid/high-"
+   },
+   {
+    "truth": "p1-b084",
+    "side": "L",
+    "vision_block": 6,
+    "containment": 1.0,
+    "text": "level features [50] and classiﬁers in an end-to-end multi-"
+   },
+   {
+    "truth": "p1-b086",
+    "side": "L",
+    "vision_block": 6,
+    "containment": 1.0,
+    "text": "layer fashion, and the “levels” of features can be enriched"
+   },
+   {
+    "truth": "p1-b088",
+    "side": "L",
+    "vision_block": 6,
+    "containment": 1.0,
+    "text": "by the number of stacked layers (depth). Recent evidence"
+   },
+   {
+    "truth": "p1-b090",
+    "side": "L",
+    "vision_block": 6,
+    "containment": 1.0,
+    "text": "[41, 44] reveals that network depth is of crucial importance,"
+   },
+   {
+    "truth": "p1-b092",
+    "side": "L",
+    "vision_block": 6,
+    "containment": 1.0,
+    "text": "and the leading results [41, 44, 13, 16] on the challenging"
+   },
+   {
+    "truth": "p1-b094",
+    "side": "L",
+    "vision_block": 6,
+    "containment": 1.0,
+    "text": "ImageNet dataset [36] all exploit “very deep” [41] models,"
+   },
+   {
+    "truth": "p1-b096",
+    "side": "L",
+    "vision_block": 6,
+    "containment": 1.0,
+    "text": "with a depth of sixteen [41] to thirty [16]. Many other non-"
+   },
+   {
+    "truth": "p1-b098",
+    "side": "L",
+    "vision_block": 6,
+    "containment": 1.0,
+    "text": "trivial visual recognition tasks [8, 12, 7, 32, 27] have also"
+   },
+   {
+    "truth": "p1-b100",
+    "side": "L",
+    "vision_block": 7,
+    "containment": 1.0,
+    "text": "1http://image-net.org/challenges/LSVRC/2015/"
+   },
+   {
+    "truth": "p1-b103",
+    "side": "L",
+    "vision_block": 7,
+    "containment": 1.0,
+    "text": "http://mscoco.org/dataset/#detections-challenge2015."
+   },
+   {
+    "truth": "p1-b043",
+    "side": "R",
+    "vision_block": 8,
+    "containment": 1.0,
+    "text": "Figure 1. Training error (left) and test error (right) on CIFAR-10"
+   },
+   {
+    "truth": "p1-b045",
+    "side": "R",
+    "vision_block": 8,
+    "containment": 1.0,
+    "text": "with 20-layer and 56-layer “plain” networks. The deeper network"
+   },
+   {
+    "truth": "p1-b047",
+    "side": "R",
+    "vision_block": 8,
+    "containment": 1.0,
+    "text": "has higher training error, and thus test error. Similar phenomena"
+   },
+   {
+    "truth": "p1-b049",
+    "side": "R",
+    "vision_block": 8,
+    "containment": 1.0,
+    "text": "on ImageNet is presented in Fig. 4."
+   }
+  ],
+  "png_scale": 1.0,
+  "png_mode": "palette64"
+ }
+}

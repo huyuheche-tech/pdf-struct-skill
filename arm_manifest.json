@@ -18,7 +18,7 @@
   "execution": {
     "log_path": "results/run.log",
     "exit_code": 0,
-    "ran_at": "2026-11-26T14:37:45+08:00",
+    "ran_at": "2026-11-26T16:30:00+08:00",
     "ran_by": "agent",
     "wall_time_s": 135.0,
     "artifacts": [
@@ -156,6 +156,41 @@
         "type": "code",
         "format": "py",
         "description": "Deterministic generator for the three fixtures, so the tests can be rebuilt from source."
+      },
+      {
+        "id": "A21",
+        "path": "results/compare_tools.json",
+        "type": "data",
+        "format": "json",
+        "description": "Same six geometry criteria applied to three extractors on the same five PDFs: raw get_text, pymupdf4llm 2.1, and this skill. 7 metrics x 5 cases + totals."
+      },
+      {
+        "id": "A22",
+        "path": "results/perf.json",
+        "type": "data",
+        "format": "json",
+        "description": "Per-paper wall time (median of 3), pages/s, sampled peak RSS, plus a text-only run (--no-overlay --no-figures) so the comparison with a text-only exporter is fair."
+      },
+      {
+        "id": "A23",
+        "path": "results/ocr-eval.json",
+        "type": "data",
+        "format": "json",
+        "description": "One real page (resnet p1) at 200 dpi: render -> vision transcript -> merge -> compare. Reports char_similarity raw and NFKC-folded, token recall, column order, and the caveat that this is an upper bound, not a recognition rate."
+      },
+      {
+        "id": "A24",
+        "path": "tests/test_robustness.py",
+        "type": "code",
+        "format": "py",
+        "description": "9 abnormal-input cases / 54 assertions: 0-byte, fake PDF, 40% truncation, AES-256 encrypted, 1-page, rotated, 3-column, 0-page, bad --pages. Asserts exit code and the absence of a traceback."
+      },
+      {
+        "id": "A25",
+        "path": "tests/robustness.md",
+        "type": "data",
+        "format": "txt",
+        "description": "Exit-code table (expected vs actual), the three-column numbers, and the bugs found and reverted - including one fix that was rolled back because it exposed a false heading."
       }
     ]
   },
@@ -298,7 +333,7 @@
     },
     "modality_notes": {
       "execution": "results/ holds a real run of the bundled parser on five public papers; results/run.log is the verbatim stdout of that run; results/baseline.json is the bare-agent comparison; tests/test_engine.py exercises the CJK, multi-line-title and scanned-page paths without needing the corpus",
-      "characterization": "7 deviations from paper, 10 envelope entries (7 measured / 3 declared), 5 failure modes, 4 sensitivity sweeps, plus 3 synthetic fixtures (CJK two-column, multi-line title, scanned page)",
+      "characterization": "7 deviations from paper, 10 envelope entries (8 measured / 2 declared), 6 failure modes, 4 sensitivity sweeps, 3 synthetic fixtures, 1 real-page OCR upper bound",
       "trace": "hand-written 9-step trace of the actual build session (the platform trace-record installer rewrites ~/.claude/skills/*/SKILL.md and was not run)"
     }
   }

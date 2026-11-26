@@ -121,10 +121,10 @@
     {
       "param": "column_count_per_page",
       "min": 1,
-      "max": 4,
+      "max": 3,
       "unit": "columns (single page)",
       "tested": true,
-      "note": "3-4 column pages occur on table/figure-dominated pages (transformer p8/p9, vit p19/p21, gpt3 p27); a fake gutter can appear there. Only the document-level 1-vs-2 mismatch raises a warning."
+      "note": "3 columns verified on a synthetic page (columns=3, column_template=3, three numbered headings in sections, char_recall=1.0, column order 0->1->2); pages with 4 detected bands also occur on table/figure-dominated pages (transformer p8/p9, vit p19/p21, gpt3 p27), where a fake gutter can appear. Real 3-column journals are NOT tested."
     },
     {
       "param": "text_layer_chars",
@@ -171,8 +171,8 @@
       "min": 110,
       "max": 300,
       "unit": "dpi",
-      "tested": false,
-      "note": "the pipeline (render -> prompt -> merge) is exercised end-to-end at 200 dpi on a synthetic scan; recognition quality of a real vision model is NOT measured"
+      "tested": true,
+      "note": "pipeline (render -> prompt -> merge -> compare) exercised on a real page at 200 dpi (resnet p1, results/ocr-eval.json); n=1, single model, single pass. Recognition on a real scan is NOT measured - the page is a clean rasterisation of a born-digital PDF."
     },
     {
       "param": "layout_column_count",
@@ -208,6 +208,11 @@
       "condition": "rotated watermarks or vertical margin text on figure-heavy pages",
       "symptom": "typed margin_artifact and excluded from reading order; if such a page carries real body text it would be masked too (not observed on the two test papers).",
       "evidence_artifact": "A7"
+    },
+    {
+      "condition": "a born-digital page rasterised at 200 dpi is fed to a vision model",
+      "symptom": "the transcript can match the text layer almost exactly (0.9956 raw, 1.0 after NFKC), which makes a single-page run look like a recognition benchmark. It is not: clamp the claim to 'the merge pipeline works on a real page, n=1', and never report it as accuracy on scans.",
+      "evidence_artifact": "results/ocr-eval.json"
     }
   ],
   "sensitivity": [
@@ -242,7 +247,8 @@
   ],
   "notes": [
     "All numbers above come from results/run.log and results/, produced by the commands recorded there; nothing is estimated.",
-    "This bundle targets the skill-authoring challenge product-arena-08-3027d350, so 'reference_value' means the ground truth obtained by reading the rendered pages, not a value reported in the paper's text."
+    "This bundle targets the skill-authoring challenge product-arena-08-3027d350, so 'reference_value' means the ground truth obtained by reading the rendered pages, not a value reported in the paper's text.",
+    "2026-11-26 round 3: three-column synthetic page verified; real-page OCR run added as an upper bound (n=1); tool comparison and perf added as objectives (compare_tools.json / perf.json)."
   ],
   "fixtures": [
     {
@@ -260,5 +266,18 @@
       "kind": "synthetic (text page rendered to an image-only PDF)",
       "proves": "no text layer -> parse exit 3 -> ocr_pages writes page-01.png/prompt-01.md/index.json -> merge_ocr --require all yields bbox:null, bbox_source:vision, confidence set, char_recall:null"
     }
-  ]
+  ],
+  "ocr_eval": {
+    "page": "corpus/resnet.pdf p1",
+    "dpi": 200,
+    "n_pages": 1,
+    "char_similarity_folded": 1.0,
+    "char_similarity_raw": 0.9956,
+    "token_recall": 1.0,
+    "line_count_ratio": 1.0135,
+    "column_order_ok": true,
+    "blocks": 16,
+    "mean_confidence": 0.9,
+    "reading": "upper bound for the branch, not a recognition rate: the 'scan' has no skew, noise or photocopy blur, the truth is the page's own text layer, and n=1. The 0.0044 raw gap is exactly the 9 fi/ff ligature codepoints printed as single glyphs."
+  }
 }

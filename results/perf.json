@@ -1,0 +1,142 @@
+{
+  "schema": "pdf-struct/perf/1",
+  "note": "Wall time = one end-to-end CLI run (python outputs/scripts/parse_pdf.py <pdf> --out <scratch>) with default flags, so it includes page rasterisation of figures and the overlay PNGs that the shipped bundle writes; 3 runs per paper, median reported, runs discarded none. Peak RSS = sampled max: parent samples psutil.Process(child).memory_info().rss every 25 ms (Windows has no RUSAGE_CHILDREN high-water mark), rounded up to the nearest sample; a spike shorter than the interval can be missed. pages and blocks are read from the shipped results/<name>/report.json, whose stats are identical to these runs. Environment: python 3.13.12, pymupdf 2.1, single process, warm file cache after the first run (each paper's 3 runs are consecutive).",
+  "cases": [
+    {
+      "file": "resnet.pdf",
+      "pages": 12,
+      "seconds_median": 16.304,
+      "seconds_all": [
+        16.672,
+        15.325,
+        16.304
+      ],
+      "pages_per_s": 0.74,
+      "peak_rss_mb": 344.8,
+      "peak_rss_mb_all": [
+        344.8,
+        341.8,
+        344.4
+      ],
+      "blocks": 583,
+      "blocks_per_page": 48.6
+    },
+    {
+      "file": "transformer.pdf",
+      "pages": 15,
+      "seconds_median": 11.934,
+      "seconds_all": [
+        11.934,
+        12.674,
+        11.537
+      ],
+      "pages_per_s": 1.26,
+      "peak_rss_mb": 357.8,
+      "peak_rss_mb_all": [
+        357.8,
+        354.7,
+        353.4
+      ],
+      "blocks": 510,
+      "blocks_per_page": 34.0
+    },
+    {
+      "file": "bert.pdf",
+      "pages": 16,
+      "seconds_median": 16.267,
+      "seconds_all": [
+        16.267,
+        15.996,
+        16.455
+      ],
+      "pages_per_s": 0.98,
+      "peak_rss_mb": 345.5,
+      "peak_rss_mb_all": [
+        345.5,
+        343.7,
+        341.5
+      ],
+      "blocks": 687,
+      "blocks_per_page": 42.9
+    },
+    {
+      "file": "gpt3.pdf",
+      "pages": 75,
+      "seconds_median": 68.118,
+      "seconds_all": [
+        68.118,
+        65.859,
+        68.886
+      ],
+      "pages_per_s": 1.1,
+      "peak_rss_mb": 618.3,
+      "peak_rss_mb_all": [
+        611.6,
+        618.3,
+        617.7
+      ],
+      "blocks": 961,
+      "blocks_per_page": 12.8
+    },
+    {
+      "file": "vit.pdf",
+      "pages": 22,
+      "seconds_median": 20.017,
+      "seconds_all": [
+        20.017,
+        20.385,
+        18.177
+      ],
+      "pages_per_s": 1.1,
+      "peak_rss_mb": 360.1,
+      "peak_rss_mb_all": [
+        360.1,
+        355.2,
+        358.9
+      ],
+      "blocks": 742,
+      "blocks_per_page": 33.7
+    }
+  ],
+  "totals": {
+    "files": 5,
+    "pages": 140,
+    "seconds_median_sum": 132.64,
+    "pages_per_s": 1.06,
+    "peak_rss_mb_max": 618.3,
+    "blocks": 3483,
+    "blocks_per_page": 24.9
+  },
+  "text_only_run": {
+    "note": "Same CLI with --no-overlay --no-figures: structure + text + tables only, no page rasterisation and no figure crops. This is the run that is comparable to a text-only exporter such as pymupdf4llm (which also writes no images). Single run per paper, so it is a point measurement, not a median; subtract nothing - all other flags are default.",
+    "cases": [
+      {
+        "file": "resnet.pdf",
+        "seconds": 16.496,
+        "exit": 0
+      },
+      {
+        "file": "transformer.pdf",
+        "seconds": 10.946,
+        "exit": 0
+      },
+      {
+        "file": "bert.pdf",
+        "seconds": 15.543,
+        "exit": 0
+      },
+      {
+        "file": "gpt3.pdf",
+        "seconds": 62.493,
+        "exit": 0
+      },
+      {
+        "file": "vit.pdf",
+        "seconds": 18.786,
+        "exit": 0
+      }
+    ],
+    "total_seconds": 124.264,
+    "pages_per_s": 1.13
+  }
+}

@@ -32,8 +32,8 @@
    "size": 14.35
   },
   "authors": [
-   "Xiangyu Zhang",
    "Kaiming He",
+   "Xiangyu Zhang",
    "Shaoqing Ren",
    "Jian Sun"
   ],
@@ -2019,30 +2019,6 @@
   {
    "page": 1,
    "bbox": [
-    222.06,
-    152.39,
-    296.77,
-    164.34
-   ],
-   "column": -1,
-   "type": "author",
-   "text": "Xiangyu Zhang",
-   "raw": "Xiangyu Zhang",
-   "n_lines": 1,
-   "size": 11.96,
-   "bold": false,
-   "italic": false,
-   "mono": false,
-   "font": "NimbusRomNo9L-Regu",
-   "sup_sub": "Xiangyu Zhang",
-   "rotated": false,
-   "order": 1,
-   "page_order": 1,
-   "id": "p1-b001"
-  },
-  {
-   "page": 1,
-   "bbox": [
     136.39,
     152.39,
     195.16,
@@ -2059,6 +2035,30 @@
    "mono": false,
    "font": "NimbusRomNo9L-Regu",
    "sup_sub": "Kaiming He",
+   "rotated": false,
+   "order": 1,
+   "page_order": 1,
+   "id": "p1-b001"
+  },
+  {
+   "page": 1,
+   "bbox": [
+    222.06,
+    152.39,
+    296.77,
+    164.34
+   ],
+   "column": 0,
+   "type": "author",
+   "text": "Xiangyu Zhang",
+   "raw": "Xiangyu Zhang",
+   "n_lines": 1,
+   "size": 11.96,
+   "bold": false,
+   "italic": false,
+   "mono": false,
+   "font": "NimbusRomNo9L-Regu",
+   "sup_sub": "Xiangyu Zhang",
    "rotated": false,
    "order": 2,
    "page_order": 2,

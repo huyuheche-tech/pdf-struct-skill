@@ -33,7 +33,7 @@ python scripts/parse_pdf.py paper.pdf --out out/paper
 | 参数 | 作用 |
 |---|---|
 | `--pages 1-6` | 只解析部分页（快速试跑、大文件取样） |
-| `--no-overlay` | 跳过 overlay 渲染（最快，只出 doc.json/text.md/tables/figures） |
+| `--no-overlay` | 跳过 overlay 渲染（只出 doc.json/text.md/tables/figures；本包未单独计时，默认路径 140 页 132.6 s） |
 | `--no-figures` | 不裁图 |
 | `--no-text-md` | 只要 doc.json |
 | `--dpi 110` | overlay 渲染分辨率（默认 110） |
@@ -179,7 +179,10 @@ python scripts/merge_ocr.py out/paper --pages 1-3        # 只合并部分页
 | 现象 | 判据 | 处理 |
 |---|---|---|
 | 无文本层（扫描件） | 退出码 3 / `pages[].empty` | 转 §6 OCR 分支；不要把空 doc 当结果提交 |
-| 加密/损坏 | 打开异常，退出码 2，stderr 带异常信息 | 如实报告"无法解析"，给出 PDF 元信息（页数、大小）；不要重建内容 |
+| 加密/损坏 / 0 字节 / 伪 PDF | 打开失败、`needs_pass`、`page_count == 0`，退出码 **2**，stderr 带原因 | 如实报告"无法解析"，给出 PDF 元信息（页数、大小）；不要重建内容，也不要落到 OCR 分支 |
+| 0 页 / 截断到无完整页 | `page_count == 0` 或解析后没有任何页，退出码 **2** | 同上；不要把空 `doc.json` 当结果 |
+| 解析中途异常（能打开、失败在页面级） | 退出码 **3**，stderr 带异常 | 报告"部分可解析"：交出已完成的页与 `warnings`，不要补齐未解析的页 |
+| 参数非法（`--pages 1-x`、文件不存在） | 退出码 **2**，stderr 一行原因 | 直接改参数重跑，不要重试同一命令 |
 | 分栏判错 | `report.json.pages[].columns` 与 overlay 不符 | 用 `--pages` 单页重跑确认；在结果里把该页标 `uncertain`，并把 `column_template` 与 `cols_derived` 一起交出 |
 | 表格连成一片 | `tables_rejected` 有项 / `fill_rate < 0.4` | 该区保留为正文文本（不漏字），把 `unassigned_lines` 一并交出；不要硬造行列 |
 | 文字重叠（双栏误并） | `char_recall > 1.05` | 大概率是同一行被两块接住；按 overlay 人工确认后报告，不要删块 |
@@ -202,7 +205,7 @@ python scripts/merge_ocr.py out/paper --pages 1-3        # 只合并部分页
 - 公式只做**区域识别 + 原文搬运**（`type=formula`），不做 LaTeX 语义转换；行内公式留在正文原字形里。
 - 连字（ﬁ/ﬂ）与连字符断行**按原文保留**，便于逐字核对；需要归一化时在消费端处理。
 - 旋转文字（侧边水印、竖排标题）归入 `margin_artifact`，不参与阅读顺序。
-- 三栏及以上：`column_template` 会给出实际栏数，但页眉页脚区跨栏块较多时仍可能只判到 2 栏，需 overlay 复核。
+- 三栏：合成三栏页已通过（`columns=3` / `column_template=3` / 三个编号标题进 `sections` / `char_recall=1.0` / 栏序 0→1→2）；**真实期刊三/四栏未验证**，页眉页脚区跨栏块较多时仍可能只判到 2 栏，需 overlay 复核。
 - **混合栏数文档**（正文单栏、附录双栏，如 ICLR 模板）：`pages[].columns` 逐页不同，跨栏不变式按页生效；
   汇总时请以 `pages[]` 为准，不要只信 `document.column_template`。
 - 章节识别覆盖两种常见排版：编号 + 字号/字重变化，以及**正文号字号的全大写编号小节**（`3.1 VISION TRANSFORMER (VIT)`）；
@@ -219,9 +222,11 @@ python scripts/merge_ocr.py out/paper --pages 1-3        # 只合并部分页
 
 - `pdf-struct/2`，脚本 `scripts/pdf_struct.py` + `scripts/parse_pdf.py`（本 Skill 自带，无外部服务）。
 - 工具箱：`scripts/parse_pdf.py`（主入口）、`scripts/baseline_compare.py`（与裸 dump 的量化对照）、
-  `scripts/ocr_pages.py` + `scripts/merge_ocr.py`（扫描件分支）、`scripts/make_fixtures.py`（合成语料）。
-- 自测：`python tests/test_engine.py`（27 条断言，三个合成 PDF：中文双栏 / 跨行标题 / 无文本层扫描页）。
-  改引擎前后都应跑一遍；它不依赖外部语料，也不联网。
+  `scripts/compare_tools.py`（三工具同口径对比）、`scripts/perf_bench.py`（耗时/RSS）、
+  `scripts/ocr_pages.py` + `scripts/merge_ocr.py` + `scripts/ocr_eval.py`（扫描件分支）、`scripts/make_fixtures.py`（合成语料）。
+- 自测：`python tests/test_engine.py`（27 条，中文双栏 / 跨行标题 / 扫描件）+ `python tests/test_robustness.py`
+  （54 条，0 字节/伪 PDF/截断/加密/0 页/单页/旋转/三栏/坏参数），共 **81 条**，不依赖 pytest、不联网。
+  改引擎前后都应跑一遍。
 - 依赖：PyMuPDF 2.1（MuPDF 1.28.6，AGPL，仅本地解析，不联网）、Pillow 12.3（overlay 与裁图）。
 - 算法与取舍见 `references/method.md`；schema 逐字段说明见 `references/schema.md`；对照方法见 `references/baseline.md`。
 - 示例调用与示例输出见 `examples/`（`quickstart.md` 是一屏接入版；示例仅用于说明调用方式，不是正式用例结果）。

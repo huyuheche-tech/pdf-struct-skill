@@ -7,11 +7,11 @@
 <!-- p1-b000 | type=heading | col=-1 | bbox=153.4,105.9,441.8,120.3 -->
 ## Deep Residual Learning for Image Recognition
 
-<!-- p1-b001 | type=author | col=-1 | bbox=222.1,152.4,296.8,164.3 -->
-Xiangyu Zhang
-
-<!-- p1-b002 | type=author | col=0 | bbox=136.4,152.4,195.2,164.3 -->
+<!-- p1-b001 | type=author | col=0 | bbox=136.4,152.4,195.2,164.3 -->
 Kaiming He
+
+<!-- p1-b002 | type=author | col=0 | bbox=222.1,152.4,296.8,164.3 -->
+Xiangyu Zhang
 
 <!-- p1-b003 | type=author | col=1 | bbox=323.7,152.4,391.1,164.3 -->
 Shaoqing Ren

@@ -625,7 +625,7 @@ Table 4: The Transformer generalizes well to English constituency parsing (Resul
 <!-- p10-b001 | type=body | col=0 | bbox=108.0,82.1,140.9,92.1 -->
 of WSJ)
 
-<!-- p10-b002 | type=table | col=-1 | bbox=145.1,94.0,466.9,236.6 -->
+<!-- p10-b002 | type=table | col=0 | bbox=145.1,94.0,466.9,236.6 -->
 [table T4]
 Parser | Training | WSJ 23 F1
 Vinyals & Kaiser el al. (2014) [37]

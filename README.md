@@ -74,11 +74,24 @@ GPT-3 那例另有 3 条 `sparse_table` 非阻塞 warning（表头稀疏、仍�
 |---|---|---|
 | 章节 / 表 / 单元格 | 0 / 0 / 0 | **146 / 80 / 2,586** |
 | 可定位到页+坐标的块 | 0 | **3,483** |
-| 图内文字混入正文 | 6,280 字符 | **6,280 字符归位、1 处漏网**（归入 `figure_label`，可查可取；漏网见 `outputs/response.md` §6） |
+| 图内文字混入正文 | 6,280 字符（`baseline` 口径；三工具口径 4,566） | **0**（引擎 `masked_figure_label_chars` 合计 6,638，逐块可查；ResNet p2 有 1 个 `x` 轴标漏遮罩，见 `outputs/response.md` §6） |
 | 页眉页脚进正文 | 22 行 | **0**（归入 `dropped_running_text`） |
-| 双栏串栏（读右栏又回左栏） | 54 次 | **0** |
+| 双栏串栏（读右栏又回左栏） | 48 次（三工具口径；`baseline` 口径 54） | **3**（resnet 1 / bert 2，从 `text.md` 实测；自检不变式为 0，两者不混用） |
 
-另有一组**不依赖语料**的自测：`python tests/test_engine.py` 用三个合成 PDF（中文双栏、跨行标题+全大写小节、无文本层扫描页）跑 27 条断言，覆盖 `columns==2`、中文编号标题进章节树、`title_merged`、扫描件 `exit 3 → merge → bbox:null/char_recall:null`。
+同一批 PDF 还与 **`pymupdf4llm 2.1`**（PyMuPDF 官方 Markdown 导出器，最常见的轻量替代方案）做过同口径对比：
+
+| 判据（5 篇合计） | 裸 dump | pymupdf4llm | 本 Skill |
+|---|---|---|---|
+| 章节 | 0 | 182（含把正文句判成标题） | **146**（有层级） |
+| 表 | 0 | 86 | 85（另 5 张被闸门拒并记账） |
+| 带坐标的块 | 0 | 0 | **3,483** |
+| 图内文字混入 / 页眉行 | 4,566 / 22 | 4,447 / 22 | **0 / 0** |
+| 双栏串栏 | 48 | 155 | **3** |
+| 端到端耗时 | 0.3 s | 111.4 s | 132.6 s（纯文本模式 124.3 s） |
+
+**不占"更快"**：比 `pymupdf4llm` 慢 10–19%，换来坐标、章节树、逐格 `bbox_cells` 与图内文字归位。原始数据：`results/compare_tools.json`、`results/perf.json`。
+
+另有一组**不依赖语料**的自测：`python tests/test_engine.py`（27 条，三个合成 PDF）+ `python tests/test_robustness.py`（54 条，9 个坏输入与合成三栏页），共 **81 条断言**，不依赖 pytest、不联网。
 
 复算：`python outputs/scripts/baseline_compare.py <paper>.pdf --doc out/<paper>/doc.json`；
 原始数据 `results/baseline.json`，判据定义与逐例表 `outputs/references/baseline.md`。
@@ -86,7 +99,7 @@ GPT-3 那例另有 3 条 `sparse_table` 非阻塞 warning（表头稀疏、仍�
 
 ## 5. 边界（如实声明，不猜）
 
-- 三栏以上、或整页通栏插图夹在双栏之间时，可能只判到 2 栏；`warnings` 会提示，需 overlay 复核。
+- 三栏以上：合成三栏页已通过（`columns=3`、三个编号标题进 `sections`、`char_recall=1.0`），**真实期刊三/四栏未验证**；整页通栏插图夹在双栏之间时仍可能只判到 2 栏，需 overlay 复核。
 - 无框线的"空白对齐表"不会被虚构成表格，会退回正文文本（`tables_rejected` 记录，五篇共 5 张）。
 - 公式以**文本形式**给出，不做 LaTeX 重排；数学密集段落可能被标成 `formula`（文本不丢，只影响标签）。
 - 扫描件没有矢量坐标：OCR 块只能定位到页，不能定位到框（`bbox: null`，并标 `confidence`）。
@@ -101,13 +114,17 @@ outputs/SKILL.md               Skill 本体：用途/调用/IO 契约/工作流/
 outputs/scripts/pdf_struct.py  版面引擎（行重建、分栏、段落、分类、表格、图区、顺序、章节、元数据、自检）
 outputs/scripts/parse_pdf.py   CLI：doc.json / text.md / report.json / tables / figures / overlay
 outputs/scripts/baseline_compare.py  对照工具：裸 dump vs 本引擎的 6 项判据
+outputs/scripts/compare_tools.py     三工具同口径对比（裸 dump / pymupdf4llm / 本引擎，7 判据）
+outputs/scripts/perf_bench.py        逐篇耗时与峰值 RSS（3 次取中位数）
+outputs/scripts/ocr_eval.py          扫描件评测：渲染 → 装转录 → 合并 → 与真值比对
 outputs/scripts/ocr_pages.py   扫描件：渲染页 + 生成转录提示（供视觉模型使用）
 outputs/scripts/merge_ocr.py   把逐页转录合并进 doc.json（保留 page 定位与置信度）
 outputs/references/method.md   方法与阈值取舍（含每处阈值的失败模式）
 outputs/references/schema.md   doc.json 字段级契约
 outputs/references/baseline.md 基线对照的方法、逐例结果与读法
 outputs/examples/quickstart.md 一屏粘贴即用（Agent 最短路径）
-tests/test_engine.py           27 条黑盒断言（中文双栏 / 跨行标题 / 扫描件），不依赖 pytest
+tests/test_engine.py           27 条黑盒断言（中文双栏 / 跨行标题 / 扫描件）
+tests/test_robustness.py       54 条断言（0 字节/伪 PDF/截断/加密/0 页/单页/旋转/三栏/坏参数）
 tests/fixtures/                三个合成语料 + outputs/scripts/make_fixtures.py 可重建
 results/resnet/doc.sample.json 裁剪版 doc.json：sections + T1 的 cells/bbox_cells + 首页 blocks
 outputs/examples/README.md     最小调用示例（明确标注为示例，非正式评测结果）
