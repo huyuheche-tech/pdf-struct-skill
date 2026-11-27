@@ -67,6 +67,15 @@ python scripts/run_case.py --draft /app/work/draft.json
 
 **不得**为了让检查变绿而改材料里的参数、删掉没写清的数据集、把"可复现"改成不提。这些正是评委要看的失败模式。
 
+## 2.9 题面四问对齐（评审核对用）
+
+| 题面关注 | 本 Skill 的确定性保证 | 失败信号 | 不覆盖 |
+|---|---|---|---|
+| 写得全 | 六类要素覆盖 | `category_missing` | 领域特定步骤 |
+| 写得准 | 数字必须溯源；参数名后的数字必须等于参数值 | `number_unsourced` / `number_mismatch` | 配置之外的隐含默认值 |
+| 做得着 | seed/version/split/batch/lr/epochs/命令清单 | `repro_gap` | 真实环境能否复现 |
+| 说得住 | 基线条件、数据集版本缺失检查 | `baseline_underspecified` / `dataset_underspecified` | 限制是否具体 |
+
 ## 3. 操作流程
 
 ### 3.1 读输入，先看台账

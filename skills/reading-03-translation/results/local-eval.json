@@ -1,0 +1,81 @@
+{
+ "checks": [
+  {
+   "name": "case01.exit",
+   "ok": true,
+   "detail": "case_id=local-01 status=success segments=3 errors=0"
+  },
+  {
+   "name": "case01.success",
+   "ok": true,
+   "detail": "success"
+  },
+  {
+   "name": "case01.no_errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case01.covers_3_segments",
+   "ok": true,
+   "detail": "3"
+  },
+  {
+   "name": "case01.contract_filled",
+   "ok": true,
+   "detail": "{\"translated_segments\": \"# 双语对照：material.md\\n\\n| 段号 | 位置 | 原文 | 译文 | 校验 |\\n|---|---|---|---|---|\\n| p001 | title | Attention Improves Sample Efficiency in Low-Resource Settings | 注意力机制提升低资源场景下的样本效率 | "
+  },
+  {
+   "name": "case01.glossary_consistent",
+   "ok": true,
+   "detail": "[{\"source\": \"attention mechanism\", \"target\": \"注意力机制\", \"zones\": {\"abstract\": \"1/1\", \"body\": \"1/1\"}, \"consistent\": true}, {\"source\": \"sample efficiency\", \"target\": \"样本效率\", \"zones\": {\"title\": \"1/1\", \"abs"
+  },
+  {
+   "name": "case02.partial",
+   "ok": true,
+   "detail": "partial"
+  },
+  {
+   "name": "case02.detects_negation_lost",
+   "ok": true,
+   "detail": "number_missing,formula_changed,formula_changed,negation_lost"
+  },
+  {
+   "name": "case02.detects_number_missing",
+   "ok": true,
+   "detail": "number_missing,formula_changed,formula_changed,negation_lost"
+  },
+  {
+   "name": "case02.detects_formula_changed",
+   "ok": true,
+   "detail": "number_missing,formula_changed,formula_changed,negation_lost"
+  },
+  {
+   "name": "case03.success",
+   "ok": true,
+   "detail": "success"
+  },
+  {
+   "name": "case03.no_errors",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "case03.glossary_enforced",
+   "ok": true,
+   "detail": "[{\"source\": \"残差连接\", \"target\": \"residual connection\", \"zones\": {\"title\": \"1/1\", \"abstract\": \"1/1\", \"body\": \"1/1\"}, \"consistent\": true}, {\"source\": \"验证误差\", \"target\": \"validation error\", \"zones\": {\"abstr"
+  },
+  {
+   "name": "negative.missing_segment",
+   "ok": true,
+   "detail": "missing_segment"
+  },
+  {
+   "name": "negative.term_missing",
+   "ok": true,
+   "detail": "term_missing,term_missing"
+  }
+ ],
+ "failed": 0,
+ "note": "local self-test only; not the official platform cases"
+}

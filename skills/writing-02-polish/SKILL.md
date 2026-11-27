@@ -99,6 +99,15 @@ python scripts/run_case.py --case examples/case.json --input-dir examples \
 **不得**为了让检查变绿而改数字、删引用、把 `may` 改成 `demonstrates`、把「不显著」改成「显著」、
 或给没做的改动编一条 reason。这些正是评委要看的失败模式。
 
+## 2.9 题面四问对齐（评审核对用）
+
+| 题面关注 | 本 Skill 的确定性保证 | 失败信号 | 不覆盖 |
+|---|---|---|---|
+| 改得对 | 句级对齐 + 台账 type/reason；残留语法 lint | `edit_unexplained` / 残留 lint | 复杂搭配与语义错误 |
+| 说得像 | 术语写法锁定；语域只做高置信 lint | `term_missing` | 是否像同行写的（人工） |
+| 没改坏 | 数字多重集、引用集合、否定极性、hedge 强度 | `number_*` / `citation_changed` / `negation_changed` / `hedge_strengthened` | 隐含语气 |
+| 讲得清 | 每条改动 original/edited/type/reason | `edit_unanchored` | 理由是否成立（人工） |
+
 ## 3. 操作流程
 
 ### 3.1 读输入，确认边界

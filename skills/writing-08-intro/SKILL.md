@@ -76,6 +76,15 @@ python scripts/run_case.py --draft /app/work/draft.json
 **不得**为了让检查变绿而改数字、删掉没出处的贡献、把一组相关工作拆成两组、或删掉文献库。
 这些正是评委要看的失败模式。
 
+## 2.9 题面四问对齐（评审核对用）
+
+| 题面关注 | 本 Skill 的确定性保证 | 失败信号 | 不覆盖 |
+|---|---|---|---|
+| 立得住 | 证据表 + 四段结构；背景段必须有引用或 `author_judgment` | `section_missing` / `citation_missing` | 背景是否空转（人工） |
+| 分得清 | 相关工作 ≥2 组，组标签非空 | `grouping_thin` | 分组是否最优 |
+| 说得实 | gap ≥2 引用；每个数字 claim 在证据表 | `gap_unsupported` / `claim_unsupported` | 空白推导是否成立 |
+| 对得上 | 每条贡献绑 `contribution_evidence`，锚点必须在表里 | `contribution_unbound` / `anchor_invalid` | 贡献是否夸大 |
+
 ## 3. 操作流程
 
 ### 3.1 读输入，确认边界

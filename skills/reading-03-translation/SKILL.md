@@ -59,6 +59,15 @@ python scripts/run_case.py --draft /app/work/draft.json
 
 **不得**为了让检查变绿而改数字、删引用、把否定句改成肯定句、把 `may` 译成「证明」。这些正是评委要看的失败模式。
 
+## 2.9 题面四问对齐（评审核对用）
+
+| 题面关注 | 本 Skill 的确定性保证 | 失败信号 | 不覆盖 |
+|---|---|---|---|
+| 术语稳 | 术语表逐段下发；锁定译名必须出现；按 title/abstract/body/caption 统计 | `term_missing` | 某刊官方译法 |
+| 段落全 | `p001…` 全覆盖；缺/重/未知段号各自报错 | `missing_segment` / `duplicate_segment` / `unknown_segment` | 原文本身缺段 |
+| 关系准 | 数字/单位、引用、公式逐字；否定与 hedge 极性 | `number_missing` / `citation_missing` / `formula_changed` / `negation_lost` | 指代、因果/让步的完整解析 |
+| 可核验 | 每段五行对照 + `checks.json` 逐段问题 | — | 译文是否优美 |
+
 ## 3. 操作流程
 
 ### 3.1 读输入，确认边界

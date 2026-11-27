@@ -58,6 +58,15 @@ python scripts/run_case.py --draft /app/work/draft.json
 
 **不得**为了让检查变绿而删字段、删锚点、改写引文或把两条发现合成一条。
 
+## 2.9 题面四问对齐（评审核对用）
+
+| 题面关注 | 本 Skill 的确定性保证 | 失败信号 | 不覆盖 |
+|---|---|---|---|
+| 对得上 | 章节切分 + 逐节摘要覆盖所有一级章节 | `section_uncovered` | 论证顺序是否合理（人工） |
+| 留得住 | 五字段齐全；findings≥2、limitations≥1 | `field_missing` / `findings_thin` / `limitations_missing` | 字段是否抓到重点 |
+| 找得回 | 每字段 ≥1 锚点，quote 必须可解析 | `anchor_unresolved` | 跨段证据 |
+| 用得上 | 知识点去重；`notes.json` 可检索 | `duplicate_point` | 笔记是否好用（人工） |
+
 ## 3. 操作流程
 
 ### 3.1 读输入，确认边界

@@ -56,6 +56,15 @@ Nanopublication 结构。评分关注「拆得细 / 对得上 / 追得回 / 读�
 **不得**为了让检查变绿而删断言、改证据原文、去掉条件、把 `always` 悄悄改成 `often`
 却保留原证据（要改就改到与原文字面一致）。
 
+## 2.9 题面四问对齐（评审核对用）
+
+| 题面关注 | 本 Skill 的确定性保证 | 失败信号 | 不覆盖 |
+|---|---|---|---|
+| 拆得细 | 复合句拆分；一条断言一个判断 | `not_atomic` | 语义级谓词拆分 |
+| 对得上 | evidence 必须可解析且 ≤400 字符 | `evidence_unresolved` | 证据是否充分（人工） |
+| 追得回 | source_id/paragraph_id/char_span；稳定 URI | `source_missing` | PDF 页码（题面无） |
+| 读得懂 | assertion/provenance/pubinfo 三段 JSON | — | 下游 schema 兼容性 |
+
 ## 3. 操作流程
 
 ### 3.1 读输入，确认边界

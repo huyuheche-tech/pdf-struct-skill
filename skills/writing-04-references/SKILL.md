@@ -107,6 +107,15 @@ python scripts/run_case.py --case examples/case.json --input-dir examples \
 `claim_topic_mismatch`（**警告**，不是判决）——它只说明"这句和这篇标题没有任何共同实词"，需要人看一眼；
 引用是否真的支持该论断，最终仍要读原文。`position=paragraph_end` 表示引用落在长段末尾，可能是"整段一引"。
 
+## 2.9 题面四问对齐（评审核对用）
+
+| 题面关注 | 本 Skill 的确定性保证 | 失败信号 | 不覆盖 |
+|---|---|---|---|
+| 挂得对 | `citation_contexts` 给出所在句 + 题名 + 实词交集；长段末尾标记 | `claim_topic_mismatch`（warning） | 引用是否真的支持论断（人工） |
+| 编得顺 | 按首次出现重编号并改写正文；断号/重号检查 | `number_gap` | 图/表/脚注的交叉引用 |
+| 收得净 | DOI 或标题≥0.90+同姓才合并，写 `merge_basis` | `unsafe_merge` | 预印本/正式版之外的同名歧义 |
+| 对得上 | 双向对账；GB/T 7714 字段；缺字段 TODO | `missing_entry` / `field_missing` | 文献真伪与联网核验 |
+
 ## 3. 操作流程
 
 ### 3.1 读输入，确认边界

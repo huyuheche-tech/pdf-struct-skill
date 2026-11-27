@@ -77,6 +77,15 @@ python scripts/run_case.py --case /input/case.json --input-dir /input --out /app
 **绝不允许**为了让检查变绿而删掉 `conditions`、把两篇的数字硬凑成一条边、或者把同名不同类的节点
 合并成一个。这正是评委要看的失败模式。
 
+## 2.9 题面四问对齐（评审核对用）
+
+| 题面关注 | 本 Skill 的确定性保证 | 失败信号 | 不覆盖 |
+|---|---|---|---|
+| 抽得准 | 实体必须有 source_id + 原文短引 | `evidence_unresolved` | 实体是否穷尽 |
+| 连得对 | 关系受控词表 + 方向 + 条件 | `relation_invalid` / `dangling_edge` | 关系强度 |
+| 对得齐 | 合并必须有 `merge_basis`；同名不同类型不合并 | `unmerged_duplicate` / `name_conflict` / `merge_unsourced` | 语义消歧 |
+| 查得到、回得去 | ≥3 条真实执行查询，结果带 id + 证据 | `queries_thin` / `query_unevidenced` | 查询语言通用性 |
+
 ## 3. 操作流程
 
 ### 3.1 读输入，确认两篇是两篇

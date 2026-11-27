@@ -77,6 +77,15 @@ python scripts/run_case.py --case /input/case.json --input-dir /input --out /app
 其余问题（表格列数、`$` 不配对、缺 caption）**只写 patch plan，不改正文**——自动改表格结构
 会掩盖作者意图，也容易把"列少了"改成"数据丢了"。详见 `references/fix-policy.md`。
 
+## 2.9 题面四问对齐（评审核对用）
+
+| 题面关注 | 本 Skill 的确定性保证 | 失败信号 | 不覆盖 |
+|---|---|---|---|
+| 编译得通 | 有编译器则两遍编译并解析 `file:line`；无则 `compiled:false` | `compile_error` / `compiler_missing` | 真实 TeX 环境（本机无） |
+| 改得对 | 括号/环境/`$` 配对；cite/ref/label；表格列数 | `cite_undefined` / `ref_undefined` / `table_column_mismatch` | 版式审美 |
+| 交得可用 | 输出 `fixed.tex` + `diagnostics`，不改不能安全改的 | — | 模板必填项是否齐全 |
+| 复现得了 | 记录发行版/宏包/命令/轮次（有编译器时） | `compiler_missing` | 字体差异 |
+
 ## 3. 操作流程
 
 ### 3.1 读输入，确认边界
