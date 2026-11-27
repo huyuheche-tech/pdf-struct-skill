@@ -302,6 +302,25 @@ def validate(body, params, allowed_tokens):
         else:
             errors.append({"code": "number_unsourced",
                            "detail": "number %r is not in the parameter ledger or materials" % tok})
+    # 1b. if a parameter name immediately precedes a number, the number must be
+    # exactly that parameter's value -- "sourced somewhere" is not enough.
+    named = sorted(((sk.norm_key(r.get("name") or ""), r) for r in params),
+                   key=lambda x: -len(x[0]))
+    for m in sk.numbers(clean):
+        start = m["span"][0]
+        ctx = sk.norm_key(clean[max(0, start - 50):start]).rstrip()
+        tok = re.sub(r"\s+", "", m["raw"]).lower()
+        hit = None
+        for nm, row in named:
+            if nm and ctx.endswith(nm):
+                hit = row
+                break
+        if hit is not None:
+            allowed_vals = set(tokens(str(hit.get("value"))))
+            if tok not in allowed_vals:
+                errors.append({"code": "number_mismatch",
+                               "detail": "%s is %r in the ledger but the text says %r"
+                                         % (hit.get("name"), hit.get("value"), m["raw"])})
     for m in TODO_RE.finditer(body or ""):
         gaps.append({"code": "todo_placeholder", "detail": m.group(0)})
 
@@ -389,8 +408,11 @@ def render(body, params, title):
 # --------------------------------------------------------------------------
 def run(case, materials, out_dir, draft_path=None):
     if not materials:
-        main = {"case_id": sk.case_id_of(case, []),
-                "checks": {"errors": [{"code": "no_material"}], "warnings": []}}
+        main = {"case_id": sk.case_id_of(case, []), "methods": "", "tables": [],
+                "gaps": [],
+                "checks": {"errors": [{"code": "no_material"}], "warnings": []},
+                "metrics": {"params": 0, "numbers_sourced": 0, "coverage": 0,
+                            "repro_items": 0}}
         return {"status": "failed", "main": main, "errors": [{"code": "no_material"}],
                 "warnings": [], "has_draft": False, "sources": []}
 

@@ -10,7 +10,7 @@ description: >
   intro.md and checks.json.
 
 entry: scripts/run_case.py
-entry_args: ["--plan-only"]
+entry_args: []
 
 runtime:
   python: "3.11"

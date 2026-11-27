@@ -99,6 +99,13 @@ def main(argv=None):
 
     src_text = sk.read_text(tex_path)
     draft_path = a.draft
+    if not draft_path:
+        for cand in (os.path.join(a.work, "draft.tex"),
+                     os.path.join(input_dir, "draft.tex"),
+                     os.path.join(os.path.dirname(case_path), "draft.tex")):
+            if os.path.isfile(cand):
+                draft_path = cand
+                break
     if draft_path and os.path.isfile(draft_path):
         src_text = sk.read_text(draft_path)
     has_draft = bool(draft_path and os.path.isfile(draft_path))

@@ -107,7 +107,7 @@ python scripts/run_case.py --case examples/case.json --input-dir examples \
    材料可能是 `.md / .txt / .pdf`，术语表可能是 `glossary.csv`（`source,target,note`）或 `case.json.glossary`。
    **按实际文件读，不要按文件名猜内容。**
 2. 跑 `--plan-only`，检查 `plan.json`：句数是否等于你数出来的句数；有没有句子被切错（公式、缩写、`et al.`）；
-   `locked_terms` 是否覆盖了你打算改的术语。切句错就换 `--title` 或在改稿里保持同样的标点，不要改引擎。
+   `locked_terms` 是否覆盖了你打算改的术语。切句错就保持原文的标点与分段，不要为了对齐去改引擎。
 3. 材料缺失 / 语言不明 / 术语表自相矛盾：写进 `uncertainty`，不要猜。
 
 ### 3.2 先定"不许动"的清单

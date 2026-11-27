@@ -494,7 +494,16 @@ def run(case, materials, out_dir, draft_path=None, title=None):
     if not prose:
         prose = [m for m in materials if m["kind"] == "json" and m["text"].strip()]
     if not prose:
-        return {"status": "failed", "main": {}, "warnings": [],
+        main = {"case_id": sk.case_id_of(case, [m["path"] for m in materials]),
+                "notes": "", "sections": [], "card": {},
+                "checks": {"errors": [{"code": "no_material",
+                                       "detail": "no readable text material"}],
+                           "warnings": []},
+                "metrics": {"sections": 0, "covered": 0, "fields_complete": 0,
+                            "field_coverage": 0.0, "anchors_resolved": 0,
+                            "anchor_total": 0, "anchor_resolution_rate": 0.0,
+                            "duplicates": 0}}
+        return {"status": "failed", "main": main, "warnings": [],
                 "errors": [{"code": "no_material", "field": "", "detail": "no readable text material"}]}
 
     source = pick_source(prose, case)
@@ -579,8 +588,12 @@ def run(case, materials, out_dir, draft_path=None, title=None):
     metrics = {
         "sections": len(sections),
         "covered": len(covered),
-        "fields_complete": "%d/5" % fields_complete,
-        "anchors_resolved": ("%d/%d" % (resolved, total_anchors)) if total_anchors else "0/0",
+        "fields_complete": fields_complete,
+        "field_coverage": round(fields_complete / 5.0, 3),
+        "anchors_resolved": resolved,
+        "anchor_total": total_anchors,
+        "anchor_resolution_rate": (round(resolved / total_anchors, 3)
+                                   if total_anchors else 0.0),
         "duplicates": dup_count,
     }
     main = {"case_id": sk.case_id_of(case, [m["path"] for m in materials]),

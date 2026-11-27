@@ -19,7 +19,7 @@ python scripts/run_case.py --case /input/case.json --input-dir /input --out /app
 ```
 
 可选参数：`--main main.tex` 指定主文件；`--no-compile` 关闭编译。
-`case.json` 里写 `"compile": false` 等价于默认不编译（本地案例就是这样保证离线可复现的）。
+`case.json` 里写 `"compile": false` 时不编译（本地案例这样保证离线可复现）；不写则尝试编译，没有编译器就如实记 `compiled:false`。
 
 `run_case.py` 会写：
 
@@ -98,7 +98,8 @@ python scripts/run_case.py --case /input/case.json --input-dir /input --out /app
 ### 3.3 自动修复只做安全的两类
 
 ```bash
-python scripts/run_case.py ... --fix
+python scripts/run_case.py --case /input/case.json --input-dir /input \
+    --out /app/output --work /app/work --fix
 ```
 
 `fixed.tex` 里只有 label 改名与 `TODO-` 引用占位。**打开 `fixes` 逐条核对**：
@@ -146,7 +147,7 @@ python scripts/run_case.py ... --fix
 | 没有可读 `.tex` | `status=failed`，`checks.errors=[{code:no_material}]`，不编造诊断 |
 | 没有 `.bib` 但正文有 `\cite` | 照报 `cite_undefined`，同时在 `uncertainty` 说明"bib 未提供，结论仅在已读 bib 范围内成立" |
 | 多文件工程（`\input`/`\include`） | 只检查主文件与被 `\input` 的同目录文件；跨目录缺文件写进 `uncertainty` |
-| 编码不是 UTF-8 | `skillkit.read_text` 依次尝试 utf-8-sig/utf-8/gb18030/latin-1；仍乱码则写 `encoding_suspect` |
+| 编码不是 UTF-8 | `skillkit.read_text` 依次尝试 utf-8-sig/utf-8/gb18030/latin-1；仍失败则把该文件写入 `uncertainty`，不静默替换 |
 | 编译超时 | 记 `compile_error`，`detail` 写 timeout，`compiled=false`，不重试到超预算 |
 | 静态错误未清零 | 跳过编译（`compile.note=skipped: static errors remain`），先修静态错误 |
 | 超出预算 | 先交静态体检结果（`status=partial`），`next_step` 写明剩余错误条数与行号 |

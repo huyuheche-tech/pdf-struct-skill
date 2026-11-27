@@ -308,9 +308,9 @@ def validate(sections, author_judgment, contrib_evidence, groups, evidence,
             continue
         anchor = row.get("anchor")
         if anchor and anchor not in anchors:
-            warnings.append({"code": "anchor_unlisted", "contribution": i,
-                             "detail": "anchor %r is not in the evidence table; quote still matched"
-                                       % anchor})
+            errors.append({"code": "anchor_invalid", "contribution": i,
+                           "detail": "anchor %r is not in the evidence table" % anchor})
+            continue
         bound += 1
 
     # 5. gap needs at least two distinct citations
@@ -406,8 +406,13 @@ def run(case, materials, out_dir, draft_path=None):
     prose = prose_materials(materials)
     if not prose:
         return {"status": "failed", "main": {"case_id": sk.case_id_of(case, [m["path"] for m in materials]),
+                                             "sections": {}, "evidence": [],
                                              "checks": {"errors": [{"code": "no_material"}],
-                                                        "warnings": []}},
+                                                        "warnings": []},
+                                             "metrics": {"evidence": 0, "claims": 0,
+                                                         "supported": 0, "contributions": 0,
+                                                         "bound": 0, "groups": 0,
+                                                         "citations": 0}},
                 "errors": [{"code": "no_material"}], "warnings": [],
                 "sources": [m["path"] for m in materials]}
 

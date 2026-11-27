@@ -79,7 +79,7 @@ python scripts/run_case.py --draft /app/work/draft.json
   1. 摘要与标题里的缩写（`LLM`、`MRI`、`F1`）；
   2. 反复出现的多词术语（`attention mechanism`、`residual connection`）；
   3. 方法名、数据集名、指标名（保持原文或按领域惯例，不要意译）。
-- 把术语表写进 `case.json` 同目录的 `glossary.csv`（`source,target,note`）或 `--glossary` 指向的文件，
+- 把术语表写进输入目录的 `glossary.csv`（`source,target,note`）；引擎会自动读取该文件，也可以直接写进 `case.json.glossary`。
   再重跑 `--plan-only`。术语表一旦确定，**整篇不得换译名**。
 
 ### 3.3 分段翻译（模型做的事）
@@ -130,7 +130,7 @@ python scripts/run_case.py --draft /app/work/draft.json
 | PDF 无文本层 | `status=partial`，提示先走「文献文档解析」的 OCR 分支；不要把空文本当原文 |
 | 语言混杂（中英日混排） | 逐段标注语言，只译目标语段；其余原样保留并记 warning |
 | 术语表内部冲突 | 不自动合并；`conflict` + 人工确认清单 |
-| 原文残缺/截断 | 该段 `target` 写 `【原文截断，未译】`，记 `source_truncated`，不要补全 |
+| 原文残缺/截断 | 该段 `target` 写 `【原文截断，未译】`，并在 `uncertainty` 写明缺在哪一段；不要补全 |
 | 超出预算 | 先交已译段落（`status=partial`），`uncertainty.next_step` 写明剩余段号 |
 
 ## 6. 自检清单（提交前逐条打勾）

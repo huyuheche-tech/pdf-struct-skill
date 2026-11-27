@@ -18,17 +18,17 @@
   {
    "name": "case01.fields_complete",
    "ok": true,
-   "detail": "{\"sections\": 4, \"covered\": 4, \"fields_complete\": \"5/5\", \"anchors_resolved\": \"6/6\", \"duplicates\": 0}"
+   "detail": "{\"sections\": 4, \"covered\": 4, \"fields_complete\": 5, \"field_coverage\": 1.0, \"anchors_resolved\": 6, \"anchor_total\": 6, \"anchor_resolution_rate\": 1.0, \"duplicates\": 0}"
   },
   {
    "name": "case01.anchors_resolved",
    "ok": true,
-   "detail": "{\"sections\": 4, \"covered\": 4, \"fields_complete\": \"5/5\", \"anchors_resolved\": \"6/6\", \"duplicates\": 0}"
+   "detail": "{\"sections\": 4, \"covered\": 4, \"fields_complete\": 5, \"field_coverage\": 1.0, \"anchors_resolved\": 6, \"anchor_total\": 6, \"anchor_resolution_rate\": 1.0, \"duplicates\": 0}"
   },
   {
    "name": "case01.sections_covered",
    "ok": true,
-   "detail": "{\"sections\": 4, \"covered\": 4, \"fields_complete\": \"5/5\", \"anchors_resolved\": \"6/6\", \"duplicates\": 0}"
+   "detail": "{\"sections\": 4, \"covered\": 4, \"fields_complete\": 5, \"field_coverage\": 1.0, \"anchors_resolved\": 6, \"anchor_total\": 6, \"anchor_resolution_rate\": 1.0, \"duplicates\": 0}"
   },
   {
    "name": "case01.contract_filled",

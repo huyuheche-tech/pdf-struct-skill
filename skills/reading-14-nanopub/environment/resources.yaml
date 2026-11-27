@@ -9,7 +9,7 @@ description: >
   nanopub.json, assertions.md, sections.json and checks.json.
 
 entry: scripts/run_case.py
-entry_args: ["--outline"]
+entry_args: []
 
 runtime:
   python: "3.11"

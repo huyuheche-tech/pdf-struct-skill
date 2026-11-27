@@ -48,12 +48,11 @@ def main(argv=None):
         case.setdefault("title", a.title)
 
     materials = sk.material_texts(case, case_path, input_dir)
-    draft_path = a.draft or sk.find_draft(case, case_path, input_dir)
+    draft_path = None if a.plan_only else (a.draft or sk.find_draft(case, case_path, input_dir))
     r = ib.run(case, materials, out_dir, draft_path=draft_path)
 
     if a.plan_only:
         sk.ascii_print("evidence sentences=%d" % len(r["main"].get("evidence", [])))
-        return 0
 
     main_result = r["main"]
     uncertainty = {

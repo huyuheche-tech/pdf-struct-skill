@@ -378,7 +378,16 @@ def contract_fields(case):
     if oc is None:
         return []
     if isinstance(oc, list):
-        return [str(x) for x in oc if isinstance(x, (str, int))]
+        out = []
+        for x in oc:
+            if isinstance(x, (str, int)):
+                out.append(str(x))
+            elif isinstance(x, dict):
+                for k in ("name", "key", "field", "id"):
+                    if isinstance(x.get(k), str):
+                        out.append(x[k])
+                        break
+        return out
     if isinstance(oc, dict):
         for key in ("fields", "required", "properties", "keys"):
             v = oc.get(key)
@@ -391,7 +400,7 @@ def contract_fields(case):
 
 
 _SYNONYMS = [
-    ("case_id", ("case", "id")),
+    ("case_id", ("case",)),
     ("status", ("status", "state")),
     ("translation", ("translat", "target_text", "译文")),
     ("segments", ("segment", "paragraph", "bilingual", "align", "段")),
@@ -402,7 +411,7 @@ _SYNONYMS = [
     ("outline", ("outline", "提纲", "slide")),
     ("graph", ("graph", "node", "edge", "triple", "知识图谱")),
     ("assertions", ("assert", "claim", "nanopub", "断言")),
-    ("latex", ("latex", "tex", "source", "code")),
+    ("latex", ("latex", "tex", "code")),
     ("tables", ("table", "param", "参数")),
     ("sections", ("section", "chapter", "章节")),
     ("edited_text", ("edited", "polished", "revised", "rewritten", "润色")),
@@ -650,6 +659,10 @@ def write_result(out_dir, skill, task, case, status, main_result,
         os.makedirs(out_dir)
     payload = dict(main_result or {})
     payload.setdefault("case_id", case.get("case_id") if isinstance(case, dict) else None)
+    payload.setdefault("status", status)
+    payload.setdefault("evidence", evidence or {})
+    payload.setdefault("uncertainty", uncertainty or {})
+    payload.setdefault("sources", sources or [])
     fields = contract_fields(case)
     values, missing, via = resolve_contract(fields, payload, contract_alias)
     # case_id is always present even when the contract does not ask for it

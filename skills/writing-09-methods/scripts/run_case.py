@@ -49,12 +49,11 @@ def main(argv=None):
 
     materials = sk.material_texts(case, case_path, input_dir,
                                   exts=sk.TEXT_EXT + sk.PDF_EXT + (".log",))
-    draft_path = a.draft or sk.find_draft(case, case_path, input_dir)
+    draft_path = None if a.plan_only else (a.draft or sk.find_draft(case, case_path, input_dir))
     r = ml.run(case, materials, out_dir, draft_path=draft_path)
 
     if a.plan_only:
         sk.ascii_print("params=%d" % len(r["main"].get("tables", [])))
-        return 0
 
     main_result = r["main"]
     uncertainty = {

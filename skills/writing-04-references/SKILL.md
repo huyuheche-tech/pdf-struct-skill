@@ -94,6 +94,19 @@ python scripts/run_case.py --case examples/case.json --input-dir examples \
 **不得**为了让检查变绿而编 DOI、补作者、把两篇不同文献合并、或把未引条目悄悄删掉。
 这三件事正是评委要看的失败模式。
 
+### 2.1 引用语境表（给"挂得对/对得上"留证据）
+
+`result.json.main_result.citation_contexts` 为每条正文引用记录：
+
+```json
+{"citation": "[3]", "key": "he2016", "sentence": "引用所在句",
+ "title": "被引文献题名", "overlap": 2, "position": "sentence|paragraph_end"}
+```
+
+`overlap` 是句子与题名的实词交集数（英文词 + 中文二元组）。`overlap=0` 且题名有 ≥3 个实词时记
+`claim_topic_mismatch`（**警告**，不是判决）——它只说明"这句和这篇标题没有任何共同实词"，需要人看一眼；
+引用是否真的支持该论断，最终仍要读原文。`position=paragraph_end` 表示引用落在长段末尾，可能是"整段一引"。
+
 ## 3. 操作流程
 
 ### 3.1 读输入，确认边界

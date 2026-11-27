@@ -616,17 +616,79 @@ def split_materials(case, materials):
     return manuscript, libs
 
 
+def _empty_failure(case, materials, code, detail):
+    main = {"case_id": sk.case_id_of(case, [m["path"] for m in materials]),
+            "references": [], "renumber_map": {},
+            "bibliography": "", "manuscript_renumbered": "",
+            "checks": {"errors": [{"code": code, "detail": detail}], "warnings": []},
+            "metrics": {"entries": 0, "cited": 0, "uncited": 0, "missing": 0,
+                        "duplicates": 0, "field_completeness": None}}
+    return {"status": "failed", "main": main,
+            "errors": [{"code": code, "detail": detail}], "warnings": [],
+            "sources": [m["path"] for m in materials]}
+
+
+
+STOPWORDS = set("""the a an of and or to in on for with by is are was were be as at from
+that this these those we our it its their using use used based results method methods paper
+study studies show shows shown can may might also more than between among under over""".split())
+
+
+def _content_tokens(text):
+    t = (text or "").lower()
+    words = [w for w in re.findall(r"[a-z][a-z0-9\-]{2,}", t) if w not in STOPWORDS]
+    cjk = re.findall(r"[\u4e00-\u9fff]{2,}", t)
+    grams = []
+    for chunk in cjk:
+        grams.extend(chunk[i:i + 2] for i in range(max(1, len(chunk) - 1)))
+    return set(words) | set(grams)
+
+
+def _sentence_around(text, a, b):
+    left = max(text.rfind(ch, 0, a) for ch in ".!?\n\u3002\uff01\uff1f") + 1
+    rights = [text.find(ch, b) for ch in ".!?\n\u3002\uff01\uff1f"]
+    rights = [x for x in rights if x >= 0]
+    right = (min(rights) + 1) if rights else len(text)
+    return re.sub(r"\s+", " ", text[left:right]).strip()
+
+
+def citation_contexts(text, resolved, by_key):
+    """For every in-text citation: the sentence it supports and the cited title.
+
+    A zero-overlap flag is a *hint* for a human ("this citation may not support
+    this sentence"), not proof: titles and claims often share no surface words.
+    """
+    out, warnings = [], []
+    for c, keys in resolved:
+        sent = _sentence_around(text, c["span"][0], c["span"][1])
+        for k in keys:
+            e = by_key.get(k) if k else None
+            if not e:
+                continue
+            title = e.get("title") or ""
+            ts, ss = _content_tokens(title), _content_tokens(sent)
+            overlap = len(ts & ss) if ts else None
+            row = {"citation": c["raw"], "key": k, "sentence": sent[:300],
+                   "title": title[:200], "overlap": overlap,
+                   "position": ("paragraph_end" if sent and
+                                text.rfind("\n", 0, c["span"][0]) >= 0 and
+                                len(sent) > 180 else "sentence")}
+            out.append(row)
+            if overlap == 0 and len(ts) >= 3:
+                warnings.append({"code": "claim_topic_mismatch", "key": k,
+                                 "detail": "no content word shared between the citing sentence "
+                                           "and the cited title; check that the citation supports "
+                                           "this claim"})
+    return out, warnings
+
+
 def run(case, materials, out_dir, draft_path=None, style="gbt7714", check_only=False):
     manuscript, libs = split_materials(case, materials)
     if not manuscript:
-        return {"status": "failed", "main": {},
-                "errors": [{"code": "no_manuscript", "detail": "no readable manuscript"}],
-                "warnings": [], "sources": [m["path"] for m in materials]}
+        return _empty_failure(case, materials, "no_manuscript", "no readable manuscript")
     if not libs:
-        return {"status": "failed", "main": {},
-                "errors": [{"code": "no_library",
-                            "detail": "no .bib / .ris / numbered bibliography found"}],
-                "warnings": [], "sources": [m["path"] for m in materials]}
+        return _empty_failure(case, materials, "no_library",
+                              "no .bib / .ris / numbered bibliography found")
 
     raw = []
     for m in libs:
@@ -726,6 +788,9 @@ def run(case, materials, out_dir, draft_path=None, style="gbt7714", check_only=F
     for k in tail:
         warnings.append({"code": "uncited_entry",
                          "detail": "%s is in the bibliography but never cited" % k})
+
+    contexts, ctx_warnings = citation_contexts(manuscript["text"], resolved, kept)
+    warnings.extend(ctx_warnings)
 
     new_no = {k: i for i, k in enumerate(order, 1)}
 
@@ -855,10 +920,13 @@ def run(case, materials, out_dir, draft_path=None, style="gbt7714", check_only=F
             "references": refs,
             "renumber_map": renumber_map,
             "checks": checks,
-            "metrics": metrics,
             "bibliography": bibliography,
             "manuscript_renumbered": "" if check_only else text.strip(),
+            "citation_contexts": contexts,
             "merges": merges,
+            "metrics": dict(metrics, citation_contexts=len(contexts),
+                            topic_mismatch=sum(1 for w in warnings
+                                               if w.get("code") == "claim_topic_mismatch")),
             "files": {"references": "references.json", "checks": "checks.json",
                       "bibliography": "bibliography.md",
                       "manuscript_renumbered": None if check_only

@@ -62,7 +62,7 @@ Nanopublication 结构。评分关注「拆得细 / 对得上 / 追得回 / 读�
 
 1. `case.json` 可能有 `case_id / title / material / doi / created / output_contract`；
    声明了 `material` 时优先使用它。
-2. 跑 `--outline`，检查 `sections.json` 的段号；`notes.json` 式的候选断言只是线索，
+2. 跑 `--outline`，检查段落切分；`main_result.assertions` 里 `candidate:true` 的候选只是线索，
    每项带 `candidate: true`，**不能直接发布**。
 3. 材料缺失或 PDF 无文本层：`status=failed`/`partial`，写进 `uncertainty`，不要编造引文。
 

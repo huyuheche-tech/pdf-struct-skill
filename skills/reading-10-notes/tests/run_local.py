@@ -53,9 +53,10 @@ def main():
     add("case01.exit", p.returncode == 0, p.stdout.strip()[-200:])
     add("case01.success", r and r["status"] == "success", r["status"] if r else "no result")
     add("case01.no_errors", codes(r) == [], ",".join(codes(r)))
-    add("case01.fields_complete", metrics(r).get("fields_complete") == "5/5",
+    add("case01.fields_complete", metrics(r).get("fields_complete") == 5,
         json.dumps(metrics(r), ensure_ascii=False))
-    add("case01.anchors_resolved", metrics(r).get("anchors_resolved") == "6/6",
+    add("case01.anchors_resolved", metrics(r).get("anchors_resolved") == 6
+        and metrics(r).get("anchor_total") == 6,
         json.dumps(metrics(r), ensure_ascii=False))
     add("case01.sections_covered",
         r and metrics(r).get("sections") == 4 and metrics(r).get("covered") == 4,

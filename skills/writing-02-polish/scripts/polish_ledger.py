@@ -384,7 +384,13 @@ def pick_source(case, materials):
 def run(case, materials, out_dir, draft_path=None, title=None):
     source = pick_source(case, materials)
     if source is None:
-        return {"status": "failed", "main": {},
+        empty = {"case_id": sk.case_id_of(case, []), "edited_text": "", "edits": [],
+                 "checks": {"errors": [{"code": "no_material",
+                                        "detail": "no readable manuscript"}],
+                            "warnings": [], "summary": {}},
+                 "metrics": {"edit_count": 0, "unexplained": 0, "number_drift": 0,
+                             "hedge_drift": 0, "residual_grammar": 0}}
+        return {"status": "failed", "main": empty,
                 "errors": [{"code": "no_material", "detail": "no readable manuscript"}],
                 "warnings": []}
     glossary = load_glossary(case, materials)

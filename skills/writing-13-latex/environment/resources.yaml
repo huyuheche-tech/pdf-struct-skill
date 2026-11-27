@@ -10,7 +10,7 @@ description: >
   (with --fix) fixed.tex.
 
 entry: scripts/run_case.py
-entry_args: ["--fix"]
+entry_args: []
 
 runtime:
   python: "3.11"

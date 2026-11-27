@@ -11,7 +11,7 @@ description: >
   checks.json and manuscript_renumbered.md.
 
 entry: scripts/run_case.py
-entry_args: ["--check-only"]
+entry_args: []
 
 runtime:
   python: "3.11"

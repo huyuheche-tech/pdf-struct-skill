@@ -18,7 +18,7 @@
   {
    "name": "case01.uncited_entry",
    "ok": true,
-   "detail": "uncited_entry,field_missing"
+   "detail": "uncited_entry,claim_topic_mismatch,field_missing"
   },
   {
    "name": "case01.contract_filled",
@@ -98,7 +98,7 @@
   {
    "name": "case03.all_cited",
    "ok": true,
-   "detail": "{\"entries\": 3, \"parsed_entries\": 3, \"cited\": 3, \"uncited\": 0, \"missing\": 0, \"duplicates\": 0, \"field_completeness\": 0.0}"
+   "detail": "{\"entries\": 3, \"parsed_entries\": 3, \"cited\": 3, \"uncited\": 0, \"missing\": 0, \"duplicates\": 0, \"field_completeness\": 0.0, \"citation_contexts\": 4, \"topic_mismatch\": 1}"
   },
   {
    "name": "case03.todo_for_missing_doi",

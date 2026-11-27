@@ -57,13 +57,20 @@ def main(argv=None):
     if not base_path and os.path.exists(os.path.join(a.work, "base-graph.json")):
         base_path = os.path.join(a.work, "base-graph.json")
     base = None
+    base_warning = None
     if base_path and os.path.exists(base_path):
         try:
             base = sk.jload(base_path)
-        except Exception:
-            base = None
+        except Exception as exc:
+            base_warning = {"code": "base_unreadable", "path": str(base_path),
+                            "detail": "%s: %s" % (type(exc).__name__, exc)}
+    elif base_path:
+        base_warning = {"code": "base_missing", "path": str(base_path),
+                        "detail": "--base was given but the file does not exist"}
 
     r = kg.run(case, materials, a.out, draft=draft, base=base)
+    if base_warning:
+        r.setdefault("warnings", []).append(base_warning)
     if r["status"] == "failed":
         sk.write_report(a.out, "KG / no material", ["- status: **failed**",
                                                     "- 输入里没有可读的论文材料。"])
