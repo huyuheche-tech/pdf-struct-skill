@@ -167,14 +167,14 @@ def summarize(pdf, outdir, doc):
     }
 
 
-def fill_contract(fields, docs, uncertainty=None):
+def fill_contract(fields, docs, uncertainty=None, cid=None, status=None):
     """Map the case's requested field names onto values we actually computed.
 
     Unknown names are returned as null and reported, never guessed.
     """
     first = docs[0] if docs else {}
     payload = {
-        "case_id": None,
+        "case_id": cid,
         "title": first.get("title"),
         "sections": first.get("sections"),
         "tables": first.get("tables"),
@@ -185,7 +185,7 @@ def fill_contract(fields, docs, uncertainty=None):
         "text_path": os.path.basename(first.get("text_md") or "") or None,
         "documents": docs,
         "main_result": {"documents": docs},
-        "status": None,
+        "status": status,
         "evidence": {"type": "page + bbox"},
         "uncertainty": uncertainty or {},
         "files": [d.get("doc_json") for d in docs if d.get("doc_json")],
@@ -273,7 +273,7 @@ def main(argv=None):
         "note": ("unreadable pages are reported, not guessed; a partial parse "
                  "is marked partial rather than completed with invented text"),
     }
-    contract, missing, via = fill_contract(fields, docs, uncertainty)
+    contract, missing, via = fill_contract(fields, docs, uncertainty, cid, status)
     uncertainty["missing_fields"] = missing
 
     result = {
@@ -288,6 +288,16 @@ def main(argv=None):
                         % (len(docs), sum(int(d.get("pages") or 0) for d in docs),
                            sum(len(d.get("sections") or []) for d in docs),
                            sum(len(d.get("tables") or []) for d in docs))),
+            "checks": {"parse_errors": len(warnings),
+                       "selfcheck_ok": all(bool(d.get("selfcheck_ok")) for d in docs),
+                       "errors": [] if docs else [{"code": "no_document"}]},
+            "metrics": {"documents": len(docs),
+                        "pages": sum(int(d.get("pages") or 0) for d in docs),
+                        "sections": sum(len(d.get("sections") or []) for d in docs),
+                        "tables": sum(len(d.get("tables") or []) for d in docs),
+                        "char_recall_mean": (round(sum(float(d.get("char_recall") or 0)
+                                                       for d in docs) / len(docs), 4)
+                                             if docs else None)},
         },
         "evidence": {
             "type": "page + bbox",

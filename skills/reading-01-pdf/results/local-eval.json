@@ -3,7 +3,7 @@
   {
    "name": "case01.exit",
    "ok": true,
-   "detail": "case_id=local-pdf-cjk-2col status=success pdfs=1 docs=1\nwrote C:\\Users\\mzn\\AppData\\Local\\Temp\\pdf-707481mq\\out\\result.json"
+   "detail": "case_id=local-pdf-cjk-2col status=success pdfs=1 docs=1\nwrote C:\\Users\\mzn\\AppData\\Local\\Temp\\pdf-6ronpeg2\\out\\result.json"
   },
   {
    "name": "case01.status",
@@ -78,7 +78,7 @@
   {
    "name": "negative.broken_pdf_warning",
    "ok": true,
-   "detail": "{\"warnings\": [{\"file\": \"broken.pdf\", \"code\": \"parse_failed\", \"detail\": \"ERROR: C:\\\\Users\\\\mzn\\\\AppData\\\\Local\\\\Temp\\\\pdf-bad-1n5iaz_i\\\\broken.pdf: cannot open PDF (FileDataError: Failed to open file '"
+   "detail": "{\"warnings\": [{\"file\": \"broken.pdf\", \"code\": \"parse_failed\", \"detail\": \"ERROR: C:\\\\Users\\\\mzn\\\\AppData\\\\Local\\\\Temp\\\\pdf-bad-pm9rghfr\\\\broken.pdf: cannot open PDF (FileDataError: Failed to open file '"
   },
   {
    "name": "negative.unknown_field_reported",
