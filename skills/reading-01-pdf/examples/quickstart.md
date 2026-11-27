@@ -42,4 +42,4 @@ python scripts/baseline_compare.py paper.pdf --doc out/paper/doc.json           
 - **不复述**：回答"第 3 节讲了什么"时，用 `sections[].path` 定位，不要凭记忆改写原文。
 
 > 反面教材（裸 dump 的典型产物）：两栏交错、页眉页脚进正文、表格单元格串成 `3 3××3 6 64`、图注当正文、块无坐标无法回查。
-> 量化对照见 `../references/baseline.md`（同一批语料，同一套判据）。
+> 量化对照见 `results/baseline.json`（同一批语料，同一套判据；属于作者证据，不随 Skill 分发）。

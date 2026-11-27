@@ -37,8 +37,6 @@ resources:
     role: docs
   - path: references/schema.md
     role: docs
-  - path: references/baseline.md
-    role: docs
   - path: examples/quickstart.md
     role: docs
 

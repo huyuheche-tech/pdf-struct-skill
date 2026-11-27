@@ -2,7 +2,7 @@
 
 > 本目录下所有内容都是**调用演示**，用于说明"怎么调用、会得到什么形状的输出"，
 > 不是本次挑战的正式测试结果，也不代表隐藏用例的得分。示例语料是两篇公开 arXiv 预印本。
-> 只想要最短路径：看 `quickstart.md`（一屏，粘贴即用）；想知道"比裸 dump 好在哪"：看 `../references/baseline.md`。
+> 只想要最短路径：看 `quickstart.md`（一屏，粘贴即用）；想知道"比裸 dump 好在哪"：看 `results/baseline.json`（作者证据，不随 Skill 分发）。
 
 ## 示例 1：一篇有文本层的双栏论文（最短路径）
 
@@ -91,7 +91,7 @@ python scripts/parse_pdf.py corpus/resnet.pdf --out out/resnet
 python scripts/baseline_compare.py corpus/resnet.pdf --doc out/resnet/doc.json
 ```
 
-输出（真实数字，见 `../references/baseline.md` 与 `results/baseline.json`）：
+输出（真实数字，见 `results/baseline.json`）：
 
 ```
 baseline vs skill: resnet.pdf (12 pages)

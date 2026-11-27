@@ -187,7 +187,8 @@ reference / author / affiliation / code / figure_label / margin_artifact`。
 6. **（可选）自证增益**：`python scripts/baseline_compare.py paper.pdf --doc out/paper/doc.json`
    —— 同一份 PDF 上，把"裸 Agent 的 `page.get_text()` 纯文本"与本引擎逐项对比
    （章节数、表/单元格、可定位块、图内文字混入、页眉残留、跨栏交错）。判据全部由 PDF 几何独立计算，
-   数字可以直接写进交付说明，不需要形容词。判据定义见 `references/baseline.md`。
+   数字可以直接写进交付说明，不需要形容词。逐例结果在 `results/baseline.json`
+   （属于作者证据，不随 Skill 分发；Skill 本体只依赖 `scripts/baseline_compare.py`）。
 
 ## 6. 扫描件 / 无文本层（OCR 分支）
 
@@ -266,12 +267,12 @@ python scripts/merge_ocr.py out/paper --pages 1-3        # 只合并部分页
 ## 10. 版本与来源
 
 - `pdf-struct/2`，脚本 `scripts/pdf_struct.py` + `scripts/parse_pdf.py`（本 Skill 自带，无外部服务）。
-- 工具箱：`scripts/parse_pdf.py`（主入口）、`scripts/baseline_compare.py`（与裸 dump 的量化对照）、
-  `scripts/compare_tools.py`（三工具同口径对比）、`scripts/perf_bench.py`（耗时/RSS）、
-  `scripts/ocr_pages.py` + `scripts/merge_ocr.py` + `scripts/ocr_eval.py`（扫描件分支）、`scripts/make_fixtures.py`（合成语料）。
+- 工具箱：`scripts/parse_pdf.py`（主入口）、`scripts/pdf_struct.py`（引擎）、
+  `scripts/ocr_pages.py` + `scripts/merge_ocr.py`（扫描件分支）、`scripts/run_case.py`（平台入口）、
+  `scripts/baseline_compare.py`（与裸 dump 的量化对照，可选）。
 - 自测：`python tests/test_engine.py`（27 条，中文双栏 / 跨行标题 / 扫描件）+ `python tests/test_robustness.py`
   （54 条，0 字节/伪 PDF/截断/加密/0 页/单页/旋转/三栏/坏参数），共 **81 条**，不依赖 pytest、不联网。
   改引擎前后都应跑一遍。
 - 依赖：PyMuPDF 2.1（MuPDF 1.28.6，AGPL，仅本地解析，不联网）、Pillow 12.3（overlay 与裁图）。
-- 算法与取舍见 `references/method.md`；schema 逐字段说明见 `references/schema.md`；对照方法见 `references/baseline.md`。
+- 算法与取舍见 `references/method.md`；schema 逐字段说明见 `references/schema.md`。
 - 示例调用与示例输出见 `examples/`（`quickstart.md` 是一屏接入版；示例仅用于说明调用方式，不是正式用例结果）。
