@@ -76,6 +76,15 @@ python scripts/parse_pdf.py paper.pdf --out out/paper
 
 退出码即结论：`0` 成功；`2` 用法错误；`3` **该 PDF 无文本层，必须转 OCR 分支**；`4` 自检不通过（看 `report.json` 的 `selfcheck.errors`）。
 
+## 2.1 题面四问对齐（评审核对用）
+
+| 题面关注 | 本 Skill 的确定性保证 | 失败信号 | 不覆盖 |
+|---|---|---|---|
+| 提得全 | 逐字提取 + `char_recall` + 页眉页脚计数 | `char_recall<0.9`（exit 4） | 图片内文字（单独标 `figure_label`） |
+| 排得对 | 栏投票 + 带区排序 + 跨栏判据 | 自检 `cross_gutter` | 极端三/四栏 |
+| 拆得清 | 章节树 + `find_tables` + words 重建单元格 | `sparse_table` warning | 无框线表 |
+| 核得回 | 每块 page+bbox；OCR 路径 `bbox:null` 明示 | 自检 `no_bbox` | 扫描件识别率 |
+
 ## 3. 输入
 
 | 输入 | 说明 |
