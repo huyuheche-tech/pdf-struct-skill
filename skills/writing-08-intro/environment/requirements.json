@@ -1,0 +1,39 @@
+{
+  "schema": "skill-rubric/v1",
+  "skill": "intro-evidence-binder",
+  "challenge": "product-arena-04-4b82ad21",
+  "requirements": [
+    {
+      "name": "立得住",
+      "guarantee": "证据表 + 四段结构；背景段必须有引用或 author_judgment",
+      "signals": [
+        "section_missing",
+        "citation_missing"
+      ]
+    },
+    {
+      "name": "分得清",
+      "guarantee": "相关工作 ≥2 组，组标签与作品非空",
+      "signals": [
+        "grouping_thin"
+      ]
+    },
+    {
+      "name": "说得实",
+      "guarantee": "gap ≥2 引用；每个数字 claim 在证据表",
+      "signals": [
+        "gap_unsupported",
+        "claim_unsupported"
+      ]
+    },
+    {
+      "name": "对得上",
+      "guarantee": "贡献绑定 evidence，锚点必须在证据表内",
+      "signals": [
+        "contribution_unbound",
+        "anchor_invalid",
+        "citation_unknown"
+      ]
+    }
+  ]
+}

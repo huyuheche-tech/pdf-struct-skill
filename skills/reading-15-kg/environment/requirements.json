@@ -1,0 +1,44 @@
+{
+  "schema": "skill-rubric/v1",
+  "skill": "literature-knowledge-graph",
+  "challenge": "product-arena-10-760d1a0b",
+  "requirements": [
+    {
+      "name": "抽得准",
+      "guarantee": "每个实体带 source_id + 原文短引",
+      "signals": [
+        "evidence_unresolved",
+        "node_unevidenced"
+      ]
+    },
+    {
+      "name": "连得对",
+      "guarantee": "关系受控词表 + 方向 + 条件，禁止自环/悬空边",
+      "signals": [
+        "relation_invalid",
+        "dangling_edge",
+        "self_loop"
+      ]
+    },
+    {
+      "name": "对得齐",
+      "guarantee": "合并必须有 merge_basis；同名不同类型不合并",
+      "signals": [
+        "unmerged_duplicate",
+        "name_conflict",
+        "merge_unsourced",
+        "cross_paper_overreach",
+        "incremental_conflict"
+      ]
+    },
+    {
+      "name": "查得到、回得去",
+      "guarantee": "≥3 条真实执行查询，结果带 id + 证据",
+      "signals": [
+        "queries_thin",
+        "query_unevidenced",
+        "orphan_node"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schema": "skill-rubric/v1",
+  "skill": "methods-parameter-ledger",
+  "challenge": "product-arena-05-64faa4a2",
+  "requirements": [
+    {
+      "name": "写得全",
+      "guarantee": "六类要素逐项关键词覆盖",
+      "signals": [
+        "category_missing"
+      ]
+    },
+    {
+      "name": "写得准",
+      "guarantee": "数字必须溯源；参数名后的数字必须等于参数值",
+      "signals": [
+        "number_unsourced",
+        "number_mismatch"
+      ]
+    },
+    {
+      "name": "做得着",
+      "guarantee": "seed/版本/split/batch/lr/epochs/命令复现清单",
+      "signals": [
+        "repro_gap",
+        "todo_placeholder"
+      ]
+    },
+    {
+      "name": "说得住",
+      "guarantee": "基线条件与数据集版本缺失检查",
+      "signals": [
+        "baseline_underspecified",
+        "dataset_underspecified"
+      ]
+    }
+  ]
+}

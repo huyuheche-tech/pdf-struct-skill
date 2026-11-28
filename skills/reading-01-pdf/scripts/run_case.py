@@ -167,7 +167,7 @@ def summarize(pdf, outdir, doc):
     }
 
 
-def fill_contract(fields, docs, uncertainty=None, cid=None, status=None):
+def fill_contract(fields, docs, uncertainty=None, cid=None, status=None, extras=None):
     """Map the case's requested field names onto values we actually computed.
 
     Unknown names are returned as null and reported, never guessed.
@@ -190,6 +190,7 @@ def fill_contract(fields, docs, uncertainty=None, cid=None, status=None):
         "uncertainty": uncertainty or {},
         "files": [d.get("doc_json") for d in docs if d.get("doc_json")],
     }
+    payload.update(extras or {})
     alias = {"document_title": "title", "section_tree": "sections",
              "table_list": "tables", "text_markdown": "text",
              "page_count": "pages", "reference_list": "references",
@@ -273,7 +274,31 @@ def main(argv=None):
         "note": ("unreadable pages are reported, not guessed; a partial parse "
                  "is marked partial rather than completed with invented text"),
     }
-    contract, missing, via = fill_contract(fields, docs, uncertainty, cid, status)
+    # a human can read this without opening the JSON
+    lines = ["# %s" % cid, "", "status: **%s**" % status, ""]
+    for d in docs:
+        lines.append("- `%s`: %s pages, %s sections, %s tables, recall=%s"
+                     % (d["file"], d.get("pages"), len(d.get("sections") or []),
+                        len(d.get("tables") or []), d.get("char_recall")))
+    for w in warnings:
+        lines.append("- WARNING `%s`: %s" % (w.get("code"), str(w.get("detail"))[:200]))
+    with io.open(os.path.join(out_dir, "report.md"), "w", encoding="utf-8",
+                 newline="\n") as fh:
+        fh.write("\n".join(lines) + "\n")
+
+    delivery = sk.delivery_manifest(out_dir)
+    changes = sk.change_record(
+        {"checks": {"errors": [] if docs else [{"code": "no_document"}]},
+         "gaps": [w for w in warnings if w.get("code") in
+                  ("no_text_layer", "page_without_text_layer", "ocr_required")]},
+        uncertainty, status)
+    coverage = sk.requirement_coverage(
+        {"checks": {"errors": [] if docs else [{"code": "no_document"}]}},
+        uncertainty)
+    extras = {"delivery_manifest": delivery, "change_record": changes,
+              "requirement_coverage": coverage}
+    contract, missing, via = fill_contract(fields, docs, uncertainty, cid, status,
+                                           extras=extras)
     uncertainty["missing_fields"] = missing
 
     result = {
@@ -314,20 +339,11 @@ def main(argv=None):
         "contract_resolution": via,
         "contract_unresolved": missing,
         "runs": runs,
+        "delivery_manifest": delivery,
+        "change_record": changes,
+        "requirement_coverage": coverage,
     }
     jdump(os.path.join(out_dir, "result.json"), result)
-
-    # a human can read this without opening the JSON
-    lines = ["# %s" % cid, "", "status: **%s**" % status, ""]
-    for d in docs:
-        lines.append("- `%s`: %s pages, %s sections, %s tables, recall=%s"
-                     % (d["file"], d.get("pages"), len(d.get("sections") or []),
-                        len(d.get("tables") or []), d.get("char_recall")))
-    for w in warnings:
-        lines.append("- WARNING `%s`: %s" % (w.get("code"), str(w.get("detail"))[:200]))
-    with io.open(os.path.join(out_dir, "report.md"), "w", encoding="utf-8",
-                 newline="\n") as fh:
-        fh.write("\n".join(lines) + "\n")
 
     print("case_id=%s status=%s pdfs=%d docs=%d" % (cid, status, len(pdfs), len(docs)))
     print("wrote %s" % os.path.join(out_dir, "result.json"))

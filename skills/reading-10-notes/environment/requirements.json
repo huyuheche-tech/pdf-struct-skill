@@ -1,0 +1,40 @@
+{
+  "schema": "skill-rubric/v1",
+  "skill": "structured-paper-notes",
+  "challenge": "product-arena-06-6d8cf72b",
+  "requirements": [
+    {
+      "name": "对得上",
+      "guarantee": "章节切分 + 逐节摘要覆盖所有一级章节",
+      "signals": [
+        "section_uncovered",
+        "section_unknown"
+      ]
+    },
+    {
+      "name": "留得住",
+      "guarantee": "五字段齐全；findings≥2、limitations≥1",
+      "signals": [
+        "field_missing",
+        "findings_thin",
+        "limitations_missing"
+      ]
+    },
+    {
+      "name": "找得回",
+      "guarantee": "每字段 ≥1 锚点，quote 必须可在原文解析",
+      "signals": [
+        "anchor_unresolved",
+        "summary_unanchored"
+      ]
+    },
+    {
+      "name": "用得上",
+      "guarantee": "知识点去重，notes.json 可检索",
+      "signals": [
+        "duplicate_point",
+        "candidate_card"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schema": "skill-rubric/v1",
+  "skill": "latex-build-doctor",
+  "challenge": "product-arena-07-865de7e4",
+  "requirements": [
+    {
+      "name": "编译得通",
+      "guarantee": "有编译器则两遍以上构建并解析 log；无则 compiled:false",
+      "signals": [
+        "compile_error",
+        "compiler_missing"
+      ]
+    },
+    {
+      "name": "改得对",
+      "guarantee": "括号/环境/$ 配对；cite/ref/label；表格列数",
+      "signals": [
+        "cite_undefined",
+        "ref_undefined",
+        "label_duplicate",
+        "unbalanced_env",
+        "unbalanced_math",
+        "table_column_mismatch"
+      ]
+    },
+    {
+      "name": "交得可用",
+      "guarantee": "输出 fixed.tex + diagnostics + report，只做安全修复",
+      "signals": [
+        "ref_sync",
+        "caption_missing",
+        "package_duplicate"
+      ]
+    },
+    {
+      "name": "复现得了",
+      "guarantee": "记录发行版/宏包/命令/轮次与真实 PDF 字节数",
+      "signals": [
+        "bibtex_missing",
+        "unescaped_special"
+      ]
+    }
+  ]
+}

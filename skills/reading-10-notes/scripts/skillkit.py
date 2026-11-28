@@ -698,6 +698,125 @@ def check_quote(quote, source):
 # --------------------------------------------------------------------------
 # result envelope
 # --------------------------------------------------------------------------
+
+# --------------------------------------------------------------------------
+# delivery layer: the challenge rubric asks for "version and boundaries",
+# "editable artifacts" and a per-requirement verdict.  These three blocks are
+# computed from what the run actually wrote, never from prose claims.
+# --------------------------------------------------------------------------
+EDITABLE_EXT = (".md", ".txt", ".json", ".tex", ".bib", ".csv", ".yaml", ".yml", ".ris")
+
+
+def delivery_manifest(out_dir, exclude=("result.json",)):
+    """Real files the run left in /app/output, with byte counts and hashes."""
+    files = []
+    try:
+        names = sorted(os.listdir(out_dir))
+    except OSError:
+        names = []
+    for name in names:
+        if name in exclude:
+            continue
+        path = os.path.join(out_dir, name)
+        if not os.path.isfile(path):
+            continue
+        try:
+            size = os.path.getsize(path)
+            with open(path, "rb") as fh:
+                digest = hashlib.sha256(fh.read()).hexdigest()[:16]
+        except OSError:
+            continue
+        files.append({"name": name, "bytes": size, "sha256_16": digest,
+                      "editable": name.lower().endswith(EDITABLE_EXT)})
+    return {"files": files,
+            "n_editable": sum(1 for f in files if f["editable"]),
+            "total_bytes": sum(f["bytes"] for f in files)}
+
+
+def change_record(main, uncertainty, status):
+    """Version/boundaries block: what changed, what still needs a human."""
+    m = main or {}
+    u = uncertainty or {}
+    log, source = None, None
+    for key in ("edits", "fixes", "renumber_map", "merges", "patch_plan", "gaps"):
+        v = m.get(key)
+        if isinstance(v, (list, dict)) and v:
+            log, source = v, "main_result." + key
+            break
+    checks = m.get("checks") if isinstance(m.get("checks"), dict) else {}
+    errors = checks.get("errors") or []
+    warnings = checks.get("warnings") or []
+    gaps = []
+    for item in (u.get("missing_fields") or []):
+        gaps.append({"code": "missing_field", "detail": item})
+    for w in (u.get("human_review") or []):
+        if isinstance(w, dict) and w.get("code") in ("todo_placeholder", "repro_gap",
+                                                     "dataset_underspecified",
+                                                     "baseline_underspecified"):
+            gaps.append({"code": w.get("code"), "detail": w.get("detail", "")})
+    out = {
+        "modification_log": log,
+        "modification_log_source": source,
+        "human_confirmation": u.get("human_review") or [],
+        "material_gaps": gaps,
+        "anomalies": [{"code": e.get("code"), "detail": e.get("detail", "")}
+                      for e in errors if isinstance(e, dict)][:20],
+        "n_errors": len(errors), "n_warnings": len(warnings),
+        "status": status,
+        "note": ("A parsing/verification task does not rewrite the source, so an "
+                 "empty modification_log is expected; the editable artifacts are "
+                 "listed in delivery_manifest."),
+    }
+    return out
+
+
+def load_requirements():
+    """Read this skill's rubric mapping from environment/requirements.json."""
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                        "..", "environment", "requirements.json")
+    try:
+        with io.open(path, encoding="utf-8") as fh:
+            data = json.load(fh)
+        return data.get("requirements") or []
+    except Exception:
+        return []
+
+
+def requirement_coverage(main, uncertainty=None):
+    """Per-focus-question verdict, derived from the engine's real error codes."""
+    reqs = load_requirements()
+    if not reqs:
+        return None
+    m = main or {}
+    checks = m.get("checks") if isinstance(m.get("checks"), dict) else {}
+    errors = checks.get("errors") or []
+    warnings = list(checks.get("warnings") or [])
+    # some skills keep their advisories in uncertainty.warnings rather than
+    # inside main_result.checks
+    warnings += list((uncertainty or {}).get("warnings") or [])
+    ecodes = [e.get("code") for e in errors if isinstance(e, dict)]
+    wcodes = [w.get("code") for w in warnings if isinstance(w, dict)]
+    out = {}
+    for r in reqs:
+        signals = r.get("signals") or []
+        hits = sorted({c for c in ecodes if c in signals})
+        advisories = sorted({c for c in wcodes if c in signals})
+        watched = {c: ("not triggered" if c not in ecodes and c not in wcodes
+                        else ("error" if c in ecodes else "warning"))
+                   for c in signals}
+        failed = list(hits)
+        if r.get("advisory_as_failure"):
+            failed = sorted(set(failed) | set(advisories))
+        out[r.get("name") or "unnamed"] = {
+            "satisfied": not failed,
+            "failed_checks": failed,
+            "advisory_checks": advisories,
+            "checks_watched": watched,
+            "guarantee": r.get("guarantee", ""),
+        }
+    return out
+
+
 def write_result(out_dir, skill, task, case, status, main_result,
                  evidence=None, uncertainty=None, sources=None,
                  contract_alias=None, runs=None, artifacts=None):
@@ -709,6 +828,12 @@ def write_result(out_dir, skill, task, case, status, main_result,
     payload.setdefault("evidence", evidence or {})
     payload.setdefault("uncertainty", uncertainty or {})
     payload.setdefault("sources", sources or [])
+    delivery = delivery_manifest(out_dir)
+    changes = change_record(main_result, uncertainty, status)
+    coverage = requirement_coverage(main_result, uncertainty)
+    payload.setdefault("delivery_manifest", delivery)
+    payload.setdefault("change_record", changes)
+    payload.setdefault("requirement_coverage", coverage)
     fields = contract_fields(case)
     values, missing, via = resolve_contract(fields, payload, contract_alias)
     # case_id is always present even when the contract does not ask for it
@@ -728,6 +853,9 @@ def write_result(out_dir, skill, task, case, status, main_result,
         "output_contract_fields": fields,
         "contract_resolution": via,
         "contract_unresolved": missing,
+        "delivery_manifest": delivery,
+        "change_record": changes,
+        "requirement_coverage": coverage,
         "runs": runs or [],
     }
     jdump(os.path.join(out_dir, "result.json"), result)

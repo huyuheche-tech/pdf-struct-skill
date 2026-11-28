@@ -1,0 +1,46 @@
+{
+  "schema": "skill-rubric/v1",
+  "skill": "academic-polish-ledger",
+  "challenge": "product-arena-02-7051d92d",
+  "requirements": [
+    {
+      "name": "改得对",
+      "guarantee": "句级对齐 + 台账 type/reason + 残留语法 lint",
+      "signals": [
+        "edit_unexplained",
+        "edit_bad_type",
+        "edit_duplicate_id",
+        "edit_unanchored",
+        "residual_grammar",
+        "alignment_gap"
+      ]
+    },
+    {
+      "name": "说得像",
+      "guarantee": "术语写法锁定；语域只做高置信 lint",
+      "signals": [
+        "term_missing",
+        "edit_noop"
+      ]
+    },
+    {
+      "name": "没改坏",
+      "guarantee": "数字多重集、引用集合、否定极性、hedge 强度",
+      "signals": [
+        "number_missing",
+        "number_added",
+        "number_changed",
+        "citation_changed",
+        "negation_changed",
+        "hedge_strengthened"
+      ]
+    },
+    {
+      "name": "讲得清",
+      "guarantee": "每条改动 original/edited/type/reason",
+      "signals": [
+        "hedge_weakened"
+      ]
+    }
+  ]
+}

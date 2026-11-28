@@ -1,0 +1,42 @@
+{
+  "schema": "skill-rubric/v1",
+  "skill": "weekly-skill",
+  "challenge": "product-arena-08-3027d350",
+  "requirements": [
+    {
+      "name": "提得全",
+      "guarantee": "逐字提取 + char_recall 自检 + 页眉页脚单独计数",
+      "signals": [
+        "no_document",
+        "parse_failed",
+        "no_text_layer",
+        "page_without_text_layer",
+        "ocr_required"
+      ],
+      "advisory_as_failure": true
+    },
+    {
+      "name": "排得对",
+      "guarantee": "栏投票 + 带区排序 + 跨栏重叠率 ≥0.80 判据",
+      "signals": [
+        "column_template_mismatch"
+      ]
+    },
+    {
+      "name": "拆得清",
+      "guarantee": "章节树 + find_tables 单元格重建 + 多行标题合并",
+      "signals": [
+        "heading_merged",
+        "title_merged"
+      ]
+    },
+    {
+      "name": "核得回",
+      "guarantee": "每块 page+bbox；OCR 路径 bbox:null 明示",
+      "signals": [
+        "no_bbox",
+        "cross_gutter"
+      ]
+    }
+  ]
+}

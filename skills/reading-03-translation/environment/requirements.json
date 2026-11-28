@@ -1,0 +1,44 @@
+{
+  "schema": "skill-rubric/v1",
+  "skill": "bilingual-translation-guard",
+  "challenge": "product-arena-01-5a9928c1",
+  "requirements": [
+    {
+      "name": "术语稳",
+      "guarantee": "锁定译名逐段下发，按 title/abstract/body/caption 统计",
+      "signals": [
+        "term_missing"
+      ]
+    },
+    {
+      "name": "段落全",
+      "guarantee": "p001… 全覆盖；缺/重/未知段号分别报错",
+      "signals": [
+        "missing_segment",
+        "duplicate_segment",
+        "unknown_segment"
+      ]
+    },
+    {
+      "name": "关系准",
+      "guarantee": "数字/单位、引用、公式逐字；否定与 hedge 极性",
+      "signals": [
+        "number_missing",
+        "number_added",
+        "citation_missing",
+        "formula_changed",
+        "negation_lost",
+        "hedge_lost"
+      ]
+    },
+    {
+      "name": "可核验",
+      "guarantee": "逐段五行对照 + checks.json 逐段问题",
+      "signals": [
+        "back_translation_diverges",
+        "length_outlier",
+        "citation_localised"
+      ]
+    }
+  ]
+}

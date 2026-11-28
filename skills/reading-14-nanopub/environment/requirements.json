@@ -1,0 +1,42 @@
+{
+  "schema": "skill-rubric/v1",
+  "skill": "nanopub-assertion-builder",
+  "challenge": "product-arena-09-0e8befd4",
+  "requirements": [
+    {
+      "name": "拆得细",
+      "guarantee": "复合句拆分；一条断言一个判断",
+      "signals": [
+        "not_atomic",
+        "duplicate_assertion"
+      ]
+    },
+    {
+      "name": "对得上",
+      "guarantee": "evidence 可解析且 ≤400 字符；三元组完整",
+      "signals": [
+        "evidence_unresolved",
+        "evidence_too_long",
+        "evidence_elsewhere",
+        "triple_incomplete"
+      ]
+    },
+    {
+      "name": "追得回",
+      "guarantee": "source_id / paragraph_id / char_span + 稳定 URI",
+      "signals": [
+        "source_missing",
+        "predicate_invalid"
+      ]
+    },
+    {
+      "name": "读得懂",
+      "guarantee": "assertion / provenance / pubinfo 三段 JSON",
+      "signals": [
+        "overbroad",
+        "condition_dropped",
+        "no_assertions"
+      ]
+    }
+  ]
+}

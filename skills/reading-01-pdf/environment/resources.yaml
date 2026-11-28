@@ -39,6 +39,9 @@ resources:
     role: docs
   - path: examples/quickstart.md
     role: docs
+  - path: environment/requirements.json
+    role: data
+    note: focus-question to engine error-code map, read by skillkit at runtime
 
 limits:
   text_files: 50

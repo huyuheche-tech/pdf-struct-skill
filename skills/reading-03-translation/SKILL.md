@@ -68,6 +68,19 @@ python scripts/run_case.py --draft /app/work/draft.json
 | 关系准 | 数字/单位、引用、公式逐字；否定与 hedge 极性 | `number_missing` / `citation_missing` / `formula_changed` / `negation_lost` | 指代、因果/让步的完整解析 |
 | 可核验 | 每段五行对照 + `checks.json` 逐段问题 | — | 译文是否优美 |
 
+### 2.10 交付自证字段（结果里直接读，不用自述）
+
+`result.json` 顶层固定带三块**由实际运行算出来**的记录，供逐条复核：
+
+| 字段 | 内容 | 对应题面要求 |
+|---|---|---|
+| `delivery_manifest` | `/app/output` 里真实写出的每个文件：文件名、字节数、sha256 前 16 位、是否可编辑 | 「结果可继续编辑」「可核验性」 |
+| `change_record` | `modification_log`（本次改动台账及其来源字段）、`human_confirmation`、`material_gaps`、`anomalies` | 「版本与边界：修改差异、人工确认项、材料缺口和异常」 |
+| `requirement_coverage` | 题面四个关注点逐条给 `satisfied`，命中的真实错误码放 `failed_checks`，只提示不判错的放 `advisory_checks`；`checks_watched` 列出每个码本次是 error / warning / 未触发 | 「完整性」「可核验性」 |
+
+映射表在 `environment/requirements.json`（题面四问 → 引擎真实失败码），不是评委自评表。
+例如漏译一段会把「段落全」标 false 并给出 `p0NN` 段号。
+
 ## 3. 操作流程
 
 ### 3.1 读输入，确认边界

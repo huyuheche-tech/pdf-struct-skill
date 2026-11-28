@@ -1,0 +1,40 @@
+{
+  "schema": "skill-rubric/v1",
+  "skill": "citation-ledger",
+  "challenge": "product-arena-03-429cc14d",
+  "requirements": [
+    {
+      "name": "挂得对",
+      "guarantee": "citation_contexts：所在句 + 题名 + 实词交集 + 段末标记",
+      "signals": [
+        "claim_topic_mismatch"
+      ]
+    },
+    {
+      "name": "编得顺",
+      "guarantee": "按首次出现重编号并改写正文；断号/重号检查",
+      "signals": [
+        "number_gap",
+        "unknown_key"
+      ]
+    },
+    {
+      "name": "收得净",
+      "guarantee": "DOI 或标题≥0.90+同姓才合并，写 merge_basis",
+      "signals": [
+        "unsafe_merge",
+        "duplicate_entry",
+        "draft_bad_merge"
+      ]
+    },
+    {
+      "name": "对得上",
+      "guarantee": "双向对账 + GB/T 7714 + 缺字段写 TODO",
+      "signals": [
+        "missing_entry",
+        "uncited_entry",
+        "field_missing"
+      ]
+    }
+  ]
+}
