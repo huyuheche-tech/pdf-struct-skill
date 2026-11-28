@@ -3,7 +3,7 @@ name: methods-parameter-ledger
 version: 1.0.0
 description: >
   Parameter-ledger-driven methods and experiments writing. Flattens
-  config.json / config.yaml / train.log into name/value/unit/source rows, then
+  config.json / config.yaml / train.txt into name/value/unit/source rows, then
   checks number-to-source traceability, six-element coverage, an eight-item
   reproducibility checklist, baseline specification and dataset specification.
   Reads /input/case.json, writes /app/output/result.json plus params.json,

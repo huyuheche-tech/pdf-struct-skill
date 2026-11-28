@@ -4,7 +4,7 @@
 The model writes the prose; this module guarantees the parts a language model
 must not be trusted with:
 
-  * a parameter ledger flattened from config.json / config.yaml / train.log,
+  * a parameter ledger flattened from config.json / config.yaml / train.txt,
     each row carrying name / value / unit / source(file:line);
   * number-to-source checking (every number in the body must appear in the
     ledger or in the raw materials, otherwise `number_unsourced`);
@@ -147,6 +147,15 @@ def flatten_yaml(text):
     return out
 
 
+def looks_like_log(text):
+    """A log is several lines of key=value / --flag value, not prose."""
+    lines = [ln for ln in (text or "").splitlines() if ln.strip()]
+    if not lines:
+        return False
+    hits = sum(1 for ln in lines if "=" in ln or re.search(r"--[A-Za-z]", ln))
+    return hits >= 3 and hits >= 0.4 * len(lines)
+
+
 def parse_log(text):
     out = []
     for i, line in enumerate((text or "").splitlines(), 1):
@@ -203,7 +212,12 @@ def build_params(materials):
                 pairs.append((flat_name, val, _line_of(text, leaf or flat_name)))
         elif kind == "yaml":
             pairs = flatten_yaml(text)
-        elif kind in ("text", "csv") and name.lower().endswith(".log"):
+        elif kind in ("text", "csv") and (
+                name.lower().endswith(".log")
+                or (name.lower().endswith(".txt") and looks_like_log(text))):
+            # .log is the natural name but the platform rejects it as a Skill
+            # resource, so the same parser also accepts a .txt that reads like a
+            # log.  A .md is never treated as a log: prose quotes parameters too.
             pairs = parse_log(text)
         for nm, val, line in pairs:
             if not nm or val is None:

@@ -15,7 +15,7 @@ description: 对 LaTeX 稿件做可复现的编译体检：括号/环境/数学�
 python scripts/run_case.py --case /input/case.json --input-dir /input --out /app/output --work /app/work --fix
 
 # 第 2 步：把人工/模型修好的主文件放进 /app/work/draft.tex，再体检 + 修复 + 编译两遍
-python scripts/run_case.py --case /input/case.json --input-dir /input --out /app/output --work /app/work --draft /app/work/draft.tex --fix --compile
+python scripts/run_case.py --case /input/case.json --input-dir /input --out /app/output --work /app/work --compile
 ```
 
 可选参数：`--main main.tex` 指定主文件；`--no-compile` 关闭编译。
@@ -35,15 +35,19 @@ python scripts/run_case.py --case /input/case.json --input-dir /input --out /app
 
 | 字段 | 类型 | 说明 |
 |---|---|---|
-| `latex` | string | 交付的源码：有 `--fix` 时为 `fixed.tex`，否则为输入（或 draft）原文 |
+| `latex` | string | 交付的源码：默认 `--fix`，值为 `fixed.tex`；`--no-fix` 时为输入原文 |
 | `checks` | object | `{errors[], warnings[], summary{}}` |
 | `diagnostics` | object | 含 `fixes` 与 `patch_plan`，`patch_plan` 是不自动改的部分 |
 | `metrics` | object | `{errors, warnings, compiled, cite_keys, labels, lines}` |
 | `files` | object | 产出的文件名清单 |
 
-**状态规则**：无可读 `.tex` → `failed`；没有 `--draft` → `partial`（`next_step` 写明要交什么）；
-有 draft 且 0 个 error → `success`；有 draft 但仍有 error → `partial`。
+**状态规则**：无可读 `.tex` → `failed`；有可读 `.tex` 且修完 0 个 error → `success`
+（`--fix` 默认开启，交付 `fixed.tex`）；仍有 error → `partial`，`next_step` 逐条列出。
+**没有 `--draft` 不算不完整**：案例自带的主文件就是待修对象，修好的版本会在 `fixed.tex` 里交付。
 **没有编译器时 `compiled` 只能是 `false`**，并把 `compiler_missing` 写进 `uncertainty`。
+**编译成功时**：`main.pdf` 一起交付到 `/app/output`，`metrics.pdf_bytes` 是它的真实字节数，
+`diagnostics.compile.engine_version` 记录发行版。带 `.bib` 时构建顺序是
+`pdflatex → bibtex → pdflatex ×2`；`bibtex` 缺失记 `bibtex_missing`，不假装参考文献已解析。
 
 **预算**：64 次模型请求 / 900 秒 / 单回复 16384 token。体检本身不耗模型请求；
 返修时一次只喂 `diagnostics.json` 里的一条错误（带 file:line 与原行），不要整篇重发。

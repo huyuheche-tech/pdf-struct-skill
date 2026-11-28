@@ -18,7 +18,8 @@ CASES = os.path.join(HERE, "cases")
 PY = sys.executable
 
 
-def run_case(case_dir, draft=None, do_fix=False, no_compile=True):
+def run_case(case_dir, draft=None, do_fix=None, no_compile=True):
+    """do_fix=None means "no flag" -- the platform default, which is fix on."""
     tmp = tempfile.mkdtemp(prefix="tx-")
     out = os.path.join(tmp, "out")
     work = os.path.join(tmp, "work")
@@ -26,8 +27,10 @@ def run_case(case_dir, draft=None, do_fix=False, no_compile=True):
            "--input-dir", case_dir, "--out", out, "--work", work]
     if draft:
         cmd += ["--draft", draft]
-    if do_fix:
+    if do_fix is True:
         cmd += ["--fix"]
+    elif do_fix is False:
+        cmd += ["--no-fix"]
     if no_compile:
         cmd += ["--no-compile"]
     p = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8",
@@ -54,7 +57,7 @@ def main():
         checks.append({"name": name, "ok": bool(ok), "detail": detail})
 
     d1 = os.path.join(CASES, "case-01")
-    p, r, _fx, rep = run_case(d1)
+    p, r, _fx, rep = run_case(d1, do_fix=False)
     add("case01.exit", p.returncode == 0, p.stdout.strip()[-300:])
     add("case01.partial", r and r["status"] == "partial", r["status"] if r else "no result")
     e1 = codes(r)
@@ -106,6 +109,26 @@ def main():
         r and r["main_result"]["metrics"]["compiled"] is False
         and r["main_result"]["diagnostics"]["compile"].get("compiler_missing") is True,
         json.dumps((r or {}).get("main_result", {}).get("metrics"), ensure_ascii=False))
+
+    # default run (no --fix flag, no draft): must still deliver fixed.tex and
+    # must not report partial when nothing is left to fix
+    # case-02 ships a draft.tex, so copy the source into a draft-free temp dir:
+    # that is what the platform's first case looks like (source only)
+    d2b = tempfile.mkdtemp(prefix="txsrc-")
+    for f in sorted(os.listdir(d2)):
+        if f == "draft.tex":
+            continue
+        srcf = os.path.join(d2, f)
+        if os.path.isfile(srcf):
+            dstf = os.path.join(d2b, f)
+            with open(srcf, "rb") as fh, open(dstf, "wb") as out:
+                out.write(fh.read())
+    p, rd, fixedd, _repd = run_case(d2b)
+    add("default.fix_ships_file", bool(fixedd.strip()), "fixed.tex empty")
+    add("default.clean_source_is_success", rd and rd["status"] == "success",
+        rd["status"] if rd else "no result")
+    add("default.no_draft_is_disclosed",
+        rd and "draft_absent" in (rd.get("uncertainty") or {}), "draft_absent missing")
 
     failed = [c for c in checks if not c["ok"]]
     out_dir = os.path.join(ROOT, "results")

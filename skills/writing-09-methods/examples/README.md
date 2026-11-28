@@ -2,7 +2,7 @@
 
 ## Input
 
-`examples/input/` contains `case.json`, `config.json`（嵌套训练配置）, `train.log`, `notes.md`
+`examples/input/` contains `case.json`, `config.json`（嵌套训练配置）, `train.txt`, `notes.md`
 和 `draft.json`（方法全文）。
 
 ```bash
@@ -15,7 +15,7 @@ python scripts/run_case.py --case examples/input/case.json --input-dir examples/
 ## What the ledger checks
 
 - `config.json` 摊平成 `optimizer.lr = 0.001`、`training.batch_size = 64` 等 13 条；
-- `train.log` 的 `lr=0.001`、`count=4` 等进入台账；
+- `train.txt` 的 `lr=0.001`、`count=4` 等进入台账；
 - 正文每个数字都能溯源（0.001 / 64 / 40 / 42 / 500 / 4 / 32GB / 2.1.0 / 2.0 / 80% / 10%）；
 - 六类要素齐全；
 - 八项复现清单齐全（含运行命令 `python train.py ...`）；

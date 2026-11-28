@@ -1,6 +1,6 @@
 ---
 name: methods-parameter-ledger
-description: 从 config.json/config.yaml/train.log/notes 抽取参数台账（name/value/unit/source），据此写方法与实验章节并逐项校验：正文每个数字可溯源、六类要素齐全、复现清单不缺项、基线与数据集写清楚。当任务涉及"写方法章节""写实验设置""参数对不上""复现清单""审方法部分"时使用。
+description: 从 config.json/config.yaml/train.txt/notes 抽取参数台账（name/value/unit/source），据此写方法与实验章节并逐项校验：正文每个数字可溯源、六类要素齐全、复现清单不缺项、基线与数据集写清楚。当任务涉及"写方法章节""写实验设置""参数对不上""复现清单""审方法部分"时使用。
 ---
 
 # 方法与实验章节：参数台账 + 数字溯源
@@ -50,7 +50,7 @@ python scripts/run_case.py --draft /app/work/draft.json
 
 把配置文件、训练日志和实验笔记，变成一段**每个数字都有来源、复现清单逐项可查**的方法章节。
 
-适用：有 `config.json` / `config.yaml` / `train.log` / `notes.md` 中任意一种或多种；中英文均可；
+适用：有 `config.json` / `config.yaml` / `train.txt` / `notes.md` 中任意一种或多种；中英文均可；
 已有 draft 需要体检；也可以只跑 `--plan-only` 拿参数台账交给写作模型。
 
 不适用：没有任何配置或日志却要求"补全实验参数"；需要真正跑实验验证结果（本 Skill 不执行训练）；
@@ -81,7 +81,7 @@ python scripts/run_case.py --draft /app/work/draft.json
 ### 3.1 读输入，先看台账
 
 1. `case.json` 可能给出 `title / materials / output_contract`；材料可能是 `config.json`、`config.yaml`、
-   `train.log`、`notes.md`。**按实际文件读，不要按文件名猜内容。**
+   `train.txt`、`notes.md`。**按实际文件读，不要按文件名猜内容。**
 2. 跑 `--plan-only`，看 `params.json`：
    - 嵌套配置是否摊平成 `a.b.c`；
    - log 里的 `lr=0.001`、`--batch_size 64` 是否进来了；

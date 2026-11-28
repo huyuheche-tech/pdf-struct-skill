@@ -663,10 +663,36 @@ def compile_tex(tex_text, tex_name, bib_texts, work_dir, timeout=180):
         with open(os.path.join(cdir, bname), "w", encoding="utf-8", newline="\n") as fh:
             fh.write(btext)
     runs = []
+    bibtex_missing = False
+    version = ""
+    try:
+        vp = subprocess.run([path, "--version"], stdout=subprocess.PIPE,
+                            stderr=subprocess.STDOUT, timeout=30)
+        head = (vp.stdout or b"").decode("utf-8", "replace").splitlines()
+        version = head[0].strip() if head else ""
+    except Exception:
+        version = ""
     if engine == "pdflatex":
         cmd = [path, "-interaction=nonstopmode", "-file-line-error",
                "-output-directory=" + cdir, tex_name]
-        plan = [cmd, cmd]
+        plan = [cmd]
+        # a bibliography needs its own pass, otherwise \cite stays undefined
+        # even though pdflatex exits 0
+        bibtex = shutil.which("bibtex")
+        if not bibtex:
+            guess = os.path.join(os.path.dirname(path),
+                                 "bibtex" + (".exe" if path.lower().endswith(".exe") else ""))
+            bibtex = guess if os.path.exists(guess) else None
+        if bibtex and bib_texts and re.search(
+                r"\\(bibliography|addbibresource|printbibliography)", tex_text or ""):
+            plan.append([bibtex, os.path.splitext(tex_name)[0]])
+            plan += [cmd, cmd]
+        else:
+            # no bibtex on PATH: two passes only, and say so instead of pretending
+            # the bibliography was resolved
+            plan.append(cmd)
+            if bib_texts and re.search(r"\\bibliography", tex_text or ""):
+                bibtex_missing = True
     else:
         cmd = [path, "-pdf", "-interaction=nonstopmode", "-outdir=" + cdir, tex_name]
         plan = [cmd]
@@ -684,9 +710,23 @@ def compile_tex(tex_text, tex_name, bib_texts, work_dir, timeout=180):
         with open(log_path, "rb") as fh:
             log = fh.read().decode("utf-8", "replace")
     errs = parse_log(log, tex_name)
-    ok = all(r["returncode"] == 0 for r in runs) and not errs
+    # bibtex reports to .blg, and its failures are also build failures
+    blg = os.path.join(cdir, os.path.splitext(tex_name)[0] + ".blg")
+    if os.path.exists(blg):
+        with open(blg, "rb") as fh:
+            blg_text = fh.read().decode("utf-8", "replace")
+        for line in blg_text.splitlines():
+            if line.lower().startswith(("i couldn't open", "error", "warning--")):
+                errs.append({"file": os.path.basename(blg), "line": 0,
+                             "message": line.strip()[:200]})
+    pdf = os.path.join(cdir, os.path.splitext(tex_name)[0] + ".pdf")
+    pdf_size = os.path.getsize(pdf) if os.path.exists(pdf) else 0
+    ok = all(r["returncode"] == 0 for r in runs) and not errs and pdf_size > 0
     return {"available": True, "compiler_missing": False, "compiled": bool(ok),
-            "engine": engine, "runs": len(runs), "errors": errs,
+            "engine": engine, "engine_version": version, "runs": len(runs),
+            "bibtex_missing": bibtex_missing,
+            "errors": errs, "pdf_path": pdf if pdf_size else None,
+            "pdf_bytes": pdf_size,
             "log_tail": log[-1500:] if log else "",
             "note": "" if ok else "build failed or reported errors"}
 

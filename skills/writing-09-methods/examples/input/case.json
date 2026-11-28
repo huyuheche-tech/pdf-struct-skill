@@ -3,7 +3,7 @@
  "title": "EXAMPLE Compact Transformer for GLUE Text Classification",
  "materials": [
   "config.json",
-  "train.log",
+  "train.txt",
   "notes.md"
  ],
  "output_contract": [
